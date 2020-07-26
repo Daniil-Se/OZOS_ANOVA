@@ -6,9 +6,19 @@ import openpyxl as op
 from openpyxl.styles import PatternFill, Border, Side, Alignment, Protection, Font, Side
 import math 
 
+def my_round(n, ndigits):
+    part = n * 10 ** ndigits
+    delta = part - int(part)
+    # always my_round "away from 0"
+    if delta >= 0.5 or -0.5 < delta <= 0:
+        part = math.ceil(part)
+    else:
+        part = math.floor(part)
+    return part / (10 ** ndigits)
+
+
 def open_dialog():
     file_name = fd.askopenfilename()
-
     f = open(file_name)
     stroka_path = str(f).split('\'')
     global txt
@@ -197,7 +207,6 @@ def create_input():
 	wb.save(txt)		
 
 
-
 def input_this():
 	open_dialog()
 	A_column = ws['A']
@@ -206,7 +215,6 @@ def input_this():
 	for i in A_column[0:]:		
 		all_A_column_values.append(i.value)
 
-	print(all_A_column_values)
 
 	n_kletki = []
 	spisok_conc = []
@@ -219,8 +227,6 @@ def input_this():
 			spisok_conc.append(i)
 			n_kletki.append(schet)
 			schet += 1
-	print(spisok_conc)
-	print(n_kletki)
 
 
 	#QCA
@@ -1762,12 +1768,9 @@ def input_this():
 			if check_var_gr_3.get() >= 10:
 				entr_F10_VI.delete(0, "end")
 				entr_F10_VI.insert(tk.END, '{}'.format(QCF_val[5][9]))	
-
  
 def clear():
-	#QCA
 
-	#QCA1
 	entr_MAIN_I.delete(0, "end")
 	entr_A1_I.delete(0, "end")
 	entr_A2_I.delete(0, "end")
@@ -1794,8 +1797,6 @@ def clear():
 	if check_var_gr_3.get() >= 10:	
 		entr_A10_I.delete(0, "end")
 		
-
-
 	#QCA2
 	if check_var_gr_2.get() >= 2:
 		entr_B1_I.delete(0, "end")
@@ -1825,8 +1826,6 @@ def clear():
 		if check_var_gr_3.get() >= 10:
 			entr_B10_I.delete(0, "end")
 			
-
-
 	#QCA3
 	if check_var_gr_2.get() >= 3:
 		entr_C1_I.delete(0, "end")
@@ -1856,8 +1855,6 @@ def clear():
 		if check_var_gr_3.get() >= 10:
 			entr_C10_I.delete(0, "end")
 			
-
-
 
 	#QCA4
 	if check_var_gr_2.get() >= 4:
@@ -1889,13 +1886,10 @@ def clear():
 			entr_D10_I.delete(0, "end")
 			
 
-
 	#QCA5
 	if check_var_gr_2.get() >= 5:
 		entr_E1_I.delete(0, "end")
-	
 		entr_E2_I.delete(0, "end")
-	
 		entr_E3_I.delete(0, "end")
 	
 		if check_var_gr_3.get() >= 4:
@@ -1924,9 +1918,7 @@ def clear():
 	#QCA6
 	if check_var_gr_2.get() >= 6:
 		entr_F1_I.delete(0, "end")
-	
 		entr_F2_I.delete(0, "end")
-	
 		entr_F3_I.delete(0, "end")
 	
 		if check_var_gr_3.get() >= 4:
@@ -1955,13 +1947,10 @@ def clear():
 	#QCB
 
 	if check_var_gr_1.get() >= 2:
-	#QCB1
+
 		entr_MAIN_II.delete(0, "end")
-		
 		entr_A1_II.delete(0, "end")
-	
 		entr_A2_II.delete(0, "end")
-	
 		entr_A3_II.delete(0, "end")
 	
 		if check_var_gr_3.get() >= 4:
@@ -1989,10 +1978,9 @@ def clear():
 
 		#QCB2
 		if check_var_gr_2.get() >= 2:
+
 			entr_B1_II.delete(0, "end")
-		
 			entr_B2_II.delete(0, "end")
-		
 			entr_B3_II.delete(0, "end")
 		
 			if check_var_gr_3.get() >= 4:
@@ -2019,10 +2007,9 @@ def clear():
 
 		#QCB3
 		if check_var_gr_2.get() >= 3:
+
 			entr_C1_II.delete(0, "end")
-		
 			entr_C2_II.delete(0, "end")
-		
 			entr_C3_II.delete(0, "end")
 		
 			if check_var_gr_3.get() >= 4:
@@ -2046,14 +2033,11 @@ def clear():
 			if check_var_gr_3.get() >= 10:
 				entr_C10_II.delete(0, "end")
 				
-
-
 			#QCB4
 		if check_var_gr_2.get() >= 4:
+
 			entr_D1_II.delete(0, "end")
-		
 			entr_D2_II.delete(0, "end")
-		
 			entr_D3_II.delete(0, "end")
 		
 			if check_var_gr_3.get() >= 4:
@@ -2078,13 +2062,11 @@ def clear():
 				entr_D10_II.delete(0, "end")
 				
 
-
 			#QCB5
 		if check_var_gr_2.get() >= 5:
+
 			entr_E1_II.delete(0, "end")
-		
 			entr_E2_II.delete(0, "end")
-		
 			entr_E3_II.delete(0, "end")
 		
 			if check_var_gr_3.get() >= 4:
@@ -2109,13 +2091,11 @@ def clear():
 				entr_E10_II.delete(0, "end")
 				
 
-
 		#QCB6
 		if check_var_gr_2.get() >= 6:
+
 			entr_F1_II.delete(0, "end")
-		
 			entr_F2_II.delete(0, "end")
-		
 			entr_F3_II.delete(0, "end")
 		
 			if check_var_gr_3.get() >= 4:
@@ -2140,17 +2120,10 @@ def clear():
 				entr_F10_II.delete(0, "end")
 				
 
-
-
-		#QCC
 	if check_var_gr_1.get() >= 3:
-		#QCC1
 		entr_MAIN_III.delete(0, "end")
-
 		entr_A1_III.delete(0, "end")
-	
 		entr_A2_III.delete(0, "end")
-	
 		entr_A3_III.delete(0, "end")
 	
 		if check_var_gr_3.get() >= 4:
@@ -2179,9 +2152,7 @@ def clear():
 			#QCC2
 		if check_var_gr_2.get() >= 2:
 			entr_B1_III.delete(0, "end")
-		
 			entr_B2_III.delete(0, "end")
-		
 			entr_B3_III.delete(0, "end")
 		
 			if check_var_gr_3.get() >= 4:
@@ -2210,9 +2181,7 @@ def clear():
 			#QCC3
 		if check_var_gr_2.get() >= 3:
 			entr_C1_III.delete(0, "end")
-		
 			entr_C2_III.delete(0, "end")
-		
 			entr_C3_III.delete(0, "end")
 		
 			if check_var_gr_3.get() >= 4:
@@ -2236,15 +2205,10 @@ def clear():
 			if check_var_gr_3.get() >= 10:
 				entr_C10_III.delete(0, "end")
 				
-
-
-
 			#QCC4
 		if check_var_gr_2.get() >= 4:
 			entr_D1_III.delete(0, "end")
-		
 			entr_D2_III.delete(0, "end")
-		
 			entr_D3_III.delete(0, "end")
 		
 			if check_var_gr_3.get() >= 4:
@@ -2268,14 +2232,10 @@ def clear():
 			if check_var_gr_3.get() >= 10:
 				entr_D10_III.delete(0, "end")
 				
-
-
 			#QCC5
 		if check_var_gr_2.get() >= 5:
 			entr_E1_III.delete(0, "end")
-		
 			entr_E2_III.delete(0, "end")
-		
 			entr_E3_III.delete(0, "end")
 		
 			if check_var_gr_3.get() >= 4:
@@ -2300,13 +2260,10 @@ def clear():
 				entr_E10_III.delete(0, "end")
 				
 
-
 			#QCC6
 		if check_var_gr_2.get() >= 6:
 			entr_F1_III.delete(0, "end")
-		
 			entr_F2_III.delete(0, "end")
-		
 			entr_F3_III.delete(0, "end")
 		
 			if check_var_gr_3.get() >= 4:
@@ -2329,18 +2286,13 @@ def clear():
 			
 			if check_var_gr_3.get() >= 10:
 				entr_F10_III.delete(0, "end")
-				
-
+			
 
 	#QCD
 	if check_var_gr_1.get() >= 4:
-		#QCD1
 		entr_MAIN_IV.delete(0, "end")
-		
 		entr_A1_IV.delete(0, "end")
-	
 		entr_A2_IV.delete(0, "end")
-	
 		entr_A3_IV.delete(0, "end")
 	
 		if check_var_gr_3.get() >= 4:
@@ -2364,14 +2316,10 @@ def clear():
 		if check_var_gr_3.get() >= 10:
 			entr_A10_IV.delete(0, "end")	
 			
-
-
 		#QCD2
 		if check_var_gr_2.get() >= 2:
 			entr_B1_IV.delete(0, "end")
-		
 			entr_B2_IV.delete(0, "end")
-		
 			entr_B3_IV.delete(0, "end")
 		
 			if check_var_gr_3.get() >= 4:
@@ -2400,9 +2348,7 @@ def clear():
 		#QCD3
 		if check_var_gr_2.get() >= 3:
 			entr_C1_IV.delete(0, "end")
-		
 			entr_C2_IV.delete(0, "end")
-		
 			entr_C3_IV.delete(0, "end")
 		
 			if check_var_gr_3.get() >= 4:
@@ -2427,13 +2373,9 @@ def clear():
 				entr_C10_IV.delete(0, "end")
 				
 
-
-		#QCD4
 		if check_var_gr_2.get() >= 4:
 			entr_D1_IV.delete(0, "end")
-		
 			entr_D2_IV.delete(0, "end")
-		
 			entr_D3_IV.delete(0, "end")
 		
 			if check_var_gr_3.get() >= 4:
@@ -2458,13 +2400,10 @@ def clear():
 				entr_D10_IV.delete(0, "end")
 				
 
-
 		#QCD5
 		if check_var_gr_2.get() >= 5:
 			entr_E1_IV.delete(0, "end")
-		
 			entr_E2_IV.delete(0, "end")
-		
 			entr_E3_IV.delete(0, "end")
 		
 			if check_var_gr_3.get() >= 4:
@@ -2489,13 +2428,10 @@ def clear():
 				entr_E10_IV.delete(0, "end")
 				
 
-
 		#QCD6
 		if check_var_gr_2.get() >= 6:
 			entr_F1_IV.delete(0, "end")
-			
 			entr_F2_IV.delete(0, "end")
-			
 			entr_F3_IV.delete(0, "end")
 			
 			if check_var_gr_3.get() >= 4:
@@ -2520,16 +2456,12 @@ def clear():
 				entr_F10_IV.delete(0, "end")
 					
 
-
 	#QCE
 	if check_var_gr_1.get() >= 5:
-		#QCE1
+		
 		entr_MAIN_V.delete(0, "end")
-		
 		entr_A1_V.delete(0, "end")
-		
 		entr_A2_V.delete(0, "end")
-		
 		entr_A3_V.delete(0, "end")
 		
 		if check_var_gr_3.get() >= 4:
@@ -2554,13 +2486,10 @@ def clear():
 			entr_A10_V.delete(0, "end")	
 			
 
-
 		#QCE2
 		if check_var_gr_2.get() >= 2:
 			entr_B1_V.delete(0, "end")
-			
 			entr_B2_V.delete(0, "end")
-			
 			entr_B3_V.delete(0, "end")
 			
 			if check_var_gr_3.get() >= 4:
@@ -2898,14 +2827,6 @@ def clear():
 				
 
     
-def n_round(n, decimals=0):
-	if n == '-':
-		return '-'
-	else:
-	    expoN = n * 10 ** decimals
-	    if abs(expoN) - abs(math.floor(expoN)) < 0.5:
-	        return math.floor(expoN) / 10 ** decimals
-	    return math.ceil(expoN) / 10 ** decimals
 
 #функция РАВНЕНИЕ ПО ЦЕНТРУ EXCEL 
 def cols_c(ws, cell_range):
@@ -2929,7 +2850,6 @@ def thin_border(ws, cell_range):
             cell.border = border
 
 
-
 def start_std():
 	global check_var_gr_1
 	check_var_gr_1.set(4)
@@ -2939,10 +2859,7 @@ def start_std():
 
 
 def start():
-
-
 	root_open.destroy()
-
 	global root
 	root = tk.Tk()
 	root.title('AnovaD')
@@ -5370,11 +5287,11 @@ def start():
 		labl_concent.place(x = 1028, y = 150)
 
 	global entr_concent
-	entr_concent = tk.Entry(root, width = 6, relief='solid')
+	entr_concent = tk.Entry(root, width = 10, relief='solid')
 	if check_var_gr_1.get() == 4 and check_var_gr_2.get() == 3 and check_var_gr_3.get() == 5:
-		entr_concent.place(x = 270, y = 228)
+		entr_concent.place(x = 256, y = 228)
 	else:
-		entr_concent.place(x = 1071, y = 187)
+		entr_concent.place(x = 1063, y = 187)
 
 	global check_razryad
 	check_razryad = tk.IntVar()
@@ -7117,10 +7034,6 @@ def start():
 	btn_spravka_close_root = tk.Button(toplevel_spravka_root, text = 'close', command = spravka_close_root, bg = 'pink')
 	btn_spravka_close_root.place(x = 355, y = 15)
 
-
-
-
-	##########################################
 	#текстовая часть справки 
 	listbox_insert_text_root = '''
 1. Зачем нужна программа?
@@ -7253,15 +7166,15 @@ WhatsApp - +7 985 187 81-24
 def calc():
 
 	if check_razryad.get() == 0:
-		razryad = '%.0f'
+		razryad = 0 #'%.0f'
 	elif check_razryad.get() == 1:
-		razryad = '%.1f'
+		razryad = 1 #'%.1f'
 	elif check_razryad.get() == 2:
-		razryad = '%.2f'
+		razryad = 2 #'%.2f'
 	elif check_razryad.get() == 3:
-		razryad = '%.3f'
+		razryad = 3 #'%.3f'
 	elif check_razryad.get() == 4:
-		razryad = '%.4f'
+		razryad = 4 #'%.4f'
 
 	#get
 
@@ -7283,1091 +7196,689 @@ def calc():
 		all_A_column_values.append(i)
 	for i in all_A_column_values:	
 		if i.value != None:
-			print(i.value)
 			error_1()
 			return 
 
 
 
 
-
-
-
-##########################
-	
-
-##########################
-
-# проверка условия на количество групп для 1 группы не требуется т.к. значение по  умолчанию 1
 	QC_I = float(entr_MAIN_I.get())
 	spisok_A_I = []
-	spisok_A_I.append(round((float(entr_A1_I.get())), check_razryad.get()))
-	spisok_A_I.append(round((float(entr_A2_I.get())), check_razryad.get()))
-	spisok_A_I.append(round((float(entr_A3_I.get())), check_razryad.get()))
+	spisok_A_I.append(my_round((float(entr_A1_I.get())), check_razryad.get()))
+	spisok_A_I.append(my_round((float(entr_A2_I.get())), check_razryad.get()))
+	spisok_A_I.append(my_round((float(entr_A3_I.get())), check_razryad.get()))
 
 	if check_var_gr_3.get() >= 4:
-		spisok_A_I.append(round((float(entr_A4_I.get())), check_razryad.get()))
+		spisok_A_I.append(my_round((float(entr_A4_I.get())), check_razryad.get()))
 	if check_var_gr_3.get() >= 5:
-		spisok_A_I.append(round((float(entr_A5_I.get())), check_razryad.get()))
+		spisok_A_I.append(my_round((float(entr_A5_I.get())), check_razryad.get()))
 	if check_var_gr_3.get() >= 6:
-		spisok_A_I.append(round((float(entr_A6_I.get())), check_razryad.get()))
+		spisok_A_I.append(my_round((float(entr_A6_I.get())), check_razryad.get()))
 	if check_var_gr_3.get() >= 7:
-		spisok_A_I.append(round((float(entr_A7_I.get())), check_razryad.get()))
+		spisok_A_I.append(my_round((float(entr_A7_I.get())), check_razryad.get()))
 	if check_var_gr_3.get() >= 8:
-		spisok_A_I.append(round((float(entr_A8_I.get())), check_razryad.get()))
+		spisok_A_I.append(my_round((float(entr_A8_I.get())), check_razryad.get()))
 	if check_var_gr_3.get() >= 9:
-		spisok_A_I.append(round((float(entr_A9_I.get())), check_razryad.get()))
+		spisok_A_I.append(my_round((float(entr_A9_I.get())), check_razryad.get()))
 	if check_var_gr_3.get() >= 10:
-		spisok_A_I.append(round((float(entr_A10_I.get())), check_razryad.get()))			
+		spisok_A_I.append(my_round((float(entr_A10_I.get())), check_razryad.get()))			
 
 
-
-	#print(spisok_A_I, "spisok_QCA1")
-	#calc
-
-	#среднее по QCA1
-	#mean_A_I = round(stat.mean(spisok_A_I), check_razryad.get())
-	mean_A_I = round(stat.mean(spisok_A_I), check_razryad.get())
-
-	#print(mean_A_I, "mean_QCA1")
-	#CKO_A_I = (stat.stdev(spisok_A_I)/mean_A_I)*100
-
-	#vntr_gr_smech_A_I = (mean_A_I - QC_I)/QC_I*100
+	mean_A_I = my_round(stat.mean(spisok_A_I), check_razryad.get())
 	Er_A_I = ((mean_A_I - QC_I)/QC_I)*100
-	#print(Er_A_I, 'Er_QCA1')
-
 	sigma_A_I = (stat.stdev(spisok_A_I)/mean_A_I)*100
-	#print(sigma_A_I, 'sigma_QCA1')
 
-
-
-# проверка условия по количеству групп если больше либо равно 2 этот код выполняется
-
-	##########################
 
 	if check_var_gr_2.get() >= 2:
-		
-
-	##########################
 
 		spisok_B_I = []
-		spisok_B_I.append(round((float(entr_B1_I.get())), check_razryad.get()))
-		spisok_B_I.append(round((float(entr_B2_I.get())), check_razryad.get()))
-		spisok_B_I.append(round((float(entr_B3_I.get())), check_razryad.get()))
+		spisok_B_I.append(my_round((float(entr_B1_I.get())), check_razryad.get()))
+		spisok_B_I.append(my_round((float(entr_B2_I.get())), check_razryad.get()))
+		spisok_B_I.append(my_round((float(entr_B3_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 4:
-			spisok_B_I.append(round((float(entr_B4_I.get())), check_razryad.get()))
+			spisok_B_I.append(my_round((float(entr_B4_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 5:
-			spisok_B_I.append(round((float(entr_B5_I.get())), check_razryad.get()))
+			spisok_B_I.append(my_round((float(entr_B5_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 6:
-			spisok_B_I.append(round((float(entr_B6_I.get())), check_razryad.get()))
+			spisok_B_I.append(my_round((float(entr_B6_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 7:
-			spisok_B_I.append(round((float(entr_B7_I.get())), check_razryad.get()))
+			spisok_B_I.append(my_round((float(entr_B7_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 8:
-			spisok_B_I.append(round((float(entr_B8_I.get())), check_razryad.get()))
+			spisok_B_I.append(my_round((float(entr_B8_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 9:
-			spisok_B_I.append(round((float(entr_B9_I.get())), check_razryad.get()))
+			spisok_B_I.append(my_round((float(entr_B9_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 10:	
-			spisok_B_I.append(round((float(entr_B10_I.get())), check_razryad.get()))
+			spisok_B_I.append(my_round((float(entr_B10_I.get())), check_razryad.get()))
 
-		#print(spisok_B_I, "spisok_QCA2")
-		#calc
-		#среднее по QCA2
-		mean_B_I = round(stat.mean(spisok_B_I), check_razryad.get())
-		#print(mean_B_I, "mean_QCA2")
-		#CKO_B_I = (stat.stdev(spisok_B_I)/mean_B_I)*100
+		mean_B_I = my_round(stat.mean(spisok_B_I), check_razryad.get())
 
-		#vntr_gr_smech_B_I = (mean_B_I - QC_I)/QC_I*100
 		
 		Er_B_I = ((mean_B_I - QC_I)/QC_I)*100
-		#print(Er_B_I, 'Er_QCA2')
 
 		sigma_B_I = (stat.stdev(spisok_B_I)/mean_B_I)*100
-		#print(sigma_B_I, 'sigma_QCA2')
 
 
-#проверка условия по количеству групп если больше либо равно 3 этот код выполняется
 
-	##########################
 	if check_var_gr_2.get() >= 3:
 		
-	##########################
 		spisok_C_I = []
-		spisok_C_I.append(round((float(entr_C1_I.get())), check_razryad.get()))
-		spisok_C_I.append(round((float(entr_C2_I.get())), check_razryad.get()))
-		spisok_C_I.append(round((float(entr_C3_I.get())), check_razryad.get()))
+		spisok_C_I.append(my_round((float(entr_C1_I.get())), check_razryad.get()))
+		spisok_C_I.append(my_round((float(entr_C2_I.get())), check_razryad.get()))
+		spisok_C_I.append(my_round((float(entr_C3_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 4:
-			spisok_C_I.append(round((float(entr_C4_I.get())), check_razryad.get()))
+			spisok_C_I.append(my_round((float(entr_C4_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 5:
-			spisok_C_I.append(round((float(entr_C5_I.get())), check_razryad.get()))
+			spisok_C_I.append(my_round((float(entr_C5_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 6:
-			spisok_C_I.append(round((float(entr_C6_I.get())), check_razryad.get()))
+			spisok_C_I.append(my_round((float(entr_C6_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 7:
-			spisok_C_I.append(round((float(entr_C7_I.get())), check_razryad.get()))
+			spisok_C_I.append(my_round((float(entr_C7_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 8:
-			spisok_C_I.append(round((float(entr_C8_I.get())), check_razryad.get()))
+			spisok_C_I.append(my_round((float(entr_C8_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 9:
-			spisok_C_I.append(round((float(entr_C9_I.get())), check_razryad.get()))
+			spisok_C_I.append(my_round((float(entr_C9_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 10:
-			spisok_C_I.append(round((float(entr_C10_I.get())), check_razryad.get()))
+			spisok_C_I.append(my_round((float(entr_C10_I.get())), check_razryad.get()))
 		
-		#print(spisok_C_I, "spisok_QCA3")
-		#calc
-		#среднее по QCA3
-		mean_C_I = round(stat.mean(spisok_C_I), check_razryad.get())
-		#print(mean_C_I, "mean_QCA3")
-		#CKO_C_I = (stat.stdev(spisok_C_I)/mean_C_I)*100
-		
-		#vntr_gr_smech_C_I = (mean_C_I - QC_I)/QC_I*100
-		
+		mean_C_I = my_round(stat.mean(spisok_C_I), check_razryad.get())
 		Er_C_I = ((mean_C_I - QC_I)/QC_I)*100
-		#print(Er_C_I, 'Er_QCA3')
-
 		sigma_C_I = (stat.stdev(spisok_C_I)/mean_C_I)*100
-		#print(sigma_C_I, 'sigma_QCA3')
 
 
-# проверка условия по количеству групп если больше либо равно 4 этот код выполняется
 
-	##########################
 	if check_var_gr_2.get() >= 4:
-		
-
-	##########################
-
 		spisok_D_I = []
-		spisok_D_I.append(round((float(entr_D1_I.get())), check_razryad.get()))
-		spisok_D_I.append(round((float(entr_D2_I.get())), check_razryad.get()))
-		spisok_D_I.append(round((float(entr_D3_I.get())), check_razryad.get()))
+		spisok_D_I.append(my_round((float(entr_D1_I.get())), check_razryad.get()))
+		spisok_D_I.append(my_round((float(entr_D2_I.get())), check_razryad.get()))
+		spisok_D_I.append(my_round((float(entr_D3_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 4:
-			spisok_D_I.append(round((float(entr_D4_I.get())), check_razryad.get()))
+			spisok_D_I.append(my_round((float(entr_D4_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 5:
-			spisok_D_I.append(round((float(entr_D5_I.get())), check_razryad.get()))
+			spisok_D_I.append(my_round((float(entr_D5_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 6:
-			spisok_D_I.append(round((float(entr_D6_I.get())), check_razryad.get()))
+			spisok_D_I.append(my_round((float(entr_D6_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 7:
-			spisok_D_I.append(round((float(entr_D7_I.get())), check_razryad.get()))
+			spisok_D_I.append(my_round((float(entr_D7_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 8:
-			spisok_D_I.append(round((float(entr_D8_I.get())), check_razryad.get()))
+			spisok_D_I.append(my_round((float(entr_D8_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 9:
-			spisok_D_I.append(round((float(entr_D9_I.get())), check_razryad.get()))
+			spisok_D_I.append(my_round((float(entr_D9_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 10:
-			spisok_D_I.append(round((float(entr_D10_I.get())), check_razryad.get()))
+			spisok_D_I.append(my_round((float(entr_D10_I.get())), check_razryad.get()))
 		
-		#print(spisok_D_I, "spisok_QCA4")
-		#calc
-		#среднее по QCA4
-		mean_D_I = round(stat.mean(spisok_D_I), check_razryad.get())
-		#print(mean_D_I, "mean_QCA4")
-		#CKO_D_I = (stat.stdev(spisok_D_I)/mean_D_I)*100
-		
-		#vntr_gr_smech_D_I = (mean_D_I - QC_I)/QC_I*100
-		
-
+		mean_D_I = my_round(stat.mean(spisok_D_I), check_razryad.get())
 		Er_D_I = ((mean_D_I - QC_I)/QC_I)*100
-		#print(Er_D_I, 'Er_QCA4')
-
 		sigma_D_I = (stat.stdev(spisok_D_I)/mean_D_I)*100
-		#print(sigma_D_I, 'sigma_QCA4')
 
-#проверка условия по количеству групп если больше либо равно 5 этот код выполняется
 
-	##########################
 	if check_var_gr_2.get() >= 5:
-		
-	##########################
 		spisok_E_I = []
-		spisok_E_I.append(round((float(entr_E1_I.get())), check_razryad.get()))
-		spisok_E_I.append(round((float(entr_E2_I.get())), check_razryad.get()))
-		spisok_E_I.append(round((float(entr_E3_I.get())), check_razryad.get()))
+		spisok_E_I.append(my_round((float(entr_E1_I.get())), check_razryad.get()))
+		spisok_E_I.append(my_round((float(entr_E2_I.get())), check_razryad.get()))
+		spisok_E_I.append(my_round((float(entr_E3_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 4:
-			spisok_E_I.append(round((float(entr_E4_I.get())), check_razryad.get()))
+			spisok_E_I.append(my_round((float(entr_E4_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 5:
-			spisok_E_I.append(round((float(entr_E5_I.get())), check_razryad.get()))
+			spisok_E_I.append(my_round((float(entr_E5_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 6:
-			spisok_E_I.append(round((float(entr_E6_I.get())), check_razryad.get()))
+			spisok_E_I.append(my_round((float(entr_E6_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 7:
-			spisok_E_I.append(round((float(entr_E7_I.get())), check_razryad.get()))
+			spisok_E_I.append(my_round((float(entr_E7_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 8:
-			spisok_E_I.append(round((float(entr_E8_I.get())), check_razryad.get()))
+			spisok_E_I.append(my_round((float(entr_E8_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 9:
-			spisok_E_I.append(round((float(entr_E9_I.get())), check_razryad.get()))
+			spisok_E_I.append(my_round((float(entr_E9_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 10:
-			spisok_E_I.append(round((float(entr_E10_I.get())), check_razryad.get()))
-		
+			spisok_E_I.append(my_round((float(entr_E10_I.get())), check_razryad.get()))
 
-		#print(spisok_E_I, "spisok_QCA5")
-		#calc
-		#среднее по QCA5
-		mean_E_I = round(stat.mean(spisok_E_I), check_razryad.get())
-		#print(mean_E_I, "mean_QCA5")
-		#CKO_E_I = (stat.stdev(spisok_E_I)/mean_E_I)*100
-		
-		#vntr_gr_smech_E_I = (mean_E_I - QC_I)/QC_I*100
-		
+		mean_E_I = my_round(stat.mean(spisok_E_I), check_razryad.get())
 		Er_E_I = ((mean_E_I - QC_I)/QC_I)*100
-		#print(Er_E_I, 'Er_QCA5')
-
 		sigma_E_I = (stat.stdev(spisok_E_I)/mean_E_I)*100
-		#print(sigma_E_I, 'sigma_QCA5')
 
-#проверка условия по количеству групп если больше либо равно 6 этот код выполняется
-
-	##########################
 	if check_var_gr_2.get() >= 6:
 		
-
-	##########################
 		spisok_F_I = []
-		spisok_F_I.append(round((float(entr_F1_I.get())), check_razryad.get()))
-		spisok_F_I.append(round((float(entr_F2_I.get())), check_razryad.get()))
-		spisok_F_I.append(round((float(entr_F3_I.get())), check_razryad.get()))
+		spisok_F_I.append(my_round((float(entr_F1_I.get())), check_razryad.get()))
+		spisok_F_I.append(my_round((float(entr_F2_I.get())), check_razryad.get()))
+		spisok_F_I.append(my_round((float(entr_F3_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 4:
-			spisok_F_I.append(round((float(entr_F4_I.get())), check_razryad.get()))
+			spisok_F_I.append(my_round((float(entr_F4_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 5:
-			spisok_F_I.append(round((float(entr_F5_I.get())), check_razryad.get()))
+			spisok_F_I.append(my_round((float(entr_F5_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 6:
-			spisok_F_I.append(round((float(entr_F6_I.get())), check_razryad.get()))
+			spisok_F_I.append(my_round((float(entr_F6_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 7:
-			spisok_F_I.append(round((float(entr_F7_I.get())), check_razryad.get()))
+			spisok_F_I.append(my_round((float(entr_F7_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 8:
-			spisok_F_I.append(round((float(entr_F8_I.get())), check_razryad.get()))
+			spisok_F_I.append(my_round((float(entr_F8_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 9:
-			spisok_F_I.append(round((float(entr_F9_I.get())), check_razryad.get()))
+			spisok_F_I.append(my_round((float(entr_F9_I.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 10:
-			spisok_F_I.append(round((float(entr_F10_I.get())), check_razryad.get()))
+			spisok_F_I.append(my_round((float(entr_F10_I.get())), check_razryad.get()))
 
-
-		#print(spisok_F_I, "spisok_QCA6")
-		#calc
-		#среднее по QCA6
-		mean_F_I = round(stat.mean(spisok_F_I), check_razryad.get())
-		#print(mean_F_I, "mean_QCA6")
-		#CKO_F_I = (stat.stdev(spisok_F_I)/mean_F_I)*100
-		
-		#vntr_gr_smech_F_I = (mean_F_I - QC_I)/QC_I*100
-		
+		mean_F_I = my_round(stat.mean(spisok_F_I), check_razryad.get())
 		Er_F_I = (((mean_F_I - QC_I)/QC_I)*100)
-		#print(Er_F_I, 'Er_QCA6')
-
 		sigma_F_I = ((stat.stdev(spisok_F_I)/mean_F_I)*100)
-		#print(sigma_F_I, 'sigma_QCA6')
-
-###################################
 
 	if check_var_gr_1.get() >= 2:
 
-
-	# проверка условия на количество групп для 1 группы не требуется т.к. значение по  умолчанию 1
-
-	##########################
-		
-
-
-	##########################
-
 		QC_II = float(entr_MAIN_II.get())
 		spisok_A_II = []
-		spisok_A_II.append(round((float(entr_A1_II.get())), check_razryad.get()))
-		spisok_A_II.append(round((float(entr_A2_II.get())), check_razryad.get()))
-		spisok_A_II.append(round((float(entr_A3_II.get())), check_razryad.get()))
+		spisok_A_II.append(my_round((float(entr_A1_II.get())), check_razryad.get()))
+		spisok_A_II.append(my_round((float(entr_A2_II.get())), check_razryad.get()))
+		spisok_A_II.append(my_round((float(entr_A3_II.get())), check_razryad.get()))
 
 		if check_var_gr_3.get() >= 4:
-			spisok_A_II.append(round((float(entr_A4_II.get())), check_razryad.get()))
+			spisok_A_II.append(my_round((float(entr_A4_II.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 5:
-			spisok_A_II.append(round((float(entr_A5_II.get())), check_razryad.get()))
+			spisok_A_II.append(my_round((float(entr_A5_II.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 6:
-			spisok_A_II.append(round((float(entr_A6_II.get())), check_razryad.get()))
+			spisok_A_II.append(my_round((float(entr_A6_II.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 7:
-			spisok_A_II.append(round((float(entr_A7_II.get())), check_razryad.get()))
+			spisok_A_II.append(my_round((float(entr_A7_II.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 8:
-			spisok_A_II.append(round((float(entr_A8_II.get())), check_razryad.get()))
+			spisok_A_II.append(my_round((float(entr_A8_II.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 9:
-			spisok_A_II.append(round((float(entr_A9_II.get())), check_razryad.get()))
+			spisok_A_II.append(my_round((float(entr_A9_II.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 10:
-			spisok_A_II.append(round((float(entr_A10_II.get()))	, check_razryad.get()))		
+			spisok_A_II.append(my_round((float(entr_A10_II.get()))	, check_razryad.get()))		
 
-
-		#print(spisok_A_II, "spisok_QCB1")
-		#calc
-		#среднее по QCA1
-		mean_A_II = round(stat.mean(spisok_A_II), check_razryad.get())
-
-		#print(mean_A_II, "mean_QCB1")
-		#CKO_A_II = (stat.stdev(spisok_A_II)/mean_A_II)*100
-		
-		#vntr_gr_smech_A_II = (mean_A_II - QC_II)/QC_II*100
-		
+		mean_A_II = my_round(stat.mean(spisok_A_II), check_razryad.get())
 		Er_A_II = ((mean_A_II - QC_II)/QC_II)*100
-		#print(Er_A_II, 'Er_QCB1')
-
 		sigma_A_II = ((stat.stdev(spisok_A_II)/mean_A_II)*100)
-		#print(sigma_A_II, 'sigma_QCB1')
 
-	# проверка условия по количеству групп если больше либо равно 2 этот код выполняется
 
-		##########################
 
 		if check_var_gr_2.get() >= 2:
 			
-
-		##########################
-
 			spisok_B_II = []
-			spisok_B_II.append(round((float(entr_B1_II.get())), check_razryad.get()))
-			spisok_B_II.append(round((float(entr_B2_II.get())), check_razryad.get()))
-			spisok_B_II.append(round((float(entr_B3_II.get())), check_razryad.get()))
+			spisok_B_II.append(my_round((float(entr_B1_II.get())), check_razryad.get()))
+			spisok_B_II.append(my_round((float(entr_B2_II.get())), check_razryad.get()))
+			spisok_B_II.append(my_round((float(entr_B3_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 4:
-				spisok_B_II.append(round((float(entr_B4_II.get())), check_razryad.get()))
+				spisok_B_II.append(my_round((float(entr_B4_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 5:
-				spisok_B_II.append(round((float(entr_B5_II.get())), check_razryad.get()))
+				spisok_B_II.append(my_round((float(entr_B5_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 6:
-				spisok_B_II.append(round((float(entr_B6_II.get())), check_razryad.get()))
+				spisok_B_II.append(my_round((float(entr_B6_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 7:
-				spisok_B_II.append(round((float(entr_B7_II.get())), check_razryad.get()))
+				spisok_B_II.append(my_round((float(entr_B7_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 8:
-				spisok_B_II.append(round((float(entr_B8_II.get())), check_razryad.get()))
+				spisok_B_II.append(my_round((float(entr_B8_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 9:
-				spisok_B_II.append(round((float(entr_B9_II.get())), check_razryad.get()))
+				spisok_B_II.append(my_round((float(entr_B9_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 10:	
-				spisok_B_II.append(round((float(entr_B10_II.get())), check_razryad.get()))
+				spisok_B_II.append(my_round((float(entr_B10_II.get())), check_razryad.get()))
 
-			#print(spisok_B_II, "spisok_QCB2")
-			#calc
-			#среднее по QCA2
-			mean_B_II = round(stat.mean(spisok_B_II), check_razryad.get())
-			#print(mean_B_II, "mean_QCB2")
-			#CKO_B_II = (stat.stdev(spisok_B_II)/mean_B_II)*100
-			
-			#vntr_gr_smech_B_II = (mean_B_II - QC_II)/QC_II*100
-			
+			mean_B_II = my_round(stat.mean(spisok_B_II), check_razryad.get())
 			Er_B_II = (((mean_B_II - QC_II)/QC_II)*100)
-			#print(Er_B_II, 'Er_QCB2')
-
 			sigma_B_II = (stat.stdev(spisok_B_II)/mean_B_II)*100
-			#print(sigma_B_II, 'sigma_QCB2')
 
-	#проверка условия по количеству групп если больше либо равно 3 этот код выполняется
-
-		##########################
 		if check_var_gr_2.get() >= 3:
-			
 
-		##########################
 			spisok_C_II = []
-			spisok_C_II.append(round((float(entr_C1_II.get())), check_razryad.get()))
-			spisok_C_II.append(round((float(entr_C2_II.get())), check_razryad.get()))
-			spisok_C_II.append(round((float(entr_C3_II.get())), check_razryad.get()))
+			spisok_C_II.append(my_round((float(entr_C1_II.get())), check_razryad.get()))
+			spisok_C_II.append(my_round((float(entr_C2_II.get())), check_razryad.get()))
+			spisok_C_II.append(my_round((float(entr_C3_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 4:
-				spisok_C_II.append(round((float(entr_C4_II.get())), check_razryad.get()))
+				spisok_C_II.append(my_round((float(entr_C4_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 5:
-				spisok_C_II.append(round((float(entr_C5_II.get())), check_razryad.get()))
+				spisok_C_II.append(my_round((float(entr_C5_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 6:
-				spisok_C_II.append(round((float(entr_C6_II.get())), check_razryad.get()))
+				spisok_C_II.append(my_round((float(entr_C6_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 7:
-				spisok_C_II.append(round((float(entr_C7_II.get())), check_razryad.get()))
+				spisok_C_II.append(my_round((float(entr_C7_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 8:
-				spisok_C_II.append(round((float(entr_C8_II.get())), check_razryad.get()))
+				spisok_C_II.append(my_round((float(entr_C8_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 9:
-				spisok_C_II.append(round((float(entr_C9_II.get())), check_razryad.get()))
+				spisok_C_II.append(my_round((float(entr_C9_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 10:
-				spisok_C_II.append(round((float(entr_C10_II.get())), check_razryad.get()))
+				spisok_C_II.append(my_round((float(entr_C10_II.get())), check_razryad.get()))
 			
-			#print(spisok_C_II, "spisok_QCB3")
-			#calc
-			#среднее по QCA3
-			mean_C_II = round(stat.mean(spisok_C_II), check_razryad.get())
-			#print(mean_C_II, "mean_QCB3")
-			#CKO_C_II = (stat.stdev(spisok_C_II)/mean_C_II)*100
-			
-			#vntr_gr_smech_C_II = (mean_C_II - QC_II)/QC_II*100
-			
+			mean_C_II = my_round(stat.mean(spisok_C_II), check_razryad.get())
 			Er_C_II = ((mean_C_II - QC_II)/QC_II)*100
-			#print(Er_C_II, 'Er_QCB3')
-
 			sigma_C_II = (stat.stdev(spisok_C_II)/mean_C_II)*100
-			#print(sigma_C_II, 'sigma_QCB3')
 
-	# проверка условия по количеству групп если больше либо равно 4 этот код выполняется
-
-		##########################
 		if check_var_gr_2.get() >= 4:
-			
-
-		##########################
-
 			spisok_D_II = []
-			spisok_D_II.append(round((float(entr_D1_II.get())), check_razryad.get()))
-			spisok_D_II.append(round((float(entr_D2_II.get())), check_razryad.get()))
-			spisok_D_II.append(round((float(entr_D3_II.get())), check_razryad.get()))
+			spisok_D_II.append(my_round((float(entr_D1_II.get())), check_razryad.get()))
+			spisok_D_II.append(my_round((float(entr_D2_II.get())), check_razryad.get()))
+			spisok_D_II.append(my_round((float(entr_D3_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 4:
-				spisok_D_II.append(round((float(entr_D4_II.get())), check_razryad.get()))
+				spisok_D_II.append(my_round((float(entr_D4_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 5:
-				spisok_D_II.append(round((float(entr_D5_II.get())), check_razryad.get()))
+				spisok_D_II.append(my_round((float(entr_D5_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 6:
-				spisok_D_II.append(round((float(entr_D6_II.get())), check_razryad.get()))
+				spisok_D_II.append(my_round((float(entr_D6_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 7:
-				spisok_D_II.append(round((float(entr_D7_II.get())), check_razryad.get()))
+				spisok_D_II.append(my_round((float(entr_D7_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 8:
-				spisok_D_II.append(round((float(entr_D8_II.get())), check_razryad.get()))
+				spisok_D_II.append(my_round((float(entr_D8_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 9:
-				spisok_D_II.append(round((float(entr_D9_II.get())), check_razryad.get()))
+				spisok_D_II.append(my_round((float(entr_D9_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 10:
-				spisok_D_II.append(round((float(entr_D10_II.get())), check_razryad.get()))
+				spisok_D_II.append(my_round((float(entr_D10_II.get())), check_razryad.get()))
 			
 
-			#print(spisok_D_II, "spisok_QCB4")
-			#calc
-			#среднее по QCA4
-			mean_D_II = round(stat.mean(spisok_D_II), check_razryad.get())
-			#print(mean_D_II, "mean_QCB4")
-			#CKO_D_II = (stat.stdev(spisok_D_II)/mean_D_II)*100
-			
-			#vntr_gr_smech_D_II = (mean_D_II - QC_II)/QC_II*100
-			
+			mean_D_II = my_round(stat.mean(spisok_D_II), check_razryad.get())
 			Er_D_II = ((mean_D_II - QC_II)/QC_II)*100
-			#print(Er_D_II, 'Er_QCB4')
-
 			sigma_D_II = (stat.stdev(spisok_D_II)/mean_D_II)*100
-			#print(sigma_D_II, 'sigma_QCB4')
 
-	#проверка условия по количеству групп если больше либо равно 5 этот код выполняется
 
-		##########################
 		if check_var_gr_2.get() >= 5:
-			
-		##########################
 			spisok_E_II = []
-			spisok_E_II.append(round((float(entr_E1_II.get())), check_razryad.get()))
-			spisok_E_II.append(round((float(entr_E2_II.get())), check_razryad.get()))
-			spisok_E_II.append(round((float(entr_E3_II.get())), check_razryad.get()))
+			spisok_E_II.append(my_round((float(entr_E1_II.get())), check_razryad.get()))
+			spisok_E_II.append(my_round((float(entr_E2_II.get())), check_razryad.get()))
+			spisok_E_II.append(my_round((float(entr_E3_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 4:
-				spisok_E_II.append(round((float(entr_E4_II.get())), check_razryad.get()))
+				spisok_E_II.append(my_round((float(entr_E4_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 5:
-				spisok_E_II.append(round((float(entr_E5_II.get())), check_razryad.get()))
+				spisok_E_II.append(my_round((float(entr_E5_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 6:
-				spisok_E_II.append(round((float(entr_E6_II.get())), check_razryad.get()))
+				spisok_E_II.append(my_round((float(entr_E6_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 7:
-				spisok_E_II.append(round((float(entr_E7_II.get())), check_razryad.get()))
+				spisok_E_II.append(my_round((float(entr_E7_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 8:
-				spisok_E_II.append(round((float(entr_E8_II.get())), check_razryad.get()))
+				spisok_E_II.append(my_round((float(entr_E8_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 9:
-				spisok_E_II.append(round((float(entr_E9_II.get())), check_razryad.get()))
+				spisok_E_II.append(my_round((float(entr_E9_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 10:
-				spisok_E_II.append(round((float(entr_E10_II.get())), check_razryad.get()))
+				spisok_E_II.append(my_round((float(entr_E10_II.get())), check_razryad.get()))
 			
-
-			#print(spisok_E_II, "spisok_QCB5")
-			#calc
-			#среднее по QCA5
-			mean_E_II = round(stat.mean(spisok_E_II), check_razryad.get())
-			#print(mean_E_II, "mean_QCB5")
-			#CKO_E_II = (stat.stdev(spisok_E_II)/mean_E_II)*100
-			
-			#vntr_gr_smech_E_II = (mean_E_II - QC_II)/QC_II*100
-			
+			mean_E_II = my_round(stat.mean(spisok_E_II), check_razryad.get())
 			Er_E_II = ((mean_E_II - QC_II)/QC_II)*100
-			#print(Er_E_II, 'Er_QCB5')
-
 			sigma_E_II = (stat.stdev(spisok_E_II)/mean_E_II)*100
-			#print(sigma_E_II, 'sigma_QCB5')
 
-	#проверка условия по количеству групп если больше либо равно 6 этот код выполняется
 
-		##########################
 		if check_var_gr_2.get() >= 6:
 		
-
-		##########################
 			spisok_F_II = []
-			spisok_F_II.append(round((float(entr_F1_II.get())), check_razryad.get()))
-			spisok_F_II.append(round((float(entr_F2_II.get())), check_razryad.get()))
-			spisok_F_II.append(round((float(entr_F3_II.get())), check_razryad.get()))
+			spisok_F_II.append(my_round((float(entr_F1_II.get())), check_razryad.get()))
+			spisok_F_II.append(my_round((float(entr_F2_II.get())), check_razryad.get()))
+			spisok_F_II.append(my_round((float(entr_F3_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 4:
-				spisok_F_II.append(round((float(entr_F4_II.get())), check_razryad.get()))
+				spisok_F_II.append(my_round((float(entr_F4_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 5:
-				spisok_F_II.append(round((float(entr_F5_II.get())), check_razryad.get()))
+				spisok_F_II.append(my_round((float(entr_F5_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 6:
-				spisok_F_II.append(round((float(entr_F6_II.get())), check_razryad.get()))
+				spisok_F_II.append(my_round((float(entr_F6_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 7:
-				spisok_F_II.append(round((float(entr_F7_II.get())), check_razryad.get()))
+				spisok_F_II.append(my_round((float(entr_F7_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 8:
-				spisok_F_II.append(round((float(entr_F8_II.get())), check_razryad.get()))
+				spisok_F_II.append(my_round((float(entr_F8_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 9:
-				spisok_F_II.append(round((float(entr_F9_II.get())), check_razryad.get()))
+				spisok_F_II.append(my_round((float(entr_F9_II.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 10:
-				spisok_F_II.append(round((float(entr_F10_II.get())), check_razryad.get()))
+				spisok_F_II.append(my_round((float(entr_F10_II.get())), check_razryad.get()))
 
-			#print(spisok_F_II, "spisok_QCB6")
-			#calc
-			#среднее по QCA6
-			mean_F_II = round(stat.mean(spisok_F_II), check_razryad.get())
-			#print(mean_F_II, "mean_QCB6")
-			#CKO_F_II = (stat.stdev(spisok_F_II)/mean_F_II)*100
-			#vntr_gr_smech_F_II = (mean_F_II - QC_II)/QC_II*100
-			
+			mean_F_II = my_round(stat.mean(spisok_F_II), check_razryad.get())
 			Er_F_II = ((mean_F_II - QC_II)/QC_II)*100
-			#print(Er_F_II, 'Er_QCB6')
-
 			sigma_F_II = (stat.stdev(spisok_F_II)/mean_F_II)*100
-			#print(sigma_F_II, 'sigma_QCB6')
-
-###############################
 
 	if check_var_gr_1.get() >= 3:
-	# проверка условия на количество групп для 1 группы не требуется т.к. значение по  умолчанию 1
-
-	##########################
-		
-
-
-	##########################
 
 		QC_III = float(entr_MAIN_III.get())
 		spisok_A_III = []
-		spisok_A_III.append(round((float(entr_A1_III.get())), check_razryad.get()))
-		spisok_A_III.append(round((float(entr_A2_III.get())), check_razryad.get()))
-		spisok_A_III.append(round((float(entr_A3_III.get())), check_razryad.get()))
+		spisok_A_III.append(my_round((float(entr_A1_III.get())), check_razryad.get()))
+		spisok_A_III.append(my_round((float(entr_A2_III.get())), check_razryad.get()))
+		spisok_A_III.append(my_round((float(entr_A3_III.get())), check_razryad.get()))
 
 		if check_var_gr_3.get() >= 4:
-			spisok_A_III.append(round((float(entr_A4_III.get())), check_razryad.get()))
+			spisok_A_III.append(my_round((float(entr_A4_III.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 5:
-			spisok_A_III.append(round((float(entr_A5_III.get())), check_razryad.get()))
+			spisok_A_III.append(my_round((float(entr_A5_III.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 6:
-			spisok_A_III.append(round((float(entr_A6_III.get())), check_razryad.get()))
+			spisok_A_III.append(my_round((float(entr_A6_III.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 7:
-			spisok_A_III.append(round((float(entr_A7_III.get())), check_razryad.get()))
+			spisok_A_III.append(my_round((float(entr_A7_III.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 8:
-			spisok_A_III.append(round((float(entr_A8_III.get())), check_razryad.get()))
+			spisok_A_III.append(my_round((float(entr_A8_III.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 9:
-			spisok_A_III.append(round((float(entr_A9_III.get())), check_razryad.get()))
+			spisok_A_III.append(my_round((float(entr_A9_III.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 10:
-			spisok_A_III.append(round((float(entr_A10_III.get())), check_razryad.get()))	
+			spisok_A_III.append(my_round((float(entr_A10_III.get())), check_razryad.get()))	
 
-		#print(spisok_A_III, "spisok_QCC1")
-		#calc
-		#среднее по QCA1
-		mean_A_III = round(stat.mean(spisok_A_III), check_razryad.get())
-		#print(mean_A_III, "mean_A_QCC1")
-		#CKO_A_III = (stat.stdev(spisok_A_III)/mean_A_III)*100
-		#vntr_gr_smech_A_III = (mean_A_III - QC_III)/QC_III*100
-		
+		mean_A_III = my_round(stat.mean(spisok_A_III), check_razryad.get())
 		Er_A_III = ((mean_A_III - QC_III)/QC_III)*100
-		#print(Er_A_III, 'Er_QCC1')
-
 		sigma_A_III = (stat.stdev(spisok_A_III)/mean_A_III)*100
-		#print(sigma_A_III, 'sigma_QCC1')
-
-	# проверка условия по количеству групп если больше либо равно 2 этот код выполняется
-
-		##########################
 
 		if check_var_gr_2.get() >= 2:
-		
-
-		##########################
-
 			spisok_B_III = []
-			spisok_B_III.append(round((float(entr_B1_III.get())), check_razryad.get()))
-			spisok_B_III.append(round((float(entr_B2_III.get())), check_razryad.get()))
-			spisok_B_III.append(round((float(entr_B3_III.get())), check_razryad.get()))
+			spisok_B_III.append(my_round((float(entr_B1_III.get())), check_razryad.get()))
+			spisok_B_III.append(my_round((float(entr_B2_III.get())), check_razryad.get()))
+			spisok_B_III.append(my_round((float(entr_B3_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 4:
-				spisok_B_III.append(round((float(entr_B4_III.get())), check_razryad.get()))
+				spisok_B_III.append(my_round((float(entr_B4_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 5:
-				spisok_B_III.append(round((float(entr_B5_III.get())), check_razryad.get()))
+				spisok_B_III.append(my_round((float(entr_B5_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 6:
-				spisok_B_III.append(round((float(entr_B6_III.get())), check_razryad.get()))
+				spisok_B_III.append(my_round((float(entr_B6_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 7:
-				spisok_B_III.append(round((float(entr_B7_III.get())), check_razryad.get()))
+				spisok_B_III.append(my_round((float(entr_B7_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 8:
-				spisok_B_III.append(round((float(entr_B8_III.get())), check_razryad.get()))
+				spisok_B_III.append(my_round((float(entr_B8_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 9:
-				spisok_B_III.append(round((float(entr_B9_III.get())), check_razryad.get()))
+				spisok_B_III.append(my_round((float(entr_B9_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 10:	
-				spisok_B_III.append(round((float(entr_B10_III.get())), check_razryad.get()))
+				spisok_B_III.append(my_round((float(entr_B10_III.get())), check_razryad.get()))
 
-			#print(spisok_B_III, "spisok_QCC2")
-			#calc
-			#среднее по QCA2
-			mean_B_III = round(stat.mean(spisok_B_III), check_razryad.get())
-			#print(mean_B_III, "mean_B_QCC2")
-			#CKO_B_III = (stat.stdev(spisok_B_III)/mean_B_III)*100
-			
-			#vntr_gr_smech_B_III = (mean_B_III - QC_III)/QC_III*100
-			
+			mean_B_III = my_round(stat.mean(spisok_B_III), check_razryad.get())
 			Er_B_III = ((mean_B_III - QC_III)/QC_III)*100
-			#print(Er_B_III, 'Er_QCC2')
-
 			sigma_B_III = (stat.stdev(spisok_B_III)/mean_B_III)*100
-			#print(sigma_B_III, 'sigma_QCC2')
 
-
-	#проверка условия по количеству групп если больше либо равно 3 этот код выполняется
-
-		##########################
 		if check_var_gr_2.get() >= 3:
 			
-		##########################
 			spisok_C_III = []
-			spisok_C_III.append(round((float(entr_C1_III.get())), check_razryad.get()))
-			spisok_C_III.append(round((float(entr_C2_III.get())), check_razryad.get()))
-			spisok_C_III.append(round((float(entr_C3_III.get())), check_razryad.get()))
+			spisok_C_III.append(my_round((float(entr_C1_III.get())), check_razryad.get()))
+			spisok_C_III.append(my_round((float(entr_C2_III.get())), check_razryad.get()))
+			spisok_C_III.append(my_round((float(entr_C3_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 4:
-				spisok_C_III.append(round((float(entr_C4_III.get())), check_razryad.get()))
+				spisok_C_III.append(my_round((float(entr_C4_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 5:
-				spisok_C_III.append(round((float(entr_C5_III.get())), check_razryad.get()))
+				spisok_C_III.append(my_round((float(entr_C5_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 6:
-				spisok_C_III.append(round((float(entr_C6_III.get())), check_razryad.get()))
+				spisok_C_III.append(my_round((float(entr_C6_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 7:
-				spisok_C_III.append(round((float(entr_C7_III.get())), check_razryad.get()))
+				spisok_C_III.append(my_round((float(entr_C7_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 8:
-				spisok_C_III.append(round((float(entr_C8_III.get())), check_razryad.get()))
+				spisok_C_III.append(my_round((float(entr_C8_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 9:
-				spisok_C_III.append(round((float(entr_C9_III.get())), check_razryad.get()))
+				spisok_C_III.append(my_round((float(entr_C9_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 10:
-				spisok_C_III.append(round((float(entr_C10_III.get())), check_razryad.get()))
+				spisok_C_III.append(my_round((float(entr_C10_III.get())), check_razryad.get()))
 			
-
-			#print(spisok_C_III, "spisok_QCC3")
-			#calc
-			#среднее по QCA3
-			mean_C_III = round(stat.mean(spisok_C_III), check_razryad.get())
-			#print(mean_C_III, "mean_QCC3")
-			#CKO_C_III = (stat.stdev(spisok_C_III)/mean_C_III)*100
-			
-			#vntr_gr_smech_C_III = (mean_C_III - QC_III)/QC_III*100
-			
+			mean_C_III = my_round(stat.mean(spisok_C_III), check_razryad.get())
 			Er_C_III = ((mean_C_III - QC_III)/QC_III)*100
-			#print(Er_C_III, 'Er_QCC3')
-
 			sigma_C_III = (stat.stdev(spisok_C_III)/mean_C_III)*100
-			#print(sigma_C_III, 'sigma_QCC3')
 
-	# проверка условия по количеству групп если больше либо равно 4 этот код выполняется
-
-		##########################
 		if check_var_gr_2.get() >= 4:
-			
-
-		##########################
-
 			spisok_D_III = []
-			spisok_D_III.append(round((float(entr_D1_III.get())), check_razryad.get()))
-			spisok_D_III.append(round((float(entr_D2_III.get())), check_razryad.get()))
-			spisok_D_III.append(round((float(entr_D3_III.get())), check_razryad.get()))
+			spisok_D_III.append(my_round((float(entr_D1_III.get())), check_razryad.get()))
+			spisok_D_III.append(my_round((float(entr_D2_III.get())), check_razryad.get()))
+			spisok_D_III.append(my_round((float(entr_D3_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 4:
-				spisok_D_III.append(round((float(entr_D4_III.get())), check_razryad.get()))
+				spisok_D_III.append(my_round((float(entr_D4_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 5:
-				spisok_D_III.append(round((float(entr_D5_III.get())), check_razryad.get()))
+				spisok_D_III.append(my_round((float(entr_D5_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 6:
-				spisok_D_III.append(round((float(entr_D6_III.get())), check_razryad.get()))
+				spisok_D_III.append(my_round((float(entr_D6_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 7:
-				spisok_D_III.append(round((float(entr_D7_III.get())), check_razryad.get()))
+				spisok_D_III.append(my_round((float(entr_D7_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 8:
-				spisok_D_III.append(round((float(entr_D8_III.get())), check_razryad.get()))
+				spisok_D_III.append(my_round((float(entr_D8_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 9:
-				spisok_D_III.append(round((float(entr_D9_III.get())), check_razryad.get()))
+				spisok_D_III.append(my_round((float(entr_D9_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 10:
-				spisok_D_III.append(round((float(entr_D10_III.get())), check_razryad.get()))
+				spisok_D_III.append(my_round((float(entr_D10_III.get())), check_razryad.get()))
 			
 
-			#print(spisok_D_III, "spisok_QCC4")
-			#calc
-			#среднее по QCA4
-			mean_D_III = round(stat.mean(spisok_D_III), check_razryad.get())
-			#print(mean_D_III, "mean_QCC4")
-			#CKO_D_III = (stat.stdev(spisok_D_III)/mean_D_III)*100
-			
-			#vntr_gr_smech_D_III = (mean_D_III - QC_III)/QC_III*100
+			mean_D_III = my_round(stat.mean(spisok_D_III), check_razryad.get())
 			
 
 			Er_D_III = ((mean_D_III - QC_III)/QC_III)*100
-			#print(Er_D_III, 'Er_QCC4')
 
 			sigma_D_III = (stat.stdev(spisok_D_III)/mean_D_III)*100
-			#print(sigma_D_III, 'sigma_QCC4')
 
-	#проверка условия по количеству групп если больше либо равно 5 этот код выполняется
 
-		##########################
 		if check_var_gr_2.get() >= 5:
 			
-		##########################
 			spisok_E_III = []
-			spisok_E_III.append(round((float(entr_E1_III.get())), check_razryad.get()))
-			spisok_E_III.append(round((float(entr_E2_III.get())), check_razryad.get()))
-			spisok_E_III.append(round((float(entr_E3_III.get())), check_razryad.get()))
+			spisok_E_III.append(my_round((float(entr_E1_III.get())), check_razryad.get()))
+			spisok_E_III.append(my_round((float(entr_E2_III.get())), check_razryad.get()))
+			spisok_E_III.append(my_round((float(entr_E3_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 4:
-				spisok_E_III.append(round((float(entr_E4_III.get())), check_razryad.get()))
+				spisok_E_III.append(my_round((float(entr_E4_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 5:
-				spisok_E_III.append(round((float(entr_E5_III.get())), check_razryad.get()))
+				spisok_E_III.append(my_round((float(entr_E5_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 6:
-				spisok_E_III.append(round((float(entr_E6_III.get())), check_razryad.get()))
+				spisok_E_III.append(my_round((float(entr_E6_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 7:
-				spisok_E_III.append(round((float(entr_E7_III.get())), check_razryad.get()))
+				spisok_E_III.append(my_round((float(entr_E7_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 8:
-				spisok_E_III.append(round((float(entr_E8_III.get())), check_razryad.get()))
+				spisok_E_III.append(my_round((float(entr_E8_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 9:
-				spisok_E_III.append(round((float(entr_E9_III.get())), check_razryad.get()))
+				spisok_E_III.append(my_round((float(entr_E9_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 10:
-				spisok_E_III.append(round((float(entr_E10_III.get())), check_razryad.get()))
+				spisok_E_III.append(my_round((float(entr_E10_III.get())), check_razryad.get()))
 			
-
-			#print(spisok_E_III, "spisok_QCC5")
-			#calc
-			#среднее по QCA5
-			mean_E_III = round(stat.mean(spisok_E_III), check_razryad.get())
-			#print(mean_E_III, "mean_QCC5")
-			#CKO_E_III = (stat.stdev(spisok_E_III)/mean_E_III)*100
-			
-			#vntr_gr_smech_E_III = (mean_E_III - QC_III)/QC_III*100
-			
+			mean_E_III = my_round(stat.mean(spisok_E_III), check_razryad.get())
 			Er_E_III = ((mean_E_III - QC_III)/QC_III)*100
-			#print(Er_E_III, 'Er_QCC5')
-
 			sigma_E_III = (stat.stdev(spisok_E_III)/mean_E_III)*100
-			#print(sigma_E_III, 'sigma_QCC5')
 
-	#проверка условия по количеству групп если больше либо равно 6 этот код выполняется
 
-		##########################
 		if check_var_gr_2.get() >= 6:
-			
-
-		##########################
+	
 			spisok_F_III = []
-			spisok_F_III.append(round((float(entr_F1_III.get())), check_razryad.get()))
-			spisok_F_III.append(round((float(entr_F2_III.get())), check_razryad.get()))
-			spisok_F_III.append(round((float(entr_F3_III.get())), check_razryad.get()))
+			spisok_F_III.append(my_round((float(entr_F1_III.get())), check_razryad.get()))
+			spisok_F_III.append(my_round((float(entr_F2_III.get())), check_razryad.get()))
+			spisok_F_III.append(my_round((float(entr_F3_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 4:
-				spisok_F_III.append(round((float(entr_F4_III.get())), check_razryad.get()))
+				spisok_F_III.append(my_round((float(entr_F4_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 5:
-				spisok_F_III.append(round((float(entr_F5_III.get())), check_razryad.get()))
+				spisok_F_III.append(my_round((float(entr_F5_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 6:
-				spisok_F_III.append(round((float(entr_F6_III.get())), check_razryad.get()))
+				spisok_F_III.append(my_round((float(entr_F6_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 7:
-				spisok_F_III.append(round((float(entr_F7_III.get())), check_razryad.get()))
+				spisok_F_III.append(my_round((float(entr_F7_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 8:
-				spisok_F_III.append(round((float(entr_F8_III.get())), check_razryad.get()))
+				spisok_F_III.append(my_round((float(entr_F8_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 9:
-				spisok_F_III.append(round((float(entr_F9_III.get())), check_razryad.get()))
+				spisok_F_III.append(my_round((float(entr_F9_III.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 10:
-				spisok_F_III.append(round((float(entr_F10_III.get())), check_razryad.get()))
+				spisok_F_III.append(my_round((float(entr_F10_III.get())), check_razryad.get()))
 
 
-			#print(spisok_F_III, "spisok_QCC6")
-			#calc
-			#среднее по QCA6
-			mean_F_III = round(stat.mean(spisok_F_III), check_razryad.get())
-			#print(mean_F_III, "mean_QCC6")
-			#CKO_F_III = (stat.stdev(spisok_F_III)/mean_F_III)*100
 			
-			#vntr_gr_smech_F_III = (mean_F_III - QC_III)/QC_III*100
+			mean_F_III = my_round(stat.mean(spisok_F_III), check_razryad.get())
+	
 			Er_F_III = ((mean_F_III - QC_III)/QC_III)*100
-			#print(Er_F_III, 'Er_QCC6')
+		
 			sigma_F_III = (stat.stdev(spisok_F_III)/mean_F_III)*100
-			#print(sigma_F_III, 'sigma_QCC6')
+
 
 
 # проверка условия на количество групп для 1 группы не требуется т.к. значение по  умолчанию 1
 
 	if check_var_gr_1.get() >= 4:
-	##########################
-	
 
-
-	##########################
 
 		QC_IV = float(entr_MAIN_IV.get())
 		spisok_A_IV = []
-		spisok_A_IV.append(round((float(entr_A1_IV.get())), check_razryad.get()))
-		spisok_A_IV.append(round((float(entr_A2_IV.get())), check_razryad.get()))
-		spisok_A_IV.append(round((float(entr_A3_IV.get())), check_razryad.get()))
+		spisok_A_IV.append(my_round((float(entr_A1_IV.get())), check_razryad.get()))
+		spisok_A_IV.append(my_round((float(entr_A2_IV.get())), check_razryad.get()))
+		spisok_A_IV.append(my_round((float(entr_A3_IV.get())), check_razryad.get()))
 
 		if check_var_gr_3.get() >= 4:
-			spisok_A_IV.append(round((float(entr_A4_IV.get())), check_razryad.get()))
+			spisok_A_IV.append(my_round((float(entr_A4_IV.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 5:
-			spisok_A_IV.append(round((float(entr_A5_IV.get())), check_razryad.get()))
+			spisok_A_IV.append(my_round((float(entr_A5_IV.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 6:
-			spisok_A_IV.append(round((float(entr_A6_IV.get())), check_razryad.get()))
+			spisok_A_IV.append(my_round((float(entr_A6_IV.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 7:
-			spisok_A_IV.append(round((float(entr_A7_IV.get())), check_razryad.get()))
+			spisok_A_IV.append(my_round((float(entr_A7_IV.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 8:
-			spisok_A_IV.append(round((float(entr_A8_IV.get())), check_razryad.get()))
+			spisok_A_IV.append(my_round((float(entr_A8_IV.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 9:
-			spisok_A_IV.append(round((float(entr_A9_IV.get())), check_razryad.get()))
+			spisok_A_IV.append(my_round((float(entr_A9_IV.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 10:
-			spisok_A_IV.append(round((float(entr_A10_IV.get())), check_razryad.get()))			
+			spisok_A_IV.append(my_round((float(entr_A10_IV.get())), check_razryad.get()))			
 
-		#calc
-		#среднее по QCA1
-		mean_A_IV = round(stat.mean(spisok_A_IV), check_razryad.get())
-		#print(mean_A_IV, "mean_QCD1")
-		#CKO_A_IV = (stat.stdev(spisok_A_IV)/mean_A_IV)*100
-		#vntr_gr_smech_A_IV = (mean_A_IV - QC_IV)/QC_IV*100
+		mean_A_IV = my_round(stat.mean(spisok_A_IV), check_razryad.get())
+	
 		Er_A_IV = ((mean_A_IV - QC_IV)/QC_IV)*100
-		#print(Er_A_IV, 'Er_QCD1')
+
 		sigma_A_IV = (stat.stdev(spisok_A_IV)/mean_A_IV)*100
-		#print(sigma_A_IV, 'sigma_QCD1')
 
-	# проверка условия по количеству групп если больше либо равно 2 этот код выполняется
-
-		##########################
 
 		if check_var_gr_2.get() >= 2:
 			
-
-		##########################
-
 			spisok_B_IV = []
-			spisok_B_IV.append(round((float(entr_B1_IV.get())), check_razryad.get()))
-			spisok_B_IV.append(round((float(entr_B2_IV.get())), check_razryad.get()))
-			spisok_B_IV.append(round((float(entr_B3_IV.get())), check_razryad.get()))
+			spisok_B_IV.append(my_round((float(entr_B1_IV.get())), check_razryad.get()))
+			spisok_B_IV.append(my_round((float(entr_B2_IV.get())), check_razryad.get()))
+			spisok_B_IV.append(my_round((float(entr_B3_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 4:
-				spisok_B_IV.append(round((float(entr_B4_IV.get())), check_razryad.get()))
+				spisok_B_IV.append(my_round((float(entr_B4_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 5:
-				spisok_B_IV.append(round((float(entr_B5_IV.get())), check_razryad.get()))
+				spisok_B_IV.append(my_round((float(entr_B5_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 6:
-				spisok_B_IV.append(round((float(entr_B6_IV.get())), check_razryad.get()))
+				spisok_B_IV.append(my_round((float(entr_B6_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 7:
-				spisok_B_IV.append(round((float(entr_B7_IV.get())), check_razryad.get()))
+				spisok_B_IV.append(my_round((float(entr_B7_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 8:
-				spisok_B_IV.append(round((float(entr_B8_IV.get())), check_razryad.get()))
+				spisok_B_IV.append(my_round((float(entr_B8_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 9:
-				spisok_B_IV.append(round((float(entr_B9_IV.get())), check_razryad.get()))
+				spisok_B_IV.append(my_round((float(entr_B9_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 10:	
-				spisok_B_IV.append(round((float(entr_B10_IV.get())), check_razryad.get()))
+				spisok_B_IV.append(my_round((float(entr_B10_IV.get())), check_razryad.get()))
 
-			#print(spisok_B_IV, "spisok_QCD2")
-			#calc
-			#среднее по QCA2
-			mean_B_IV = round(stat.mean(spisok_B_IV), check_razryad.get())
-			#print(mean_B_IV, "mean_QCD2")
-			#CKO_B_IV = (stat.stdev(spisok_B_IV)/mean_B_IV)*100
-			
-			#vntr_gr_smech_B_IV = (mean_B_IV - QC_IV)/QC_IV*100
-			
+			mean_B_IV = my_round(stat.mean(spisok_B_IV), check_razryad.get())
 			Er_B_IV = ((mean_B_IV - QC_IV)/QC_IV)*100
-			#print(Er_B_IV, 'Er_QCD2')
-
 			sigma_B_IV = (stat.stdev(spisok_B_IV)/mean_B_IV)*100
-			#print(sigma_B_IV, 'sigma_QCD2')
 
-	#проверка условия по количеству групп если больше либо равно 3 этот код выполняется
 
-		##########################
+
 		if check_var_gr_2.get() >= 3:
-		
-		##########################
+
 			spisok_C_IV = []
-			spisok_C_IV.append(round((float(entr_C1_IV.get())), check_razryad.get()))
-			spisok_C_IV.append(round((float(entr_C2_IV.get())), check_razryad.get()))
-			spisok_C_IV.append(round((float(entr_C3_IV.get())), check_razryad.get()))
+			spisok_C_IV.append(my_round((float(entr_C1_IV.get())), check_razryad.get()))
+			spisok_C_IV.append(my_round((float(entr_C2_IV.get())), check_razryad.get()))
+			spisok_C_IV.append(my_round((float(entr_C3_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 4:
-				spisok_C_IV.append(round((float(entr_C4_IV.get())), check_razryad.get()))
+				spisok_C_IV.append(my_round((float(entr_C4_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 5:
-				spisok_C_IV.append(round((float(entr_C5_IV.get())), check_razryad.get()))
+				spisok_C_IV.append(my_round((float(entr_C5_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 6:
-				spisok_C_IV.append(round((float(entr_C6_IV.get())), check_razryad.get()))
+				spisok_C_IV.append(my_round((float(entr_C6_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 7:
-				spisok_C_IV.append(round((float(entr_C7_IV.get())), check_razryad.get()))
+				spisok_C_IV.append(my_round((float(entr_C7_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 8:
-				spisok_C_IV.append(round((float(entr_C8_IV.get())), check_razryad.get()))
+				spisok_C_IV.append(my_round((float(entr_C8_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 9:
-				spisok_C_IV.append(round((float(entr_C9_IV.get())), check_razryad.get()))
+				spisok_C_IV.append(my_round((float(entr_C9_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 10:
-				spisok_C_IV.append(round((float(entr_C10_IV.get())), check_razryad.get()))
+				spisok_C_IV.append(my_round((float(entr_C10_IV.get())), check_razryad.get()))
 			
-
-			#print(spisok_C_IV, "spisok_QCD3")
-			#calc
-			#среднее по QCA3
-			mean_C_IV = round(stat.mean(spisok_C_IV), check_razryad.get())
-			#print(mean_C_IV, "mean_QCD3")
-			#CKO_C_IV = (stat.stdev(spisok_C_IV)/mean_C_IV)*100
-			#vntr_gr_smech_C_IV = (mean_C_IV - QC_IV)/QC_IV*100
-			
+			mean_C_IV = my_round(stat.mean(spisok_C_IV), check_razryad.get())
 			Er_C_IV = ((mean_C_IV - QC_IV)/QC_IV)*100
-			#print(Er_C_IV, 'Er_QCD3')
-
 			sigma_C_IV = (stat.stdev(spisok_C_IV)/mean_C_IV)*100
-			#print(sigma_C_IV, 'sigma_QCD3')
 
 
-	# проверка условия по количеству групп если больше либо равно 4 этот код выполняется
-
-		##########################
 		if check_var_gr_2.get() >= 4:
 		
-
-		##########################
-
 			spisok_D_IV = []
-			spisok_D_IV.append(round((float(entr_D1_IV.get())), check_razryad.get()))
-			spisok_D_IV.append(round((float(entr_D2_IV.get())), check_razryad.get()))
-			spisok_D_IV.append(round((float(entr_D3_IV.get())), check_razryad.get()))
+			spisok_D_IV.append(my_round((float(entr_D1_IV.get())), check_razryad.get()))
+			spisok_D_IV.append(my_round((float(entr_D2_IV.get())), check_razryad.get()))
+			spisok_D_IV.append(my_round((float(entr_D3_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 4:
-				spisok_D_IV.append(round((float(entr_D4_IV.get())), check_razryad.get()))
+				spisok_D_IV.append(my_round((float(entr_D4_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 5:
-				spisok_D_IV.append(round((float(entr_D5_IV.get())), check_razryad.get()))
+				spisok_D_IV.append(my_round((float(entr_D5_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 6:
-				spisok_D_IV.append(round((float(entr_D6_IV.get())), check_razryad.get()))
+				spisok_D_IV.append(my_round((float(entr_D6_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 7:
-				spisok_D_IV.append(round((float(entr_D7_IV.get())), check_razryad.get()))
+				spisok_D_IV.append(my_round((float(entr_D7_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 8:
-				spisok_D_IV.append(round((float(entr_D8_IV.get())), check_razryad.get()))
+				spisok_D_IV.append(my_round((float(entr_D8_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 9:
-				spisok_D_IV.append(round((float(entr_D9_IV.get())), check_razryad.get()))
+				spisok_D_IV.append(my_round((float(entr_D9_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 10:
-				spisok_D_IV.append(round((float(entr_D10_IV.get())), check_razryad.get()))
+				spisok_D_IV.append(my_round((float(entr_D10_IV.get())), check_razryad.get()))
 			
-
-			#print(spisok_D_IV, "spisok_QCD4")
-			#calc
-			#среднее по QCA4
-			mean_D_IV = round(stat.mean(spisok_D_IV), check_razryad.get())
-			#print(mean_D_IV, "mean_QCD4")
-			#CKO_D_IV = (stat.stdev(spisok_D_IV)/mean_D_IV)*100
-			
-			#vntr_gr_smech_D_IV = (mean_D_IV - QC_IV)/QC_IV*100
-			
+			mean_D_IV = my_round(stat.mean(spisok_D_IV), check_razryad.get())	
 			Er_D_IV = ((mean_D_IV - QC_IV)/QC_IV)*100
-			#print(Er_D_IV, 'Er_QCD4')
 			sigma_D_IV = (stat.stdev(spisok_D_IV)/mean_D_IV)*100
-			#print(sigma_D_IV, 'sigma_QCD4')
 
 
 	#проверка условия по количеству групп если больше либо равно 5 этот код выполняется
 
-		##########################
 		if check_var_gr_2.get() >= 5:
-			
-		##########################
 			spisok_E_IV = []
-			spisok_E_IV.append(round((float(entr_E1_IV.get())), check_razryad.get()))
-			spisok_E_IV.append(round((float(entr_E2_IV.get())), check_razryad.get()))
-			spisok_E_IV.append(round((float(entr_E3_IV.get())), check_razryad.get()))
+			spisok_E_IV.append(my_round((float(entr_E1_IV.get())), check_razryad.get()))
+			spisok_E_IV.append(my_round((float(entr_E2_IV.get())), check_razryad.get()))
+			spisok_E_IV.append(my_round((float(entr_E3_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 4:
-				spisok_E_IV.append(round((float(entr_E4_IV.get())), check_razryad.get()))
+				spisok_E_IV.append(my_round((float(entr_E4_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 5:
-				spisok_E_IV.append(round((float(entr_E5_IV.get())), check_razryad.get()))
+				spisok_E_IV.append(my_round((float(entr_E5_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 6:
-				spisok_E_IV.append(round((float(entr_E6_IV.get())), check_razryad.get()))
+				spisok_E_IV.append(my_round((float(entr_E6_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 7:
-				spisok_E_IV.append(round((float(entr_E7_IV.get())), check_razryad.get()))
+				spisok_E_IV.append(my_round((float(entr_E7_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 8:
-				spisok_E_IV.append(round((float(entr_E8_IV.get())), check_razryad.get()))
+				spisok_E_IV.append(my_round((float(entr_E8_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 9:
-				spisok_E_IV.append(round((float(entr_E9_IV.get())), check_razryad.get()))
+				spisok_E_IV.append(my_round((float(entr_E9_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 10:
-				spisok_E_IV.append(round((float(entr_E10_IV.get())), check_razryad.get()))
+				spisok_E_IV.append(my_round((float(entr_E10_IV.get())), check_razryad.get()))
 			
 
-			#print(spisok_E_IV, "spisok_QCD5")
-			#calc
-			#среднее по QCA5
-			mean_E_IV = round(stat.mean(spisok_E_IV), check_razryad.get())
-			#print(mean_E_IV, "mean_QCD5")
-			#CKO_E_IV = (stat.stdev(spisok_E_IV)/mean_E_IV)*100
-			#vntr_gr_smech_E_IV = (mean_E_IV - QC_IV)/QC_IV*100
-			
+			mean_E_IV = my_round(stat.mean(spisok_E_IV), check_razryad.get())
 			Er_E_IV = ((mean_E_IV - QC_IV)/QC_IV)*100
-			#print(Er_E_IV, 'Er_QCD5')
-
 			sigma_E_IV = (stat.stdev(spisok_E_IV)/mean_E_IV)*100
-			#print(sigma_E_IV, 'sigma_QCD5')
 
 
-	#проверка условия по количеству групп если больше либо равно 6 этот код выполняется
 
-		##########################
 		if check_var_gr_2.get() >= 6:
 		
-
-		##########################
 			spisok_F_IV = []
-			spisok_F_IV.append(round((float(entr_F1_IV.get())), check_razryad.get()))
-			spisok_F_IV.append(round((float(entr_F2_IV.get())), check_razryad.get()))
-			spisok_F_IV.append(round((float(entr_F3_IV.get())), check_razryad.get()))
+			spisok_F_IV.append(my_round((float(entr_F1_IV.get())), check_razryad.get()))
+			spisok_F_IV.append(my_round((float(entr_F2_IV.get())), check_razryad.get()))
+			spisok_F_IV.append(my_round((float(entr_F3_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 4:
-				spisok_F_IV.append(round((float(entr_F4_IV.get())), check_razryad.get()))
+				spisok_F_IV.append(my_round((float(entr_F4_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 5:
-				spisok_F_IV.append(round((float(entr_F5_IV.get())), check_razryad.get()))
+				spisok_F_IV.append(my_round((float(entr_F5_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 6:
-				spisok_F_IV.append(round((float(entr_F6_IV.get())), check_razryad.get()))
+				spisok_F_IV.append(my_round((float(entr_F6_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 7:
-				spisok_F_IV.append(round((float(entr_F7_IV.get())), check_razryad.get()))
+				spisok_F_IV.append(my_round((float(entr_F7_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 8:
-				spisok_F_IV.append(round((float(entr_F8_IV.get())), check_razryad.get()))
+				spisok_F_IV.append(my_round((float(entr_F8_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 9:
-				spisok_F_IV.append(round((float(entr_F9_IV.get())), check_razryad.get()))
+				spisok_F_IV.append(my_round((float(entr_F9_IV.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 10:
-				spisok_F_IV.append(round((float(entr_F10_IV.get())), check_razryad.get()))
+				spisok_F_IV.append(my_round((float(entr_F10_IV.get())), check_razryad.get()))
 
-
-			#print(spisok_F_IV, "spisok_QCD6")
-			#calc
-			#среднее по QCA6
-			mean_F_IV = round(stat.mean(spisok_F_IV), check_razryad.get())
-			#print(mean_F_IV, "mean_QCD6")
-			#CKO_F_IV = (stat.stdev(spisok_F_IV)/mean_F_IV)*100
-		
-			#vntr_gr_smech_F_IV = (mean_F_IV - QC_IV)/QC_IV*100
+			mean_F_IV = my_round(stat.mean(spisok_F_IV), check_razryad.get())
 			
 			Er_F_IV = ((mean_F_IV - QC_IV)/QC_IV)*100
-			#print(Er_F_IV, 'Er_QCD6')
 
 			sigma_F_IV = (stat.stdev(spisok_F_IV)/mean_F_IV)*100
-			#print(sigma_F_IV, 'sigma_QCD6')
 
-###################################
+
 
 	if check_var_gr_1.get() >= 5:
 
-
-	# проверка условия на количество групп для 1 группы не требуется т.к. значение по  умолчанию 1
-
-	##########################
-		
-
-
-	##########################
-
 		QC_V = float(entr_MAIN_V.get())
 		spisok_A_V = []
-		spisok_A_V.append(round((float(entr_A1_V.get())), check_razryad.get()))
-		spisok_A_V.append(round((float(entr_A2_V.get())), check_razryad.get()))
-		spisok_A_V.append(round((float(entr_A3_V.get())), check_razryad.get()))
+		spisok_A_V.append(my_round((float(entr_A1_V.get())), check_razryad.get()))
+		spisok_A_V.append(my_round((float(entr_A2_V.get())), check_razryad.get()))
+		spisok_A_V.append(my_round((float(entr_A3_V.get())), check_razryad.get()))
 
 		if check_var_gr_3.get() >= 4:
-			spisok_A_V.append(round((float(entr_A4_V.get())), check_razryad.get()))
+			spisok_A_V.append(my_round((float(entr_A4_V.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 5:
-			spisok_A_V.append(round((float(entr_A5_V.get())), check_razryad.get()))
+			spisok_A_V.append(my_round((float(entr_A5_V.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 6:
-			spisok_A_V.append(round((float(entr_A6_V.get())), check_razryad.get()))
+			spisok_A_V.append(my_round((float(entr_A6_V.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 7:
-			spisok_A_V.append(round((float(entr_A7_V.get())), check_razryad.get()))
+			spisok_A_V.append(my_round((float(entr_A7_V.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 8:
-			spisok_A_V.append(round((float(entr_A8_V.get())), check_razryad.get()))
+			spisok_A_V.append(my_round((float(entr_A8_V.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 9:
-			spisok_A_V.append(round((float(entr_A9_V.get())), check_razryad.get()))
+			spisok_A_V.append(my_round((float(entr_A9_V.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 10:
-			spisok_A_V.append(round((float(entr_A10_V.get())), check_razryad.get()))	
+			spisok_A_V.append(my_round((float(entr_A10_V.get())), check_razryad.get()))	
 
-		#print(spisok_A_V, "spisok_QCE1")
 		#calc
 
 		#среднее по QCA1
-		mean_A_V = round(stat.mean(spisok_A_V), check_razryad.get())
-		#print(mean_A_V, "mean_QCE1")
+		mean_A_V = my_round(stat.mean(spisok_A_V), check_razryad.get())
 
-		#CKO_A_V = (stat.stdev(spisok_A_V)/mean_A_V)*100
-		#vntr_gr_smech_A_V = (mean_A_V - QC_V)/QC_V*100
 	
 		Er_A_V = ((mean_A_V - QC_V)/QC_V)*100
-		#print(Er_A_V, 'Er_QCE1')
 
 		sigma_A_V = (stat.stdev(spisok_A_V)/mean_A_V)*100
-		#print(sigma_A_V, 'sigma_QCE1')
 
 	# проверка условия по количеству групп если больше либо равно 2 этот код выполняется
 
@@ -8379,383 +7890,236 @@ def calc():
 		##########################
 
 			spisok_B_V = []
-			spisok_B_V.append(round((float(entr_B1_V.get())), check_razryad.get()))
-			spisok_B_V.append(round((float(entr_B2_V.get())), check_razryad.get()))
-			spisok_B_V.append(round((float(entr_B3_V.get())), check_razryad.get()))
+			spisok_B_V.append(my_round((float(entr_B1_V.get())), check_razryad.get()))
+			spisok_B_V.append(my_round((float(entr_B2_V.get())), check_razryad.get()))
+			spisok_B_V.append(my_round((float(entr_B3_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 4:
-				spisok_B_V.append(round((float(entr_B4_V.get())), check_razryad.get()))
+				spisok_B_V.append(my_round((float(entr_B4_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 5:
-				spisok_B_V.append(round((float(entr_B5_V.get())), check_razryad.get()))
+				spisok_B_V.append(my_round((float(entr_B5_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 6:
-				spisok_B_V.append(round((float(entr_B6_V.get())), check_razryad.get()))
+				spisok_B_V.append(my_round((float(entr_B6_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 7:
-				spisok_B_V.append(round((float(entr_B7_V.get())), check_razryad.get()))
+				spisok_B_V.append(my_round((float(entr_B7_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 8:
-				spisok_B_V.append(round((float(entr_B8_V.get())), check_razryad.get()))
+				spisok_B_V.append(my_round((float(entr_B8_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 9:
-				spisok_B_V.append(round((float(entr_B9_V.get())), check_razryad.get()))
+				spisok_B_V.append(my_round((float(entr_B9_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 10:	
-				spisok_B_V.append(round((float(entr_B10_V.get())), check_razryad.get()))
+				spisok_B_V.append(my_round((float(entr_B10_V.get())), check_razryad.get()))
 
-			#print(spisok_B_V, "spisok_QCE2")
-			#calc
-			#среднее по QCA2
-			mean_B_V = round(stat.mean(spisok_B_V), check_razryad.get())
-			#print(mean_B_V, "mean_QCE2")
-			#CKO_B_V = (stat.stdev(spisok_B_V)/mean_B_V)*100
-			
-			#vntr_gr_smech_B_V = (mean_B_V - QC_V)/QC_V*100
+			mean_B_V = my_round(stat.mean(spisok_B_V), check_razryad.get())
 			
 			Er_B_V = ((mean_B_V - QC_V)/QC_V)*100
-			#print(Er_B_V, 'Er_QCE2')
 
 			sigma_B_V = (stat.stdev(spisok_B_V)/mean_B_V)*100
-			#print(sigma_B_V, 'sigma_QCE2')
-	#проверка условия по количеству групп если больше либо равно 3 этот код выполняется
 
-		##########################
 		if check_var_gr_2.get() >= 3:
 			
-		##########################
 			spisok_C_V = []
-			spisok_C_V.append(round((float(entr_C1_V.get())), check_razryad.get()))
-			spisok_C_V.append(round((float(entr_C2_V.get())), check_razryad.get()))
-			spisok_C_V.append(round((float(entr_C3_V.get())), check_razryad.get()))
+			spisok_C_V.append(my_round((float(entr_C1_V.get())), check_razryad.get()))
+			spisok_C_V.append(my_round((float(entr_C2_V.get())), check_razryad.get()))
+			spisok_C_V.append(my_round((float(entr_C3_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 4:
-				spisok_C_V.append(round((float(entr_C4_V.get())), check_razryad.get()))
+				spisok_C_V.append(my_round((float(entr_C4_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 5:
-				spisok_C_V.append(round((float(entr_C5_V.get())), check_razryad.get()))
+				spisok_C_V.append(my_round((float(entr_C5_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 6:
-				spisok_C_V.append(round((float(entr_C6_V.get())), check_razryad.get()))
+				spisok_C_V.append(my_round((float(entr_C6_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 7:
-				spisok_C_V.append(round((float(entr_C7_V.get())), check_razryad.get()))
+				spisok_C_V.append(my_round((float(entr_C7_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 8:
-				spisok_C_V.append(round((float(entr_C8_V.get())), check_razryad.get()))
+				spisok_C_V.append(my_round((float(entr_C8_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 9:
-				spisok_C_V.append(round((float(entr_C9_V.get())), check_razryad.get()))
+				spisok_C_V.append(my_round((float(entr_C9_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 10:
-				spisok_C_V.append(round((float(entr_C10_V.get())), check_razryad.get()))
+				spisok_C_V.append(my_round((float(entr_C10_V.get())), check_razryad.get()))
 			
 
-			#print(spisok_C_V, "spisok_QCE3")
-			#calc
-			#среднее по QCA3
-			mean_C_V = round(stat.mean(spisok_C_V), check_razryad.get())
-			#print(mean_C_V, "mean_QCE3")
-			#CKO_C_V = (stat.stdev(spisok_C_V)/mean_C_V)*100
-		
-			#vntr_gr_smech_C_V = (mean_C_V - QC_V)/QC_V*100
+			mean_C_V = my_round(stat.mean(spisok_C_V), check_razryad.get())
 			
 			Er_C_V = ((mean_C_V - QC_V)/QC_V)*100
-			#print(Er_C_V, 'Er_QCE3')
-
 			sigma_C_V = (stat.stdev(spisok_C_V)/mean_C_V)*100
-			#print(sigma_C_V, 'sigma_QCE3')
 
-	# проверка условия по количеству групп если больше либо равно 4 этот код выполняется
-
-		##########################
 		if check_var_gr_2.get() >= 4:
-		
-
-		##########################
-
+	
 			spisok_D_V = []
-			spisok_D_V.append(round((float(entr_D1_V.get())), check_razryad.get()))
-			spisok_D_V.append(round((float(entr_D2_V.get())), check_razryad.get()))
-			spisok_D_V.append(round((float(entr_D3_V.get())), check_razryad.get()))
+			spisok_D_V.append(my_round((float(entr_D1_V.get())), check_razryad.get()))
+			spisok_D_V.append(my_round((float(entr_D2_V.get())), check_razryad.get()))
+			spisok_D_V.append(my_round((float(entr_D3_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 4:
-				spisok_D_V.append(round((float(entr_D4_V.get())), check_razryad.get()))
+				spisok_D_V.append(my_round((float(entr_D4_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 5:
-				spisok_D_V.append(round((float(entr_D5_V.get())), check_razryad.get()))
+				spisok_D_V.append(my_round((float(entr_D5_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 6:
-				spisok_D_V.append(round((float(entr_D6_V.get())), check_razryad.get()))
+				spisok_D_V.append(my_round((float(entr_D6_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 7:
-				spisok_D_V.append(round((float(entr_D7_V.get())), check_razryad.get()))
+				spisok_D_V.append(my_round((float(entr_D7_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 8:
-				spisok_D_V.append(round((float(entr_D8_V.get())), check_razryad.get()))
+				spisok_D_V.append(my_round((float(entr_D8_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 9:
-				spisok_D_V.append(round((float(entr_D9_V.get())), check_razryad.get()))
+				spisok_D_V.append(my_round((float(entr_D9_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 10:
-				spisok_D_V.append(round((float(entr_D10_V.get())), check_razryad.get()))
+				spisok_D_V.append(my_round((float(entr_D10_V.get())), check_razryad.get()))
 			
 
-
-			#print(spisok_D_V, "spisok_QCE4")
-			#calc
-			#среднее по QCA4
-			mean_D_V = round(stat.mean(spisok_D_V), check_razryad.get())
-			#print(mean_D_V, "mean_QCE4")
-			#CKO_D_V = (stat.stdev(spisok_D_V)/mean_D_V)*100
-			
-			#vntr_gr_smech_D_V = (mean_D_V - QC_V)/QC_V*100
-			
+			mean_D_V = my_round(stat.mean(spisok_D_V), check_razryad.get())
 			Er_D_V = ((mean_D_V - QC_V)/QC_V)*100
-			#print(Er_D_V, 'Er_QCE4')
-
 			sigma_D_V = (stat.stdev(spisok_D_V)/mean_D_V)*100
-			#print(sigma_D_V, 'sigma_QCE4')
-	#проверка условия по количеству групп если больше либо равно 5 этот код выполняется
-
-		##########################
 		if check_var_gr_2.get() >= 5:
 			
-		##########################
 			spisok_E_V = []
-			spisok_E_V.append(round((float(entr_E1_V.get())), check_razryad.get()))
-			spisok_E_V.append(round((float(entr_E2_V.get())), check_razryad.get()))
-			spisok_E_V.append(round((float(entr_E3_V.get())), check_razryad.get()))
+			spisok_E_V.append(my_round((float(entr_E1_V.get())), check_razryad.get()))
+			spisok_E_V.append(my_round((float(entr_E2_V.get())), check_razryad.get()))
+			spisok_E_V.append(my_round((float(entr_E3_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 4:
-				spisok_E_V.append(round((float(entr_E4_V.get())), check_razryad.get()))
+				spisok_E_V.append(my_round((float(entr_E4_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 5:
-				spisok_E_V.append(round((float(entr_E5_V.get())), check_razryad.get()))
+				spisok_E_V.append(my_round((float(entr_E5_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 6:
-				spisok_E_V.append(round((float(entr_E6_V.get())), check_razryad.get()))
+				spisok_E_V.append(my_round((float(entr_E6_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 7:
-				spisok_E_V.append(round((float(entr_E7_V.get())), check_razryad.get()))
+				spisok_E_V.append(my_round((float(entr_E7_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 8:
-				spisok_E_V.append(round((float(entr_E8_V.get())), check_razryad.get()))
+				spisok_E_V.append(my_round((float(entr_E8_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 9:
-				spisok_E_V.append(round((float(entr_E9_V.get())), check_razryad.get()))
+				spisok_E_V.append(my_round((float(entr_E9_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 10:
-				spisok_E_V.append(round((float(entr_E10_V.get())), check_razryad.get()))
+				spisok_E_V.append(my_round((float(entr_E10_V.get())), check_razryad.get()))
 			
 
-			#print(spisok_E_V, "spisok_QCE5")
-			#calc
-			#среднее по QCA5
-			mean_E_V = round(stat.mean(spisok_E_V), check_razryad.get())
-			#print(mean_E_V, "mean_QCE5")
-			#CKO_E_V = (stat.stdev(spisok_E_V)/mean_E_V)*100
-			
-			#vntr_gr_smech_E_V = (mean_E_V - QC_V)/QC_V*100
+			mean_E_V = my_round(stat.mean(spisok_E_V), check_razryad.get())
 			
 			Er_E_V = ((mean_E_V - QC_V)/QC_V)*100
-			#print(Er_E_V, 'Er_QCE5')
-
 			sigma_E_V = (stat.stdev(spisok_E_V)/mean_E_V)*100
-			#print(sigma_E_V, 'sigma_QCE5')
-	#проверка условия по количеству групп если больше либо равно 6 этот код выполняется
-
-		##########################
 		if check_var_gr_2.get() >= 6:
-			
-
-		##########################
 			spisok_F_V = []
-			spisok_F_V.append(round((float(entr_F1_V.get())), check_razryad.get()))
-			spisok_F_V.append(round((float(entr_F2_V.get())), check_razryad.get()))
-			spisok_F_V.append(round((float(entr_F3_V.get())), check_razryad.get()))
+			spisok_F_V.append(my_round((float(entr_F1_V.get())), check_razryad.get()))
+			spisok_F_V.append(my_round((float(entr_F2_V.get())), check_razryad.get()))
+			spisok_F_V.append(my_round((float(entr_F3_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 4:
-				spisok_F_V.append(round((float(entr_F4_V.get())), check_razryad.get()))
+				spisok_F_V.append(my_round((float(entr_F4_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 5:
-				spisok_F_V.append(round((float(entr_F5_V.get())), check_razryad.get()))
+				spisok_F_V.append(my_round((float(entr_F5_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 6:
-				spisok_F_V.append(round((float(entr_F6_V.get())), check_razryad.get()))
+				spisok_F_V.append(my_round((float(entr_F6_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 7:
-				spisok_F_V.append(round((float(entr_F7_V.get())), check_razryad.get()))
+				spisok_F_V.append(my_round((float(entr_F7_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 8:
-				spisok_F_V.append(round((float(entr_F8_V.get())), check_razryad.get()))
+				spisok_F_V.append(my_round((float(entr_F8_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 9:
-				spisok_F_V.append(round((float(entr_F9_V.get())), check_razryad.get()))
+				spisok_F_V.append(my_round((float(entr_F9_V.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 10:
-				spisok_F_V.append(round((float(entr_F10_V.get())), check_razryad.get()))
+				spisok_F_V.append(my_round((float(entr_F10_V.get())), check_razryad.get()))
 
 
-			#print(spisok_F_V, "spisok_QCE6")
-			#calc
-			#среднее по QCA6
-
-			mean_F_V = round(stat.mean(spisok_F_V), check_razryad.get())
-			#print(mean_F_V, "mean_QCE6")
-
-			#CKO_F_V = (stat.stdev(spisok_F_V)/mean_F_V)*100
-			
-			#vntr_gr_smech_F_V = (mean_F_V - QC_V)/QC_V*100
-			
+			mean_F_V = my_round(stat.mean(spisok_F_V), check_razryad.get())
 			Er_F_V = ((mean_F_V - QC_V)/QC_V)*100
-			#print(Er_F_V, 'Er_QCE6')
-
 			sigma_F_V = (stat.stdev(spisok_F_V)/mean_F_V)*100
-			#print(sigma_F_V, 'sigma_QCE6')
-
-###############################
 
 	if check_var_gr_1.get() >= 6:
 
-
-	# проверка условия на количество групп для 1 группы не требуется т.к. значение по  умолчанию 1
-
-	##########################
-		
-
-
-	##########################
-
 		QC_VI = float(entr_MAIN_VI.get())
 		spisok_A_VI = []
-		spisok_A_VI.append(round((float(entr_A1_VI.get())), check_razryad.get()))
-		spisok_A_VI.append(round((float(entr_A2_VI.get())), check_razryad.get()))
-		spisok_A_VI.append(round((float(entr_A3_VI.get())), check_razryad.get()))
+		spisok_A_VI.append(my_round((float(entr_A1_VI.get())), check_razryad.get()))
+		spisok_A_VI.append(my_round((float(entr_A2_VI.get())), check_razryad.get()))
+		spisok_A_VI.append(my_round((float(entr_A3_VI.get())), check_razryad.get()))
 
 		if check_var_gr_3.get() >= 4:
-			spisok_A_VI.append(round((float(entr_A4_VI.get())), check_razryad.get()))
+			spisok_A_VI.append(my_round((float(entr_A4_VI.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 5:
-			spisok_A_VI.append(round((float(entr_A5_VI.get())), check_razryad.get()))
+			spisok_A_VI.append(my_round((float(entr_A5_VI.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 6:
-			spisok_A_VI.append(round((float(entr_A6_VI.get())), check_razryad.get()))
+			spisok_A_VI.append(my_round((float(entr_A6_VI.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 7:
-			spisok_A_VI.append(round((float(entr_A7_VI.get())), check_razryad.get()))
+			spisok_A_VI.append(my_round((float(entr_A7_VI.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 8:
-			spisok_A_VI.append(round((float(entr_A8_VI.get())), check_razryad.get()))
+			spisok_A_VI.append(my_round((float(entr_A8_VI.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 9:
-			spisok_A_VI.append(round((float(entr_A9_VI.get())), check_razryad.get()))
+			spisok_A_VI.append(my_round((float(entr_A9_VI.get())), check_razryad.get()))
 		if check_var_gr_3.get() >= 10:
-			spisok_A_VI.append(round((float(entr_A10_VI.get())), check_razryad.get()))		
+			spisok_A_VI.append(my_round((float(entr_A10_VI.get())), check_razryad.get()))		
 
-		#print(spisok_A_VI, "spisok_QCF1")
-		#calc
-
-		#среднее по QCA1
-		mean_A_VI = round(stat.mean(spisok_A_VI), check_razryad.get())
-		#print(mean_A_VI, "mean_QCF1")
-
-		#CKO_A_VI = (stat.stdev(spisok_A_VI)/mean_A_VI)*100
-		
-		#vntr_gr_smech_A_VI = (mean_A_VI - QC_VI)/QC_VI*100
-		
+		mean_A_VI = my_round(stat.mean(spisok_A_VI), check_razryad.get())
 		Er_A_VI = ((mean_A_VI - QC_VI)/QC_VI)*100
-		#print(Er_A_VI, 'Er_QCF1')
-
 		sigma_A_VI = (stat.stdev(spisok_A_VI)/mean_A_VI)*100
-		#print(sigma_A_VI, 'sigma_QCF1')
-
-	# проверка условия по количеству групп если больше либо равно 2 этот код выполняется
-
-		##########################
 
 		if check_var_gr_2.get() >= 2:
 			
-
-
-		##########################
-
 			spisok_B_VI = []
-			spisok_B_VI.append(round((float(entr_B1_VI.get())), check_razryad.get()))
-			spisok_B_VI.append(round((float(entr_B2_VI.get())), check_razryad.get()))
-			spisok_B_VI.append(round((float(entr_B3_VI.get())), check_razryad.get()))
+			spisok_B_VI.append(my_round((float(entr_B1_VI.get())), check_razryad.get()))
+			spisok_B_VI.append(my_round((float(entr_B2_VI.get())), check_razryad.get()))
+			spisok_B_VI.append(my_round((float(entr_B3_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 4:
-				spisok_B_VI.append(round((float(entr_B4_VI.get())), check_razryad.get()))
+				spisok_B_VI.append(my_round((float(entr_B4_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 5:
-				spisok_B_VI.append(round((float(entr_B5_VI.get())), check_razryad.get()))
+				spisok_B_VI.append(my_round((float(entr_B5_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 6:
-				spisok_B_VI.append(round((float(entr_B6_VI.get())), check_razryad.get()))
+				spisok_B_VI.append(my_round((float(entr_B6_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 7:
-				spisok_B_VI.append(round((float(entr_B7_VI.get())), check_razryad.get()))
+				spisok_B_VI.append(my_round((float(entr_B7_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 8:
-				spisok_B_VI.append(round((float(entr_B8_VI.get())), check_razryad.get()))
+				spisok_B_VI.append(my_round((float(entr_B8_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 9:
-				spisok_B_VI.append(round((float(entr_B9_VI.get())), check_razryad.get()))
+				spisok_B_VI.append(my_round((float(entr_B9_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 10:	
-				spisok_B_VI.append(round((float(entr_B10_VI.get())), check_razryad.get()))
+				spisok_B_VI.append(my_round((float(entr_B10_VI.get())), check_razryad.get()))
 
-			#print(spisok_B_VI, "spisok_QCF2")
-			#calc
-			#среднее по 
-			mean_B_VI = round(stat.mean(spisok_B_VI), check_razryad.get())
-			#print(mean_B_VI, "mean_QCF2")
-			#CKO_B_VI = (stat.stdev(spisok_B_VI)/mean_B_VI)*100
-			
-			#vntr_gr_smech_B_VI = (mean_B_VI - QC_VI)/QC_VI*100
-
+			mean_B_VI = my_round(stat.mean(spisok_B_VI), check_razryad.get())
 			Er_B_VI = ((mean_B_VI - QC_VI)/QC_VI)*100
-			#print(Er_B_VI, 'Er_QCF2')
-
 			sigma_B_VI = (stat.stdev(spisok_B_VI)/mean_B_VI)*100
-			#print(sigma_B_VI, 'sigma_QCF2')
 
-	#проверка условия по количеству групп если больше либо равно 3 этот код выполняется
-
-		##########################
 		if check_var_gr_2.get() >= 3:
 			
-		##########################
 			spisok_C_VI = []
-			spisok_C_VI.append(round((float(entr_C1_VI.get())), check_razryad.get()))
-			spisok_C_VI.append(round((float(entr_C2_VI.get())), check_razryad.get()))
-			spisok_C_VI.append(round((float(entr_C3_VI.get())), check_razryad.get()))
+			spisok_C_VI.append(my_round((float(entr_C1_VI.get())), check_razryad.get()))
+			spisok_C_VI.append(my_round((float(entr_C2_VI.get())), check_razryad.get()))
+			spisok_C_VI.append(my_round((float(entr_C3_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 4:
-				spisok_C_VI.append(round((float(entr_C4_VI.get())), check_razryad.get()))
+				spisok_C_VI.append(my_round((float(entr_C4_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 5:
-				spisok_C_VI.append(round((float(entr_C5_VI.get())), check_razryad.get()))
+				spisok_C_VI.append(my_round((float(entr_C5_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 6:
-				spisok_C_VI.append(round((float(entr_C6_VI.get())), check_razryad.get()))
+				spisok_C_VI.append(my_round((float(entr_C6_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 7:
-				spisok_C_VI.append(round((float(entr_C7_VI.get())), check_razryad.get()))
+				spisok_C_VI.append(my_round((float(entr_C7_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 8:
-				spisok_C_VI.append(round((float(entr_C8_VI.get())), check_razryad.get()))
+				spisok_C_VI.append(my_round((float(entr_C8_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 9:
-				spisok_C_VI.append(round((float(entr_C9_VI.get())), check_razryad.get()))
+				spisok_C_VI.append(my_round((float(entr_C9_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 10:
-				spisok_C_VI.append(round((float(entr_C10_VI.get())), check_razryad.get()))
+				spisok_C_VI.append(my_round((float(entr_C10_VI.get())), check_razryad.get()))
 			
 
-			#print(spisok_C_VI, "spisok_QCF3")
-			#calc
-			#среднее по 
-			mean_C_VI = round(stat.mean(spisok_C_VI), check_razryad.get())
-			#print(mean_C_VI, "mean_QCF3")
-			#CKO_C_VI = (stat.stdev(spisok_C_VI)/mean_C_VI)*100
-			
-			#vntr_gr_smech_C_VI = (mean_C_VI - QC_VI)/QC_VI*100
-			
+			mean_C_VI = my_round(stat.mean(spisok_C_VI), check_razryad.get())
 			Er_C_VI = ((mean_C_VI - QC_VI)/QC_VI)*100
-			#print(Er_C_VI, 'Er_QCF3')
-
 			sigma_C_VI = (stat.stdev(spisok_C_VI)/mean_C_VI)*100
-			#print(sigma_C_VI, 'sigma_QCF3')
 
-	# проверка условия по количеству групп если больше либо равно 4 этот код выполняется
-
-		##########################
 		if check_var_gr_2.get() >= 4:
-			
-
-		##########################
 
 			spisok_D_VI = []
-			spisok_D_VI.append(round((float(entr_D1_VI.get())), check_razryad.get()))
-			spisok_D_VI.append(round((float(entr_D2_VI.get())), check_razryad.get()))
-			spisok_D_VI.append(round((float(entr_D3_VI.get())), check_razryad.get()))
+			spisok_D_VI.append(my_round((float(entr_D1_VI.get())), check_razryad.get()))
+			spisok_D_VI.append(my_round((float(entr_D2_VI.get())), check_razryad.get()))
+			spisok_D_VI.append(my_round((float(entr_D3_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 4:
-				spisok_D_VI.append(round((float(entr_D4_VI.get())), check_razryad.get()))
+				spisok_D_VI.append(my_round((float(entr_D4_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 5:
-				spisok_D_VI.append(round((float(entr_D5_VI.get())), check_razryad.get()))
+				spisok_D_VI.append(my_round((float(entr_D5_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 6:
-				spisok_D_VI.append(round((float(entr_D6_VI.get())), check_razryad.get()))
+				spisok_D_VI.append(my_round((float(entr_D6_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 7:
-				spisok_D_VI.append(round((float(entr_D7_VI.get())), check_razryad.get()))
+				spisok_D_VI.append(my_round((float(entr_D7_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 8:
-				spisok_D_VI.append(round((float(entr_D8_VI.get())), check_razryad.get()))
+				spisok_D_VI.append(my_round((float(entr_D8_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 9:
-				spisok_D_VI.append(round((float(entr_D9_VI.get())), check_razryad.get()))
+				spisok_D_VI.append(my_round((float(entr_D9_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 10:
-				spisok_D_VI.append(round((float(entr_D10_VI.get())), check_razryad.get()))
+				spisok_D_VI.append(my_round((float(entr_D10_VI.get())), check_razryad.get()))
 			
-			#print(spisok_D_VI, "spisok_QCF4")
-			#calc
-			#среднее по 
-			mean_D_VI = round(stat.mean(spisok_D_VI), check_razryad.get())
-			#print(mean_D_VI, "mean_QCF4")
-			#CKO_D_VI = (stat.stdev(spisok_D_VI)/mean_D_VI)*100
-			
-			#vntr_gr_smech_D_VI = (mean_D_VI - QC_VI)/QC_VI*100
-			
+			mean_D_VI = my_round(stat.mean(spisok_D_VI), check_razryad.get())
 			Er_D_VI = ((mean_D_VI - QC_VI)/QC_VI)*100
-			#print(Er_D_VI, 'Er_QCF4')
 
 			sigma_D_VI = (stat.stdev(spisok_D_VI)/mean_D_VI)*100
-			#print(sigma_D_VI, 'sigma_QCF4')
 
 	#проверка условия по количеству групп если больше либо равно 5 этот код выполняется
 
@@ -8764,38 +8128,29 @@ def calc():
 			
 		##########################
 			spisok_E_VI = []
-			spisok_E_VI.append(round((float(entr_E1_VI.get())), check_razryad.get()))
-			spisok_E_VI.append(round((float(entr_E2_VI.get())), check_razryad.get()))
-			spisok_E_VI.append(round((float(entr_E3_VI.get())), check_razryad.get()))
+			spisok_E_VI.append(my_round((float(entr_E1_VI.get())), check_razryad.get()))
+			spisok_E_VI.append(my_round((float(entr_E2_VI.get())), check_razryad.get()))
+			spisok_E_VI.append(my_round((float(entr_E3_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 4:
-				spisok_E_VI.append(round((float(entr_E4_VI.get())), check_razryad.get()))
+				spisok_E_VI.append(my_round((float(entr_E4_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 5:
-				spisok_E_VI.append(round((float(entr_E5_VI.get())), check_razryad.get()))
+				spisok_E_VI.append(my_round((float(entr_E5_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 6:
-				spisok_E_VI.append(round((float(entr_E6_VI.get())), check_razryad.get()))
+				spisok_E_VI.append(my_round((float(entr_E6_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 7:
-				spisok_E_VI.append(round((float(entr_E7_VI.get())), check_razryad.get()))
+				spisok_E_VI.append(my_round((float(entr_E7_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 8:
-				spisok_E_VI.append(round((float(entr_E8_VI.get())), check_razryad.get()))
+				spisok_E_VI.append(my_round((float(entr_E8_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 9:
-				spisok_E_VI.append(round((float(entr_E9_VI.get())), check_razryad.get()))
+				spisok_E_VI.append(my_round((float(entr_E9_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 10:
-				spisok_E_VI.append(round((float(entr_E10_VI.get())), check_razryad.get()))
+				spisok_E_VI.append(my_round((float(entr_E10_VI.get())), check_razryad.get()))
 			
-			#print(spisok_E_VI, "spisok_QCF5")
-			#calc
-			#среднее по QCA5
-			mean_E_VI = round(stat.mean(spisok_E_VI), check_razryad.get())
-			#print(mean_E_VI, "mean_QCF5")
-			#CKO_E_VI = (stat.stdev(spisok_E_VI)/mean_E_VI)*100
-			
-			#vntr_gr_smech_E_VI = (mean_E_VI - QC_VI)/QC_VI*100
+			mean_E_VI = my_round(stat.mean(spisok_E_VI), check_razryad.get())
 			
 			Er_E_VI = ((mean_E_VI - QC_VI)/QC_VI)*100
-			#print(Er_E_VI, 'Er_QCF5')
 
 			sigma_E_VI = (stat.stdev(spisok_E_VI)/mean_E_VI)*100
-			#print(sigma_E_VI, 'sigma_QCF5')
 	#проверка условия по количеству групп если больше либо равно 6 этот код выполняется
 
 		##########################
@@ -8804,53 +8159,37 @@ def calc():
 
 		##########################
 			spisok_F_VI = []
-			spisok_F_VI.append(round((float(entr_F1_VI.get())), check_razryad.get()))
-			spisok_F_VI.append(round((float(entr_F2_VI.get())), check_razryad.get()))
-			spisok_F_VI.append(round((float(entr_F3_VI.get())), check_razryad.get()))
+			spisok_F_VI.append(my_round((float(entr_F1_VI.get())), check_razryad.get()))
+			spisok_F_VI.append(my_round((float(entr_F2_VI.get())), check_razryad.get()))
+			spisok_F_VI.append(my_round((float(entr_F3_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 4:
-				spisok_F_VI.append(round((float(entr_F4_VI.get())), check_razryad.get()))
+				spisok_F_VI.append(my_round((float(entr_F4_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 5:
-				spisok_F_VI.append(round((float(entr_F5_VI.get())), check_razryad.get()))
+				spisok_F_VI.append(my_round((float(entr_F5_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 6:
-				spisok_F_VI.append(round((float(entr_F6_VI.get())), check_razryad.get()))
+				spisok_F_VI.append(my_round((float(entr_F6_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 7:
-				spisok_F_VI.append(round((float(entr_F7_VI.get())), check_razryad.get()))
+				spisok_F_VI.append(my_round((float(entr_F7_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 8:
-				spisok_F_VI.append(round((float(entr_F8_VI.get())), check_razryad.get()))
+				spisok_F_VI.append(my_round((float(entr_F8_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 9:
-				spisok_F_VI.append(round((float(entr_F9_VI.get())), check_razryad.get()))
+				spisok_F_VI.append(my_round((float(entr_F9_VI.get())), check_razryad.get()))
 			if check_var_gr_3.get() >= 10:
-				spisok_F_VI.append(round((float(entr_F10_VI.get())), check_razryad.get()))
+				spisok_F_VI.append(my_round((float(entr_F10_VI.get())), check_razryad.get()))
 
 
-			#print(spisok_F_VI, "spisok_QCF6")
 			#calc
 			#среднее по
-			mean_F_VI = round(stat.mean(spisok_F_VI), check_razryad.get())
-			#print(mean_F_VI, "mean_QCF6")
+			mean_F_VI = my_round(stat.mean(spisok_F_VI), check_razryad.get())
 			#CKO_F_VI = (stat.stdev(spisok_F_VI)/mean_F_VI)*100
 			
 			#vntr_gr_smech_F_VI = (mean_F_VI - QC_VI)/QC_VI*100
 			
 			Er_F_VI = ((mean_F_VI - QC_VI)/QC_VI)*100
-			#print(Er_F_VI, 'Er_QCF6')
 
 			sigma_F_VI = (stat.stdev(spisok_F_VI)/mean_F_VI)*100
-			#print(sigma_F_VI, 'sigma_QCF6')
 
 
-
-
-
-
-######################################################       
-
-#ОБЩИЕ ПОКАЗАТЕЛИ ДЛЯ QCA, QCB, QCC, QCD, QCE, QCF
-
-
-# цикл создан для упрощения заполнения списка который в дальнейшем будет 
-#использоваться для расчетов среднего 
-#					QCA
 
 	if check_var_gr_1.get() >= 1:
 		stat_mean_spisok_QCA = []
@@ -8867,8 +8206,7 @@ def calc():
 			if check_var_gr_2.get() >= 6:	
 				stat_mean_spisok_QCA.append(spisok_F_I[i])
 
-		mean_QCA = round(stat.mean(stat_mean_spisok_QCA), check_razryad.get())
-		#print(mean_QCA, 'mean_QCA')
+		mean_QCA = my_round(stat.mean(stat_mean_spisok_QCA), check_razryad.get())
 		#среднее смещение
 		mean_smech_QCA = (mean_QCA - QC_I)/QC_I*100
 
@@ -8888,8 +8226,7 @@ def calc():
 			if check_var_gr_2.get() >= 6:	
 				stat_mean_spisok_QCB.append(spisok_F_II[i])
 
-		mean_QCB = round(stat.mean(stat_mean_spisok_QCB), check_razryad.get())
-		#print(mean_QCB, 'mean_QCB')
+		mean_QCB = my_round(stat.mean(stat_mean_spisok_QCB), check_razryad.get())
 		#среднее смещение
 		mean_smech_QCB = (mean_QCB - QC_II)/QC_II*100
 
@@ -8910,7 +8247,6 @@ def calc():
 				stat_mean_spisok_QCC.append(spisok_F_III[i])
 
 		mean_QCC = stat.mean(stat_mean_spisok_QCC)
-		#print(mean_QCC, 'mean_QCC')
 		#среднее смещение
 		mean_smech_QCC = (mean_QCC - QC_III)/QC_III*100
 
@@ -8930,8 +8266,7 @@ def calc():
 			if check_var_gr_2.get() >= 6:	
 				stat_mean_spisok_QCD.append(spisok_F_IV[i])
 
-		mean_QCD = round(stat.mean(stat_mean_spisok_QCD), check_razryad.get())
-		#print(mean_QCD, 'mean_QCD')
+		mean_QCD = my_round(stat.mean(stat_mean_spisok_QCD), check_razryad.get())
 		#среднее смещение
 		mean_smech_QCD = (mean_QCD - QC_IV)/QC_IV*100
 
@@ -8951,8 +8286,7 @@ def calc():
 			if check_var_gr_2.get() >= 6:	
 				stat_mean_spisok_QCE.append(spisok_F_V[i])
 
-		mean_QCE = round(stat.mean(stat_mean_spisok_QCE), check_razryad.get())
-		#print(mean_QCE, 'mean_QCE')
+		mean_QCE = my_round(stat.mean(stat_mean_spisok_QCE), check_razryad.get())
 		#среднее смещение
 		mean_smech_QCE = (mean_QCE - QC_V)/QC_V*100
 
@@ -8972,8 +8306,7 @@ def calc():
 			if check_var_gr_2.get() >= 6:	
 				stat_mean_spisok_QCF.append(spisok_F_VI[i])
 
-		mean_QCF = round(stat.mean(stat_mean_spisok_QCF), check_razryad.get())
-		#print(mean_QCF, 'mean_QCF')
+		mean_QCF = my_round(stat.mean(stat_mean_spisok_QCF), check_razryad.get())
 		#среднее смещение
 		mean_smech_QCF = (mean_QCF - QC_VI)/QC_VI*100
 
@@ -9247,56 +8580,12 @@ def calc():
 			thin_border(ws, 'M15:S31')	
 
 	
-	#задание ширины столбца
-	#ws.column_dimensions['M'].width = 22
-	#задание ширины ячейки
-	'''
-	if check_var_gr_3.get() == 3:
-		ws.row_dimensions[9].height = 40.5 
-
-	if check_var_gr_3.get() == 4:
-		ws.row_dimensions[10].height = 40.5 
-
-	if check_var_gr_3.get() == 5:
-		ws.row_dimensions[11].height = 40.5 
-
-	if check_var_gr_3.get() == 6:
-		ws.row_dimensions[12].height = 40.5 
-
-	if check_var_gr_3.get() == 7:
-		ws.row_dimensions[13].height = 40.5 
-
-	if check_var_gr_3.get() == 8:
-		ws.row_dimensions[14].height = 40.5 
-
-	if check_var_gr_3.get() == 9:
-		ws.row_dimensions[15].height = 40.5 
-
-	if check_var_gr_3.get() == 10:
-		ws.row_dimensions[16].height = 40.5 
-	'''
-
 
 	#надпись и объединение ячеек под надпись
 	ws['M15'].value = 'QC'
-	ws['M16'].value = 'Введено, нг/мл'
+	ws['M16'].value = f'Введено, {entr_concent.get()}'
 	ws['M17'].value = '№ измерения'
 	ws['N17'].value = 'Найдено, последовательность 1'
-
-	'''
-	if check_var_gr_1.get() == 1:
-		ws.column_dimensions['N'].width = 31		
-	if check_var_gr_1.get() == 2:
-		ws.merge_cells('N17:O17')
-	if check_var_gr_1.get() == 3:
-		ws.merge_cells('N17:P17')
-	if check_var_gr_1.get() == 4:
-		ws.merge_cells('N17:Q17')
-	if check_var_gr_1.get() == 5:
-		ws.merge_cells('N17:R17')
-	if check_var_gr_1.get() == 6:
-		ws.merge_cells('N17:S17')
-	'''
 
 
 	#QCA1
@@ -9304,42 +8593,42 @@ def calc():
 	ws['N16'].value = QC_I
 	ws['C2'].value = 'QCA1'
 	ws['M18'].value = '1'
-	ws['N18'].value = razryad%(float(entr_A1_I.get()))
-	ws['C3'].value = razryad%(float(entr_A1_I.get()))
+	ws['N18'].value = my_round(float(entr_A1_I.get()), razryad)
+	ws['C3'].value = my_round(float(entr_A1_I.get()), razryad)
 	ws['M19'].value = '2'
-	ws['N19'].value = razryad%(float(entr_A2_I.get()))
-	ws['C4'].value = razryad%(float(entr_A2_I.get()))
+	ws['N19'].value = my_round(float(entr_A2_I.get()), razryad)
+	ws['C4'].value = my_round(float(entr_A2_I.get()), razryad)
 	ws['M20'].value = '3'
-	ws['N20'].value = razryad%(float(entr_A3_I.get()))
-	ws['C5'].value = razryad%(float(entr_A3_I.get()))
+	ws['N20'].value = my_round(float(entr_A3_I.get()), razryad)
+	ws['C5'].value = my_round(float(entr_A3_I.get()), razryad)
 	if check_var_gr_3.get() >= 4:
 		ws['M21'].value = '4'
-		ws['N21'].value = razryad%(float(entr_A4_I.get()))
-		ws['C6'].value = razryad%(float(entr_A4_I.get()))
+		ws['N21'].value = my_round(float(entr_A4_I.get()), razryad)
+		ws['C6'].value = my_round(float(entr_A4_I.get()), razryad)
 	if check_var_gr_3.get() >= 5:
 		ws['M22'].value = '5'
-		ws['N22'].value = razryad%(float(entr_A5_I.get())) 
-		ws['C7'].value = razryad%(float(entr_A5_I.get())) 
+		ws['N22'].value = my_round(float(entr_A5_I.get()), razryad)
+		ws['C7'].value = my_round(float(entr_A5_I.get()), razryad)
 	if check_var_gr_3.get() >= 6:	
 		ws['M23'].value = '6'
-		ws['N23'].value = razryad%(float(entr_A6_I.get())) 
-		ws['C8'].value = razryad%(float(entr_A6_I.get())) 
+		ws['N23'].value = my_round(float(entr_A6_I.get()), razryad)
+		ws['C8'].value = my_round(float(entr_A6_I.get()), razryad)
 	if check_var_gr_3.get() >= 7:	
 		ws['M24'].value = '7'
-		ws['N24'].value = razryad%(float(entr_A7_I.get()))
-		ws['C9'].value = razryad%(float(entr_A7_I.get()))
+		ws['N24'].value = my_round(float(entr_A7_I.get()), razryad)
+		ws['C9'].value = my_round(float(entr_A7_I.get()), razryad)
 	if check_var_gr_3.get() >= 8:	
 		ws['M25'].value = '8'
-		ws['N25'].value = razryad%(float(entr_A8_I.get()))
-		ws['C10'].value = razryad%(float(entr_A8_I.get()))
+		ws['N25'].value = my_round(float(entr_A8_I.get()), razryad)
+		ws['C10'].value = my_round(float(entr_A8_I.get()), razryad)
 	if check_var_gr_3.get() >= 9:	
 		ws['M26'].value = '9'
-		ws['N26'].value = razryad%(float(entr_A9_I.get())) 
-		ws['C11'].value = razryad%(float(entr_A9_I.get())) 
+		ws['N26'].value = my_round(float(entr_A9_I.get()), razryad)
+		ws['C11'].value = my_round(float(entr_A9_I.get()), razryad)
 	if check_var_gr_3.get() >= 10:	
 		ws['M27'].value = '10'
-		ws['N27'].value = razryad%(float(entr_A10_I.get())) 
-		ws['C12'].value = razryad%(float(entr_A10_I.get())) 
+		ws['N27'].value = my_round(float(entr_A10_I.get()), razryad)
+		ws['C12'].value = my_round(float(entr_A10_I.get()), razryad)
 
 	#вывод среднего и остальных показателей в таблицу 
 	#НАДПИСЬ ЗНАЧЕНИЙ КОЛОНКИ G БОЛЕЕ В ЭТОЙ ТАБЛИЦЕ НЕ ДУБЛИРОВАТЬ!!!!!!!!!!!
@@ -9347,58 +8636,58 @@ def calc():
 		ws['M21'].value = 'найдено, сред.зн.,\nнг/мл (n=3)'
 		ws['M21'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
 
-		ws['M22'].value = 'εr, % (n=3)'
-		ws['M23'].value = 'σr, % (n=3)'
+		ws['M22'].value = 'εR, % (n=3)'
+		ws['M23'].value = 'σR, % (n=3)'
 		ws['M24'].value = 'Норма |ε| и |σ|, %'
 
-		ws['N21'].value = razryad%(mean_A_I)
-		ws['N22'].value = '%.1f'%Er_A_I
-		ws['N23'].value = '%.1f'%sigma_A_I
+		ws['N21'].value = my_round(mean_A_I, razryad)
+		ws['N22'].value = my_round(Er_A_I, 1)
+		ws['N23'].value = my_round(sigma_A_I, 1)
 		if entr_NORM_QCA1.get() != '':
 			ws['N24'].value = '≤{}'.format(entr_NORM_QCA1.get())
 		else:
 			ws['N24'].value = '≤20'	
 		
 		if check_var_gr_1.get() >= 2:
-			ws['O21'].value = razryad%(mean_A_II)
-			ws['O22'].value = '%.1f'%Er_A_II
-			ws['O23'].value = '%.1f'%sigma_A_II
+			ws['O21'].value = my_round(mean_A_II, razryad)
+			ws['O22'].value = my_round(Er_A_II, 1)
+			ws['O23'].value = my_round(sigma_A_II, 1)
 			if entr_NORM_QCB1.get() != '':
 				ws['O24'].value = '≤{}'.format(entr_NORM_QCB1.get())
 			else:
 				ws['O24'].value = '≤15'
 
 		if check_var_gr_1.get() >= 3:	
-			ws['P21'].value = razryad%(mean_A_III)
-			ws['P22'].value = '%.1f'%Er_A_III
-			ws['P23'].value = '%.1f'%sigma_A_III
+			ws['P21'].value = my_round(mean_A_III, razryad)
+			ws['P22'].value = my_round(Er_A_III, 1)
+			ws['P23'].value = my_round(sigma_A_III, 1)
 			if entr_NORM_QCC1.get() != '':
 				ws['P24'].value = '≤{}'.format(entr_NORM_QCC1.get())
 			else:
 				ws['P24'].value = '≤15'
 
 		if check_var_gr_1.get() >= 4:	
-			ws['Q21'].value = razryad%(mean_A_IV)
-			ws['Q22'].value = '%.1f'%Er_A_IV
-			ws['Q23'].value = '%.1f'%sigma_A_IV
+			ws['Q21'].value = my_round(mean_A_IV, razryad)
+			ws['Q22'].value = my_round(Er_A_IV, 1)
+			ws['Q23'].value = my_round(sigma_A_IV, 1)
 			if entr_NORM_QCD1.get() != '':
 				ws['Q24'].value = '≤{}'.format(entr_NORM_QCD1.get())
 			else:
 				ws['Q24'].value = '≤15'
 
 		if check_var_gr_1.get() >= 5:	
-			ws['R21'].value = razryad%(mean_A_V)
-			ws['R22'].value = '%.1f'%Er_A_V
-			ws['R23'].value = '%.1f'%sigma_A_V
+			ws['R21'].value = my_round(mean_A_V, razryad)
+			ws['R22'].value = my_round(Er_A_V, 1)
+			ws['R23'].value = my_round(sigma_A_V, 1)
 			if entr_NORM_QCE1.get() != '':
 				ws['R24'].value = '≤{}'.format(entr_NORM_QCE1.get())
 			else:
 				ws['R24'].value = '≤15'
 
 		if check_var_gr_1.get() >= 6:	
-			ws['S21'].value = razryad%(mean_A_VI)
-			ws['S22'].value = '%.1f'%Er_A_VI
-			ws['S23'].value = '%.1f'%sigma_A_VI
+			ws['S21'].value = my_round(mean_A_VI, razryad)
+			ws['S22'].value = my_round(Er_A_VI, 1)
+			ws['S23'].value = my_round(sigma_A_VI, 1)
 			if entr_NORM_QCF1.get() != '':
 				ws['S24'].value = '≤{}'.format(entr_NORM_QCF1.get())
 			else:
@@ -9409,58 +8698,58 @@ def calc():
 
 		ws['M22'].value = 'найдено, сред.зн.,\nнг/мл (n=4)'
 		ws['M22'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-		ws['M23'].value = 'εr, % (n=4)'
-		ws['M24'].value = 'σr, % (n=4)'
+		ws['M23'].value = 'εR, % (n=4)'
+		ws['M24'].value = 'σR, % (n=4)'
 		ws['M25'].value = 'Норма |ε| и |σ|, %'
 
-		ws['N22'].value = razryad%(mean_A_I)
-		ws['N23'].value = '%.1f'%Er_A_I
-		ws['N24'].value = '%.1f'%sigma_A_I	
+		ws['N22'].value = my_round(mean_A_I, razryad)
+		ws['N23'].value = my_round(Er_A_I, 1)
+		ws['N24'].value = my_round(sigma_A_I	, 1)
 		if entr_NORM_QCA1.get() != '':
 			ws['N25'].value = '≤{}'.format(entr_NORM_QCA1.get())
 		else:
 			ws['N25'].value = '≤20'		
 
 		if check_var_gr_1.get() >= 2:
-			ws['O22'].value = razryad%(mean_A_II)
-			ws['O23'].value = '%.1f'%Er_A_II
-			ws['O24'].value = '%.1f'%sigma_A_II
+			ws['O22'].value = my_round(mean_A_II, razryad)
+			ws['O23'].value = my_round(Er_A_II, 1)
+			ws['O24'].value = my_round(sigma_A_II, 1)
 			if entr_NORM_QCB1.get() != '':
 				ws['O25'].value = '≤{}'.format(entr_NORM_QCB1.get())
 			else:
 				ws['O25'].value = '≤15'
 
 		if check_var_gr_1.get() >= 3:	
-			ws['P22'].value = razryad%(mean_A_III)
-			ws['P23'].value = '%.1f'%Er_A_III
-			ws['P24'].value = '%.1f'%sigma_A_III
+			ws['P22'].value = my_round(mean_A_III, razryad)
+			ws['P23'].value = my_round(Er_A_III, 1)
+			ws['P24'].value = my_round(sigma_A_III, 1)
 			if entr_NORM_QCC1.get() != '':
 				ws['P25'].value = '≤{}'.format(entr_NORM_QCC1.get())
 			else:
 				ws['P25'].value = '≤15'
 
 		if check_var_gr_1.get() >= 4:	
-			ws['Q22'].value = razryad%(mean_A_IV)
-			ws['Q23'].value = '%.1f'%Er_A_IV
-			ws['Q24'].value = '%.1f'%sigma_A_IV
+			ws['Q22'].value = my_round(mean_A_IV, razryad)
+			ws['Q23'].value = my_round(Er_A_IV, 1)
+			ws['Q24'].value = my_round(sigma_A_IV, 1)
 			if entr_NORM_QCD1.get() != '':
 				ws['Q25'].value = '≤{}'.format(entr_NORM_QCD1.get())
 			else:
 				ws['Q25'].value = '≤15'
 
 		if check_var_gr_1.get() >= 5:	
-			ws['R22'].value = razryad%(mean_A_V)
-			ws['R23'].value = '%.1f'%Er_A_V
-			ws['R24'].value = '%.1f'%sigma_A_V
+			ws['R22'].value = my_round(mean_A_V, razryad)
+			ws['R23'].value = my_round(Er_A_V, 1)
+			ws['R24'].value = my_round(sigma_A_V, 1)
 			if entr_NORM_QCE1.get() != '':
 				ws['R25'].value = '≤{}'.format(entr_NORM_QCE1.get())
 			else:
 				ws['R25'].value = '≤15'
 
 		if check_var_gr_1.get() >= 6:	
-			ws['S22'].value = razryad%(mean_A_VI)
-			ws['S23'].value = '%.1f'%Er_A_VI
-			ws['S24'].value = '%.1f'%sigma_A_VI
+			ws['S22'].value = my_round(mean_A_VI, razryad)
+			ws['S23'].value = my_round(Er_A_VI, 1)
+			ws['S24'].value = my_round(sigma_A_VI, 1)
 			if entr_NORM_QCF1.get() != '':
 				ws['S25'].value = '≤{}'.format(entr_NORM_QCF1.get())
 			else:
@@ -9469,58 +8758,58 @@ def calc():
 	if check_var_gr_3.get() == 5:
 		ws['M23'].value = 'найдено, сред.зн., \nнг/мл (n=5)'
 		ws['M23'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-		ws['M24'].value = 'εr, % (n=5)'
-		ws['M25'].value = 'σr, % (n=5)'
+		ws['M24'].value = 'εR, % (n=5)'
+		ws['M25'].value = 'σR, % (n=5)'
 		ws['M26'].value = 'Норма |ε| и |σ|, %'
 
-		ws['N23'].value = razryad%(mean_A_I)
-		ws['N24'].value = '%.1f'%Er_A_I
-		ws['N25'].value = '%.1f'%sigma_A_I
+		ws['N23'].value = my_round(mean_A_I, razryad)
+		ws['N24'].value = my_round(Er_A_I, 1)
+		ws['N25'].value = my_round(sigma_A_I, 1)
 		if entr_NORM_QCA1.get() != '':
 			ws['N26'].value = '≤{}'.format(entr_NORM_QCA1.get())
 		else:
 			ws['N26'].value = '≤20'	
 
 		if check_var_gr_1.get() >= 2:
-			ws['O23'].value = razryad%(mean_A_II)
-			ws['O24'].value = '%.1f'%Er_A_II
-			ws['O25'].value = '%.1f'%sigma_A_II
+			ws['O23'].value = my_round(mean_A_II, razryad)
+			ws['O24'].value = my_round(Er_A_II, 1)
+			ws['O25'].value = my_round(sigma_A_II, 1)
 			if entr_NORM_QCB1.get() != '':
 				ws['O26'].value = '≤{}'.format(entr_NORM_QCB1.get())
 			else:
 				ws['O26'].value = '≤15'	
 
 		if check_var_gr_1.get() >= 3:	
-			ws['P23'].value = razryad%(mean_A_III)
-			ws['P24'].value = '%.1f'%Er_A_III
-			ws['P25'].value = '%.1f'%sigma_A_III
+			ws['P23'].value = my_round(mean_A_III, razryad)
+			ws['P24'].value = my_round(Er_A_III, 1)
+			ws['P25'].value = my_round(sigma_A_III, 1)
 			if entr_NORM_QCC1.get() != '':
 				ws['P26'].value = '≤{}'.format(entr_NORM_QCC1.get())
 			else:
 				ws['P26'].value = '≤15'	
 
 		if check_var_gr_1.get() >= 4:	
-			ws['Q23'].value = razryad%(mean_A_IV)
-			ws['Q24'].value = '%.1f'%Er_A_IV
-			ws['Q25'].value = '%.1f'%sigma_A_IV
+			ws['Q23'].value = my_round(mean_A_IV, razryad)
+			ws['Q24'].value = my_round(Er_A_IV, 1)
+			ws['Q25'].value = my_round(sigma_A_IV, 1)
 			if entr_NORM_QCD1.get() != '':
 				ws['Q26'].value = '≤{}'.format(entr_NORM_QCD1.get())
 			else:
 				ws['Q26'].value = '≤15'
 
 		if check_var_gr_1.get() >= 5:	
-			ws['R23'].value = razryad%(mean_A_V)
-			ws['R24'].value = '%.1f'%Er_A_V
-			ws['R25'].value = '%.1f'%sigma_A_V
+			ws['R23'].value = my_round(mean_A_V, razryad)
+			ws['R24'].value = my_round(Er_A_V, 1)
+			ws['R25'].value = my_round(sigma_A_V, 1)
 			if entr_NORM_QCE1.get() != '':
 				ws['R26'].value = '≤{}'.format(entr_NORM_QCE1.get())
 			else:
 				ws['R26'].value = '≤15'
 
 		if check_var_gr_1.get() >= 6:	
-			ws['S23'].value = razryad%(mean_A_VI)
-			ws['S24'].value = '%.1f'%Er_A_VI
-			ws['S25'].value = '%.1f'%sigma_A_VI
+			ws['S23'].value = my_round(mean_A_VI, razryad)
+			ws['S24'].value = my_round(Er_A_VI, 1)
+			ws['S25'].value = my_round(sigma_A_VI, 1)
 			if entr_NORM_QCF1.get() != '':
 				ws['S26'].value = '≤{}'.format(entr_NORM_QCF1.get())
 			else:
@@ -9530,58 +8819,58 @@ def calc():
 	if check_var_gr_3.get() == 6:
 		ws['M24'].value = 'найдено, сред.зн., \nнг/мл (n=6)'
 		ws['M24'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-		ws['M25'].value = 'εr, % (n=6)'
-		ws['M26'].value = 'σr, % (n=6)'
+		ws['M25'].value = 'εR, % (n=6)'
+		ws['M26'].value = 'σR, % (n=6)'
 		ws['M27'].value = 'Норма |ε| и |σ|, %'
 
-		ws['N24'].value = razryad%(mean_A_I)
-		ws['N25'].value = '%.1f'%Er_A_I
-		ws['N26'].value = '%.1f'%sigma_A_I
+		ws['N24'].value = my_round(mean_A_I, razryad)
+		ws['N25'].value = my_round(Er_A_I, 1)
+		ws['N26'].value = my_round(sigma_A_I, 1)
 		if entr_NORM_QCA1.get() != '':
 			ws['N27'].value = '≤{}'.format(entr_NORM_QCA1.get())
 		else:
 			ws['N27'].value = '≤20'		
 
 		if check_var_gr_1.get() >= 2:
-			ws['O24'].value = razryad%(mean_A_II)
-			ws['O25'].value = '%.1f'%Er_A_II
-			ws['O26'].value = '%.1f'%sigma_A_II
+			ws['O24'].value = my_round(mean_A_II, razryad)
+			ws['O25'].value = my_round(Er_A_II, 1)
+			ws['O26'].value = my_round(sigma_A_II, 1)
 			if entr_NORM_QCB1.get() != '':
 				ws['O27'].value = '≤{}'.format(entr_NORM_QCB1.get())
 			else:
 				ws['O27'].value = '≤15'
 
 		if check_var_gr_1.get() >= 3:	
-			ws['P24'].value = razryad%(mean_A_III)
-			ws['P25'].value = '%.1f'%Er_A_III
-			ws['P26'].value = '%.1f'%sigma_A_III
+			ws['P24'].value = my_round(mean_A_III, razryad)
+			ws['P25'].value = my_round(Er_A_III, 1)
+			ws['P26'].value = my_round(sigma_A_III, 1)
 			if entr_NORM_QCC1.get() != '':
 				ws['P27'].value = '≤{}'.format(entr_NORM_QCC1.get())
 			else:
 				ws['P27'].value = '≤15'
 
 		if check_var_gr_1.get() >= 4:	
-			ws['Q24'].value = razryad%(mean_A_IV)
-			ws['Q25'].value = '%.1f'%Er_A_IV
-			ws['Q26'].value = '%.1f'%sigma_A_IV
+			ws['Q24'].value = my_round(mean_A_IV, razryad)
+			ws['Q25'].value = my_round(Er_A_IV, 1)
+			ws['Q26'].value = my_round(sigma_A_IV, 1)
 			if entr_NORM_QCD1.get() != '':
 				ws['Q27'].value = '≤{}'.format(entr_NORM_QCD1.get())
 			else:
 				ws['Q27'].value = '≤15'
 
 		if check_var_gr_1.get() >= 5:	
-			ws['R24'].value = razryad%(mean_A_V)
-			ws['R25'].value = '%.1f'%Er_A_V
-			ws['R26'].value = '%.1f'%sigma_A_V
+			ws['R24'].value = my_round(mean_A_V, razryad)
+			ws['R25'].value = my_round(Er_A_V, 1)
+			ws['R26'].value = my_round(sigma_A_V, 1)
 			if entr_NORM_QCE1.get() != '':
 				ws['R27'].value = '≤{}'.format(entr_NORM_QCE1.get())
 			else:
 				ws['R27'].value = '≤15'
 
 		if check_var_gr_1.get() >= 6:	
-			ws['S24'].value = razryad%(mean_A_VI)
-			ws['S25'].value = '%.1f'%Er_A_VI
-			ws['S26'].value = '%.1f'%sigma_A_VI
+			ws['S24'].value = my_round(mean_A_VI, razryad)
+			ws['S25'].value = my_round(Er_A_VI, 1)
+			ws['S26'].value = my_round(sigma_A_VI, 1)
 			if entr_NORM_QCF1.get() != '':
 				ws['S27'].value = '≤{}'.format(entr_NORM_QCF1.get())
 			else:
@@ -9590,58 +8879,58 @@ def calc():
 	if check_var_gr_3.get() == 7:
 		ws['M25'].value = 'найдено, сред.зн., \nнг/мл (n=7)'
 		ws['M25'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-		ws['M26'].value = 'εr, % (n=7)'
-		ws['M27'].value = 'σr, % (n=7)'
+		ws['M26'].value = 'εR, % (n=7)'
+		ws['M27'].value = 'σR, % (n=7)'
 		ws['M28'].value = 'Норма |ε| и |σ|, %'
 
-		ws['N25'].value = razryad%(mean_A_I)
-		ws['N26'].value = '%.1f'%Er_A_I
-		ws['N27'].value = '%.1f'%sigma_A_I
+		ws['N25'].value = my_round(mean_A_I, razryad)
+		ws['N26'].value = my_round(Er_A_I, 1)
+		ws['N27'].value = my_round(sigma_A_I, 1)
 		if entr_NORM_QCA1.get() != '':
 			ws['N28'].value = '≤{}'.format(entr_NORM_QCA1.get())
 		else:
 			ws['N28'].value = '≤20'	
 
 		if check_var_gr_1.get() >= 2:
-			ws['O25'].value = razryad%(mean_A_II)
-			ws['O26'].value = '%.1f'%Er_A_II
-			ws['O27'].value = '%.1f'%sigma_A_II
+			ws['O25'].value = my_round(mean_A_II, razryad)
+			ws['O26'].value = my_round(Er_A_II, 1)
+			ws['O27'].value = my_round(sigma_A_II, 1)
 			if entr_NORM_QCB1.get() != '':
 				ws['O28'].value = '≤{}'.format(entr_NORM_QCB1.get())
 			else:
 				ws['O28'].value = '≤15'	
 
 		if check_var_gr_1.get() >= 3:	
-			ws['P25'].value = razryad%(mean_A_III)
-			ws['P26'].value = '%.1f'%Er_A_III
-			ws['P27'].value = '%.1f'%sigma_A_III
+			ws['P25'].value = my_round(mean_A_III, razryad)
+			ws['P26'].value = my_round(Er_A_III, 1)
+			ws['P27'].value = my_round(sigma_A_III, 1)
 			if entr_NORM_QCC1.get() != '':
 				ws['P28'].value = '≤{}'.format(entr_NORM_QCC1.get())
 			else:
 				ws['P28'].value = '≤15'	
 
 		if check_var_gr_1.get() >= 4:	
-			ws['Q25'].value = razryad%(mean_A_IV)
-			ws['Q26'].value = '%.1f'%Er_A_IV
-			ws['Q27'].value = '%.1f'%sigma_A_IV
+			ws['Q25'].value = my_round(mean_A_IV, razryad)
+			ws['Q26'].value = my_round(Er_A_IV, 1)
+			ws['Q27'].value = my_round(sigma_A_IV, 1)
 			if entr_NORM_QCD1.get() != '':
 				ws['Q28'].value = '≤{}'.format(entr_NORM_QCD1.get())
 			else:
 				ws['Q28'].value = '≤15'	
 
 		if check_var_gr_1.get() >= 5:	
-			ws['R25'].value = razryad%(mean_A_V)
-			ws['R26'].value = '%.1f'%Er_A_V
-			ws['R27'].value = '%.1f'%sigma_A_V
+			ws['R25'].value = my_round(mean_A_V, razryad)
+			ws['R26'].value = my_round(Er_A_V, 1)
+			ws['R27'].value = my_round(sigma_A_V, 1)
 			if entr_NORM_QCE1.get() != '':
 				ws['R28'].value = '≤{}'.format(entr_NORM_QCE1.get())
 			else:
 				ws['R28'].value = '≤15'	
 
 		if check_var_gr_1.get() >= 6:	
-			ws['S25'].value = razryad%(mean_A_VI)
-			ws['S26'].value = '%.1f'%Er_A_VI
-			ws['S27'].value = '%.1f'%sigma_A_VI
+			ws['S25'].value = my_round(mean_A_VI, razryad)
+			ws['S26'].value = my_round(Er_A_VI, 1)
+			ws['S27'].value = my_round(sigma_A_VI, 1)
 			if entr_NORM_QCE1.get() != '':
 				ws['S28'].value = '≤{}'.format(entr_NORM_QCF1.get())
 			else:
@@ -9650,58 +8939,58 @@ def calc():
 	if check_var_gr_3.get() == 8:
 		ws['M26'].value = 'найдено, сред.зн., \nнг/мл (n=8)'
 		ws['M26'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-		ws['M27'].value = 'εr, % (n=8)'
-		ws['M28'].value = 'σr, % (n=8)'
+		ws['M27'].value = 'εR, % (n=8)'
+		ws['M28'].value = 'σR, % (n=8)'
 		ws['M29'].value = 'Норма |ε| и |σ|, %'
 
-		ws['N26'].value = razryad%(mean_A_I)
-		ws['N27'].value = '%.1f'%Er_A_I
-		ws['N28'].value = '%.1f'%sigma_A_I
+		ws['N26'].value = my_round(mean_A_I, razryad)
+		ws['N27'].value = my_round(Er_A_I, 1)
+		ws['N28'].value = my_round(sigma_A_I, 1)
 		if entr_NORM_QCA1.get() != '':
 			ws['N29'].value = '≤{}'.format(entr_NORM_QCA1.get())
 		else:
 			ws['N29'].value = '≤20'	
 
 		if check_var_gr_1.get() >= 2:
-			ws['O26'].value = razryad%(mean_A_II)
-			ws['O27'].value = '%.1f'%Er_A_II
-			ws['O28'].value = '%.1f'%sigma_A_II
+			ws['O26'].value = my_round(mean_A_II, razryad)
+			ws['O27'].value = my_round(Er_A_II, 1)
+			ws['O28'].value = my_round(sigma_A_II, 1)
 			if entr_NORM_QCB1.get() != '':
 				ws['O29'].value = '≤{}'.format(entr_NORM_QCB1.get())
 			else:
 				ws['O29'].value = '≤15'	
 
 		if check_var_gr_1.get() >= 3:	
-			ws['P26'].value = razryad%(mean_A_III)
-			ws['P27'].value = '%.1f'%Er_A_III
-			ws['P28'].value = '%.1f'%sigma_A_III
+			ws['P26'].value = my_round(mean_A_III, razryad)
+			ws['P27'].value = my_round(Er_A_III, 1)
+			ws['P28'].value = my_round(sigma_A_III, 1)
 			if entr_NORM_QCC1.get() != '':
 				ws['P29'].value = '≤{}'.format(entr_NORM_QCC1.get())
 			else:
 				ws['P29'].value = '≤15'	
 
 		if check_var_gr_1.get() >= 4:	
-			ws['Q26'].value = razryad%(mean_A_IV)
-			ws['Q27'].value = '%.1f'%Er_A_IV
-			ws['Q28'].value = '%.1f'%sigma_A_IV
+			ws['Q26'].value = my_round(mean_A_IV, razryad)
+			ws['Q27'].value = my_round(Er_A_IV, 1)
+			ws['Q28'].value = my_round(sigma_A_IV, 1)
 			if entr_NORM_QCD1.get() != '':
 				ws['Q29'].value = '≤{}'.format(entr_NORM_QCD1.get())
 			else:
 				ws['Q29'].value = '≤15'
 
 		if check_var_gr_1.get() >= 5:	
-			ws['R26'].value = razryad%(mean_A_V)
-			ws['R27'].value = '%.1f'%Er_A_V
-			ws['R28'].value = '%.1f'%sigma_A_V
+			ws['R26'].value = my_round(mean_A_V, razryad)
+			ws['R27'].value = my_round(Er_A_V, 1)
+			ws['R28'].value = my_round(sigma_A_V, 1)
 			if entr_NORM_QCE1.get() != '':
 				ws['R29'].value = '≤{}'.format(entr_NORM_QCE1.get())
 			else:
 				ws['R29'].value = '≤15'
 
 		if check_var_gr_1.get() >= 6:	
-			ws['S26'].value = razryad%(mean_A_VI)
-			ws['S27'].value = '%.1f'%Er_A_VI
-			ws['S28'].value = '%.1f'%sigma_A_VI
+			ws['S26'].value = my_round(mean_A_VI, razryad)
+			ws['S27'].value = my_round(Er_A_VI, 1)
+			ws['S28'].value = my_round(sigma_A_VI, 1)
 			if entr_NORM_QCF1.get() != '':
 				ws['S29'].value = '≤{}'.format(entr_NORM_QCF1.get())
 			else:
@@ -9710,58 +8999,58 @@ def calc():
 	if check_var_gr_3.get() == 9:
 		ws['M27'].value = 'найдено, сред.зн., \nнг/мл (n=9)'
 		ws['M27'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-		ws['M28'].value = 'εr, % (n=9)'
-		ws['M29'].value = 'σr, % (n=9)'
+		ws['M28'].value = 'εR, % (n=9)'
+		ws['M29'].value = 'σR, % (n=9)'
 		ws['M30'].value = 'Норма |ε| и |σ|, %'
 
-		ws['N27'].value = razryad%(mean_A_I)
-		ws['N28'].value = '%.1f'%Er_A_I
-		ws['N29'].value = '%.1f'%sigma_A_I
+		ws['N27'].value = my_round(mean_A_I, razryad)
+		ws['N28'].value = my_round(Er_A_I, 1)
+		ws['N29'].value = my_round(sigma_A_I, 1)
 		if entr_NORM_QCA1.get() != '':
 			ws['N30'].value = '≤{}'.format(entr_NORM_QCA1.get())
 		else:
 			ws['N30'].value = '≤20'
 
 		if check_var_gr_1.get() >= 2:
-			ws['O27'].value = razryad%(mean_A_II)
-			ws['O28'].value = '%.1f'%Er_A_II
-			ws['O29'].value = '%.1f'%sigma_A_II
+			ws['O27'].value = my_round(mean_A_II, razryad)
+			ws['O28'].value = my_round(Er_A_II, 1)
+			ws['O29'].value = my_round(sigma_A_II, 1)
 			if entr_NORM_QCB1.get() != '':
 				ws['O30'].value = '≤{}'.format(entr_NORM_QCB1.get())
 			else:
 				ws['O30'].value = '≤15'
 
 		if check_var_gr_1.get() >= 3:	
-			ws['P27'].value = razryad%(mean_A_III)
-			ws['P28'].value = '%.1f'%Er_A_III
-			ws['P29'].value = '%.1f'%sigma_A_III
+			ws['P27'].value = my_round(mean_A_III, razryad)
+			ws['P28'].value = my_round(Er_A_III, 1)
+			ws['P29'].value = my_round(sigma_A_III, 1)
 			if entr_NORM_QCC1.get() != '':
 				ws['P30'].value = '≤{}'.format(entr_NORM_QCC1.get())
 			else:
 				ws['P30'].value = '≤15'
 
 		if check_var_gr_1.get() >= 4:	
-			ws['Q27'].value = razryad%(mean_A_IV)
-			ws['Q28'].value = '%.1f'%Er_A_IV
-			ws['Q29'].value = '%.1f'%sigma_A_IV
+			ws['Q27'].value = my_round(mean_A_IV, razryad)
+			ws['Q28'].value = my_round(Er_A_IV, 1)
+			ws['Q29'].value = my_round(sigma_A_IV, 1)
 			if entr_NORM_QCD1.get() != '':
 				ws['Q30'].value = '≤{}'.format(entr_NORM_QCD1.get())
 			else:
 				ws['Q30'].value = '≤15'
 
 		if check_var_gr_1.get() >= 5:	
-			ws['R27'].value = razryad%(mean_A_V)
-			ws['R28'].value = '%.1f'%Er_A_V
-			ws['R29'].value = '%.1f'%sigma_A_V
+			ws['R27'].value = my_round(mean_A_V, razryad)
+			ws['R28'].value = my_round(Er_A_V, 1)
+			ws['R29'].value = my_round(sigma_A_V, 1)
 			if entr_NORM_QCE1.get() != '':
 				ws['R30'].value = '≤{}'.format(entr_NORM_QCE1.get())
 			else:
 				ws['R30'].value = '≤15'
 
 		if check_var_gr_1.get() >= 6:	
-			ws['S27'].value = razryad%(mean_A_VI)
-			ws['S28'].value = '%.1f'%Er_A_VI
-			ws['S29'].value = '%.1f'%sigma_A_VI
+			ws['S27'].value = my_round(mean_A_VI, razryad)
+			ws['S28'].value = my_round(Er_A_VI, 1)
+			ws['S29'].value = my_round(sigma_A_VI, 1)
 			if entr_NORM_QCF1.get() != '':
 				ws['S30'].value = '≤{}'.format(entr_NORM_QCF1.get())
 			else:
@@ -9770,13 +9059,13 @@ def calc():
 	if check_var_gr_3.get() == 10:
 		ws['M28'].value = 'найдено, сред.зн., \nнг/мл (n=10)'
 		ws['M28'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-		ws['M29'].value = 'εr, % (n=10)'
-		ws['M30'].value = 'σr, % (n=10)'
+		ws['M29'].value = 'εR, % (n=10)'
+		ws['M30'].value = 'σR, % (n=10)'
 		ws['M31'].value = 'Норма |ε| и |σ|, %'
 
-		ws['N28'].value = razryad%(mean_A_I)
-		ws['N29'].value = '%.1f'%Er_A_I
-		ws['N30'].value = '%.1f'%sigma_A_I
+		ws['N28'].value = my_round(mean_A_I, razryad)
+		ws['N29'].value = my_round(Er_A_I, 1)
+		ws['N30'].value = my_round(sigma_A_I, 1)
 		if entr_NORM_QCA1.get() != '':
 			ws['N31'].value = '≤{}'.format(entr_NORM_QCA1.get())
 		else:
@@ -9784,45 +9073,45 @@ def calc():
 		
 
 		if check_var_gr_1.get() >= 2:
-			ws['O28'].value = razryad%(mean_A_II)
-			ws['O29'].value = '%.1f'%Er_A_II
-			ws['O30'].value = '%.1f'%sigma_A_II
+			ws['O28'].value = my_round(mean_A_II, razryad)
+			ws['O29'].value = my_round(Er_A_II, 1)
+			ws['O30'].value = my_round(sigma_A_II, 1)
 			if entr_NORM_QCB1.get() != '':
 				ws['O31'].value = '≤{}'.format(entr_NORM_QCB1.get())
 			else:
 				ws['O31'].value = '≤15'
 
 		if check_var_gr_1.get() >= 3:	
-			ws['P28'].value = razryad%(mean_A_III)
-			ws['P29'].value = '%.1f'%Er_A_III
-			ws['P30'].value = '%.1f'%sigma_A_III
+			ws['P28'].value = my_round(mean_A_III, razryad)
+			ws['P29'].value = my_round(Er_A_III, 1)
+			ws['P30'].value = my_round(sigma_A_III, 1)
 			if entr_NORM_QCC1.get() != '':
 				ws['P31'].value = '≤{}'.format(entr_NORM_QCC1.get())
 			else:
 				ws['P31'].value = '≤15'
 
 		if check_var_gr_1.get() >= 4:	
-			ws['Q28'].value = razryad%(mean_A_IV)
-			ws['Q29'].value = '%.1f'%Er_A_IV
-			ws['Q30'].value = '%.1f'%sigma_A_IV
+			ws['Q28'].value = my_round(mean_A_IV, razryad)
+			ws['Q29'].value = my_round(Er_A_IV, 1)
+			ws['Q30'].value = my_round(sigma_A_IV, 1)
 			if entr_NORM_QCD1.get() != '':
 				ws['Q31'].value = '≤{}'.format(entr_NORM_QCD1.get())
 			else:
 				ws['Q31'].value = '≤15'
 
 		if check_var_gr_1.get() >= 5:	
-			ws['R28'].value = razryad%(mean_A_V)
-			ws['R29'].value = '%.1f'%Er_A_V
-			ws['R30'].value = '%.1f'%sigma_A_V
+			ws['R28'].value = my_round(mean_A_V, razryad)
+			ws['R29'].value = my_round(Er_A_V, 1)
+			ws['R30'].value = my_round(sigma_A_V, 1)
 			if entr_NORM_QCE1.get() != '':
 				ws['R31'].value = '≤{}'.format(entr_NORM_QCE1.get())
 			else:
 				ws['R31'].value = '≤15'
 
 		if check_var_gr_1.get() >= 6:	
-			ws['S28'].value = razryad%(mean_A_VI)
-			ws['S29'].value = '%.1f'%Er_A_VI
-			ws['S30'].value = '%.1f'%sigma_A_VI
+			ws['S28'].value = my_round(mean_A_VI, razryad)
+			ws['S29'].value = my_round(Er_A_VI, 1)
+			ws['S30'].value = my_round(sigma_A_VI, 1)
 			if entr_NORM_QCF1.get() != '':
 				ws['S31'].value = '≤{}'.format(entr_NORM_QCF1.get())
 			else:
@@ -9834,33 +9123,33 @@ def calc():
 		ws['O15'].value = 'QCB1'
 		ws['O16'].value = QC_II
 		ws['L2'].value = 'QCB1'
-		ws['O18'].value = razryad%(float(entr_A1_II.get()))
-		ws['L3'].value = razryad%(float(entr_A1_II.get()))
-		ws['O19'].value = razryad%(float(entr_A2_II.get()))
-		ws['L4'].value = razryad%(float(entr_A2_II.get()))
-		ws['O20'].value = razryad%(float(entr_A3_II.get()))
-		ws['L5'].value = razryad%(float(entr_A3_II.get()))
+		ws['O18'].value = my_round(float(entr_A1_II.get()), razryad)
+		ws['L3'].value = my_round(float(entr_A1_II.get()), razryad)
+		ws['O19'].value = my_round(float(entr_A2_II.get()), razryad)
+		ws['L4'].value = my_round(float(entr_A2_II.get()), razryad)
+		ws['O20'].value = my_round(float(entr_A3_II.get()), razryad)
+		ws['L5'].value = my_round(float(entr_A3_II.get()), razryad)
 		if check_var_gr_3.get() >= 4:
-			ws['O21'].value = razryad%(float(entr_A4_II.get()))
-			ws['L6'].value = razryad%(float(entr_A4_II.get()))
+			ws['O21'].value = my_round(float(entr_A4_II.get()), razryad)
+			ws['L6'].value = my_round(float(entr_A4_II.get()), razryad)
 		if check_var_gr_3.get() >= 5:
-			ws['O22'].value = razryad%(float(entr_A5_II.get()))
-			ws['L7'].value = razryad%(float(entr_A5_II.get()))
+			ws['O22'].value = my_round(float(entr_A5_II.get()), razryad)
+			ws['L7'].value = my_round(float(entr_A5_II.get()), razryad)
 		if check_var_gr_3.get() >= 6:	
-			ws['O23'].value = razryad%(float(entr_A6_II.get()))
-			ws['L8'].value = razryad%(float(entr_A6_II.get()))
+			ws['O23'].value = my_round(float(entr_A6_II.get()), razryad)
+			ws['L8'].value = my_round(float(entr_A6_II.get()), razryad)
 		if check_var_gr_3.get() >= 7:	
-			ws['O24'].value = razryad%(float(entr_A7_II.get()))
-			ws['L9'].value = razryad%(float(entr_A7_II.get()))
+			ws['O24'].value = my_round(float(entr_A7_II.get()), razryad)
+			ws['L9'].value = my_round(float(entr_A7_II.get()), razryad)
 		if check_var_gr_3.get() >= 8:	
-			ws['O25'].value = razryad%(float(entr_A8_II.get()))
-			ws['L10'].value = razryad%(float(entr_A8_II.get()))
+			ws['O25'].value = my_round(float(entr_A8_II.get()), razryad)
+			ws['L10'].value = my_round(float(entr_A8_II.get()), razryad)
 		if check_var_gr_3.get() >= 9:	
-			ws['O26'].value = razryad%(float(entr_A9_II.get()))
-			ws['L11'].value = razryad%(float(entr_A9_II.get()))
+			ws['O26'].value = my_round(float(entr_A9_II.get()), razryad)
+			ws['L11'].value = my_round(float(entr_A9_II.get()), razryad)
 		if check_var_gr_3.get() >= 10:	
-			ws['O27'].value = razryad%(float(entr_A10_II.get()))
-			ws['L12'].value = razryad%(float(entr_A10_II.get()))
+			ws['O27'].value = my_round(float(entr_A10_II.get()), razryad)
+			ws['L12'].value = my_round(float(entr_A10_II.get()), razryad)
 
 	
 	if check_var_gr_1.get() >= 3:
@@ -9868,33 +9157,33 @@ def calc():
 		ws['P15'].value = 'QCC1'
 		ws['P16'].value = QC_III
 		ws['U2'].value = 'QCC1'
-		ws['P18'].value = razryad%(float(entr_A1_III.get()))
-		ws['U3'].value = razryad%(float(entr_A1_III.get()))
-		ws['P19'].value = razryad%(float(entr_A2_III.get()))
-		ws['U4'].value = razryad%(float(entr_A2_III.get()))
-		ws['P20'].value = razryad%(float(entr_A3_III.get()))
-		ws['U5'].value = razryad%(float(entr_A3_III.get()))
+		ws['P18'].value = my_round(float(entr_A1_III.get()), razryad)
+		ws['U3'].value = my_round(float(entr_A1_III.get()), razryad)
+		ws['P19'].value = my_round(float(entr_A2_III.get()), razryad)
+		ws['U4'].value = my_round(float(entr_A2_III.get()), razryad)
+		ws['P20'].value = my_round(float(entr_A3_III.get()), razryad)
+		ws['U5'].value = my_round(float(entr_A3_III.get()), razryad)
 		if check_var_gr_3.get() >= 4:
-			ws['P21'].value = razryad%(float(entr_A4_III.get()))
-			ws['U6'].value = razryad%(float(entr_A4_III.get()))
+			ws['P21'].value = my_round(float(entr_A4_III.get()), razryad)
+			ws['U6'].value = my_round(float(entr_A4_III.get()), razryad)
 		if check_var_gr_3.get() >= 5:
-			ws['P22'].value = razryad%(float(entr_A5_III.get()))
-			ws['U7'].value = razryad%(float(entr_A5_III.get()))
+			ws['P22'].value = my_round(float(entr_A5_III.get()), razryad)
+			ws['U7'].value = my_round(float(entr_A5_III.get()), razryad)
 		if check_var_gr_3.get() >= 6:	
-			ws['P23'].value = razryad%(float(entr_A6_III.get()))
-			ws['U8'].value = razryad%(float(entr_A6_III.get()))
+			ws['P23'].value = my_round(float(entr_A6_III.get()), razryad)
+			ws['U8'].value = my_round(float(entr_A6_III.get()), razryad)
 		if check_var_gr_3.get() >= 7:	
-			ws['P24'].value = razryad%(float(entr_A7_III.get()))
-			ws['U9'].value = razryad%(float(entr_A7_III.get()))
+			ws['P24'].value = my_round(float(entr_A7_III.get()), razryad)
+			ws['U9'].value = my_round(float(entr_A7_III.get()), razryad)
 		if check_var_gr_3.get() >= 8:	
-			ws['P25'].value = razryad%(float(entr_A8_III.get()))
-			ws['U10'].value = razryad%(float(entr_A8_III.get()))
+			ws['P25'].value = my_round(float(entr_A8_III.get()), razryad)
+			ws['U10'].value = my_round(float(entr_A8_III.get()), razryad)
 		if check_var_gr_3.get() >= 9:	
-			ws['P26'].value = razryad%(float(entr_A9_III.get()))
-			ws['U11'].value = razryad%(float(entr_A9_III.get()))
+			ws['P26'].value = my_round(float(entr_A9_III.get()), razryad)
+			ws['U11'].value = my_round(float(entr_A9_III.get()), razryad)
 		if check_var_gr_3.get() >= 10:	
-			ws['P27'].value = razryad%(float(entr_A10_III.get()))
-			ws['U12'].value = razryad%(float(entr_A10_III.get()))
+			ws['P27'].value = my_round(float(entr_A10_III.get()), razryad)
+			ws['U12'].value = my_round(float(entr_A10_III.get()), razryad)
 
 
 	
@@ -9903,67 +9192,67 @@ def calc():
 		ws['Q15'].value = 'QCD1'
 		ws['Q16'].value = QC_IV
 		ws['AD2'].value = 'QCD1'
-		ws['Q18'].value = razryad%(float(entr_A1_IV.get()))
-		ws['AD3'].value = razryad%(float(entr_A1_IV.get()))
-		ws['Q19'].value = razryad%(float(entr_A2_IV.get()))
-		ws['AD4'].value = razryad%(float(entr_A2_IV.get()))
-		ws['Q20'].value = razryad%(float(entr_A3_IV.get()))
-		ws['AD5'].value = razryad%(float(entr_A3_IV.get()))
+		ws['Q18'].value = my_round(float(entr_A1_IV.get()), razryad)
+		ws['AD3'].value = my_round(float(entr_A1_IV.get()), razryad)
+		ws['Q19'].value = my_round(float(entr_A2_IV.get()), razryad)
+		ws['AD4'].value = my_round(float(entr_A2_IV.get()), razryad)
+		ws['Q20'].value = my_round(float(entr_A3_IV.get()), razryad)
+		ws['AD5'].value = my_round(float(entr_A3_IV.get()), razryad)
 		if check_var_gr_3.get() >= 4:
-			ws['Q21'].value = razryad%(float(entr_A4_IV.get()))
-			ws['AD6'].value = razryad%(float(entr_A4_IV.get()))
+			ws['Q21'].value = my_round(float(entr_A4_IV.get()), razryad)
+			ws['AD6'].value = my_round(float(entr_A4_IV.get()), razryad)
 		if check_var_gr_3.get() >= 5:
-			ws['Q22'].value = razryad%(float(entr_A5_IV.get()))
-			ws['AD7'].value = razryad%(float(entr_A5_IV.get()))
+			ws['Q22'].value = my_round(float(entr_A5_IV.get()), razryad)
+			ws['AD7'].value = my_round(float(entr_A5_IV.get()), razryad)
 		if check_var_gr_3.get() >= 6:	
-			ws['Q23'].value = razryad%(float(entr_A6_IV.get()))
-			ws['AD8'].value = razryad%(float(entr_A6_IV.get()))
+			ws['Q23'].value = my_round(float(entr_A6_IV.get()), razryad)
+			ws['AD8'].value = my_round(float(entr_A6_IV.get()), razryad)
 		if check_var_gr_3.get() >= 7:	
-			ws['Q24'].value = razryad%(float(entr_A7_IV.get()))
-			ws['AD9'].value = razryad%(float(entr_A7_IV.get()))
+			ws['Q24'].value = my_round(float(entr_A7_IV.get()), razryad)
+			ws['AD9'].value = my_round(float(entr_A7_IV.get()), razryad)
 		if check_var_gr_3.get() >= 8:	
-			ws['Q25'].value = razryad%(float(entr_A8_IV.get()))
-			ws['AD10'].value = razryad%(float(entr_A8_IV.get()))
+			ws['Q25'].value = my_round(float(entr_A8_IV.get()), razryad)
+			ws['AD10'].value = my_round(float(entr_A8_IV.get()), razryad)
 		if check_var_gr_3.get() >= 9:	
-			ws['Q26'].value = razryad%(float(entr_A9_IV.get()))
-			ws['AD11'].value = razryad%(float(entr_A9_IV.get()))
+			ws['Q26'].value = my_round(float(entr_A9_IV.get()), razryad)
+			ws['AD11'].value = my_round(float(entr_A9_IV.get()), razryad)
 		if check_var_gr_3.get() >= 10:	
-			ws['Q27'].value = razryad%(float(entr_A10_IV.get()))
-			ws['AD12'].value = razryad%(float(entr_A10_IV.get()))
+			ws['Q27'].value = my_round(float(entr_A10_IV.get()), razryad)
+			ws['AD12'].value = my_round(float(entr_A10_IV.get()), razryad)
 
 	if check_var_gr_1.get() >= 5:
 		#QCE1
 		ws['R15'].value = 'QCE1'
 		ws['R16'].value = QC_V
 		ws['AM2'].value = 'QCE1'
-		ws['R18'].value = razryad%(float(entr_A1_V.get()))
-		ws['AM3'].value = razryad%(float(entr_A1_V.get()))
-		ws['R19'].value = razryad%(float(entr_A2_V.get()))
-		ws['AM4'].value = razryad%(float(entr_A2_V.get()))
-		ws['R20'].value = razryad%(float(entr_A3_V.get()))
-		ws['AM5'].value = razryad%(float(entr_A3_V.get()))
+		ws['R18'].value = my_round(float(entr_A1_V.get()), razryad)
+		ws['AM3'].value = my_round(float(entr_A1_V.get()), razryad)
+		ws['R19'].value = my_round(float(entr_A2_V.get()), razryad)
+		ws['AM4'].value = my_round(float(entr_A2_V.get()), razryad)
+		ws['R20'].value = my_round(float(entr_A3_V.get()), razryad)
+		ws['AM5'].value = my_round(float(entr_A3_V.get()), razryad)
 
 		if check_var_gr_3.get() >= 4:
-			ws['R21'].value = razryad%(float(entr_A4_V.get()))
-			ws['AM6'].value = razryad%(float(entr_A4_V.get()))
+			ws['R21'].value = my_round(float(entr_A4_V.get()), razryad)
+			ws['AM6'].value = my_round(float(entr_A4_V.get()), razryad)
 		if check_var_gr_3.get() >= 5:
-			ws['R22'].value = razryad%(float(entr_A5_V.get()))
-			ws['AM7'].value = razryad%(float(entr_A5_V.get()))
+			ws['R22'].value = my_round(float(entr_A5_V.get()), razryad)
+			ws['AM7'].value = my_round(float(entr_A5_V.get()), razryad)
 		if check_var_gr_3.get() >= 6:	
-			ws['R23'].value = razryad%(float(entr_A6_V.get()))
-			ws['AM8'].value = razryad%(float(entr_A6_V.get()))
+			ws['R23'].value = my_round(float(entr_A6_V.get()), razryad)
+			ws['AM8'].value = my_round(float(entr_A6_V.get()), razryad)
 		if check_var_gr_3.get() >= 7:	
-			ws['R24'].value = razryad%(float(entr_A7_V.get()))
-			ws['AM9'].value = razryad%(float(entr_A7_V.get()))
+			ws['R24'].value = my_round(float(entr_A7_V.get()), razryad)
+			ws['AM9'].value = my_round(float(entr_A7_V.get()), razryad)
 		if check_var_gr_3.get() >= 8:	
-			ws['R25'].value = razryad%(float(entr_A8_V.get()))
-			ws['AM10'].value = razryad%(float(entr_A8_V.get()))
+			ws['R25'].value = my_round(float(entr_A8_V.get()), razryad)
+			ws['AM10'].value = my_round(float(entr_A8_V.get()), razryad)
 		if check_var_gr_3.get() >= 9:	
-			ws['R26'].value = razryad%(float(entr_A9_V.get()))
-			ws['AM11'].value = razryad%(float(entr_A9_V.get()))
+			ws['R26'].value = my_round(float(entr_A9_V.get()), razryad)
+			ws['AM11'].value = my_round(float(entr_A9_V.get()), razryad)
 		if check_var_gr_3.get() >= 10:	
-			ws['R27'].value = razryad%(float(entr_A10_V.get()))
-			ws['AM12'].value = razryad%(float(entr_A10_V.get()))
+			ws['R27'].value = my_round(float(entr_A10_V.get()), razryad)
+			ws['AM12'].value = my_round(float(entr_A10_V.get()), razryad)
 
 	
 
@@ -9972,33 +9261,33 @@ def calc():
 		ws['S15'].value = 'QCF1'
 		ws['S16'].value = QC_VI
 		ws['AV2'].value = 'QCF1'
-		ws['S18'].value = razryad%(float(entr_A1_VI.get()))
-		ws['AV3'].value = razryad%(float(entr_A1_VI.get()))
-		ws['S19'].value = razryad%(float(entr_A2_VI.get()))
-		ws['AV4'].value = razryad%(float(entr_A2_VI.get()))
-		ws['S20'].value = razryad%(float(entr_A3_VI.get()))
-		ws['AV5'].value = razryad%(float(entr_A3_VI.get()))
+		ws['S18'].value = my_round(float(entr_A1_VI.get()), razryad)
+		ws['AV3'].value = my_round(float(entr_A1_VI.get()), razryad)
+		ws['S19'].value = my_round(float(entr_A2_VI.get()), razryad)
+		ws['AV4'].value = my_round(float(entr_A2_VI.get()), razryad)
+		ws['S20'].value = my_round(float(entr_A3_VI.get()), razryad)
+		ws['AV5'].value = my_round(float(entr_A3_VI.get()), razryad)
 		if check_var_gr_3.get() >= 4:
-			ws['S21'].value = razryad%(float(entr_A4_VI.get()))
-			ws['AV6'].value = razryad%(float(entr_A4_VI.get()))
+			ws['S21'].value = my_round(float(entr_A4_VI.get()), razryad)
+			ws['AV6'].value = my_round(float(entr_A4_VI.get()), razryad)
 		if check_var_gr_3.get() >= 5:
-			ws['S22'].value = razryad%(float(entr_A5_VI.get()))
-			ws['AV7'].value = razryad%(float(entr_A5_VI.get()))
+			ws['S22'].value = my_round(float(entr_A5_VI.get()), razryad)
+			ws['AV7'].value = my_round(float(entr_A5_VI.get()), razryad)
 		if check_var_gr_3.get() >= 6:	
-			ws['S23'].value = razryad%(float(entr_A6_VI.get()))
-			ws['AV8'].value = razryad%(float(entr_A6_VI.get()))
+			ws['S23'].value = my_round(float(entr_A6_VI.get()), razryad)
+			ws['AV8'].value = my_round(float(entr_A6_VI.get()), razryad)
 		if check_var_gr_3.get() >= 7:	
-			ws['S24'].value = razryad%(float(entr_A7_VI.get()))
-			ws['AV9'].value = razryad%(float(entr_A7_VI.get()))
+			ws['S24'].value = my_round(float(entr_A7_VI.get()), razryad)
+			ws['AV9'].value = my_round(float(entr_A7_VI.get()), razryad)
 		if check_var_gr_3.get() >= 8:	
-			ws['S25'].value = razryad%(float(entr_A8_VI.get()))
-			ws['AV10'].value = razryad%(float(entr_A8_VI.get()))
+			ws['S25'].value = my_round(float(entr_A8_VI.get()), razryad)
+			ws['AV10'].value = my_round(float(entr_A8_VI.get()), razryad)
 		if check_var_gr_3.get() >= 9:	
-			ws['S26'].value = razryad%(float(entr_A9_VI.get()))
-			ws['AV11'].value = razryad%(float(entr_A9_VI.get()))
+			ws['S26'].value = my_round(float(entr_A9_VI.get()), razryad)
+			ws['AV11'].value = my_round(float(entr_A9_VI.get()), razryad)
 		if check_var_gr_3.get() >= 10:	
-			ws['S27'].value = razryad%(float(entr_A10_VI.get()))
-			ws['AV12'].value = razryad%(float(entr_A10_VI.get()))
+			ws['S27'].value = my_round(float(entr_A10_VI.get()), razryad)
+			ws['AV12'].value = my_round(float(entr_A10_VI.get()), razryad)
 		
 
 
@@ -10118,29 +9407,11 @@ def calc():
 				thin_border(ws, 'U15:AA34')	
 
 		
-		#задание ширины столбца
-		#ws.column_dimensions['U'].width = 22
-
 		#надпись и объединение ячеек под надпись
 		ws['U15'].value = 'QC'
-		ws['U16'].value = 'Введено, нг/мл'
+		ws['U16'].value = f'Введено, {entr_concent.get()}'
 		ws['U17'].value = '№ измерения'
 		ws['V17'].value = 'Найдено, последовательность 2'
-
-		'''
-		if check_var_gr_1.get() == 1:
-			ws.column_dimensions['V'].width = 31		
-		if check_var_gr_1.get() == 2:
-			ws.merge_cells('V17:W17')
-		if check_var_gr_1.get() == 3:
-			ws.merge_cells('V17:X17')
-		if check_var_gr_1.get() == 4:
-			ws.merge_cells('V17:Y17')
-		if check_var_gr_1.get() == 5:
-			ws.merge_cells('V17:Z17')
-		if check_var_gr_1.get() == 6:
-			ws.merge_cells('V17:AA17')
-		'''
 
 		#QCA2
 		
@@ -10148,164 +9419,120 @@ def calc():
 		ws['V16'].value = QC_I
 		ws['D2'].value = 'QCA2'
 		ws['U18'].value = '1'
-		ws['V18'].value = razryad%(float(entr_B1_I.get()))
-		ws['D3'].value = razryad%(float(entr_B1_I.get()))
+		ws['V18'].value = my_round(float(entr_B1_I.get()), razryad)
+		ws['D3'].value = my_round(float(entr_B1_I.get()), razryad)
 		ws['U19'].value = '2'
-		ws['V19'].value = razryad%(float(entr_B2_I.get()))
-		ws['D4'].value = razryad%(float(entr_B2_I.get()))
+		ws['V19'].value = my_round(float(entr_B2_I.get()), razryad)
+		ws['D4'].value = my_round(float(entr_B2_I.get()), razryad)
 		ws['U20'].value = '3'
-		ws['V20'].value = razryad%(float(entr_B3_I.get()))
-		ws['D5'].value = razryad%(float(entr_B3_I.get()))
+		ws['V20'].value = my_round(float(entr_B3_I.get()), razryad)
+		ws['D5'].value = my_round(float(entr_B3_I.get()), razryad)
 		if check_var_gr_3.get() >= 4:
 			ws['U21'].value = '4'
-			ws['V21'].value = razryad%(float(entr_B4_I.get()))
-			ws['D6'].value = razryad%(float(entr_B4_I.get()))
+			ws['V21'].value = my_round(float(entr_B4_I.get()), razryad)
+			ws['D6'].value = my_round(float(entr_B4_I.get()), razryad)
 		if check_var_gr_3.get() >= 5:
 			ws['U22'].value = '5'
-			ws['V22'].value = razryad%(float(entr_B5_I.get()))
-			ws['D7'].value = razryad%(float(entr_B5_I.get()))
+			ws['V22'].value = my_round(float(entr_B5_I.get()), razryad)
+			ws['D7'].value = my_round(float(entr_B5_I.get()), razryad)
 		if check_var_gr_3.get() >= 6:	
 			ws['U23'].value = '6'
-			ws['V23'].value = razryad%(float(entr_B6_I.get()))
-			ws['D8'].value = razryad%(float(entr_B6_I.get()))
+			ws['V23'].value = my_round(float(entr_B6_I.get()), razryad)
+			ws['D8'].value = my_round(float(entr_B6_I.get()), razryad)
 		if check_var_gr_3.get() >= 7:	
 			ws['U24'].value = '7'
-			ws['V24'].value = razryad%(float(entr_B7_I.get()))
-			ws['D9'].value = razryad%(float(entr_B7_I.get()))
+			ws['V24'].value = my_round(float(entr_B7_I.get()), razryad)
+			ws['D9'].value = my_round(float(entr_B7_I.get()), razryad)
 		if check_var_gr_3.get() >= 8:	
 			ws['U25'].value = '8'
-			ws['V25'].value = razryad%(float(entr_B8_I.get()))
-			ws['D10'].value = razryad%(float(entr_B8_I.get()))
+			ws['V25'].value = my_round(float(entr_B8_I.get()), razryad)
+			ws['D10'].value = my_round(float(entr_B8_I.get()), razryad)
 		if check_var_gr_3.get() >= 9:	
 			ws['U26'].value = '9'
-			ws['V26'].value = razryad%(float(entr_B9_I.get()))
-			ws['D11'].value = razryad%(float(entr_B9_I.get()))
+			ws['V26'].value = my_round(float(entr_B9_I.get()), razryad)
+			ws['D11'].value = my_round(float(entr_B9_I.get()), razryad)
 		if check_var_gr_3.get() >= 10:	
 			ws['U27'].value = '10'
-			ws['V27'].value = razryad%(float(entr_B10_I.get()))
-			ws['D12'].value = razryad%(float(entr_B10_I.get()))
+			ws['V27'].value = my_round(float(entr_B10_I.get()), razryad)
+			ws['D12'].value = my_round(float(entr_B10_I.get()), razryad)
 
 
-	#############################################################################
 	#РАСЧЕТЫ ANOVA
 	#количество таблиц зависит от показателя check_var_gr_2
 		if check_var_gr_2.get() >= 2:
-			mean_QCA1_QCA2 = round(stat.mean([mean_A_I, mean_B_I]), check_razryad.get())
+			mean_QCA1_QCA2 = my_round(stat.mean([mean_A_I, mean_B_I]), check_razryad.get())
 			
 			if check_var_gr_1.get() >= 2:
 				#QCB2
-				mean_QCB1_QCB2 = round(stat.mean([mean_A_II, mean_B_II]), check_razryad.get())
+				mean_QCB1_QCB2 = my_round(stat.mean([mean_A_II, mean_B_II]), check_razryad.get())
 				
 			if check_var_gr_1.get() >= 3:
 				#QCC2			
-				mean_QCC1_QCC2 = round(stat.mean([mean_A_III, mean_B_III]), check_razryad.get())			
+				mean_QCC1_QCC2 = my_round(stat.mean([mean_A_III, mean_B_III]), check_razryad.get())			
 
 			if check_var_gr_1.get() >= 4:
 				#QCD2			
-				mean_QCD1_QCD2 = round(stat.mean([mean_A_IV, mean_B_IV]), check_razryad.get())		
+				mean_QCD1_QCD2 = my_round(stat.mean([mean_A_IV, mean_B_IV]), check_razryad.get())		
 
 			if check_var_gr_1.get() >= 5:
 				#QCE2			
-				mean_QCE1_QCE2 = round(stat.mean([mean_A_V, mean_B_V]), check_razryad.get())	
+				mean_QCE1_QCE2 = my_round(stat.mean([mean_A_V, mean_B_V]), check_razryad.get())	
 
 			if check_var_gr_1.get() >= 6:
 				#QCF2			
-				mean_QCF1_QCF2 = round(stat.mean([mean_A_VI, mean_B_VI]), check_razryad.get())
+				mean_QCF1_QCF2 = my_round(stat.mean([mean_A_VI, mean_B_VI]), check_razryad.get())
 				
 
 	#ЗАПОЛНЕНИЕ ANOVA		
 		if check_var_gr_2.get() >= 2:
-			#print(len(spisok_A_I))
-			#print(len(spisok_B_I))
-			#print((mean_A_I - mean_QCA1_QCA2))
-			#print((mean_B_I - mean_QCA1_QCA2))
 		 	#междугруппами
 			sum_kv_mezhdy_gr_QCA1_QCA2 = len(spisok_A_I)*((mean_A_I - mean_QCA1_QCA2)**2) + len(spisok_B_I)*((mean_B_I - mean_QCA1_QCA2)**2)
 			CV_mezhdy_gr_QCA1_QCA2 = (sum_kv_mezhdy_gr_QCA1_QCA2**0.5)/mean_QCA1_QCA2*100
-			#print(CV_mezhdy_gr_QCA1_QCA2, 'CV_mezhdy_gr_QCA1_QCA2')
-			#внутригрупп
-			#CV_vnytr_gr_QCA1_QCA2 = (((sum([i+j for i, j in zip([(i - mean_A_I)**2 for i in spisok_A_I], [(i - mean_B_I)**2 for i in spisok_B_I])]))/8)**0.5)/mean_QCA1_QCA2*100
-			#print(CV_vnytr_gr_QCA1_QCA2, 'CV_vnytr_gr_QCA1_QCA2')
 			CV_vnytr_gr_QCA1_QCA2 = (mean_QCA1_QCA2 - QC_I)/QC_I * 100
-			#print(CV_vnytr_gr_QCA1_QCA2, 'CV_vnytr_gr_QCA1_QCA2')
-
 			#проверка на количество QC
 			if check_var_gr_1.get() >= 2:
 				#проверка на количество образцов
 				if check_var_gr_2.get() >= 2:
-					#print(len(spisok_A_II))
-					#print(len(spisok_B_II))
-					#print((mean_A_II - mean_QCB1_QCB2))
-					#print((mean_B_II - mean_QCB1_QCB2))
 				 	#междугруппами
 					sum_kv_mezhdy_gr_QCB1_QCB2 = len(spisok_A_II)*((mean_A_II - mean_QCB1_QCB2)**2) + len(spisok_B_II)*((mean_B_II - mean_QCB1_QCB2)**2)
 					CV_mezhdy_gr_QCB1_QCB2 = (sum_kv_mezhdy_gr_QCB1_QCB2**0.5)/mean_QCB1_QCB2*100
-					#print(CV_mezhdy_gr_QCB1_QCB2, 'CV_mezhdy_gr_QCB1_QCB2')
-					#внутригрупп
 					CV_vnytr_gr_QCB1_QCB2 = (mean_QCB1_QCB2 - QC_II)/QC_II * 100
-					#print(CV_vnytr_gr_QCB1_QCB2, 'CV_vnytr_gr_QCB1_QCB2')
 
 			#проверка на количество QC
 			if check_var_gr_1.get() >= 3:
 				#проверка на количество образцов
 				if check_var_gr_2.get() >= 2:
-					#print(len(spisok_A_III))
-					#print(len(spisok_B_III))
-					#print((mean_A_III - mean_QCC1_QCC2))
-					#print((mean_B_III - mean_QCC1_QCC2))
 				 	#междугруппами
 					sum_kv_mezhdy_gr_QCC1_QCC2 = len(spisok_A_III)*((mean_A_III - mean_QCC1_QCC2)**2) + len(spisok_B_III)*((mean_B_III - mean_QCC1_QCC2)**2)
 					CV_mezhdy_gr_QCC1_QCC2 = (sum_kv_mezhdy_gr_QCC1_QCC2**0.5)/mean_QCC1_QCC2*100
-					#print(CV_mezhdy_gr_QCC1_QCC2, 'CV_mezhdy_gr_QCC1_QCC2')
-					#внутригрупп
 					CV_vnytr_gr_QCC1_QCC2 = (mean_QCC1_QCC2 - QC_III)/QC_III * 100
-					#print(CV_vnytr_gr_QCC1_QCC2, 'CV_vnytr_gr_QCC1_QCC2')
 
 			if check_var_gr_1.get() >= 4:
 				#проверка на количество образцов
 				if check_var_gr_2.get() >= 2:
-					#print(len(spisok_A_IV))
-					#print(len(spisok_B_IV))
-					#print((mean_A_IV - mean_QCD1_QCD2))
-					#print((mean_B_IV - mean_QCD1_QCD2))
-				 	#междугруппами
 					sum_kv_mezhdy_gr_QCD1_QCD2 = len(spisok_A_IV)*((mean_A_IV - mean_QCD1_QCD2)**2) + len(spisok_B_IV)*((mean_B_IV - mean_QCD1_QCD2)**2)
 					CV_mezhdy_gr_QCD1_QCD2 = (sum_kv_mezhdy_gr_QCD1_QCD2**0.5)/mean_QCD1_QCD2*100
-					#print(CV_mezhdy_gr_QCD1_QCD2)
 					#внутригрупп
 					CV_vnytr_gr_QCD1_QCD2 = (mean_QCD1_QCD2 - QC_IV)/QC_IV * 100
-					#print(CV_vnytr_gr_QCD1_QCD2, 'CV_vnytr_gr_QCD1_QCD2')
 
 			if check_var_gr_1.get() >= 5:
 				#проверка на количество образцов
 				if check_var_gr_2.get() >= 2:
-					#print(len(spisok_A_V))
-					#print(len(spisok_B_V))
-					#print((mean_A_V - mean_QCE1_QCE2))
-					#print((mean_B_V - mean_QCE1_QCE2))
-				 	#междугруппами
 					sum_kv_mezhdy_gr_QCE1_QCE2 = len(spisok_A_V)*((mean_A_V - mean_QCE1_QCE2)**2) + len(spisok_B_V)*((mean_B_V - mean_QCE1_QCE2)**2)
 					CV_mezhdy_gr_QCE1_QCE2 = (sum_kv_mezhdy_gr_QCE1_QCE2**0.5)/mean_QCE1_QCE2*100
-					#print(CV_mezhdy_gr_QCE1_QCE2)
-					#внутригрупп
 					CV_vnytr_gr_QCE1_QCE2 = (mean_QCE1_QCE2 - QC_V)/QC_V * 100
-					#print(CV_vnytr_gr_QCE1_QCE2, 'CV_vnytr_gr_QCE1_QCE2')
-
 
 			if check_var_gr_1.get() >= 6:
 				#проверка на количество образцов
 				if check_var_gr_2.get() >= 2:
-					#print(len(spisok_A_VI))
-					#print(len(spisok_B_VI))
-					#print((mean_A_VI - mean_QCF1_QCF2))
-					#print((mean_B_VI - mean_QCF1_QCF2))
 				 	#междугруппами
 					sum_kv_mezhdy_gr_QCF1_QCF2 = len(spisok_A_VI)*((mean_A_VI - mean_QCF1_QCF2)**2) + len(spisok_B_VI)*((mean_B_VI - mean_QCF1_QCF2)**2)
 					CV_mezhdy_gr_QCF1_QCF2 = (sum_kv_mezhdy_gr_QCF1_QCF2**0.5)/mean_QCF1_QCF2*100
-					#print(CV_mezhdy_gr_QCF1_QCF2, 'CV_mezhdy_gr_QCF1_QCF2')
+
 					#внутригрупп
 					CV_vnytr_gr_QCF1_QCF2 = (mean_QCF1_QCF2 - QC_VI)/QC_VI * 100
-					#print(CV_vnytr_gr_QCF1_QCF2, 'CV_vnytr_gr_QCF1_QCF2')
+
+
 
 
 	#вывод среднего и остальных показателей в таблицу 
@@ -10314,23 +9541,23 @@ def calc():
 			ws['U21'].value = 'найдено, сред.зн.,\nнг/мл (n=3)'
 			ws['U21'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
 
-			ws['U22'].value = 'εr, % (n=3)'
-			ws['U23'].value = 'σr, % (n=3)'
+			ws['U22'].value = 'εR, % (n=3)'
+			ws['U23'].value = 'σR, % (n=3)'
 
 			ws['U24'].value = 'найдено, сред.зн.,\nнг/мл (n=6)'
 			ws['U24'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['U25'].value = 'εr, % (n=6)'
-			ws['U26'].value = 'σr, % (n=6)'
+			ws['U25'].value = 'εR, % (n=6)'
+			ws['U26'].value = 'σR, % (n=6)'
 			ws['U27'].value = 'Норма |ε| и |σ|, %'
 
 
-			ws['V21'].value = razryad%(mean_B_I)
-			ws['V22'].value = '%.1f'%Er_B_I
-			ws['V23'].value = '%.1f'%sigma_B_I
+			ws['V21'].value = my_round(mean_B_I, razryad)
+			ws['V22'].value = my_round(Er_B_I, 1)
+			ws['V23'].value = my_round(sigma_B_I, 1)
 
-			ws['V24'].value = razryad%(mean_QCA1_QCA2)
-			ws['V25'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2
-			ws['V26'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2
+			ws['V24'].value = my_round(mean_QCA1_QCA2, razryad)
+			ws['V25'].value = my_round(CV_vnytr_gr_QCA1_QCA2, 1)
+			ws['V26'].value = my_round(CV_mezhdy_gr_QCA1_QCA2, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['V27'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
@@ -10339,157 +9566,155 @@ def calc():
 
 			
 			if check_var_gr_1.get() >= 2:
-				ws['W21'].value = razryad%(mean_B_II)
-				ws['W22'].value = '%.1f'%Er_B_II
-				ws['W23'].value = '%.1f'%sigma_B_II
+				ws['W21'].value = my_round(mean_B_II, razryad)
+				ws['W22'].value = my_round(Er_B_II, 1)
+				ws['W23'].value = my_round(sigma_B_II, 1)
 
-				ws['W24'].value = razryad%(mean_QCB1_QCB2)
-				ws['W25'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2
-				ws['W26'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2
+				ws['W24'].value = my_round(mean_QCB1_QCB2, razryad)
+				ws['W25'].value = my_round(CV_vnytr_gr_QCB1_QCB2, 1)
+				ws['W26'].value = my_round(CV_mezhdy_gr_QCB1_QCB2, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['W27'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['W27'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['X21'].value = razryad%(mean_B_III)
-				ws['X22'].value = '%.1f'%Er_B_III
-				ws['X23'].value = '%.1f'%sigma_B_III
+				ws['X21'].value = my_round(mean_B_III, razryad)
+				ws['X22'].value = my_round(Er_B_III, 1)
+				ws['X23'].value = my_round(sigma_B_III, 1)
 
-				ws['X24'].value = razryad%(mean_QCC1_QCC2)
-				ws['X25'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2
-				ws['X26'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2
+				ws['X24'].value = my_round(mean_QCC1_QCC2, razryad)
+				ws['X25'].value = my_round(CV_vnytr_gr_QCC1_QCC2, 1)
+				ws['X26'].value = my_round(CV_mezhdy_gr_QCC1_QCC2, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['X27'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['X27'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['Y21'].value = razryad%(mean_B_IV)
-				ws['Y22'].value = '%.1f'%Er_B_IV
-				ws['Y23'].value = '%.1f'%sigma_B_IV
+				ws['Y21'].value = my_round(mean_B_IV, razryad)
+				ws['Y22'].value = my_round(Er_B_IV, 1)
+				ws['Y23'].value = my_round(sigma_B_IV, 1)
 
-				ws['Y24'].value = razryad%(mean_QCD1_QCD2)
-				ws['Y25'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2
-				ws['Y26'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2
+				ws['Y24'].value = my_round(mean_QCD1_QCD2, razryad)
+				ws['Y25'].value = my_round(CV_vnytr_gr_QCD1_QCD2, 1)
+				ws['Y26'].value = my_round(CV_mezhdy_gr_QCD1_QCD2, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['Y27'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['Y27'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['Z21'].value = razryad%(mean_B_V)
-				ws['Z22'].value = '%.1f'%Er_B_V
-				ws['Z23'].value = '%.1f'%sigma_B_V
+				ws['Z21'].value = my_round(mean_B_V, razryad)
+				ws['Z22'].value = my_round(Er_B_V, 1)
+				ws['Z23'].value = my_round(sigma_B_V, 1)
 
-				ws['Z24'].value = razryad%(mean_QCE1_QCE2)
-				ws['Z25'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2
-				ws['Z26'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2
+				ws['Z24'].value = my_round(mean_QCE1_QCE2, razryad)
+				ws['Z25'].value = my_round(CV_vnytr_gr_QCE1_QCE2, 1)
+				ws['Z26'].value = my_round(CV_mezhdy_gr_QCE1_QCE2, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['Z27'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['Z27'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['AA21'].value = razryad%(mean_B_VI)
-				ws['AA22'].value = '%.1f'%Er_B_VI
-				ws['AA23'].value = '%.1f'%sigma_B_VI
+				ws['AA21'].value = my_round(mean_B_VI, razryad)
+				ws['AA22'].value = my_round(Er_B_VI, 1)
+				ws['AA23'].value = my_round(sigma_B_VI, 1)
 
-				ws['AA24'].value = razryad%(mean_QCF1_QCF2)
-				ws['AA25'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2
-				ws['AA26'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2
+				ws['AA24'].value = my_round(mean_QCF1_QCF2, razryad)
+				ws['AA25'].value = my_round(CV_vnytr_gr_QCF1_QCF2, 1)
+				ws['AA26'].value = my_round(CV_mezhdy_gr_QCF1_QCF2, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['AA27'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
 					ws['AA27'].value = '≤15'
-
-
 		if check_var_gr_3.get() == 4:
 
 			ws['U22'].value = 'найдено, сред.зн.,\nнг/мл (n=4)'
 			ws['U22'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['U23'].value = 'εr, % (n=4)'
-			ws['U24'].value = 'σr, % (n=4)'
+			ws['U23'].value = 'εR, % (n=4)'
+			ws['U24'].value = 'σR, % (n=4)'
 			
 			ws['U25'].value = 'найдено, сред.зн.,\nнг/мл (n=8)'
 			ws['U25'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['U26'].value = 'εr, % (n=8)'
-			ws['U27'].value = 'σr, % (n=8)'
+			ws['U26'].value = 'εR, % (n=8)'
+			ws['U27'].value = 'σR, % (n=8)'
 			ws['U28'].value = 'Норма |ε| и |σ|, %'
 
 
-			ws['V22'].value = razryad%(mean_B_I)
-			ws['V23'].value = '%.1f'%Er_B_I
-			ws['V24'].value = '%.1f'%sigma_B_I
+			ws['V22'].value = my_round(mean_B_I, razryad)
+			ws['V23'].value = my_round(Er_B_I, 1)
+			ws['V24'].value = my_round(sigma_B_I, 1)
 
-			ws['V25'].value = razryad%(mean_QCA1_QCA2)
-			ws['V26'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2
-			ws['V27'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2
+			ws['V25'].value = my_round(mean_QCA1_QCA2, razryad)
+			ws['V26'].value = my_round(CV_vnytr_gr_QCA1_QCA2, 1)
+			ws['V27'].value = my_round(CV_mezhdy_gr_QCA1_QCA2, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['V28'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
 				ws['V28'].value = '≤20'	
 
 			if check_var_gr_1.get() >= 2:
-				ws['W22'].value = razryad%(mean_B_II)
-				ws['W23'].value = '%.1f'%Er_B_II
-				ws['W24'].value = '%.1f'%sigma_B_II
+				ws['W22'].value = my_round(mean_B_II, razryad)
+				ws['W23'].value = my_round(Er_B_II, 1)
+				ws['W24'].value = my_round(sigma_B_II, 1)
 
-				ws['W25'].value = razryad%(mean_QCB1_QCB2)
-				ws['W26'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2
-				ws['W27'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2
+				ws['W25'].value = my_round(mean_QCB1_QCB2, razryad)
+				ws['W26'].value = my_round(CV_vnytr_gr_QCB1_QCB2, 1)
+				ws['W27'].value = my_round(CV_mezhdy_gr_QCB1_QCB2, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['W28'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['W28'].value = '≤15'	
 
 			if check_var_gr_1.get() >= 3:	
-				ws['X22'].value = razryad%(mean_B_III)
-				ws['X23'].value = '%.1f'%Er_B_III
-				ws['X24'].value = '%.1f'%sigma_B_III
+				ws['X22'].value = my_round(mean_B_III, razryad)
+				ws['X23'].value = my_round(Er_B_III, 1)
+				ws['X24'].value = my_round(sigma_B_III, 1)
 
-				ws['X25'].value = razryad%(mean_QCC1_QCC2)
-				ws['X26'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2
-				ws['X27'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2
+				ws['X25'].value = my_round(mean_QCC1_QCC2, razryad)
+				ws['X26'].value = my_round(CV_vnytr_gr_QCC1_QCC2, 1)
+				ws['X27'].value = my_round(CV_mezhdy_gr_QCC1_QCC2, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['X28'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['X28'].value = '≤15'	
 
 			if check_var_gr_1.get() >= 4:	
-				ws['Y22'].value = razryad%(mean_B_IV)
-				ws['Y23'].value = '%.1f'%Er_B_IV
-				ws['Y24'].value = '%.1f'%sigma_B_IV
+				ws['Y22'].value = my_round(mean_B_IV, razryad)
+				ws['Y23'].value = my_round(Er_B_IV, 1)
+				ws['Y24'].value = my_round(sigma_B_IV, 1)
 
-				ws['Y25'].value = razryad%(mean_QCD1_QCD2)
-				ws['Y26'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2
-				ws['Y27'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2
+				ws['Y25'].value = my_round(mean_QCD1_QCD2, razryad)
+				ws['Y26'].value = my_round(CV_vnytr_gr_QCD1_QCD2, 1)
+				ws['Y27'].value = my_round(CV_mezhdy_gr_QCD1_QCD2, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['Y28'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['Y28'].value = '≤15'	
 
 			if check_var_gr_1.get() >= 5:	
-				ws['Z22'].value = razryad%(mean_B_V)
-				ws['Z23'].value = '%.1f'%Er_B_V
-				ws['Z24'].value = '%.1f'%sigma_B_V
+				ws['Z22'].value = my_round(mean_B_V, razryad)
+				ws['Z23'].value = my_round(Er_B_V, 1)
+				ws['Z24'].value = my_round(sigma_B_V, 1)
 
-				ws['Z25'].value = razryad%(mean_QCE1_QCE2)
-				ws['Z26'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2
-				ws['Z27'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2
+				ws['Z25'].value = my_round(mean_QCE1_QCE2, razryad)
+				ws['Z26'].value = my_round(CV_vnytr_gr_QCE1_QCE2, 1)
+				ws['Z27'].value = my_round(CV_mezhdy_gr_QCE1_QCE2, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['Z28'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['Z28'].value = '≤15'	
 
 			if check_var_gr_1.get() >= 6:	
-				ws['AA22'].value = razryad%(mean_B_VI)
-				ws['AA23'].value = '%.1f'%Er_B_VI
-				ws['AA24'].value = '%.1f'%sigma_B_VI
+				ws['AA22'].value = my_round(mean_B_VI, razryad)
+				ws['AA23'].value = my_round(Er_B_VI, 1)
+				ws['AA24'].value = my_round(sigma_B_VI, 1)
 
-				ws['AA25'].value = razryad%(mean_QCF1_QCF2)
-				ws['AA26'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2
-				ws['AA27'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2
+				ws['AA25'].value = my_round(mean_QCF1_QCF2, razryad)
+				ws['AA26'].value = my_round(CV_vnytr_gr_QCF1_QCF2, 1)
+				ws['AA27'].value = my_round(CV_mezhdy_gr_QCF1_QCF2, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['AA28'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
@@ -10498,22 +9723,22 @@ def calc():
 		if check_var_gr_3.get() == 5:
 			ws['U23'].value = 'найдено, сред.зн., \nнг/мл (n=5)'
 			ws['U23'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['U24'].value = 'εr, % (n=5)'
-			ws['U25'].value = 'σr, % (n=5)'
+			ws['U24'].value = 'εR, % (n=5)'
+			ws['U25'].value = 'σR, % (n=5)'
 			
 			ws['U26'].value = 'найдено, сред.зн.,\nнг/мл (n=10)'
 			ws['U26'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['U27'].value = 'εr, % (n=10)'
-			ws['U28'].value = 'σr, % (n=10)'
+			ws['U27'].value = 'εR, % (n=10)'
+			ws['U28'].value = 'σR, % (n=10)'
 			ws['U29'].value = 'Норма |ε| и |σ|, %'
 
-			ws['V23'].value = razryad%(mean_B_I)
-			ws['V24'].value = '%.1f'%Er_B_I
-			ws['V25'].value = '%.1f'%sigma_B_I
+			ws['V23'].value = my_round(mean_B_I, razryad)
+			ws['V24'].value = my_round(Er_B_I, 1)
+			ws['V25'].value = my_round(sigma_B_I, 1)
 
-			ws['V26'].value = razryad%(mean_QCA1_QCA2)
-			ws['V27'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2
-			ws['V28'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2
+			ws['V26'].value = my_round(mean_QCA1_QCA2, razryad)
+			ws['V27'].value = my_round(CV_vnytr_gr_QCA1_QCA2, 1)
+			ws['V28'].value = my_round(CV_mezhdy_gr_QCA1_QCA2, 1)
 
 			if entr_NORM_QCA1.get() != '':
 				ws['V29'].value = '≤{}'.format(entr_NORM_QCA1.get())
@@ -10521,681 +9746,673 @@ def calc():
 				ws['V29'].value = '≤20'			
 
 			if check_var_gr_1.get() >= 2:
-				ws['W23'].value = razryad%(mean_B_II)
-				ws['W24'].value = '%.1f'%Er_B_II
-				ws['W25'].value = '%.1f'%sigma_B_II
+				ws['W23'].value = my_round(mean_B_II, razryad)
+				ws['W24'].value = my_round(Er_B_II, 1)
+				ws['W25'].value = my_round(sigma_B_II, 1)
 
-				ws['W26'].value = razryad%(mean_QCB1_QCB2)
-				ws['W27'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2
-				ws['W28'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2
+				ws['W26'].value = my_round(mean_QCB1_QCB2, razryad)
+				ws['W27'].value = my_round(CV_vnytr_gr_QCB1_QCB2, 1)
+				ws['W28'].value = my_round(CV_mezhdy_gr_QCB1_QCB2, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['W29'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['W29'].value = '≤15'		
 
 			if check_var_gr_1.get() >= 3:	
-				ws['X23'].value = razryad%(mean_B_III)
-				ws['X24'].value = '%.1f'%Er_B_III
-				ws['X25'].value = '%.1f'%sigma_B_III
+				ws['X23'].value = my_round(mean_B_III, razryad)
+				ws['X24'].value = my_round(Er_B_III, 1)
+				ws['X25'].value = my_round(sigma_B_III, 1)
 
-				ws['X26'].value = razryad%(mean_QCC1_QCC2)
-				ws['X27'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2
-				ws['X28'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2
+				ws['X26'].value = my_round(mean_QCC1_QCC2, razryad)
+				ws['X27'].value = my_round(CV_vnytr_gr_QCC1_QCC2, 1)
+				ws['X28'].value = my_round(CV_mezhdy_gr_QCC1_QCC2, 1)
+
 				if entr_NORM_QCC1.get() != '':
 					ws['X29'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['X29'].value = '≤15'	
 
 			if check_var_gr_1.get() >= 4:	
-				ws['Y23'].value = razryad%(mean_B_IV)
-				ws['Y24'].value = '%.1f'%Er_B_IV
-				ws['Y25'].value = '%.1f'%sigma_B_IV
+				ws['Y23'].value = my_round(mean_B_IV, razryad)
+				ws['Y24'].value = my_round(Er_B_IV, 1)
+				ws['Y25'].value = my_round(sigma_B_IV, 1)
 
-				ws['Y26'].value = razryad%(mean_QCD1_QCD2)
-				ws['Y27'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2
-				ws['Y28'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2
+				ws['Y26'].value = my_round(mean_QCD1_QCD2, razryad)
+				ws['Y27'].value = my_round(CV_vnytr_gr_QCD1_QCD2, 1)
+				ws['Y28'].value = my_round(CV_mezhdy_gr_QCD1_QCD2, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['Y29'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['Y29'].value = '≤15'	
 
 			if check_var_gr_1.get() >= 5:	
-				ws['Z23'].value = razryad%(mean_B_V)
-				ws['Z24'].value = '%.1f'%Er_B_V
-				ws['Z25'].value = '%.1f'%sigma_B_V
+				ws['Z23'].value = my_round(mean_B_V, razryad)
+				ws['Z24'].value = my_round(Er_B_V, 1)
+				ws['Z25'].value = my_round(sigma_B_V, 1)
 
-				ws['Z26'].value = razryad%(mean_QCE1_QCE2)
-				ws['Z27'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2
-				ws['Z28'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2
+				ws['Z26'].value = my_round(mean_QCE1_QCE2, razryad)
+				ws['Z27'].value = my_round(CV_vnytr_gr_QCE1_QCE2, 1)
+				ws['Z28'].value = my_round(CV_mezhdy_gr_QCE1_QCE2, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['Z29'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['Z29'].value = '≤15'	
 
 			if check_var_gr_1.get() >= 6:	
-				ws['AA23'].value = razryad%(mean_B_VI)
-				ws['AA24'].value = '%.1f'%Er_B_VI
-				ws['AA25'].value = '%.1f'%sigma_B_VI
+				ws['AA23'].value = my_round(mean_B_VI, razryad)
+				ws['AA24'].value = my_round(Er_B_VI, 1)
+				ws['AA25'].value = my_round(sigma_B_VI, 1)
 
-				ws['AA26'].value = razryad%(mean_QCF1_QCF2)
-				ws['AA27'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2
-				ws['AA28'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2
+				ws['AA26'].value = my_round(mean_QCF1_QCF2, razryad)
+				ws['AA27'].value = my_round(CV_vnytr_gr_QCF1_QCF2, 1)
+				ws['AA28'].value = my_round(CV_mezhdy_gr_QCF1_QCF2, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['AA29'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
 					ws['AA29'].value = '≤15'	
 
-
 		if check_var_gr_3.get() == 6:
+
 			ws['U24'].value = 'найдено, сред.зн., \nнг/мл (n=6)'
 			ws['U24'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['U25'].value = 'εr, % (n=6)'
-			ws['U26'].value = 'σr, % (n=6)'
+			ws['U25'].value = 'εR, % (n=6)'
+			ws['U26'].value = 'σR, % (n=6)'
 			
 			ws['U27'].value = 'найдено, сред.зн.,\nнг/мл (n=12)'
 			ws['U27'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['U28'].value = 'εr, % (n=12)'
-			ws['U29'].value = 'σr, % (n=12)'
+			ws['U28'].value = 'εR, % (n=12)'
+			ws['U29'].value = 'σR, % (n=12)'
 			ws['U30'].value = 'Норма |ε| и |σ|, %'
 
-			ws['V24'].value = razryad%(mean_B_I)
-			ws['V25'].value = '%.1f'%Er_B_I
-			ws['V26'].value = '%.1f'%sigma_B_I
+			ws['V24'].value = my_round(mean_B_I, razryad)
+			ws['V25'].value = my_round(Er_B_I, 1)
+			ws['V26'].value = my_round(sigma_B_I, 1)
 
-			ws['V27'].value = razryad%(mean_QCA1_QCA2)
-			ws['V28'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2
-			ws['V29'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2
+			ws['V27'].value = my_round(mean_QCA1_QCA2, razryad)
+			ws['V28'].value = my_round(CV_vnytr_gr_QCA1_QCA2, 1)
+			ws['V29'].value = my_round(CV_mezhdy_gr_QCA1_QCA2, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['V30'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
 				ws['V30'].value = '≤20'	
 
 			if check_var_gr_1.get() >= 2:
-				ws['W24'].value = razryad%(mean_B_II)
-				ws['W25'].value = '%.1f'%Er_B_II
-				ws['W26'].value = '%.1f'%sigma_B_II
+				ws['W24'].value = my_round(mean_B_II, razryad)
+				ws['W25'].value = my_round(Er_B_II, 1)
+				ws['W26'].value = my_round(sigma_B_II, 1)
 
-				ws['W27'].value = razryad%(mean_QCB1_QCB2)
-				ws['W28'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2
-				ws['W29'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2
+				ws['W27'].value = my_round(mean_QCB1_QCB2, razryad)
+				ws['W28'].value = my_round(CV_vnytr_gr_QCB1_QCB2, 1)
+				ws['W29'].value = my_round(CV_mezhdy_gr_QCB1_QCB2, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['W30'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['W30'].value = '≤15'	
 
 			if check_var_gr_1.get() >= 3:	
-				ws['X24'].value = razryad%(mean_B_III)
-				ws['X25'].value = '%.1f'%Er_B_III
-				ws['X26'].value = '%.1f'%sigma_B_III
+				ws['X24'].value = my_round(mean_B_III, razryad)
+				ws['X25'].value = my_round(Er_B_III, 1)
+				ws['X26'].value = my_round(sigma_B_III, 1)
 
-				ws['X27'].value = razryad%(mean_QCC1_QCC2)
-				ws['X28'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2
-				ws['X29'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2
+				ws['X27'].value = my_round(mean_QCC1_QCC2, razryad)
+				ws['X28'].value = my_round(CV_vnytr_gr_QCC1_QCC2, 1)
+				ws['X29'].value = my_round(CV_mezhdy_gr_QCC1_QCC2, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['X30'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['X30'].value = '≤15'	
 
 			if check_var_gr_1.get() >= 4:	
-				ws['Y24'].value = razryad%(mean_B_IV)
-				ws['Y25'].value = '%.1f'%Er_B_IV
-				ws['Y26'].value = '%.1f'%sigma_B_IV
+				ws['Y24'].value = my_round(mean_B_IV, razryad)
+				ws['Y25'].value = my_round(Er_B_IV, 1)
+				ws['Y26'].value = my_round(sigma_B_IV, 1)
 
-				ws['Y27'].value = razryad%(mean_QCD1_QCD2)
-				ws['Y28'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2
-				ws['Y29'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2
+				ws['Y27'].value = my_round(mean_QCD1_QCD2, razryad)
+				ws['Y28'].value = my_round(CV_vnytr_gr_QCD1_QCD2, 1)
+				ws['Y29'].value = my_round(CV_mezhdy_gr_QCD1_QCD2, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['Y30'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['Y30'].value = '≤15'	
 
 			if check_var_gr_1.get() >= 5:	
-				ws['Z24'].value = razryad%(mean_B_V)
-				ws['Z25'].value = '%.1f'%Er_B_V
-				ws['Z26'].value = '%.1f'%sigma_B_V
+				ws['Z24'].value = my_round(mean_B_V, razryad)
+				ws['Z25'].value = my_round(Er_B_V, 1)
+				ws['Z26'].value = my_round(sigma_B_V, 1)
 
-				ws['Z27'].value = razryad%(mean_QCE1_QCE2)
-				ws['Z28'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2
-				ws['Z29'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2
+				ws['Z27'].value = my_round(mean_QCE1_QCE2, razryad)
+				ws['Z28'].value = my_round(CV_vnytr_gr_QCE1_QCE2, 1)
+				ws['Z29'].value = my_round(CV_mezhdy_gr_QCE1_QCE2, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['Z30'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['Z30'].value = '≤15'	
 
 			if check_var_gr_1.get() >= 6:	
-				ws['AA24'].value = razryad%(mean_B_VI)
-				ws['AA25'].value = '%.1f'%Er_B_VI
-				ws['AA26'].value = '%.1f'%sigma_B_VI
+				ws['AA24'].value = my_round(mean_B_VI, razryad)
+				ws['AA25'].value = my_round(Er_B_VI, 1)
+				ws['AA26'].value = my_round(sigma_B_VI, 1)
 
-				ws['AA27'].value = razryad%(mean_QCF1_QCF2)
-				ws['AA28'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2
-				ws['AA29'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2
+				ws['AA27'].value = my_round(mean_QCF1_QCF2, razryad)
+				ws['AA28'].value = my_round(CV_vnytr_gr_QCF1_QCF2, 1)
+				ws['AA29'].value = my_round(CV_mezhdy_gr_QCF1_QCF2, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['AA30'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
-					ws['AA30'].value = '≤15'	
-
+					ws['AA30'].value = '≤15'
+						
 		if check_var_gr_3.get() == 7:
 			ws['U25'].value = 'найдено, сред.зн., \nнг/мл (n=7)'
 			ws['U25'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['U26'].value = 'εr, % (n=7)'
-			ws['U27'].value = 'σr, % (n=7)'
+			ws['U26'].value = 'εR, % (n=7)'
+			ws['U27'].value = 'σR, % (n=7)'
 			
 			ws['U28'].value = 'найдено, сред.зн.,\nнг/мл (n=14)'
 			ws['U28'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['U29'].value = 'εr, % (n=14)'
-			ws['U30'].value = 'σr, % (n=14)'
+			ws['U29'].value = 'εR, % (n=14)'
+			ws['U30'].value = 'σR, % (n=14)'
 			ws['U31'].value = 'Норма |ε| и |σ|, %'
 
-			ws['V25'].value = razryad%(mean_B_I)
-			ws['V26'].value = '%.1f'%Er_B_I
-			ws['V27'].value = '%.1f'%sigma_B_I
+			ws['V25'].value = my_round(mean_B_I, razryad)
+			ws['V26'].value = my_round(Er_B_I, 1)
+			ws['V27'].value = my_round(sigma_B_I, 1)
 
-			ws['V28'].value = razryad%(mean_QCA1_QCA2)
-			ws['V29'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2
-			ws['V30'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2
+			ws['V28'].value = my_round(mean_QCA1_QCA2, razryad)
+			ws['V29'].value = my_round(CV_vnytr_gr_QCA1_QCA2, 1)
+			ws['V30'].value = my_round(CV_mezhdy_gr_QCA1_QCA2, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['V31'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
 				ws['V31'].value = '≤20'	
 
 			if check_var_gr_1.get() >= 2:
-				ws['W25'].value = razryad%(mean_B_II)
-				ws['W26'].value = '%.1f'%Er_B_II
-				ws['W27'].value = '%.1f'%sigma_B_II
+				ws['W25'].value = my_round(mean_B_II, razryad)
+				ws['W26'].value = my_round(Er_B_II, 1)
+				ws['W27'].value = my_round(sigma_B_II, 1)
 
-				ws['W28'].value = razryad%(mean_QCB1_QCB2)
-				ws['W29'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2
-				ws['W30'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2
+				ws['W28'].value = my_round(mean_QCB1_QCB2, razryad)
+				ws['W29'].value = my_round(CV_vnytr_gr_QCB1_QCB2, 1)
+				ws['W30'].value = my_round(CV_mezhdy_gr_QCB1_QCB2, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['W31'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['W31'].value = '≤15'	
 
 			if check_var_gr_1.get() >= 3:	
-				ws['X25'].value = razryad%(mean_B_III)
-				ws['X26'].value = '%.1f'%Er_B_III
-				ws['X27'].value = '%.1f'%sigma_B_III
+				ws['X25'].value = my_round(mean_B_III, razryad)
+				ws['X26'].value = my_round(Er_B_III, 1)
+				ws['X27'].value = my_round(sigma_B_III, 1)
 
-				ws['X28'].value = razryad%(mean_QCC1_QCC2)
-				ws['X29'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2
-				ws['X30'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2
+				ws['X28'].value = my_round(mean_QCC1_QCC2, razryad)
+				ws['X29'].value = my_round(CV_vnytr_gr_QCC1_QCC2, 1)
+				ws['X30'].value = my_round(CV_mezhdy_gr_QCC1_QCC2, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['X31'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['X31'].value = '≤15'	
 
 			if check_var_gr_1.get() >= 4:	
-				ws['Y25'].value = razryad%(mean_B_IV)
-				ws['Y26'].value = '%.1f'%Er_B_IV
-				ws['Y27'].value = '%.1f'%sigma_B_IV
+				ws['Y25'].value = my_round(mean_B_IV, razryad)
+				ws['Y26'].value = my_round(Er_B_IV, 1)
+				ws['Y27'].value = my_round(sigma_B_IV, 1)
 
-				ws['Y28'].value = razryad%(mean_QCD1_QCD2)
-				ws['Y29'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2
-				ws['Y30'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2
+				ws['Y28'].value = my_round(mean_QCD1_QCD2, razryad)
+				ws['Y29'].value = my_round(CV_vnytr_gr_QCD1_QCD2, 1)
+				ws['Y30'].value = my_round(CV_mezhdy_gr_QCD1_QCD2, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['Y31'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['Y31'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['Z25'].value = razryad%(mean_B_V)
-				ws['Z26'].value = '%.1f'%Er_B_V
-				ws['Z27'].value = '%.1f'%sigma_B_V
+				ws['Z25'].value = my_round(mean_B_V, razryad)
+				ws['Z26'].value = my_round(Er_B_V, 1)
+				ws['Z27'].value = my_round(sigma_B_V, 1)
 
-				ws['Z28'].value = razryad%(mean_QCE1_QCE2)
-				ws['Z29'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2
-				ws['Z30'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2
+				ws['Z28'].value = my_round(mean_QCE1_QCE2, razryad)
+				ws['Z29'].value = my_round(CV_vnytr_gr_QCE1_QCE2, 1)
+				ws['Z30'].value = my_round(CV_mezhdy_gr_QCE1_QCE2, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['Z31'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['Z31'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['AA25'].value = razryad%(mean_B_VI)
-				ws['AA26'].value = '%.1f'%Er_B_VI
-				ws['AA27'].value = '%.1f'%sigma_B_VI
+				ws['AA25'].value = my_round(mean_B_VI, razryad)
+				ws['AA26'].value = my_round(Er_B_VI, 1)
+				ws['AA27'].value = my_round(sigma_B_VI, 1)
 
-				ws['AA28'].value = razryad%(mean_QCF1_QCF2)
-				ws['AA29'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2
-				ws['AA30'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2
+				ws['AA28'].value = my_round(mean_QCF1_QCF2, razryad)
+				ws['AA29'].value = my_round(CV_vnytr_gr_QCF1_QCF2, 1)
+				ws['AA30'].value = my_round(CV_mezhdy_gr_QCF1_QCF2, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['AA31'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
 					ws['AA31'].value = '≤15'
-
 		if check_var_gr_3.get() == 8:
 			ws['U26'].value = 'найдено, сред.зн., \nнг/мл (n=8)'
 			ws['U26'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['U27'].value = 'εr, % (n=8)'
-			ws['U28'].value = 'σr, % (n=8)'
+			ws['U27'].value = 'εR, % (n=8)'
+			ws['U28'].value = 'σR, % (n=8)'
 			
 			ws['U29'].value = 'найдено, сред.зн.,\nнг/мл (n=16)'
 			ws['U29'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['U30'].value = 'εr, % (n=16)'
-			ws['U30'].value = 'σr, % (n=16)'
+			ws['U30'].value = 'εR, % (n=16)'
+			ws['U30'].value = 'σR, % (n=16)'
 			ws['U31'].value = 'Норма |ε| и |σ|, %'
 
-			ws['V26'].value = razryad%(mean_B_I)
-			ws['V27'].value = '%.1f'%Er_B_I
-			ws['V28'].value = '%.1f'%sigma_B_I
+			ws['V26'].value = my_round(mean_B_I, razryad)
+			ws['V27'].value = my_round(Er_B_I, 1)
+			ws['V28'].value = my_round(sigma_B_I, 1)
 
-			ws['V29'].value = razryad%(mean_QCA1_QCA2)
-			ws['V30'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2
-			ws['V31'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2
+			ws['V29'].value = my_round(mean_QCA1_QCA2, razryad)
+			ws['V30'].value = my_round(CV_vnytr_gr_QCA1_QCA2, 1)
+			ws['V31'].value = my_round(CV_mezhdy_gr_QCA1_QCA2, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['V32'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
 				ws['V32'].value = '≤20'
 
 			if check_var_gr_1.get() >= 2:
-				ws['W26'].value = razryad%(mean_B_II)
-				ws['W27'].value = '%.1f'%Er_B_II
-				ws['W28'].value = '%.1f'%sigma_B_II
+				ws['W26'].value = my_round(mean_B_II, razryad)
+				ws['W27'].value = my_round(Er_B_II, 1)
+				ws['W28'].value = my_round(sigma_B_II, 1)
 
-				ws['W29'].value = razryad%(mean_QCB1_QCB2)
-				ws['W30'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2
-				ws['W31'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2
+				ws['W29'].value = my_round(mean_QCB1_QCB2, razryad)
+				ws['W30'].value = my_round(CV_vnytr_gr_QCB1_QCB2, 1)
+				ws['W31'].value = my_round(CV_mezhdy_gr_QCB1_QCB2, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['W32'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['W32'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['X26'].value = razryad%(mean_B_III)
-				ws['X27'].value = '%.1f'%Er_B_III
-				ws['X28'].value = '%.1f'%sigma_B_III
+				ws['X26'].value = my_round(mean_B_III, razryad)
+				ws['X27'].value = my_round(Er_B_III, 1)
+				ws['X28'].value = my_round(sigma_B_III, 1)
 
-				ws['X29'].value = razryad%(mean_QCC1_QCC2)
-				ws['X30'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2
-				ws['X31'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2
+				ws['X29'].value = my_round(mean_QCC1_QCC2, razryad)
+				ws['X30'].value = my_round(CV_vnytr_gr_QCC1_QCC2, 1)
+				ws['X31'].value = my_round(CV_mezhdy_gr_QCC1_QCC2, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['X32'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['X32'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['Y26'].value = razryad%(mean_B_IV)
-				ws['Y27'].value = '%.1f'%Er_B_IV
-				ws['Y28'].value = '%.1f'%sigma_B_IV
+				ws['Y26'].value = my_round(mean_B_IV, razryad)
+				ws['Y27'].value = my_round(Er_B_IV, 1)
+				ws['Y28'].value = my_round(sigma_B_IV, 1)
 
-				ws['Y29'].value = razryad%(mean_QCD1_QCD2)
-				ws['Y30'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2
-				ws['Y31'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2
+				ws['Y29'].value = my_round(mean_QCD1_QCD2, razryad)
+				ws['Y30'].value = my_round(CV_vnytr_gr_QCD1_QCD2, 1)
+				ws['Y31'].value = my_round(CV_mezhdy_gr_QCD1_QCD2, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['Y32'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['Y32'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['Z26'].value = razryad%(mean_B_V)
-				ws['Z27'].value = '%.1f'%Er_B_V
-				ws['Z28'].value = '%.1f'%sigma_B_V
+				ws['Z26'].value = my_round(mean_B_V, razryad)
+				ws['Z27'].value = my_round(Er_B_V, 1)
+				ws['Z28'].value = my_round(sigma_B_V, 1)
 
-				ws['Z29'].value = razryad%(mean_QCE1_QCE2)
-				ws['Z30'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2
-				ws['Z31'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2
+				ws['Z29'].value = my_round(mean_QCE1_QCE2, razryad)
+				ws['Z30'].value = my_round(CV_vnytr_gr_QCE1_QCE2, 1)
+				ws['Z31'].value = my_round(CV_mezhdy_gr_QCE1_QCE2, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['Z32'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['Z32'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['AA26'].value = razryad%(mean_B_VI)
-				ws['AA27'].value = '%.1f'%Er_B_VI
-				ws['AA28'].value = '%.1f'%sigma_B_VI
+				ws['AA26'].value = my_round(mean_B_VI, razryad)
+				ws['AA27'].value = my_round(Er_B_VI, 1)
+				ws['AA28'].value = my_round(sigma_B_VI, 1)
 
-				ws['AA29'].value = razryad%(mean_QCF1_QCF2)
-				ws['AA30'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2
-				ws['AA31'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2
+				ws['AA29'].value = my_round(mean_QCF1_QCF2, razryad)
+				ws['AA30'].value = my_round(CV_vnytr_gr_QCF1_QCF2, 1)
+				ws['AA31'].value = my_round(CV_mezhdy_gr_QCF1_QCF2, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['AA32'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
 					ws['AA32'].value = '≤15'
-
 		if check_var_gr_3.get() == 9:
 			ws['U27'].value = 'найдено, сред.зн., \nнг/мл (n=9)'
 			ws['U27'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['U28'].value = 'εr, % (n=9)'
-			ws['U29'].value = 'σr, % (n=9)'
+			ws['U28'].value = 'εR, % (n=9)'
+			ws['U29'].value = 'σR, % (n=9)'
 			
 			ws['U30'].value = 'найдено, сред.зн.,\nнг/мл (n=18)'
 			ws['U30'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['U31'].value = 'εr, % (n=18)'
-			ws['U32'].value = 'σr, % (n=18)'
+			ws['U31'].value = 'εR, % (n=18)'
+			ws['U32'].value = 'σR, % (n=18)'
 			ws['U33'].value = 'Норма |ε| и |σ|, %'
 
-			ws['V27'].value = razryad%(mean_B_I)
-			ws['V28'].value = '%.1f'%Er_B_I
-			ws['V29'].value = '%.1f'%sigma_B_I
+			ws['V27'].value = my_round(mean_B_I, razryad)
+			ws['V28'].value = my_round(Er_B_I, 1)
+			ws['V29'].value = my_round(sigma_B_I, 1)
 
-			ws['V30'].value = razryad%(mean_QCA1_QCA2)
-			ws['V31'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2
-			ws['V32'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2
+			ws['V30'].value = my_round(mean_QCA1_QCA2, razryad)
+			ws['V31'].value = my_round(CV_vnytr_gr_QCA1_QCA2, 1)
+			ws['V32'].value = my_round(CV_mezhdy_gr_QCA1_QCA2, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['V33'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
 				ws['V33'].value = '≤20'
 
 			if check_var_gr_1.get() >= 2:
-				ws['W27'].value = razryad%(mean_B_II)
-				ws['W28'].value = '%.1f'%Er_B_II
-				ws['W29'].value = '%.1f'%sigma_B_II
+				ws['W27'].value = my_round(mean_B_II, razryad)
+				ws['W28'].value = my_round(Er_B_II, 1)
+				ws['W29'].value = my_round(sigma_B_II, 1)
 
-				ws['W30'].value = razryad%(mean_QCB1_QCB2)
-				ws['W31'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2
-				ws['W32'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2
+				ws['W30'].value = my_round(mean_QCB1_QCB2, razryad)
+				ws['W31'].value = my_round(CV_vnytr_gr_QCB1_QCB2, 1)
+				ws['W32'].value = my_round(CV_mezhdy_gr_QCB1_QCB2, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['W33'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['W33'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['X27'].value = razryad%(mean_B_III)
-				ws['X28'].value = '%.1f'%Er_B_III
-				ws['X29'].value = '%.1f'%sigma_B_III
+				ws['X27'].value = my_round(mean_B_III, razryad)
+				ws['X28'].value = my_round(Er_B_III, 1)
+				ws['X29'].value = my_round(sigma_B_III, 1)
 
-				ws['X30'].value = razryad%(mean_QCC1_QCC2)
-				ws['X31'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2
-				ws['X32'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2
+				ws['X30'].value = my_round(mean_QCC1_QCC2, razryad)
+				ws['X31'].value = my_round(CV_vnytr_gr_QCC1_QCC2, 1)
+				ws['X32'].value = my_round(CV_mezhdy_gr_QCC1_QCC2, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['X33'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['X33'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['Y27'].value = razryad%(mean_B_IV)
-				ws['Y28'].value = '%.1f'%Er_B_IV
-				ws['Y29'].value = '%.1f'%sigma_B_IV
+				ws['Y27'].value = my_round(mean_B_IV, razryad)
+				ws['Y28'].value = my_round(Er_B_IV, 1)
+				ws['Y29'].value = my_round(sigma_B_IV, 1)
 
-				ws['Y30'].value = razryad%(mean_QCD1_QCD2)
-				ws['Y31'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2
-				ws['Y32'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2
+				ws['Y30'].value = my_round(mean_QCD1_QCD2, razryad)
+				ws['Y31'].value = my_round(CV_vnytr_gr_QCD1_QCD2, 1)
+				ws['Y32'].value = my_round(CV_mezhdy_gr_QCD1_QCD2, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['Y33'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['Y33'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['Z27'].value = razryad%(mean_B_V)
-				ws['Z28'].value = '%.1f'%Er_B_V
-				ws['Z29'].value = '%.1f'%sigma_B_V
+				ws['Z27'].value = my_round(mean_B_V, razryad)
+				ws['Z28'].value = my_round(Er_B_V, 1)
+				ws['Z29'].value = my_round(sigma_B_V, 1)
 
-				ws['Z30'].value = razryad%(mean_QCE1_QCE2)
-				ws['Z31'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2
-				ws['Z32'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2
+				ws['Z30'].value = my_round(mean_QCE1_QCE2, razryad)
+				ws['Z31'].value = my_round(CV_vnytr_gr_QCE1_QCE2, 1)
+				ws['Z32'].value = my_round(CV_mezhdy_gr_QCE1_QCE2, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['Z33'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['Z33'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['AA27'].value = razryad%(mean_B_VI)
-				ws['AA28'].value = '%.1f'%Er_B_VI
-				ws['AA29'].value = '%.1f'%sigma_B_VI
+				ws['AA27'].value = my_round(mean_B_VI, razryad)
+				ws['AA28'].value = my_round(Er_B_VI, 1)
+				ws['AA29'].value = my_round(sigma_B_VI, 1)
 
-				ws['AA30'].value = razryad%(mean_QCF1_QCF2)
-				ws['AA31'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2
-				ws['AA32'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2
+				ws['AA30'].value = my_round(mean_QCF1_QCF2, razryad)
+				ws['AA31'].value = my_round(CV_vnytr_gr_QCF1_QCF2, 1)
+				ws['AA32'].value = my_round(CV_mezhdy_gr_QCF1_QCF2, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['AA33'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
 					ws['AA33'].value = '≤15'
-
 		if check_var_gr_3.get() == 10:
 			ws['U28'].value = 'найдено, сред.зн., \nнг/мл (n=10)'
 			ws['U28'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['U29'].value = 'εr, % (n=10)'
-			ws['U30'].value = 'σr, % (n=10)'
+			ws['U29'].value = 'εR, % (n=10)'
+			ws['U30'].value = 'σR, % (n=10)'
 			
 			ws['U31'].value = 'найдено, сред.зн.,\nнг/мл (n=20)'
 			ws['U31'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['U32'].value = 'εr, % (n=20)'
-			ws['U33'].value = 'σr, % (n=20)'
+			ws['U32'].value = 'εR, % (n=20)'
+			ws['U33'].value = 'σR, % (n=20)'
 			ws['U34'].value = 'Норма |ε| и |σ|, %'
 
-			ws['V28'].value = razryad%(mean_B_I)
-			ws['V29'].value = '%.1f'%Er_B_I
-			ws['V30'].value = '%.1f'%sigma_B_I
+			ws['V28'].value = my_round(mean_B_I, razryad)
+			ws['V29'].value = my_round(Er_B_I, 1)
+			ws['V30'].value = my_round(sigma_B_I, 1)
 
-			ws['V31'].value = razryad%(mean_QCA1_QCA2)
-			ws['V32'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2
-			ws['V33'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2
+			ws['V31'].value = my_round(mean_QCA1_QCA2, razryad)
+			ws['V32'].value = my_round(CV_vnytr_gr_QCA1_QCA2, 1)
+			ws['V33'].value = my_round(CV_mezhdy_gr_QCA1_QCA2, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['V34'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
 				ws['V34'].value = '≤20'
 
 			if check_var_gr_1.get() >= 2:
-				ws['W28'].value = razryad%(mean_B_II)
-				ws['W29'].value = '%.1f'%Er_B_II
-				ws['W30'].value = '%.1f'%sigma_B_II
+				ws['W28'].value = my_round(mean_B_II, razryad)
+				ws['W29'].value = my_round(Er_B_II, 1)
+				ws['W30'].value = my_round(sigma_B_II, 1)
 
-				ws['W31'].value = razryad%(mean_QCB1_QCB2)
-				ws['W32'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2
-				ws['W33'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2
+				ws['W31'].value = my_round(mean_QCB1_QCB2, razryad)
+				ws['W32'].value = my_round(CV_vnytr_gr_QCB1_QCB2, 1)
+				ws['W33'].value = my_round(CV_mezhdy_gr_QCB1_QCB2, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['W34'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['W34'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['X28'].value = razryad%(mean_B_III)
-				ws['X29'].value = '%.1f'%Er_B_III
-				ws['X30'].value = '%.1f'%sigma_B_III
+				ws['X28'].value = my_round(mean_B_III, razryad)
+				ws['X29'].value = my_round(Er_B_III, 1)
+				ws['X30'].value = my_round(sigma_B_III, 1)
 
-				ws['X31'].value = razryad%(mean_QCC1_QCC2)
-				ws['X32'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2
-				ws['X33'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2
+				ws['X31'].value = my_round(mean_QCC1_QCC2, razryad)
+				ws['X32'].value = my_round(CV_vnytr_gr_QCC1_QCC2, 1)
+				ws['X33'].value = my_round(CV_mezhdy_gr_QCC1_QCC2, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['X34'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['X34'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['Y28'].value = razryad%(mean_B_IV)
-				ws['Y29'].value = '%.1f'%Er_B_IV
-				ws['Y30'].value = '%.1f'%sigma_B_IV
+				ws['Y28'].value = my_round(mean_B_IV, razryad)
+				ws['Y29'].value = my_round(Er_B_IV, 1)
+				ws['Y30'].value = my_round(sigma_B_IV, 1)
 
-				ws['Y31'].value = razryad%(mean_QCD1_QCD2)
-				ws['Y32'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2
-				ws['Y33'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2
+				ws['Y31'].value = my_round(mean_QCD1_QCD2, razryad)
+				ws['Y32'].value = my_round(CV_vnytr_gr_QCD1_QCD2, 1)
+				ws['Y33'].value = my_round(CV_mezhdy_gr_QCD1_QCD2, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['Y34'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['Y34'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['Z28'].value = razryad%(mean_B_V)
-				ws['Z29'].value = '%.1f'%Er_B_V
-				ws['Z30'].value = '%.1f'%sigma_B_V
+				ws['Z28'].value = my_round(mean_B_V, razryad)
+				ws['Z29'].value = my_round(Er_B_V, 1)
+				ws['Z30'].value = my_round(sigma_B_V, 1)
 
-				ws['Z31'].value = razryad%(mean_QCE1_QCE2)
-				ws['Z32'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2
-				ws['Z33'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2
+				ws['Z31'].value = my_round(mean_QCE1_QCE2, razryad)
+				ws['Z32'].value = my_round(CV_vnytr_gr_QCE1_QCE2, 1)
+				ws['Z33'].value = my_round(CV_mezhdy_gr_QCE1_QCE2, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['Z34'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['Z34'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['AA28'].value = razryad%(mean_B_VI)
-				ws['AA29'].value = '%.1f'%Er_B_VI
-				ws['AA30'].value = '%.1f'%sigma_B_VI
+				ws['AA28'].value = my_round(mean_B_VI, razryad)
+				ws['AA29'].value = my_round(Er_B_VI, 1)
+				ws['AA30'].value = my_round(sigma_B_VI, 1)
 
-				ws['AA31'].value = razryad%(mean_QCF1_QCF2)
-				ws['AA32'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2
-				ws['AA33'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2
+				ws['AA31'].value = my_round(mean_QCF1_QCF2, razryad)
+				ws['AA32'].value = my_round(CV_vnytr_gr_QCF1_QCF2, 1)
+				ws['AA33'].value = my_round(CV_mezhdy_gr_QCF1_QCF2, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['AA34'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
 					ws['AA34'].value = '≤15'
-
 		if check_var_gr_1.get() >= 2:
 			#QCB2
 			ws['W15'].value = 'QCB2'
 			ws['W16'].value = QC_II
 			ws['M2'].value = 'QCB2'
-			ws['W18'].value = razryad%(float(entr_B1_II.get()))
-			ws['M3'].value = razryad%(float(entr_B1_II.get()))
-			ws['W19'].value = razryad%(float(entr_B2_II.get()))
-			ws['M4'].value = razryad%(float(entr_B2_II.get()))
-			ws['W20'].value = razryad%(float(entr_B3_II.get()))
-			ws['M5'].value = razryad%(float(entr_B3_II.get()))
+			ws['W18'].value = my_round(float(entr_B1_II.get()), razryad)
+			ws['M3'].value = my_round(float(entr_B1_II.get()), razryad)
+			ws['W19'].value = my_round(float(entr_B2_II.get()), razryad)
+			ws['M4'].value = my_round(float(entr_B2_II.get()), razryad)
+			ws['W20'].value = my_round(float(entr_B3_II.get()), razryad)
+			ws['M5'].value = my_round(float(entr_B3_II.get()), razryad)
 			if check_var_gr_3.get() >= 4:
-				ws['W21'].value = razryad%(float(entr_B4_II.get()))
-				ws['M6'].value = razryad%(float(entr_B4_II.get()))
+				ws['W21'].value = my_round(float(entr_B4_II.get()), razryad)
+				ws['M6'].value = my_round(float(entr_B4_II.get()), razryad)
 			if check_var_gr_3.get() >= 5:
-				ws['W22'].value = razryad%(float(entr_B5_II.get()))
-				ws['M7'].value = razryad%(float(entr_B5_II.get()))
+				ws['W22'].value = my_round(float(entr_B5_II.get()), razryad)
+				ws['M7'].value = my_round(float(entr_B5_II.get()), razryad)
 			if check_var_gr_3.get() >= 6:	
-				ws['W23'].value = razryad%(float(entr_B6_II.get()))
-				ws['M8'].value = razryad%(float(entr_B6_II.get()))
+				ws['W23'].value = my_round(float(entr_B6_II.get()), razryad)
+				ws['M8'].value = my_round(float(entr_B6_II.get()), razryad)
 			if check_var_gr_3.get() >= 7:	
-				ws['W24'].value = razryad%(float(entr_B7_II.get()))
-				ws['M9'].value = razryad%(float(entr_B7_II.get()))
+				ws['W24'].value = my_round(float(entr_B7_II.get()), razryad)
+				ws['M9'].value = my_round(float(entr_B7_II.get()), razryad)
 			if check_var_gr_3.get() >= 8:	
-				ws['W25'].value = razryad%(float(entr_B8_II.get()))
-				ws['M10'].value = razryad%(float(entr_B8_II.get()))
+				ws['W25'].value = my_round(float(entr_B8_II.get()), razryad)
+				ws['M10'].value = my_round(float(entr_B8_II.get()), razryad)
 			if check_var_gr_3.get() >= 9:	
-				ws['W26'].value = razryad%(float(entr_B9_II.get()))
-				ws['M11'].value = razryad%(float(entr_B9_II.get()))
+				ws['W26'].value = my_round(float(entr_B9_II.get()), razryad)
+				ws['M11'].value = my_round(float(entr_B9_II.get()), razryad)
 			if check_var_gr_3.get() >= 10:	
-				ws['W27'].value = razryad%(float(entr_B10_II.get()))
-				ws['M12'].value = razryad%(float(entr_B10_II.get()))
-
+				ws['W27'].value = my_round(float(entr_B10_II.get()), razryad)
+				ws['M12'].value = my_round(float(entr_B10_II.get()), razryad)
 		if check_var_gr_1.get() >= 3:
 			#QCC2
 			ws['X15'].value = 'QCC2'
 			ws['X16'].value = QC_III
 			ws['V2'].value = 'QCC2'
-			ws['X18'].value = razryad%(float(entr_B1_III.get()))
-			ws['V3'].value = razryad%(float(entr_B1_III.get()))
-			ws['X19'].value = razryad%(float(entr_B2_III.get()))
-			ws['V4'].value = razryad%(float(entr_B2_III.get()))
-			ws['X20'].value = razryad%(float(entr_B3_III.get()))
-			ws['V5'].value = razryad%(float(entr_B3_III.get()))
+			ws['X18'].value = my_round(float(entr_B1_III.get()), razryad)
+			ws['V3'].value = my_round(float(entr_B1_III.get()), razryad)
+			ws['X19'].value = my_round(float(entr_B2_III.get()), razryad)
+			ws['V4'].value = my_round(float(entr_B2_III.get()), razryad)
+			ws['X20'].value = my_round(float(entr_B3_III.get()), razryad)
+			ws['V5'].value = my_round(float(entr_B3_III.get()), razryad)
 			if check_var_gr_3.get() >= 4:
-				ws['X21'].value = razryad%(float(entr_B4_III.get()))
-				ws['V6'].value = razryad%(float(entr_B4_III.get()))
+				ws['X21'].value = my_round(float(entr_B4_III.get()), razryad)
+				ws['V6'].value = my_round(float(entr_B4_III.get()), razryad)
 			if check_var_gr_3.get() >= 5:
-				ws['X22'].value = razryad%(float(entr_B5_III.get()))
-				ws['V7'].value = razryad%(float(entr_B5_III.get()))
+				ws['X22'].value = my_round(float(entr_B5_III.get()), razryad)
+				ws['V7'].value = my_round(float(entr_B5_III.get()), razryad)
 			if check_var_gr_3.get() >= 6:	
-				ws['X23'].value = razryad%(float(entr_B6_III.get()))
-				ws['V8'].value = razryad%(float(entr_B6_III.get()))
+				ws['X23'].value = my_round(float(entr_B6_III.get()), razryad)
+				ws['V8'].value = my_round(float(entr_B6_III.get()), razryad)
 			if check_var_gr_3.get() >= 7:	
-				ws['X24'].value = razryad%(float(entr_B7_III.get()))
-				ws['V9'].value = razryad%(float(entr_B7_III.get()))
+				ws['X24'].value = my_round(float(entr_B7_III.get()), razryad)
+				ws['V9'].value = my_round(float(entr_B7_III.get()), razryad)
 			if check_var_gr_3.get() >= 8:	
-				ws['X25'].value = razryad%(float(entr_B8_III.get()))
-				ws['V10'].value = razryad%(float(entr_B8_III.get()))
+				ws['X25'].value = my_round(float(entr_B8_III.get()), razryad)
+				ws['V10'].value = my_round(float(entr_B8_III.get()), razryad)
 			if check_var_gr_3.get() >= 9:	
-				ws['X26'].value = razryad%(float(entr_B9_III.get()))
-				ws['V11'].value = razryad%(float(entr_B9_III.get()))
+				ws['X26'].value = my_round(float(entr_B9_III.get()), razryad)
+				ws['V11'].value = my_round(float(entr_B9_III.get()), razryad)
 			if check_var_gr_3.get() >= 10:	
-				ws['X27'].value = razryad%(float(entr_B10_III.get()))
-				ws['V12'].value = razryad%(float(entr_B10_III.get()))
-
+				ws['X27'].value = my_round(float(entr_B10_III.get()), razryad)
+				ws['V12'].value = my_round(float(entr_B10_III.get()), razryad)
 		if check_var_gr_1.get() >= 4:
 			#QCD2
 			ws['Y15'].value = 'QCD2'
 			ws['Y16'].value = QC_IV
 			ws['AE2'].value = 'QCD2'
-			ws['Y18'].value = razryad%(float(entr_B1_IV.get()))
-			ws['AE3'].value = razryad%(float(entr_B1_IV.get()))
-			ws['Y19'].value = razryad%(float(entr_B2_IV.get()))
-			ws['AE4'].value = razryad%(float(entr_B2_IV.get()))
-			ws['Y20'].value = razryad%(float(entr_B3_IV.get()))
-			ws['AE5'].value = razryad%(float(entr_B3_IV.get()))
+			ws['Y18'].value = my_round(float(entr_B1_IV.get()), razryad)
+			ws['AE3'].value = my_round(float(entr_B1_IV.get()), razryad)
+			ws['Y19'].value = my_round(float(entr_B2_IV.get()), razryad)
+			ws['AE4'].value = my_round(float(entr_B2_IV.get()), razryad)
+			ws['Y20'].value = my_round(float(entr_B3_IV.get()), razryad)
+			ws['AE5'].value = my_round(float(entr_B3_IV.get()), razryad)
 			if check_var_gr_3.get() >= 4:
-				ws['Y21'].value = razryad%(float(entr_B4_IV.get()))
-				ws['AE6'].value = razryad%(float(entr_B4_IV.get()))
+				ws['Y21'].value = my_round(float(entr_B4_IV.get()), razryad)
+				ws['AE6'].value = my_round(float(entr_B4_IV.get()), razryad)
 			if check_var_gr_3.get() >= 5:
-				ws['Y22'].value = razryad%(float(entr_B5_IV.get()))
-				ws['AE7'].value = razryad%(float(entr_B5_IV.get()))
+				ws['Y22'].value = my_round(float(entr_B5_IV.get()), razryad)
+				ws['AE7'].value = my_round(float(entr_B5_IV.get()), razryad)
 			if check_var_gr_3.get() >= 6:	
-				ws['Y23'].value = razryad%(float(entr_B6_IV.get()))
-				ws['AE8'].value = razryad%(float(entr_B6_IV.get()))
+				ws['Y23'].value = my_round(float(entr_B6_IV.get()), razryad)
+				ws['AE8'].value = my_round(float(entr_B6_IV.get()), razryad)
 			if check_var_gr_3.get() >= 7:	
-				ws['Y24'].value = razryad%(float(entr_B7_IV.get()))
-				ws['AE9'].value = razryad%(float(entr_B7_IV.get()))
+				ws['Y24'].value = my_round(float(entr_B7_IV.get()), razryad)
+				ws['AE9'].value = my_round(float(entr_B7_IV.get()), razryad)
 			if check_var_gr_3.get() >= 8:	
-				ws['Y25'].value = razryad%(float(entr_B8_IV.get()))
-				ws['AE10'].value = razryad%(float(entr_B8_IV.get()))
+				ws['Y25'].value = my_round(float(entr_B8_IV.get()), razryad)
+				ws['AE10'].value = my_round(float(entr_B8_IV.get()), razryad)
 			if check_var_gr_3.get() >= 9:	
-				ws['Y26'].value = razryad%(float(entr_B9_IV.get()))
-				ws['AE11'].value = razryad%(float(entr_B9_IV.get()))
+				ws['Y26'].value = my_round(float(entr_B9_IV.get()), razryad)
+				ws['AE11'].value = my_round(float(entr_B9_IV.get()), razryad)
 			if check_var_gr_3.get() >= 10:	
-				ws['Y27'].value = razryad%(float(entr_B10_IV.get()))
-				ws['AE12'].value = razryad%(float(entr_B10_IV.get()))
-
+				ws['Y27'].value = my_round(float(entr_B10_IV.get()), razryad)
+				ws['AE12'].value = my_round(float(entr_B10_IV.get()), razryad)
 		if check_var_gr_1.get() >= 5:
 			#QCE2
 			ws['Z15'].value = 'QCE2'
 			ws['Z16'].value = QC_V
 			ws['AN2'].value = 'QCE2'
-			ws['Z18'].value = razryad%(float(entr_B1_V.get()))
-			ws['AN3'].value = razryad%(float(entr_B1_V.get()))
-			ws['Z19'].value = razryad%(float(entr_B2_V.get()))
-			ws['AN4'].value = razryad%(float(entr_B2_V.get()))
-			ws['Z20'].value = razryad%(float(entr_B3_V.get()))
-			ws['AN5'].value = razryad%(float(entr_B3_V.get()))
+			ws['Z18'].value = my_round(float(entr_B1_V.get()), razryad)
+			ws['AN3'].value = my_round(float(entr_B1_V.get()), razryad)
+			ws['Z19'].value = my_round(float(entr_B2_V.get()), razryad)
+			ws['AN4'].value = my_round(float(entr_B2_V.get()), razryad)
+			ws['Z20'].value = my_round(float(entr_B3_V.get()), razryad)
+			ws['AN5'].value = my_round(float(entr_B3_V.get()), razryad)
 			if check_var_gr_3.get() >= 4:
-				ws['Z21'].value = razryad%(float(entr_B4_V.get()))
-				ws['AN6'].value = razryad%(float(entr_B4_V.get()))
+				ws['Z21'].value = my_round(float(entr_B4_V.get()), razryad)
+				ws['AN6'].value = my_round(float(entr_B4_V.get()), razryad)
 			if check_var_gr_3.get() >= 5:
-				ws['Z22'].value = razryad%(float(entr_B5_V.get()))
-				ws['AN7'].value = razryad%(float(entr_B5_V.get()))
+				ws['Z22'].value = my_round(float(entr_B5_V.get()), razryad)
+				ws['AN7'].value = my_round(float(entr_B5_V.get()), razryad)
 			if check_var_gr_3.get() >= 6:	
-				ws['Z23'].value = razryad%(float(entr_B6_V.get()))
-				ws['AN8'].value = razryad%(float(entr_B6_V.get()))
+				ws['Z23'].value = my_round(float(entr_B6_V.get()), razryad)
+				ws['AN8'].value = my_round(float(entr_B6_V.get()), razryad)
 			if check_var_gr_3.get() >= 7:	
-				ws['Z24'].value = razryad%(float(entr_B7_V.get()))
-				ws['AN9'].value = razryad%(float(entr_B7_V.get()))
+				ws['Z24'].value = my_round(float(entr_B7_V.get()), razryad)
+				ws['AN9'].value = my_round(float(entr_B7_V.get()), razryad)
 			if check_var_gr_3.get() >= 8:	
-				ws['Z25'].value = razryad%(float(entr_B8_V.get()))
-				ws['AN10'].value = razryad%(float(entr_B8_V.get()))
+				ws['Z25'].value = my_round(float(entr_B8_V.get()), razryad)
+				ws['AN10'].value = my_round(float(entr_B8_V.get()), razryad)
 			if check_var_gr_3.get() >= 9:	
-				ws['Z26'].value = razryad%(float(entr_B9_V.get()))
-				ws['AN11'].value = razryad%(float(entr_B9_V.get()))
+				ws['Z26'].value = my_round(float(entr_B9_V.get()), razryad)
+				ws['AN11'].value = my_round(float(entr_B9_V.get()), razryad)
 			if check_var_gr_3.get() >= 10:	
-				ws['Z27'].value = razryad%(float(entr_B10_V.get()))
-				ws['AN12'].value = razryad%(float(entr_B10_V.get()))
-
+				ws['Z27'].value = my_round(float(entr_B10_V.get()), razryad)
+				ws['AN12'].value = my_round(float(entr_B10_V.get()), razryad)
 		if check_var_gr_1.get() >= 6:
 			#QCF2
 			ws['AA15'].value = 'QCF2'
 			ws['AA16'].value = QC_VI
 			ws['AW2'].value = 'QCF2'
-			ws['AA18'].value = razryad%(float(entr_B1_VI.get()))
-			ws['AW3'].value = razryad%(float(entr_B1_VI.get()))
-			ws['AA19'].value = razryad%(float(entr_B2_VI.get()))
-			ws['AW4'].value = razryad%(float(entr_B2_VI.get()))
-			ws['AA20'].value = razryad%(float(entr_B3_VI.get()))
-			ws['AW5'].value = razryad%(float(entr_B3_VI.get()))
+			ws['AA18'].value = my_round(float(entr_B1_VI.get()), razryad)
+			ws['AW3'].value = my_round(float(entr_B1_VI.get()), razryad)
+			ws['AA19'].value = my_round(float(entr_B2_VI.get()), razryad)
+			ws['AW4'].value = my_round(float(entr_B2_VI.get()), razryad)
+			ws['AA20'].value = my_round(float(entr_B3_VI.get()), razryad)
+			ws['AW5'].value = my_round(float(entr_B3_VI.get()), razryad)
 			if check_var_gr_3.get() >= 4:
-				ws['AA21'].value = razryad%(float(entr_B4_VI.get()))
-				ws['AW6'].value = razryad%(float(entr_B4_VI.get()))
+				ws['AA21'].value = my_round(float(entr_B4_VI.get()), razryad)
+				ws['AW6'].value = my_round(float(entr_B4_VI.get()), razryad)
 			if check_var_gr_3.get() >= 5:
-				ws['AA22'].value = razryad%(float(entr_B5_VI.get()))
-				ws['AW7'].value = razryad%(float(entr_B5_VI.get()))
+				ws['AA22'].value = my_round(float(entr_B5_VI.get()), razryad)
+				ws['AW7'].value = my_round(float(entr_B5_VI.get()), razryad)
 			if check_var_gr_3.get() >= 6:	
-				ws['AA23'].value = razryad%(float(entr_B6_VI.get()))
-				ws['AW8'].value = razryad%(float(entr_B6_VI.get()))
+				ws['AA23'].value = my_round(float(entr_B6_VI.get()), razryad)
+				ws['AW8'].value = my_round(float(entr_B6_VI.get()), razryad)
 			if check_var_gr_3.get() >= 7:	
-				ws['AA24'].value = razryad%(float(entr_B7_VI.get()))
-				ws['AW9'].value = razryad%(float(entr_B7_VI.get()))
+				ws['AA24'].value = my_round(float(entr_B7_VI.get()), razryad)
+				ws['AW9'].value = my_round(float(entr_B7_VI.get()), razryad)
 			if check_var_gr_3.get() >= 8:	
-				ws['AA25'].value = razryad%(float(entr_B8_VI.get()))
-				ws['AW10'].value = razryad%(float(entr_B8_VI.get()))
+				ws['AA25'].value = my_round(float(entr_B8_VI.get()), razryad)
+				ws['AW10'].value = my_round(float(entr_B8_VI.get()), razryad)
 			if check_var_gr_3.get() >= 9:	
-				ws['AA26'].value = razryad%(float(entr_B9_VI.get()))
-				ws['AW11'].value = razryad%(float(entr_B9_VI.get()))
+				ws['AA26'].value = my_round(float(entr_B9_VI.get()), razryad)
+				ws['AW11'].value = my_round(float(entr_B9_VI.get()), razryad)
 			if check_var_gr_3.get() >= 10:	
-				ws['AA27'].value = razryad%(float(entr_B10_VI.get()))
-				ws['AW12'].value = razryad%(float(entr_B10_VI.get()))
-
+				ws['AA27'].value = my_round(float(entr_B10_VI.get()), razryad)
+				ws['AW12'].value = my_round(float(entr_B10_VI.get()), razryad)
 
 
 
@@ -11319,7 +10536,7 @@ def calc():
 
 		#надпись и объединение ячеек под надпись
 		ws['AC15'].value = 'QC'
-		ws['AC16'].value = 'Введено, нг/мл'
+		ws['AC16'].value = f'Введено, {entr_concent.get()}'
 		ws['AC17'].value = '№ измерения'
 		ws['AD17'].value = 'Найдено, последовательность 3'
 		'''
@@ -11342,42 +10559,42 @@ def calc():
 		ws['AD16'].value = QC_I
 		ws['E2'].value = 'QCA3'
 		ws['AC18'].value = '1'
-		ws['AD18'].value = razryad%(float(entr_C1_I.get()))
-		ws['E3'].value = razryad%(float(entr_C1_I.get()))
+		ws['AD18'].value = my_round(float(entr_C1_I.get()), razryad)
+		ws['E3'].value = my_round(float(entr_C1_I.get()), razryad)
 		ws['AC19'].value = '2'
-		ws['AD19'].value = razryad%(float(entr_C2_I.get()))
-		ws['E4'].value = razryad%(float(entr_C2_I.get()))
+		ws['AD19'].value = my_round(float(entr_C2_I.get()), razryad)
+		ws['E4'].value = my_round(float(entr_C2_I.get()), razryad)
 		ws['AC20'].value = '3'
-		ws['AD20'].value = razryad%(float(entr_C3_I.get()))
-		ws['E5'].value = razryad%(float(entr_C3_I.get()))
+		ws['AD20'].value = my_round(float(entr_C3_I.get()), razryad)
+		ws['E5'].value = my_round(float(entr_C3_I.get()), razryad)
 		if check_var_gr_3.get() >= 4:
 			ws['AC21'].value = '4'
-			ws['AD21'].value = razryad%(float(entr_C4_I.get()))
-			ws['E6'].value = razryad%(float(entr_C4_I.get()))
+			ws['AD21'].value = my_round(float(entr_C4_I.get()), razryad)
+			ws['E6'].value = my_round(float(entr_C4_I.get()), razryad)
 		if check_var_gr_3.get() >= 5:
 			ws['AC22'].value = '5'
-			ws['AD22'].value = razryad%(float(entr_C5_I.get()))
-			ws['E7'].value = razryad%(float(entr_C5_I.get()))
+			ws['AD22'].value = my_round(float(entr_C5_I.get()), razryad)
+			ws['E7'].value = my_round(float(entr_C5_I.get()), razryad)
 		if check_var_gr_3.get() >= 6:	
 			ws['AC23'].value = '6'
-			ws['AD23'].value = razryad%(float(entr_C6_I.get()))
-			ws['E8'].value = razryad%(float(entr_C6_I.get()))
+			ws['AD23'].value = my_round(float(entr_C6_I.get()), razryad)
+			ws['E8'].value = my_round(float(entr_C6_I.get()), razryad)
 		if check_var_gr_3.get() >= 7:	
 			ws['AC24'].value = '7'
-			ws['AD24'].value = razryad%(float(entr_C7_I.get()))
-			ws['E9'].value = razryad%(float(entr_C7_I.get()))
+			ws['AD24'].value = my_round(float(entr_C7_I.get()), razryad)
+			ws['E9'].value = my_round(float(entr_C7_I.get()), razryad)
 		if check_var_gr_3.get() >= 8:	
 			ws['AC25'].value = '8'
-			ws['AD25'].value = razryad%(float(entr_C8_I.get()))
-			ws['E10'].value = razryad%(float(entr_C8_I.get()))
+			ws['AD25'].value = my_round(float(entr_C8_I.get()), razryad)
+			ws['E10'].value = my_round(float(entr_C8_I.get()), razryad)
 		if check_var_gr_3.get() >= 9:	
 			ws['AC26'].value = '9'
-			ws['AD26'].value = razryad%(float(entr_C9_I.get()))
-			ws['E11'].value = razryad%(float(entr_C9_I.get()))
+			ws['AD26'].value = my_round(float(entr_C9_I.get()), razryad)
+			ws['E11'].value = my_round(float(entr_C9_I.get()), razryad)
 		if check_var_gr_3.get() >= 10:	
 			ws['AC27'].value = '10'
-			ws['AD27'].value = razryad%(float(entr_C10_I.get()))
-			ws['E12'].value = razryad%(float(entr_C10_I.get()))
+			ws['AD27'].value = my_round(float(entr_C10_I.get()), razryad)
+			ws['E12'].value = my_round(float(entr_C10_I.get()), razryad)
 
 
 
@@ -11388,82 +10605,65 @@ def calc():
 		if check_var_gr_2.get() >= 3:
 			#QCA3
 			
-			mean_QCA1_QCA2_QCA3 = round(stat.mean([mean_A_I, mean_B_I, mean_C_I]), check_razryad.get())
+			mean_QCA1_QCA2_QCA3 = my_round(stat.mean([mean_A_I, mean_B_I, mean_C_I]), check_razryad.get())
 
 			#междугруппами
 			sum_kv_mezhdy_gr_QCA1_QCA2_QCA3 = len(spisok_A_I)*((mean_A_I - mean_QCA1_QCA2_QCA3)**2) + len(spisok_B_I)*((mean_B_I - mean_QCA1_QCA2_QCA3)**2) + len(spisok_C_I)*((mean_C_I - mean_QCA1_QCA2_QCA3)**2)
 			CV_mezhdy_gr_QCA1_QCA2_QCA3 = (((sum_kv_mezhdy_gr_QCA1_QCA2_QCA3)/2)**0.5)/mean_QCA1_QCA2_QCA3*100
-			#print(CV_mezhdy_gr_QCA1_QCA2_QCA3, 'CV_mezhdy_gr_QCA1_QCA2_QCA3')
 			#внутригрупп
 			CV_vnytr_gr_QCA1_QCA2_QCA3 = (mean_QCA1_QCA2_QCA3 - QC_I)/QC_I * 100
-			#print(CV_vnytr_gr_QCA1_QCA2_QCA3, 'CV_vnytr_gr_QCA1_QCA2_QCA3')
 
 
 			if check_var_gr_1.get() >= 2:
 				#QCB3
 				
-				mean_QCB1_QCB2_QCB3 = round(stat.mean([mean_A_II, mean_B_II, mean_C_II]), check_razryad.get())
-				#print(mean_QCB1_QCB2_QCB3, 'mean_QCB1_QCB2_QCB3')
+				mean_QCB1_QCB2_QCB3 = my_round(stat.mean([mean_A_II, mean_B_II, mean_C_II]), check_razryad.get())
 				#междугруппами
 				sum_kv_mezhdy_gr_QCB1_QCB2_QCB3 = len(spisok_A_II)*((mean_A_II - mean_QCB1_QCB2_QCB3)**2) + len(spisok_B_II)*((mean_B_II - mean_QCB1_QCB2_QCB3)**2) + len(spisok_C_II)*((mean_C_II - mean_QCB1_QCB2_QCB3)**2)
 				CV_mezhdy_gr_QCB1_QCB2_QCB3 = (((sum_kv_mezhdy_gr_QCB1_QCB2_QCB3)/2)**0.5)/mean_QCB1_QCB2_QCB3*100
-				#print(CV_mezhdy_gr_QCB1_QCB2_QCB3, 'CV_mezhdy_gr_QCB1_QCB2_QCB3')
 				#внутригрупп
 				CV_vnytr_gr_QCB1_QCB2_QCB3 = (mean_QCB1_QCB2_QCB3 - QC_II)/QC_II * 100
-				#print(CV_vnytr_gr_QCB1_QCB2_QCB3, 'CV_vnytr_gr_QCB1_QCB2_QCB3')
 
 
 			if check_var_gr_1.get() >= 3:
 				#QCC3
 				
-				mean_QCC1_QCC2_QCC3 = round(stat.mean([mean_A_III, mean_B_III, mean_C_III]), check_razryad.get())
-				#print(mean_QCC1_QCC2_QCC3, 'mean_QCC1_QCC2_QCC3')
+				mean_QCC1_QCC2_QCC3 = my_round(stat.mean([mean_A_III, mean_B_III, mean_C_III]), check_razryad.get())
 				#междугруппами
 				sum_kv_mezhdy_gr_QCC1_QCC2_QCC3 = len(spisok_A_III)*((mean_A_III - mean_QCC1_QCC2_QCC3)**2) + len(spisok_B_III)*((mean_B_III - mean_QCC1_QCC2_QCC3)**2) + len(spisok_C_III)*((mean_C_III - mean_QCC1_QCC2_QCC3)**2)
 				CV_mezhdy_gr_QCC1_QCC2_QCC3 = (((sum_kv_mezhdy_gr_QCC1_QCC2_QCC3)/2)**0.5)/mean_QCC1_QCC2_QCC3*100
-				#print(CV_mezhdy_gr_QCC1_QCC2_QCC3, 'CV_mezhdy_gr_QCC1_QCC2_QCC3')
 				#внутригрупп
 				CV_vnytr_gr_QCC1_QCC2_QCC3 = (mean_QCC1_QCC2_QCC3 - QC_III)/QC_III * 100
-				#print(CV_vnytr_gr_QCC1_QCC2_QCC3, 'CV_vnytr_gr_QCC1_QCC2_QCC3')
 
 			if check_var_gr_1.get() >= 4:
 				#QCD3
 				
-				mean_QCD1_QCD2_QCD3 = round(stat.mean([mean_A_IV, mean_B_IV, mean_C_IV]), check_razryad.get())
-				#print(mean_QCD1_QCD2_QCD3, 'mean_QCD1_QCD2_QCD3')
+				mean_QCD1_QCD2_QCD3 = my_round(stat.mean([mean_A_IV, mean_B_IV, mean_C_IV]), check_razryad.get())
 				#междугруппами
 				sum_kv_mezhdy_gr_QCD1_QCD2_QCD3 = len(spisok_A_IV)*((mean_A_IV - mean_QCD1_QCD2_QCD3)**2) + len(spisok_B_IV)*((mean_B_IV - mean_QCD1_QCD2_QCD3)**2) + len(spisok_C_IV)*((mean_C_IV - mean_QCD1_QCD2_QCD3)**2)
 				CV_mezhdy_gr_QCD1_QCD2_QCD3 = (((sum_kv_mezhdy_gr_QCD1_QCD2_QCD3)/2)**0.5)/mean_QCD1_QCD2_QCD3*100
-				#print(CV_mezhdy_gr_QCD1_QCD2_QCD3, 'CV_mezhdy_gr_QCD1_QCD2_QCD3')
 				#внутригрупп
 				CV_vnytr_gr_QCD1_QCD2_QCD3 = (mean_QCD1_QCD2_QCD3 - QC_IV)/QC_IV * 100
-				#print(CV_vnytr_gr_QCD1_QCD2_QCD3, 'CV_vnytr_gr_QCD1_QCD2_QCD3')
 
 			if check_var_gr_1.get() >= 5:
 				#QCE3
 				
-				mean_QCE1_QCE2_QCE3 = round(stat.mean([mean_A_V, mean_B_V, mean_C_V]), check_razryad.get())
-				#print(mean_QCE1_QCE2_QCE3, 'mean_QCE1_QCE2_QCE3')
+				mean_QCE1_QCE2_QCE3 = my_round(stat.mean([mean_A_V, mean_B_V, mean_C_V]), check_razryad.get())
 				#междугруппами
 				sum_kv_mezhdy_gr_QCE1_QCE2_QCE3 = len(spisok_A_V)*((mean_A_V - mean_QCE1_QCE2_QCE3)**2) + len(spisok_B_V)*((mean_B_V - mean_QCE1_QCE2_QCE3)**2) + len(spisok_C_V)*((mean_C_V - mean_QCE1_QCE2_QCE3)**2)
 				CV_mezhdy_gr_QCE1_QCE2_QCE3 = (((sum_kv_mezhdy_gr_QCE1_QCE2_QCE3)/2)**0.5)/mean_QCE1_QCE2_QCE3*100
-				#print(CV_mezhdy_gr_QCE1_QCE2_QCE3, 'CV_mezhdy_gr_QCE1_QCE2_QCE3')
 				#внутригрупп
 				CV_vnytr_gr_QCE1_QCE2_QCE3 = (mean_QCE1_QCE2_QCE3 - QC_V)/QC_V * 100
-				#print(CV_vnytr_gr_QCE1_QCE2_QCE3, 'CV_vnytr_gr_QCE1_QCE2_QCE3')
 
 			if check_var_gr_1.get() >= 6:
 				#QCF3
 				
-				mean_QCF1_QCF2_QCF3 = round(stat.mean([mean_A_VI, mean_B_VI, mean_C_VI]), check_razryad.get())
-				#print(mean_QCF1_QCF2_QCF3, 'mean_QCF1_QCF2_QCF3')
+				mean_QCF1_QCF2_QCF3 = my_round(stat.mean([mean_A_VI, mean_B_VI, mean_C_VI]), check_razryad.get())
 				#междугруппами
 				sum_kv_mezhdy_gr_QCF1_QCF2_QCF3 = len(spisok_A_VI)*((mean_A_VI - mean_QCF1_QCF2_QCF3)**2) + len(spisok_B_VI)*((mean_B_VI - mean_QCF1_QCF2_QCF3)**2) + len(spisok_C_VI)*((mean_C_VI - mean_QCF1_QCF2_QCF3)**2)
 				CV_mezhdy_gr_QCF1_QCF2_QCF3 = (((sum_kv_mezhdy_gr_QCF1_QCF2_QCF3)/2)**0.5)/mean_QCF1_QCF2_QCF3*100
-				#print(CV_mezhdy_gr_QCF1_QCF2_QCF3, 'CV_mezhdy_gr_QCF1_QCF2_QCF3')
 				#внутригрупп
 				CV_vnytr_gr_QCF1_QCF2_QCF3 = (mean_QCF1_QCF2_QCF3 - QC_VI)/QC_VI * 100
-				#print(CV_vnytr_gr_QCF1_QCF2_QCF3, 'CV_vnytr_gr_QCF1_QCF2_QCF3')
 
 
 
@@ -11473,23 +10673,23 @@ def calc():
 			ws['AC21'].value = 'найдено, сред.зн.,\nнг/мл (n=3)'
 			ws['AC21'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
 
-			ws['AC22'].value = 'εr, % (n=3)'
-			ws['AC23'].value = 'σr, % (n=3)'
+			ws['AC22'].value = 'εR, % (n=3)'
+			ws['AC23'].value = 'σR, % (n=3)'
 
 			ws['AC24'].value = 'найдено, сред.зн.,\nнг/мл (n=9)'
 			ws['AC24'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AC25'].value = 'εr, % (n=9)'
-			ws['AC26'].value = 'σr, % (n=9)'
+			ws['AC25'].value = 'εR, % (n=9)'
+			ws['AC26'].value = 'σR, % (n=9)'
 			ws['AC27'].value = 'Норма |ε| и |σ|, %'
 
 
-			ws['AD21'].value = razryad%(mean_C_I)
-			ws['AD22'].value = '%.1f'%Er_C_I
-			ws['AD23'].value = '%.1f'%sigma_C_I
+			ws['AD21'].value = my_round(mean_C_I, razryad)
+			ws['AD22'].value = my_round(Er_C_I, 1)
+			ws['AD23'].value = my_round(sigma_C_I, 1)
 
-			ws['AD24'].value = razryad%(mean_QCA1_QCA2_QCA3)
-			ws['AD25'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2_QCA3
-			ws['AD26'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2_QCA3
+			ws['AD24'].value = my_round(mean_QCA1_QCA2_QCA3, razryad)
+			ws['AD25'].value = my_round(CV_vnytr_gr_QCA1_QCA2_QCA3, 1)
+			ws['AD26'].value = my_round(CV_mezhdy_gr_QCA1_QCA2_QCA3, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['AD27'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
@@ -11497,65 +10697,65 @@ def calc():
 
 		
 			if check_var_gr_1.get() >= 2:
-				ws['AE21'].value = razryad%(mean_C_II)
-				ws['AE22'].value = '%.1f'%Er_C_II
-				ws['AE23'].value = '%.1f'%sigma_C_II
+				ws['AE21'].value = my_round(mean_C_II, razryad)
+				ws['AE22'].value = my_round(Er_C_II, 1)
+				ws['AE23'].value = my_round(sigma_C_II, 1)
 
-				ws['AE24'].value = razryad%(mean_QCB1_QCB2_QCB3)
-				ws['AE25'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2_QCB3
-				ws['AE26'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2_QCB3
+				ws['AE24'].value = my_round(mean_QCB1_QCB2_QCB3, razryad)
+				ws['AE25'].value = my_round(CV_vnytr_gr_QCB1_QCB2_QCB3, 1)
+				ws['AE26'].value = my_round(CV_mezhdy_gr_QCB1_QCB2_QCB3, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['AE27'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['AE27'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['AF21'].value = razryad%(mean_C_III)
-				ws['AF22'].value = '%.1f'%Er_C_III
-				ws['AF23'].value = '%.1f'%sigma_C_III
+				ws['AF21'].value = my_round(mean_C_III, razryad)
+				ws['AF22'].value = my_round(Er_C_III, 1)
+				ws['AF23'].value = my_round(sigma_C_III, 1)
 
-				ws['AF24'].value = razryad%(mean_QCC1_QCC2_QCC3)
-				ws['AF25'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2_QCC3
-				ws['AF26'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2_QCC3
+				ws['AF24'].value = my_round(mean_QCC1_QCC2_QCC3, razryad)
+				ws['AF25'].value = my_round(CV_vnytr_gr_QCC1_QCC2_QCC3, 1)
+				ws['AF26'].value = my_round(CV_mezhdy_gr_QCC1_QCC2_QCC3, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['AF27'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['AF27'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['AG21'].value = razryad%(mean_C_IV)
-				ws['AG22'].value = '%.1f'%Er_C_IV
-				ws['AG23'].value = '%.1f'%sigma_C_IV
+				ws['AG21'].value = my_round(mean_C_IV, razryad)
+				ws['AG22'].value = my_round(Er_C_IV, 1)
+				ws['AG23'].value = my_round(sigma_C_IV, 1)
 
-				ws['AG24'].value = razryad%(mean_QCD1_QCD2_QCD3)
-				ws['AG25'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2_QCD3
-				ws['AG26'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2_QCD3
+				ws['AG24'].value = my_round(mean_QCD1_QCD2_QCD3, razryad)
+				ws['AG25'].value = my_round(CV_vnytr_gr_QCD1_QCD2_QCD3, 1)
+				ws['AG26'].value = my_round(CV_mezhdy_gr_QCD1_QCD2_QCD3, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['AG27'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['AG27'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['AH21'].value = razryad%(mean_C_V)
-				ws['AH22'].value = '%.1f'%Er_C_V
-				ws['AH23'].value = '%.1f'%sigma_C_V
+				ws['AH21'].value = my_round(mean_C_V, razryad)
+				ws['AH22'].value = my_round(Er_C_V, 1)
+				ws['AH23'].value = my_round(sigma_C_V, 1)
 
-				ws['AH24'].value = razryad%(mean_QCE1_QCE2_QCE3)
-				ws['AH25'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2_QCE3
-				ws['AH26'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2_QCE3
+				ws['AH24'].value = my_round(mean_QCE1_QCE2_QCE3, razryad)
+				ws['AH25'].value = my_round(CV_vnytr_gr_QCE1_QCE2_QCE3, 1)
+				ws['AH26'].value = my_round(CV_mezhdy_gr_QCE1_QCE2_QCE3, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['AH27'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['AH27'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['AI21'].value = razryad%(mean_C_VI)
-				ws['AI22'].value = '%.1f'%Er_C_VI
-				ws['AI23'].value = '%.1f'%sigma_C_VI
+				ws['AI21'].value = my_round(mean_C_VI, razryad)
+				ws['AI22'].value = my_round(Er_C_VI, 1)
+				ws['AI23'].value = my_round(sigma_C_VI, 1)
 
-				ws['AI24'].value = razryad%(mean_QCF1_QCF2_QCF3)
-				ws['AI25'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2_QCF3
-				ws['AI26'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2_QCF3
+				ws['AI24'].value = my_round(mean_QCF1_QCF2_QCF3, razryad)
+				ws['AI25'].value = my_round(CV_vnytr_gr_QCF1_QCF2_QCF3, 1)
+				ws['AI26'].value = my_round(CV_mezhdy_gr_QCF1_QCF2_QCF3, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['AI27'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
@@ -11566,88 +10766,88 @@ def calc():
 
 			ws['AC22'].value = 'найдено, сред.зн.,\nнг/мл (n=4)'
 			ws['AC22'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AC23'].value = 'εr, % (n=4)'
-			ws['AC24'].value = 'σr, % (n=4)'
+			ws['AC23'].value = 'εR, % (n=4)'
+			ws['AC24'].value = 'σR, % (n=4)'
 			
 			ws['AC25'].value = 'найдено, сред.зн.,\nнг/мл (n=12)'
 			ws['AC25'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AC26'].value = 'εr, % (n=12)'
-			ws['AC27'].value = 'σr, % (n=12)'
+			ws['AC26'].value = 'εR, % (n=12)'
+			ws['AC27'].value = 'σR, % (n=12)'
 			ws['AC28'].value = 'Норма |ε| и |σ|, %'
 
 
-			ws['AD22'].value = razryad%(mean_C_I)
-			ws['AD23'].value = '%.1f'%Er_C_I
-			ws['AD24'].value = '%.1f'%sigma_C_I
+			ws['AD22'].value = my_round(mean_C_I, razryad)
+			ws['AD23'].value = my_round(Er_C_I, 1)
+			ws['AD24'].value = my_round(sigma_C_I, 1)
 
-			ws['AD25'].value = razryad%(mean_QCA1_QCA2_QCA3)
-			ws['AD26'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2_QCA3
-			ws['AD27'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2_QCA3
+			ws['AD25'].value = my_round(mean_QCA1_QCA2_QCA3, razryad)
+			ws['AD26'].value = my_round(CV_vnytr_gr_QCA1_QCA2_QCA3, 1)
+			ws['AD27'].value = my_round(CV_mezhdy_gr_QCA1_QCA2_QCA3, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['AD28'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
 				ws['AD28'].value = '≤20'
 
 			if check_var_gr_1.get() >= 2:
-				ws['AE22'].value = razryad%(mean_C_II)
-				ws['AE23'].value = '%.1f'%Er_C_II
-				ws['AE24'].value = '%.1f'%sigma_C_II
+				ws['AE22'].value = my_round(mean_C_II, razryad)
+				ws['AE23'].value = my_round(Er_C_II, 1)
+				ws['AE24'].value = my_round(sigma_C_II, 1)
 
-				ws['AE25'].value = razryad%(mean_QCB1_QCB2_QCB3)
-				ws['AE26'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2_QCB3
-				ws['AE27'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2_QCB3
+				ws['AE25'].value = my_round(mean_QCB1_QCB2_QCB3, razryad)
+				ws['AE26'].value = my_round(CV_vnytr_gr_QCB1_QCB2_QCB3, 1)
+				ws['AE27'].value = my_round(CV_mezhdy_gr_QCB1_QCB2_QCB3, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['AE28'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['AE28'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['AF22'].value = razryad%(mean_C_III)
-				ws['AF23'].value = '%.1f'%Er_C_III
-				ws['AF24'].value = '%.1f'%sigma_C_III
+				ws['AF22'].value = my_round(mean_C_III, razryad)
+				ws['AF23'].value = my_round(Er_C_III, 1)
+				ws['AF24'].value = my_round(sigma_C_III, 1)
 
-				ws['AF25'].value = razryad%(mean_QCC1_QCC2_QCC3)
-				ws['AF26'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2_QCC3
-				ws['AF27'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2_QCC3
+				ws['AF25'].value = my_round(mean_QCC1_QCC2_QCC3, razryad)
+				ws['AF26'].value = my_round(CV_vnytr_gr_QCC1_QCC2_QCC3, 1)
+				ws['AF27'].value = my_round(CV_mezhdy_gr_QCC1_QCC2_QCC3, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['AF28'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['AF28'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['AG22'].value = razryad%(mean_C_IV)
-				ws['AG23'].value = '%.1f'%Er_C_IV
-				ws['AG24'].value = '%.1f'%sigma_C_IV
+				ws['AG22'].value = my_round(mean_C_IV, razryad)
+				ws['AG23'].value = my_round(Er_C_IV, 1)
+				ws['AG24'].value = my_round(sigma_C_IV, 1)
 
-				ws['AG25'].value = razryad%(mean_QCD1_QCD2_QCD3)
-				ws['AG26'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2_QCD3
-				ws['AG27'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2_QCD3
+				ws['AG25'].value = my_round(mean_QCD1_QCD2_QCD3, razryad)
+				ws['AG26'].value = my_round(CV_vnytr_gr_QCD1_QCD2_QCD3, 1)
+				ws['AG27'].value = my_round(CV_mezhdy_gr_QCD1_QCD2_QCD3, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['AG28'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['AG28'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['AH22'].value = razryad%(mean_C_V)
-				ws['AH23'].value = '%.1f'%Er_C_V
-				ws['AH24'].value = '%.1f'%sigma_C_V
+				ws['AH22'].value = my_round(mean_C_V, razryad)
+				ws['AH23'].value = my_round(Er_C_V, 1)
+				ws['AH24'].value = my_round(sigma_C_V, 1)
 
-				ws['AH25'].value = razryad%(mean_QCE1_QCE2_QCE3)
-				ws['AH26'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2_QCE3
-				ws['AH27'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2_QCE3
+				ws['AH25'].value = my_round(mean_QCE1_QCE2_QCE3, razryad)
+				ws['AH26'].value = my_round(CV_vnytr_gr_QCE1_QCE2_QCE3, 1)
+				ws['AH27'].value = my_round(CV_mezhdy_gr_QCE1_QCE2_QCE3, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['AH28'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['AH28'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['AI22'].value = razryad%(mean_C_VI)
-				ws['AI23'].value = '%.1f'%Er_C_VI
-				ws['AI24'].value = '%.1f'%sigma_C_VI
+				ws['AI22'].value = my_round(mean_C_VI, razryad)
+				ws['AI23'].value = my_round(Er_C_VI, 1)
+				ws['AI24'].value = my_round(sigma_C_VI, 1)
 
-				ws['AI25'].value = razryad%(mean_QCF1_QCF2_QCF3)
-				ws['AI26'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2_QCF3
-				ws['AI27'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2_QCF3
+				ws['AI25'].value = my_round(mean_QCF1_QCF2_QCF3, razryad)
+				ws['AI26'].value = my_round(CV_vnytr_gr_QCF1_QCF2_QCF3, 1)
+				ws['AI27'].value = my_round(CV_mezhdy_gr_QCF1_QCF2_QCF3, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['AI28'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
@@ -11657,87 +10857,87 @@ def calc():
 		if check_var_gr_3.get() == 5:
 			ws['AC23'].value = 'найдено, сред.зн., \nнг/мл (n=5)'
 			ws['AC23'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AC24'].value = 'εr, % (n=5)'
-			ws['AC25'].value = 'σr, % (n=5)'
+			ws['AC24'].value = 'εR, % (n=5)'
+			ws['AC25'].value = 'σR, % (n=5)'
 			
 			ws['AC26'].value = 'найдено, сред.зн.,\nнг/мл (n=15)'
 			ws['AC26'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AC27'].value = 'εr, % (n=15)'
-			ws['AC28'].value = 'σr, % (n=15)'
+			ws['AC27'].value = 'εR, % (n=15)'
+			ws['AC28'].value = 'σR, % (n=15)'
 			ws['AC29'].value = 'Норма |ε| и |σ|, %'
 
-			ws['AD23'].value = razryad%(mean_C_I)
-			ws['AD24'].value = '%.1f'%Er_C_I
-			ws['AD25'].value = '%.1f'%sigma_C_I
+			ws['AD23'].value = my_round(mean_C_I, razryad)
+			ws['AD24'].value = my_round(Er_C_I, 1)
+			ws['AD25'].value = my_round(sigma_C_I, 1)
 
-			ws['AD26'].value = razryad%(mean_QCA1_QCA2_QCA3)
-			ws['AD27'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2_QCA3
-			ws['AD28'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2_QCA3
+			ws['AD26'].value = my_round(mean_QCA1_QCA2_QCA3, razryad)
+			ws['AD27'].value = my_round(CV_vnytr_gr_QCA1_QCA2_QCA3, 1)
+			ws['AD28'].value = my_round(CV_mezhdy_gr_QCA1_QCA2_QCA3, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['AD29'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
 				ws['AD29'].value = '≤20'
 
 			if check_var_gr_1.get() >= 2:
-				ws['AE23'].value = razryad%(mean_C_II)
-				ws['AE24'].value = '%.1f'%Er_C_II
-				ws['AE25'].value = '%.1f'%sigma_C_II
+				ws['AE23'].value = my_round(mean_C_II, razryad)
+				ws['AE24'].value = my_round(Er_C_II, 1)
+				ws['AE25'].value = my_round(sigma_C_II, 1)
 
-				ws['AE26'].value = razryad%(mean_QCB1_QCB2_QCB3)
-				ws['AE27'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2_QCB3
-				ws['AE28'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2_QCB3
+				ws['AE26'].value = my_round(mean_QCB1_QCB2_QCB3, razryad)
+				ws['AE27'].value = my_round(CV_vnytr_gr_QCB1_QCB2_QCB3, 1)
+				ws['AE28'].value = my_round(CV_mezhdy_gr_QCB1_QCB2_QCB3, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['AE29'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['AE29'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['AF23'].value = razryad%(mean_C_III)
-				ws['AF24'].value = '%.1f'%Er_C_III
-				ws['AF25'].value = '%.1f'%sigma_C_III
+				ws['AF23'].value = my_round(mean_C_III, razryad)
+				ws['AF24'].value = my_round(Er_C_III, 1)
+				ws['AF25'].value = my_round(sigma_C_III, 1)
 
-				ws['AF26'].value = razryad%(mean_QCC1_QCC2_QCC3)
-				ws['AF27'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2_QCC3
-				ws['AF28'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2_QCC3
+				ws['AF26'].value = my_round(mean_QCC1_QCC2_QCC3, razryad)
+				ws['AF27'].value = my_round(CV_vnytr_gr_QCC1_QCC2_QCC3, 1)
+				ws['AF28'].value = my_round(CV_mezhdy_gr_QCC1_QCC2_QCC3, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['AF29'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['AF29'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['AG23'].value = razryad%(mean_C_IV)
-				ws['AG24'].value = '%.1f'%Er_C_IV
-				ws['AG25'].value = '%.1f'%sigma_C_IV
+				ws['AG23'].value = my_round(mean_C_IV, razryad)
+				ws['AG24'].value = my_round(Er_C_IV, 1)
+				ws['AG25'].value = my_round(sigma_C_IV, 1)
 
-				ws['AG26'].value = razryad%(mean_QCD1_QCD2_QCD3)
-				ws['AG27'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2_QCD3
-				ws['AG28'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2_QCD3
+				ws['AG26'].value = my_round(mean_QCD1_QCD2_QCD3, razryad)
+				ws['AG27'].value = my_round(CV_vnytr_gr_QCD1_QCD2_QCD3, 1)
+				ws['AG28'].value = my_round(CV_mezhdy_gr_QCD1_QCD2_QCD3, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['AG29'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['AG29'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['AH23'].value = razryad%(mean_C_V)
-				ws['AH24'].value = '%.1f'%Er_C_V
-				ws['AH25'].value = '%.1f'%sigma_C_V
+				ws['AH23'].value = my_round(mean_C_V, razryad)
+				ws['AH24'].value = my_round(Er_C_V, 1)
+				ws['AH25'].value = my_round(sigma_C_V, 1)
 
-				ws['AH26'].value = razryad%(mean_QCE1_QCE2_QCE3)
-				ws['AH27'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2_QCE3
-				ws['AH28'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2_QCE3
+				ws['AH26'].value = my_round(mean_QCE1_QCE2_QCE3, razryad)
+				ws['AH27'].value = my_round(CV_vnytr_gr_QCE1_QCE2_QCE3, 1)
+				ws['AH28'].value = my_round(CV_mezhdy_gr_QCE1_QCE2_QCE3, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['AH29'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['AH29'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['AI23'].value = razryad%(mean_C_VI)
-				ws['AI24'].value = '%.1f'%Er_C_VI
-				ws['AI25'].value = '%.1f'%sigma_C_VI
+				ws['AI23'].value = my_round(mean_C_VI, razryad)
+				ws['AI24'].value = my_round(Er_C_VI, 1)
+				ws['AI25'].value = my_round(sigma_C_VI, 1)
 
-				ws['AI26'].value = razryad%(mean_QCF1_QCF2_QCF3)
-				ws['AI27'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2_QCF3
-				ws['AI28'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2_QCF3
+				ws['AI26'].value = my_round(mean_QCF1_QCF2_QCF3, razryad)
+				ws['AI27'].value = my_round(CV_vnytr_gr_QCF1_QCF2_QCF3, 1)
+				ws['AI28'].value = my_round(CV_mezhdy_gr_QCF1_QCF2_QCF3, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['AI29'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
@@ -11747,87 +10947,87 @@ def calc():
 		if check_var_gr_3.get() == 6:
 			ws['AC24'].value = 'найдено, сред.зн., \nнг/мл (n=6)'
 			ws['AC24'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AC25'].value = 'εr, % (n=6)'
-			ws['AC26'].value = 'σr, % (n=6)'
+			ws['AC25'].value = 'εR, % (n=6)'
+			ws['AC26'].value = 'σR, % (n=6)'
 			
 			ws['AC27'].value = 'найдено, сред.зн.,\nнг/мл (n=18)'
 			ws['AC27'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AC28'].value = 'εr, % (n=18)'
-			ws['AC29'].value = 'σr, % (n=18)'
+			ws['AC28'].value = 'εR, % (n=18)'
+			ws['AC29'].value = 'σR, % (n=18)'
 			ws['AC30'].value = 'Норма |ε| и |σ|, %'
 
-			ws['AD24'].value = razryad%(mean_C_I)
-			ws['AD25'].value = '%.1f'%Er_C_I
-			ws['AD26'].value = '%.1f'%sigma_C_I
+			ws['AD24'].value = my_round(mean_C_I, razryad)
+			ws['AD25'].value = my_round(Er_C_I, 1)
+			ws['AD26'].value = my_round(sigma_C_I, 1)
 
-			ws['AD27'].value = razryad%(mean_QCA1_QCA2_QCA3)
-			ws['AD28'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2_QCA3
-			ws['AD29'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2_QCA3
+			ws['AD27'].value = my_round(mean_QCA1_QCA2_QCA3, razryad)
+			ws['AD28'].value = my_round(CV_vnytr_gr_QCA1_QCA2_QCA3, 1)
+			ws['AD29'].value = my_round(CV_mezhdy_gr_QCA1_QCA2_QCA3, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['AD30'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
 				ws['AD30'].value = '≤20'
 
 			if check_var_gr_1.get() >= 2:
-				ws['AE24'].value = razryad%(mean_C_II)
-				ws['AE25'].value = '%.1f'%Er_C_II
-				ws['AE26'].value = '%.1f'%sigma_C_II
+				ws['AE24'].value = my_round(mean_C_II, razryad)
+				ws['AE25'].value = my_round(Er_C_II, 1)
+				ws['AE26'].value = my_round(sigma_C_II, 1)
 
-				ws['AE27'].value = razryad%(mean_QCB1_QCB2_QCB3)
-				ws['AE28'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2_QCB3
-				ws['AE29'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2_QCB3
+				ws['AE27'].value = my_round(mean_QCB1_QCB2_QCB3, razryad)
+				ws['AE28'].value = my_round(CV_vnytr_gr_QCB1_QCB2_QCB3, 1)
+				ws['AE29'].value = my_round(CV_mezhdy_gr_QCB1_QCB2_QCB3, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['AE30'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['AE30'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['AF24'].value = razryad%(mean_C_III)
-				ws['AF25'].value = '%.1f'%Er_C_III
-				ws['AF26'].value = '%.1f'%sigma_C_III
+				ws['AF24'].value = my_round(mean_C_III, razryad)
+				ws['AF25'].value = my_round(Er_C_III, 1)
+				ws['AF26'].value = my_round(sigma_C_III, 1)
 
-				ws['AF27'].value = razryad%(mean_QCC1_QCC2_QCC3)
-				ws['AF28'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2_QCC3
-				ws['AF29'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2_QCC3
+				ws['AF27'].value = my_round(mean_QCC1_QCC2_QCC3, razryad)
+				ws['AF28'].value = my_round(CV_vnytr_gr_QCC1_QCC2_QCC3, 1)
+				ws['AF29'].value = my_round(CV_mezhdy_gr_QCC1_QCC2_QCC3, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['AF30'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['AF30'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['AG24'].value = razryad%(mean_C_IV)
-				ws['AG25'].value = '%.1f'%Er_C_IV
-				ws['AG26'].value = '%.1f'%sigma_C_IV
+				ws['AG24'].value = my_round(mean_C_IV, razryad)
+				ws['AG25'].value = my_round(Er_C_IV, 1)
+				ws['AG26'].value = my_round(sigma_C_IV, 1)
 
-				ws['AG27'].value = razryad%(mean_QCD1_QCD2_QCD3)
-				ws['AG28'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2_QCD3
-				ws['AG29'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2_QCD3
+				ws['AG27'].value = my_round(mean_QCD1_QCD2_QCD3, razryad)
+				ws['AG28'].value = my_round(CV_vnytr_gr_QCD1_QCD2_QCD3, 1)
+				ws['AG29'].value = my_round(CV_mezhdy_gr_QCD1_QCD2_QCD3, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['AG30'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['AG30'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['AH24'].value = razryad%(mean_C_V)
-				ws['AH25'].value = '%.1f'%Er_C_V
-				ws['AH26'].value = '%.1f'%sigma_C_V
+				ws['AH24'].value = my_round(mean_C_V, razryad)
+				ws['AH25'].value = my_round(Er_C_V, 1)
+				ws['AH26'].value = my_round(sigma_C_V, 1)
 
-				ws['AH27'].value = razryad%(mean_QCE1_QCE2_QCE3)
-				ws['AH28'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2_QCE3
-				ws['AH29'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2_QCE3
+				ws['AH27'].value = my_round(mean_QCE1_QCE2_QCE3, razryad)
+				ws['AH28'].value = my_round(CV_vnytr_gr_QCE1_QCE2_QCE3, 1)
+				ws['AH29'].value = my_round(CV_mezhdy_gr_QCE1_QCE2_QCE3, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['AH30'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['AH30'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['AI24'].value = razryad%(mean_C_VI)
-				ws['AI25'].value = '%.1f'%Er_C_VI
-				ws['AI26'].value = '%.1f'%sigma_C_VI
+				ws['AI24'].value = my_round(mean_C_VI, razryad)
+				ws['AI25'].value = my_round(Er_C_VI, 1)
+				ws['AI26'].value = my_round(sigma_C_VI, 1)
 
-				ws['AI27'].value = razryad%(mean_QCF1_QCF2_QCF3)
-				ws['AI28'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2_QCF3
-				ws['AI29'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2_QCF3
+				ws['AI27'].value = my_round(mean_QCF1_QCF2_QCF3, razryad)
+				ws['AI28'].value = my_round(CV_vnytr_gr_QCF1_QCF2_QCF3, 1)
+				ws['AI29'].value = my_round(CV_mezhdy_gr_QCF1_QCF2_QCF3, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['AI30'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
@@ -11836,87 +11036,87 @@ def calc():
 		if check_var_gr_3.get() == 7:
 			ws['AC25'].value = 'найдено, сред.зн., \nнг/мл (n=7)'
 			ws['AC25'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AC26'].value = 'εr, % (n=7)'
-			ws['AC27'].value = 'σr, % (n=7)'
+			ws['AC26'].value = 'εR, % (n=7)'
+			ws['AC27'].value = 'σR, % (n=7)'
 			
 			ws['AC28'].value = 'найдено, сред.зн.,\nнг/мл (n=21)'
 			ws['AC28'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AC29'].value = 'εr, % (n=21)'
-			ws['AC30'].value = 'σr, % (n=21)'
+			ws['AC29'].value = 'εR, % (n=21)'
+			ws['AC30'].value = 'σR, % (n=21)'
 			ws['AC31'].value = 'Норма |ε| и |σ|, %'
 
-			ws['AD25'].value = razryad%(mean_C_I)
-			ws['AD26'].value = '%.1f'%Er_C_I
-			ws['AD27'].value = '%.1f'%sigma_C_I
+			ws['AD25'].value = my_round(mean_C_I, razryad)
+			ws['AD26'].value = my_round(Er_C_I, 1)
+			ws['AD27'].value = my_round(sigma_C_I, 1)
 
-			ws['AD28'].value = razryad%(mean_QCA1_QCA2_QCA3)
-			ws['AD29'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2_QCA3
-			ws['AD30'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2_QCA3
+			ws['AD28'].value = my_round(mean_QCA1_QCA2_QCA3, razryad)
+			ws['AD29'].value = my_round(CV_vnytr_gr_QCA1_QCA2_QCA3, 1)
+			ws['AD30'].value = my_round(CV_mezhdy_gr_QCA1_QCA2_QCA3, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['AD31'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
 				ws['AD31'].value = '≤20'
 
 			if check_var_gr_1.get() >= 2:
-				ws['AE25'].value = razryad%(mean_C_II)
-				ws['AE26'].value = '%.1f'%Er_C_II
-				ws['AE27'].value = '%.1f'%sigma_C_II
+				ws['AE25'].value = my_round(mean_C_II, razryad)
+				ws['AE26'].value = my_round(Er_C_II, 1)
+				ws['AE27'].value = my_round(sigma_C_II, 1)
 
-				ws['AE28'].value = razryad%(mean_QCB1_QCB2_QCB3)
-				ws['AE29'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2_QCB3
-				ws['AE30'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2_QCB3
+				ws['AE28'].value = my_round(mean_QCB1_QCB2_QCB3, razryad)
+				ws['AE29'].value = my_round(CV_vnytr_gr_QCB1_QCB2_QCB3, 1)
+				ws['AE30'].value = my_round(CV_mezhdy_gr_QCB1_QCB2_QCB3, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['AE31'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['AE31'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['AF25'].value = razryad%(mean_C_III)
-				ws['AF26'].value = '%.1f'%Er_C_III
-				ws['AF27'].value = '%.1f'%sigma_C_III
+				ws['AF25'].value = my_round(mean_C_III, razryad)
+				ws['AF26'].value = my_round(Er_C_III, 1)
+				ws['AF27'].value = my_round(sigma_C_III, 1)
 
-				ws['AF28'].value = razryad%(mean_QCC1_QCC2_QCC3)
-				ws['AF29'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2_QCC3
-				ws['AF30'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2_QCC3
+				ws['AF28'].value = my_round(mean_QCC1_QCC2_QCC3, razryad)
+				ws['AF29'].value = my_round(CV_vnytr_gr_QCC1_QCC2_QCC3, 1)
+				ws['AF30'].value = my_round(CV_mezhdy_gr_QCC1_QCC2_QCC3, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['AF31'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['AF31'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['AG25'].value = razryad%(mean_C_IV)
-				ws['AG26'].value = '%.1f'%Er_C_IV
-				ws['AG27'].value = '%.1f'%sigma_C_IV
+				ws['AG25'].value = my_round(mean_C_IV, razryad)
+				ws['AG26'].value = my_round(Er_C_IV, 1)
+				ws['AG27'].value = my_round(sigma_C_IV, 1)
 
-				ws['AG28'].value = razryad%(mean_QCD1_QCD2_QCD3)
-				ws['AG29'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2_QCD3
-				ws['AG30'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2_QCD3
+				ws['AG28'].value = my_round(mean_QCD1_QCD2_QCD3, razryad)
+				ws['AG29'].value = my_round(CV_vnytr_gr_QCD1_QCD2_QCD3, 1)
+				ws['AG30'].value = my_round(CV_mezhdy_gr_QCD1_QCD2_QCD3, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['AG31'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['AG31'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['AH25'].value = razryad%(mean_C_V)
-				ws['AH26'].value = '%.1f'%Er_C_V
-				ws['AH27'].value = '%.1f'%sigma_C_V
+				ws['AH25'].value = my_round(mean_C_V, razryad)
+				ws['AH26'].value = my_round(Er_C_V, 1)
+				ws['AH27'].value = my_round(sigma_C_V, 1)
 
-				ws['AH28'].value = razryad%(mean_QCE1_QCE2_QCE3)
-				ws['AH29'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2_QCE3
-				ws['AH30'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2_QCE3
+				ws['AH28'].value = my_round(mean_QCE1_QCE2_QCE3, razryad)
+				ws['AH29'].value = my_round(CV_vnytr_gr_QCE1_QCE2_QCE3, 1)
+				ws['AH30'].value = my_round(CV_mezhdy_gr_QCE1_QCE2_QCE3, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['AH31'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['AH31'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['AI25'].value = razryad%(mean_C_VI)
-				ws['AI26'].value = '%.1f'%Er_C_VI
-				ws['AI27'].value = '%.1f'%sigma_C_VI
+				ws['AI25'].value = my_round(mean_C_VI, razryad)
+				ws['AI26'].value = my_round(Er_C_VI, 1)
+				ws['AI27'].value = my_round(sigma_C_VI, 1)
 
-				ws['AI28'].value = razryad%(mean_QCF1_QCF2_QCF3)
-				ws['AI29'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2_QCF3
-				ws['AI30'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2_QCF3
+				ws['AI28'].value = my_round(mean_QCF1_QCF2_QCF3, razryad)
+				ws['AI29'].value = my_round(CV_vnytr_gr_QCF1_QCF2_QCF3, 1)
+				ws['AI30'].value = my_round(CV_mezhdy_gr_QCF1_QCF2_QCF3, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['AI31'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
@@ -11925,22 +11125,22 @@ def calc():
 		if check_var_gr_3.get() == 8:
 			ws['AC26'].value = 'найдено, сред.зн., \nнг/мл (n=8)'
 			ws['AC26'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AC27'].value = 'εr, % (n=8)'
-			ws['AC28'].value = 'σr, % (n=8)'
+			ws['AC27'].value = 'εR, % (n=8)'
+			ws['AC28'].value = 'σR, % (n=8)'
 			
 			ws['AC29'].value = 'найдено, сред.зн.,\nнг/мл (n=24)'
 			ws['AC29'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AC30'].value = 'εr, % (n=24)'
-			ws['AC30'].value = 'σr, % (n=24)'
+			ws['AC30'].value = 'εR, % (n=24)'
+			ws['AC30'].value = 'σR, % (n=24)'
 			ws['AC31'].value = 'Норма |ε| и |σ|, %'
 
-			ws['AD26'].value = razryad%(mean_C_I)
-			ws['AD27'].value = '%.1f'%Er_C_I
-			ws['AD28'].value = '%.1f'%sigma_C_I
+			ws['AD26'].value = my_round(mean_C_I, razryad)
+			ws['AD27'].value = my_round(Er_C_I, 1)
+			ws['AD28'].value = my_round(sigma_C_I, 1)
 
-			ws['AD29'].value = razryad%(mean_QCA1_QCA2_QCA3)
-			ws['AD30'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2_QCA3
-			ws['AD31'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2_QCA3
+			ws['AD29'].value = my_round(mean_QCA1_QCA2_QCA3, razryad)
+			ws['AD30'].value = my_round(CV_vnytr_gr_QCA1_QCA2_QCA3, 1)
+			ws['AD31'].value = my_round(CV_mezhdy_gr_QCA1_QCA2_QCA3, 1)
 
 			if entr_NORM_QCA1.get() != '':
 				ws['AD32'].value = '≤{}'.format(entr_NORM_QCA1.get())
@@ -11948,65 +11148,65 @@ def calc():
 				ws['AD32'].value = '≤20'
 
 			if check_var_gr_1.get() >= 2:
-				ws['AE26'].value = razryad%(mean_C_II)
-				ws['AE27'].value = '%.1f'%Er_C_II
-				ws['AE28'].value = '%.1f'%sigma_C_II
+				ws['AE26'].value = my_round(mean_C_II, razryad)
+				ws['AE27'].value = my_round(Er_C_II, 1)
+				ws['AE28'].value = my_round(sigma_C_II, 1)
 
-				ws['AE29'].value = razryad%(mean_QCB1_QCB2_QCB3)
-				ws['AE30'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2_QCB3
-				ws['AE31'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2_QCB3
+				ws['AE29'].value = my_round(mean_QCB1_QCB2_QCB3, razryad)
+				ws['AE30'].value = my_round(CV_vnytr_gr_QCB1_QCB2_QCB3, 1)
+				ws['AE31'].value = my_round(CV_mezhdy_gr_QCB1_QCB2_QCB3, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['AE32'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['AE32'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['AF26'].value = razryad%(mean_C_III)
-				ws['AF27'].value = '%.1f'%Er_C_III
-				ws['AF28'].value = '%.1f'%sigma_C_III
+				ws['AF26'].value = my_round(mean_C_III, razryad)
+				ws['AF27'].value = my_round(Er_C_III, 1)
+				ws['AF28'].value = my_round(sigma_C_III, 1)
 
-				ws['AF29'].value = razryad%(mean_QCC1_QCC2_QCC3)
-				ws['AF30'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2_QCC3
-				ws['AF31'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2_QCC3
+				ws['AF29'].value = my_round(mean_QCC1_QCC2_QCC3, razryad)
+				ws['AF30'].value = my_round(CV_vnytr_gr_QCC1_QCC2_QCC3, 1)
+				ws['AF31'].value = my_round(CV_mezhdy_gr_QCC1_QCC2_QCC3, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['AF32'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['AF32'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['AG26'].value = razryad%(mean_C_IV)
-				ws['AG27'].value = '%.1f'%Er_C_IV
-				ws['AG28'].value = '%.1f'%sigma_C_IV
+				ws['AG26'].value = my_round(mean_C_IV, razryad)
+				ws['AG27'].value = my_round(Er_C_IV, 1)
+				ws['AG28'].value = my_round(sigma_C_IV, 1)
 
-				ws['AG29'].value = razryad%(mean_QCD1_QCD2_QCD3)
-				ws['AG30'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2_QCD3
-				ws['AG31'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2_QCD3
+				ws['AG29'].value = my_round(mean_QCD1_QCD2_QCD3, razryad)
+				ws['AG30'].value = my_round(CV_vnytr_gr_QCD1_QCD2_QCD3, 1)
+				ws['AG31'].value = my_round(CV_mezhdy_gr_QCD1_QCD2_QCD3, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['AG32'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['AG32'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['AH26'].value = razryad%(mean_C_V)
-				ws['AH27'].value = '%.1f'%Er_C_V
-				ws['AH28'].value = '%.1f'%sigma_C_V
+				ws['AH26'].value = my_round(mean_C_V, razryad)
+				ws['AH27'].value = my_round(Er_C_V, 1)
+				ws['AH28'].value = my_round(sigma_C_V, 1)
 
-				ws['AH29'].value = razryad%(mean_QCE1_QCE2_QCE3)
-				ws['AH30'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2_QCE3
-				ws['AH31'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2_QCE3
+				ws['AH29'].value = my_round(mean_QCE1_QCE2_QCE3, razryad)
+				ws['AH30'].value = my_round(CV_vnytr_gr_QCE1_QCE2_QCE3, 1)
+				ws['AH31'].value = my_round(CV_mezhdy_gr_QCE1_QCE2_QCE3, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['AH32'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['AH32'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['AI26'].value = razryad%(mean_C_VI)
-				ws['AI27'].value = '%.1f'%Er_C_VI
-				ws['AI28'].value = '%.1f'%sigma_C_VI
+				ws['AI26'].value = my_round(mean_C_VI, razryad)
+				ws['AI27'].value = my_round(Er_C_VI, 1)
+				ws['AI28'].value = my_round(sigma_C_VI, 1)
 
-				ws['AI29'].value = razryad%(mean_QCF1_QCF2_QCF3)
-				ws['AI30'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2_QCF3
-				ws['AI31'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2_QCF3
+				ws['AI29'].value = my_round(mean_QCF1_QCF2_QCF3, razryad)
+				ws['AI30'].value = my_round(CV_vnytr_gr_QCF1_QCF2_QCF3, 1)
+				ws['AI31'].value = my_round(CV_mezhdy_gr_QCF1_QCF2_QCF3, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['AI32'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
@@ -12015,35 +11215,35 @@ def calc():
 		if check_var_gr_3.get() == 9:
 			ws['AC27'].value = 'найдено, сред.зн., \nнг/мл (n=9)'
 			ws['AC27'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AC28'].value = 'εr, % (n=9)'
-			ws['AC29'].value = 'σr, % (n=9)'
+			ws['AC28'].value = 'εR, % (n=9)'
+			ws['AC29'].value = 'σR, % (n=9)'
 			
 			ws['AC30'].value = 'найдено, сред.зн.,\nнг/мл (n=27)'
 			ws['AC30'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AC31'].value = 'εr, % (n=27)'
-			ws['AC32'].value = 'σr, % (n=27)'
+			ws['AC31'].value = 'εR, % (n=27)'
+			ws['AC32'].value = 'σR, % (n=27)'
 			ws['AC33'].value = 'Норма |ε| и |σ|, %'
 
-			ws['AD27'].value = razryad%(mean_C_I)
-			ws['AD28'].value = '%.1f'%Er_C_I
-			ws['AD29'].value = '%.1f'%sigma_C_I
+			ws['AD27'].value = my_round(mean_C_I, razryad)
+			ws['AD28'].value = my_round(Er_C_I, 1)
+			ws['AD29'].value = my_round(sigma_C_I, 1)
 
-			ws['AD30'].value = razryad%(mean_QCA1_QCA2_QCA3)
-			ws['AD31'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2_QCA3
-			ws['AD32'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2_QCA3
+			ws['AD30'].value = my_round(mean_QCA1_QCA2_QCA3, razryad)
+			ws['AD31'].value = my_round(CV_vnytr_gr_QCA1_QCA2_QCA3, 1)
+			ws['AD32'].value = my_round(CV_mezhdy_gr_QCA1_QCA2_QCA3, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['AD33'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
 				ws['AD33'].value = '≤20'
 
 			if check_var_gr_1.get() >= 2:
-				ws['AE27'].value = razryad%(mean_C_II)
-				ws['AE28'].value = '%.1f'%Er_C_II
-				ws['AE29'].value = '%.1f'%sigma_C_II
+				ws['AE27'].value = my_round(mean_C_II, razryad)
+				ws['AE28'].value = my_round(Er_C_II, 1)
+				ws['AE29'].value = my_round(sigma_C_II, 1)
 
-				ws['AE30'].value = razryad%(mean_QCB1_QCB2_QCB3)
-				ws['AE31'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2_QCB3
-				ws['AE32'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2_QCB3
+				ws['AE30'].value = my_round(mean_QCB1_QCB2_QCB3, razryad)
+				ws['AE31'].value = my_round(CV_vnytr_gr_QCB1_QCB2_QCB3, 1)
+				ws['AE32'].value = my_round(CV_mezhdy_gr_QCB1_QCB2_QCB3, 1)
 
 				if entr_NORM_QCB1.get() != '':
 					ws['AE33'].value = '≤{}'.format(entr_NORM_QCB1.get())
@@ -12051,52 +11251,52 @@ def calc():
 					ws['AE33'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['AF27'].value = razryad%(mean_C_III)
-				ws['AF28'].value = '%.1f'%Er_C_III
-				ws['AF29'].value = '%.1f'%sigma_C_III
+				ws['AF27'].value = my_round(mean_C_III, razryad)
+				ws['AF28'].value = my_round(Er_C_III, 1)
+				ws['AF29'].value = my_round(sigma_C_III, 1)
 
-				ws['AF30'].value = razryad%(mean_QCC1_QCC2_QCC3)
-				ws['AF31'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2_QCC3
-				ws['AF32'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2_QCC3
+				ws['AF30'].value = my_round(mean_QCC1_QCC2_QCC3, razryad)
+				ws['AF31'].value = my_round(CV_vnytr_gr_QCC1_QCC2_QCC3, 1)
+				ws['AF32'].value = my_round(CV_mezhdy_gr_QCC1_QCC2_QCC3, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['AF33'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['AF33'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['AG27'].value = razryad%(mean_C_IV)
-				ws['AG28'].value = '%.1f'%Er_C_IV
-				ws['AG29'].value = '%.1f'%sigma_C_IV
+				ws['AG27'].value = my_round(mean_C_IV, razryad)
+				ws['AG28'].value = my_round(Er_C_IV, 1)
+				ws['AG29'].value = my_round(sigma_C_IV, 1)
 
-				ws['AG30'].value = razryad%(mean_QCD1_QCD2_QCD3)
-				ws['AG31'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2_QCD3
-				ws['AG32'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2_QCD3
+				ws['AG30'].value = my_round(mean_QCD1_QCD2_QCD3, razryad)
+				ws['AG31'].value = my_round(CV_vnytr_gr_QCD1_QCD2_QCD3, 1)
+				ws['AG32'].value = my_round(CV_mezhdy_gr_QCD1_QCD2_QCD3, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['AG33'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['AG33'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['AH27'].value = razryad%(mean_C_V)
-				ws['AH28'].value = '%.1f'%Er_C_V
-				ws['AH29'].value = '%.1f'%sigma_C_V
+				ws['AH27'].value = my_round(mean_C_V, razryad)
+				ws['AH28'].value = my_round(Er_C_V, 1)
+				ws['AH29'].value = my_round(sigma_C_V, 1)
 
-				ws['AH30'].value = razryad%(mean_QCE1_QCE2_QCE3)
-				ws['AH31'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2_QCE3
-				ws['AH32'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2_QCE3
+				ws['AH30'].value = my_round(mean_QCE1_QCE2_QCE3, razryad)
+				ws['AH31'].value = my_round(CV_vnytr_gr_QCE1_QCE2_QCE3, 1)
+				ws['AH32'].value = my_round(CV_mezhdy_gr_QCE1_QCE2_QCE3, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['AH33'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['AH33'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['AI27'].value = razryad%(mean_C_VI)
-				ws['AI28'].value = '%.1f'%Er_C_VI
-				ws['AI29'].value = '%.1f'%sigma_C_VI
+				ws['AI27'].value = my_round(mean_C_VI, razryad)
+				ws['AI28'].value = my_round(Er_C_VI, 1)
+				ws['AI29'].value = my_round(sigma_C_VI, 1)
 
-				ws['AI30'].value = razryad%(mean_QCF1_QCF2_QCF3)
-				ws['AI31'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2_QCF3
-				ws['AI32'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2_QCF3
+				ws['AI30'].value = my_round(mean_QCF1_QCF2_QCF3, razryad)
+				ws['AI31'].value = my_round(CV_vnytr_gr_QCF1_QCF2_QCF3, 1)
+				ws['AI32'].value = my_round(CV_mezhdy_gr_QCF1_QCF2_QCF3, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['AI33'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
@@ -12106,87 +11306,87 @@ def calc():
 		if check_var_gr_3.get() == 10:
 			ws['AC28'].value = 'найдено, сред.зн., \nнг/мл (n=10)'
 			ws['AC28'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AC29'].value = 'εr, % (n=10)'
-			ws['AC30'].value = 'σr, % (n=10)'
+			ws['AC29'].value = 'εR, % (n=10)'
+			ws['AC30'].value = 'σR, % (n=10)'
 			
 			ws['AC31'].value = 'найдено, сред.зн.,\nнг/мл (n=30)'
 			ws['AC31'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AC32'].value = 'εr, % (n=30)'
-			ws['AC33'].value = 'σr, % (n=30)'
+			ws['AC32'].value = 'εR, % (n=30)'
+			ws['AC33'].value = 'σR, % (n=30)'
 			ws['AC34'].value = 'Норма |ε| и |σ|, %'
 
-			ws['AD28'].value = razryad%(mean_C_I)
-			ws['AD29'].value = '%.1f'%Er_C_I
-			ws['AD30'].value = '%.1f'%sigma_C_I
+			ws['AD28'].value = my_round(mean_C_I, razryad)
+			ws['AD29'].value = my_round(Er_C_I, 1)
+			ws['AD30'].value = my_round(sigma_C_I, 1)
 
-			ws['AD31'].value = razryad%(mean_QCA1_QCA2_QCA3)
-			ws['AD32'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2_QCA3
-			ws['AD33'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2_QCA3
+			ws['AD31'].value = my_round(mean_QCA1_QCA2_QCA3, razryad)
+			ws['AD32'].value = my_round(CV_vnytr_gr_QCA1_QCA2_QCA3, 1)
+			ws['AD33'].value = my_round(CV_mezhdy_gr_QCA1_QCA2_QCA3, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['AD34'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
 				ws['AD34'].value = '≤20'
 
 			if check_var_gr_1.get() >= 2:
-				ws['AE28'].value = razryad%(mean_C_II)
-				ws['AE29'].value = '%.1f'%Er_C_II
-				ws['AE30'].value = '%.1f'%sigma_C_II
+				ws['AE28'].value = my_round(mean_C_II, razryad)
+				ws['AE29'].value = my_round(Er_C_II, 1)
+				ws['AE30'].value = my_round(sigma_C_II, 1)
 
-				ws['AE31'].value = razryad%(mean_QCB1_QCB2_QCB3)
-				ws['AE32'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2_QCB3
-				ws['AE33'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2_QCB3
+				ws['AE31'].value = my_round(mean_QCB1_QCB2_QCB3, razryad)
+				ws['AE32'].value = my_round(CV_vnytr_gr_QCB1_QCB2_QCB3, 1)
+				ws['AE33'].value = my_round(CV_mezhdy_gr_QCB1_QCB2_QCB3, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['AE34'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['AE34'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['AF28'].value = razryad%(mean_C_III)
-				ws['AF29'].value = '%.1f'%Er_C_III
-				ws['AF30'].value = '%.1f'%sigma_C_III
+				ws['AF28'].value = my_round(mean_C_III, razryad)
+				ws['AF29'].value = my_round(Er_C_III, 1)
+				ws['AF30'].value = my_round(sigma_C_III, 1)
 
-				ws['AF31'].value = razryad%(mean_QCC1_QCC2_QCC3)
-				ws['AF32'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2_QCC3
-				ws['AF33'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2_QCC3
+				ws['AF31'].value = my_round(mean_QCC1_QCC2_QCC3, razryad)
+				ws['AF32'].value = my_round(CV_vnytr_gr_QCC1_QCC2_QCC3, 1)
+				ws['AF33'].value = my_round(CV_mezhdy_gr_QCC1_QCC2_QCC3, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['AF34'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['AF34'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['AG28'].value = razryad%(mean_C_IV)
-				ws['AG29'].value = '%.1f'%Er_C_IV
-				ws['AG30'].value = '%.1f'%sigma_C_IV
+				ws['AG28'].value = my_round(mean_C_IV, razryad)
+				ws['AG29'].value = my_round(Er_C_IV, 1)
+				ws['AG30'].value = my_round(sigma_C_IV, 1)
 
-				ws['AG31'].value = razryad%(mean_QCD1_QCD2_QCD3)
-				ws['AG32'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2_QCD3
-				ws['AG33'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2_QCD3
+				ws['AG31'].value = my_round(mean_QCD1_QCD2_QCD3, razryad)
+				ws['AG32'].value = my_round(CV_vnytr_gr_QCD1_QCD2_QCD3, 1)
+				ws['AG33'].value = my_round(CV_mezhdy_gr_QCD1_QCD2_QCD3, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['AG34'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['AG34'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['AH28'].value = razryad%(mean_C_V)
-				ws['AH29'].value = '%.1f'%Er_C_V
-				ws['AH30'].value = '%.1f'%sigma_C_V
+				ws['AH28'].value = my_round(mean_C_V, razryad)
+				ws['AH29'].value = my_round(Er_C_V, 1)
+				ws['AH30'].value = my_round(sigma_C_V, 1)
 
-				ws['AH31'].value = razryad%(mean_QCE1_QCE2_QCE3)
-				ws['AH32'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2_QCE3
-				ws['AH33'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2_QCE3
+				ws['AH31'].value = my_round(mean_QCE1_QCE2_QCE3, razryad)
+				ws['AH32'].value = my_round(CV_vnytr_gr_QCE1_QCE2_QCE3, 1)
+				ws['AH33'].value = my_round(CV_mezhdy_gr_QCE1_QCE2_QCE3, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['AH34'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['AH34'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['AI28'].value = razryad%(mean_C_VI)
-				ws['AI29'].value = '%.1f'%Er_C_VI
-				ws['AI30'].value = '%.1f'%sigma_C_VI
+				ws['AI28'].value = my_round(mean_C_VI, razryad)
+				ws['AI29'].value = my_round(Er_C_VI, 1)
+				ws['AI30'].value = my_round(sigma_C_VI, 1)
 
-				ws['AI31'].value = razryad%(mean_QCF1_QCF2_QCF3)
-				ws['AI32'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2_QCF3
-				ws['AI33'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2_QCF3
+				ws['AI31'].value = my_round(mean_QCF1_QCF2_QCF3, razryad)
+				ws['AI32'].value = my_round(CV_vnytr_gr_QCF1_QCF2_QCF3, 1)
+				ws['AI33'].value = my_round(CV_mezhdy_gr_QCF1_QCF2_QCF3, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['AI34'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
@@ -12200,165 +11400,165 @@ def calc():
 			ws['AE15'].value = 'QCB3'
 			ws['AE16'].value = QC_II
 			ws['N2'].value = 'QCB3'
-			ws['AE18'].value = razryad%(float(entr_C1_II.get()))
-			ws['N3'].value = razryad%(float(entr_C1_II.get()))
-			ws['AE19'].value = razryad%(float(entr_C2_II.get()))
-			ws['N4'].value = razryad%(float(entr_C2_II.get()))
-			ws['AE20'].value = razryad%(float(entr_C3_II.get()))
-			ws['N5'].value = razryad%(float(entr_C3_II.get()))
+			ws['AE18'].value = my_round(float(entr_C1_II.get()), razryad)
+			ws['N3'].value = my_round(float(entr_C1_II.get()), razryad)
+			ws['AE19'].value = my_round(float(entr_C2_II.get()), razryad)
+			ws['N4'].value = my_round(float(entr_C2_II.get()), razryad)
+			ws['AE20'].value = my_round(float(entr_C3_II.get()), razryad)
+			ws['N5'].value = my_round(float(entr_C3_II.get()), razryad)
 			if check_var_gr_3.get() >= 4:
-				ws['AE21'].value = razryad%(float(entr_C4_II.get()))
-				ws['N6'].value = razryad%(float(entr_C4_II.get()))
+				ws['AE21'].value = my_round(float(entr_C4_II.get()), razryad)
+				ws['N6'].value = my_round(float(entr_C4_II.get()), razryad)
 			if check_var_gr_3.get() >= 5:
-				ws['AE22'].value = razryad%(float(entr_C5_II.get()))
-				ws['N7'].value = razryad%(float(entr_C5_II.get()))
+				ws['AE22'].value = my_round(float(entr_C5_II.get()), razryad)
+				ws['N7'].value = my_round(float(entr_C5_II.get()), razryad)
 			if check_var_gr_3.get() >= 6:	
-				ws['AE23'].value = razryad%(float(entr_C6_II.get()))
-				ws['N8'].value = razryad%(float(entr_C6_II.get()))
+				ws['AE23'].value = my_round(float(entr_C6_II.get()), razryad)
+				ws['N8'].value = my_round(float(entr_C6_II.get()), razryad)
 			if check_var_gr_3.get() >= 7:	
-				ws['AE24'].value = razryad%(float(entr_C7_II.get()))
-				ws['N9'].value = razryad%(float(entr_C7_II.get()))
+				ws['AE24'].value = my_round(float(entr_C7_II.get()), razryad)
+				ws['N9'].value = my_round(float(entr_C7_II.get()), razryad)
 			if check_var_gr_3.get() >= 8:	
-				ws['AE25'].value = razryad%(float(entr_C8_II.get()))
-				ws['N10'].value = razryad%(float(entr_C8_II.get()))
+				ws['AE25'].value = my_round(float(entr_C8_II.get()), razryad)
+				ws['N10'].value = my_round(float(entr_C8_II.get()), razryad)
 			if check_var_gr_3.get() >= 9:	
-				ws['AE26'].value = razryad%(float(entr_C9_II.get()))
-				ws['N11'].value = razryad%(float(entr_C9_II.get()))
+				ws['AE26'].value = my_round(float(entr_C9_II.get()), razryad)
+				ws['N11'].value = my_round(float(entr_C9_II.get()), razryad)
 			if check_var_gr_3.get() >= 10:	
-				ws['AE27'].value = razryad%(float(entr_C10_II.get()))
-				ws['N12'].value = razryad%(float(entr_C10_II.get()))
+				ws['AE27'].value = my_round(float(entr_C10_II.get()), razryad)
+				ws['N12'].value = my_round(float(entr_C10_II.get()), razryad)
 
 		if check_var_gr_1.get() >= 3:
 			#QCC3
 			ws['AF15'].value = 'QCC3'
 			ws['AF16'].value = QC_III
 			ws['W2'].value = 'QCC3'
-			ws['AF18'].value = razryad%(float(entr_C1_III.get()))
-			ws['W3'].value = razryad%(float(entr_C1_III.get()))
-			ws['AF19'].value = razryad%(float(entr_C2_III.get()))
-			ws['W4'].value = razryad%(float(entr_C2_III.get()))
-			ws['AF20'].value = razryad%(float(entr_C3_III.get()))
-			ws['W5'].value = razryad%(float(entr_C3_III.get()))
+			ws['AF18'].value = my_round(float(entr_C1_III.get()), razryad)
+			ws['W3'].value = my_round(float(entr_C1_III.get()), razryad)
+			ws['AF19'].value = my_round(float(entr_C2_III.get()), razryad)
+			ws['W4'].value = my_round(float(entr_C2_III.get()), razryad)
+			ws['AF20'].value = my_round(float(entr_C3_III.get()), razryad)
+			ws['W5'].value = my_round(float(entr_C3_III.get()), razryad)
 			if check_var_gr_3.get() >= 4:
-				ws['AF21'].value = razryad%(float(entr_C4_III.get()))
-				ws['W6'].value = razryad%(float(entr_C4_III.get()))
+				ws['AF21'].value = my_round(float(entr_C4_III.get()), razryad)
+				ws['W6'].value = my_round(float(entr_C4_III.get()), razryad)
 			if check_var_gr_3.get() >= 5:
-				ws['AF22'].value = razryad%(float(entr_C5_III.get()))
-				ws['W7'].value = razryad%(float(entr_C5_III.get()))
+				ws['AF22'].value = my_round(float(entr_C5_III.get()), razryad)
+				ws['W7'].value = my_round(float(entr_C5_III.get()), razryad)
 			if check_var_gr_3.get() >= 6:	
-				ws['AF23'].value = razryad%(float(entr_C6_III.get()))
-				ws['W8'].value = razryad%(float(entr_C6_III.get()))
+				ws['AF23'].value = my_round(float(entr_C6_III.get()), razryad)
+				ws['W8'].value = my_round(float(entr_C6_III.get()), razryad)
 			if check_var_gr_3.get() >= 7:	
-				ws['AF24'].value = razryad%(float(entr_C7_III.get()))
-				ws['W9'].value = razryad%(float(entr_C7_III.get()))
+				ws['AF24'].value = my_round(float(entr_C7_III.get()), razryad)
+				ws['W9'].value = my_round(float(entr_C7_III.get()), razryad)
 			if check_var_gr_3.get() >= 8:	
-				ws['AF25'].value = razryad%(float(entr_C8_III.get()))
-				ws['W10'].value = razryad%(float(entr_C8_III.get()))
+				ws['AF25'].value = my_round(float(entr_C8_III.get()), razryad)
+				ws['W10'].value = my_round(float(entr_C8_III.get()), razryad)
 			if check_var_gr_3.get() >= 9:	
-				ws['AF26'].value = razryad%(float(entr_C9_III.get()))
-				ws['W11'].value = razryad%(float(entr_C9_III.get()))
+				ws['AF26'].value = my_round(float(entr_C9_III.get()), razryad)
+				ws['W11'].value = my_round(float(entr_C9_III.get()), razryad)
 			if check_var_gr_3.get() >= 10:	
-				ws['AF27'].value = razryad%(float(entr_C10_III.get()))
-				ws['W12'].value = razryad%(float(entr_C10_III.get()))
+				ws['AF27'].value = my_round(float(entr_C10_III.get()), razryad)
+				ws['W12'].value = my_round(float(entr_C10_III.get()), razryad)
 
 		if check_var_gr_1.get() >= 4:
 			#QCD2
 			ws['AG15'].value = 'QCD3'
 			ws['AG16'].value = QC_IV
 			ws['AF2'].value = 'QCD3'
-			ws['AG18'].value = razryad%(float(entr_C1_IV.get()))
-			ws['AF3'].value = razryad%(float(entr_C1_IV.get()))
-			ws['AG19'].value = razryad%(float(entr_C2_IV.get()))
-			ws['AF4'].value = razryad%(float(entr_C2_IV.get()))
-			ws['AG20'].value = razryad%(float(entr_C3_IV.get()))
-			ws['AF5'].value = razryad%(float(entr_C3_IV.get()))
+			ws['AG18'].value = my_round(float(entr_C1_IV.get()), razryad)
+			ws['AF3'].value = my_round(float(entr_C1_IV.get()), razryad)
+			ws['AG19'].value = my_round(float(entr_C2_IV.get()), razryad)
+			ws['AF4'].value = my_round(float(entr_C2_IV.get()), razryad)
+			ws['AG20'].value = my_round(float(entr_C3_IV.get()), razryad)
+			ws['AF5'].value = my_round(float(entr_C3_IV.get()), razryad)
 			if check_var_gr_3.get() >= 4:
-				ws['AG21'].value = razryad%(float(entr_C4_IV.get()))
-				ws['AF6'].value = razryad%(float(entr_C4_IV.get()))
+				ws['AG21'].value = my_round(float(entr_C4_IV.get()), razryad)
+				ws['AF6'].value = my_round(float(entr_C4_IV.get()), razryad)
 			if check_var_gr_3.get() >= 5:
-				ws['AG22'].value = razryad%(float(entr_C5_IV.get()))
-				ws['AF7'].value = razryad%(float(entr_C5_IV.get()))
+				ws['AG22'].value = my_round(float(entr_C5_IV.get()), razryad)
+				ws['AF7'].value = my_round(float(entr_C5_IV.get()), razryad)
 			if check_var_gr_3.get() >= 6:	
-				ws['AG23'].value = razryad%(float(entr_C6_IV.get()))
-				ws['AF8'].value = razryad%(float(entr_C6_IV.get()))
+				ws['AG23'].value = my_round(float(entr_C6_IV.get()), razryad)
+				ws['AF8'].value = my_round(float(entr_C6_IV.get()), razryad)
 			if check_var_gr_3.get() >= 7:	
-				ws['AG24'].value = razryad%(float(entr_C7_IV.get()))
-				ws['AF9'].value = razryad%(float(entr_C7_IV.get()))
+				ws['AG24'].value = my_round(float(entr_C7_IV.get()), razryad)
+				ws['AF9'].value = my_round(float(entr_C7_IV.get()), razryad)
 			if check_var_gr_3.get() >= 8:	
-				ws['AG25'].value = razryad%(float(entr_C8_IV.get()))
-				ws['AF10'].value = razryad%(float(entr_C8_IV.get()))
+				ws['AG25'].value = my_round(float(entr_C8_IV.get()), razryad)
+				ws['AF10'].value = my_round(float(entr_C8_IV.get()), razryad)
 			if check_var_gr_3.get() >= 9:	
-				ws['AG26'].value = razryad%(float(entr_C9_IV.get()))
-				ws['AF11'].value = razryad%(float(entr_C9_IV.get()))
+				ws['AG26'].value = my_round(float(entr_C9_IV.get()), razryad)
+				ws['AF11'].value = my_round(float(entr_C9_IV.get()), razryad)
 			if check_var_gr_3.get() >= 10:	
-				ws['AG27'].value = razryad%(float(entr_C10_IV.get()))
-				ws['AF12'].value = razryad%(float(entr_C10_IV.get()))
+				ws['AG27'].value = my_round(float(entr_C10_IV.get()), razryad)
+				ws['AF12'].value = my_round(float(entr_C10_IV.get()), razryad)
 
 		if check_var_gr_1.get() >= 5:
 			#QCE2
 			ws['AH15'].value = 'QCE3'
 			ws['AH16'].value = QC_V
 			ws['AO2'].value = 'QCE3'
-			ws['AH18'].value = razryad%(float(entr_C1_V.get()))
-			ws['AO3'].value = razryad%(float(entr_C1_V.get()))
-			ws['AH19'].value = razryad%(float(entr_C2_V.get()))
-			ws['AO4'].value = razryad%(float(entr_C2_V.get()))
-			ws['AH20'].value = razryad%(float(entr_C3_V.get()))
-			ws['AO5'].value = razryad%(float(entr_C3_V.get()))
+			ws['AH18'].value = my_round(float(entr_C1_V.get()), razryad)
+			ws['AO3'].value = my_round(float(entr_C1_V.get()), razryad)
+			ws['AH19'].value = my_round(float(entr_C2_V.get()), razryad)
+			ws['AO4'].value = my_round(float(entr_C2_V.get()), razryad)
+			ws['AH20'].value = my_round(float(entr_C3_V.get()), razryad)
+			ws['AO5'].value = my_round(float(entr_C3_V.get()), razryad)
 			if check_var_gr_3.get() >= 4:
-				ws['AH21'].value = razryad%(float(entr_C4_V.get()))
-				ws['AO6'].value = razryad%(float(entr_C4_V.get()))
+				ws['AH21'].value = my_round(float(entr_C4_V.get()), razryad)
+				ws['AO6'].value = my_round(float(entr_C4_V.get()), razryad)
 			if check_var_gr_3.get() >= 5:
-				ws['AH22'].value = razryad%(float(entr_C5_V.get()))
-				ws['AO7'].value = razryad%(float(entr_C5_V.get()))
+				ws['AH22'].value = my_round(float(entr_C5_V.get()), razryad)
+				ws['AO7'].value = my_round(float(entr_C5_V.get()), razryad)
 			if check_var_gr_3.get() >= 6:	
-				ws['AH23'].value = razryad%(float(entr_C6_V.get()))
-				ws['AO8'].value = razryad%(float(entr_C6_V.get()))
+				ws['AH23'].value = my_round(float(entr_C6_V.get()), razryad)
+				ws['AO8'].value = my_round(float(entr_C6_V.get()), razryad)
 			if check_var_gr_3.get() >= 7:	
-				ws['AH24'].value = razryad%(float(entr_C7_V.get()))
-				ws['AO9'].value = razryad%(float(entr_C7_V.get()))
+				ws['AH24'].value = my_round(float(entr_C7_V.get()), razryad)
+				ws['AO9'].value = my_round(float(entr_C7_V.get()), razryad)
 			if check_var_gr_3.get() >= 8:	
-				ws['AH25'].value = razryad%(float(entr_C8_V.get()))
-				ws['AO10'].value = razryad%(float(entr_C8_V.get()))
+				ws['AH25'].value = my_round(float(entr_C8_V.get()), razryad)
+				ws['AO10'].value = my_round(float(entr_C8_V.get()), razryad)
 			if check_var_gr_3.get() >= 9:	
-				ws['AH26'].value = razryad%(float(entr_C9_V.get()))
-				ws['AO11'].value = razryad%(float(entr_C9_V.get()))
+				ws['AH26'].value = my_round(float(entr_C9_V.get()), razryad)
+				ws['AO11'].value = my_round(float(entr_C9_V.get()), razryad)
 			if check_var_gr_3.get() >= 10:	
-				ws['AH27'].value = razryad%(float(entr_C10_V.get()))
-				ws['AO12'].value = razryad%(float(entr_C10_V.get()))
+				ws['AH27'].value = my_round(float(entr_C10_V.get()), razryad)
+				ws['AO12'].value = my_round(float(entr_C10_V.get()), razryad)
 
 		if check_var_gr_1.get() >= 6:
 			#QCF2
 			ws['AI15'].value = 'QCF3'
 			ws['AI16'].value = QC_VI
 			ws['AX2'].value = 'QCF3'
-			ws['AI18'].value = razryad%(float(entr_C1_VI.get()))
-			ws['AX3'].value = razryad%(float(entr_C1_VI.get()))
-			ws['AI19'].value = razryad%(float(entr_C2_VI.get()))
-			ws['AX4'].value = razryad%(float(entr_C2_VI.get()))
-			ws['AI20'].value = razryad%(float(entr_C3_VI.get()))
-			ws['AX5'].value = razryad%(float(entr_C3_VI.get()))
+			ws['AI18'].value = my_round(float(entr_C1_VI.get()), razryad)
+			ws['AX3'].value = my_round(float(entr_C1_VI.get()), razryad)
+			ws['AI19'].value = my_round(float(entr_C2_VI.get()), razryad)
+			ws['AX4'].value = my_round(float(entr_C2_VI.get()), razryad)
+			ws['AI20'].value = my_round(float(entr_C3_VI.get()), razryad)
+			ws['AX5'].value = my_round(float(entr_C3_VI.get()), razryad)
 			if check_var_gr_3.get() >= 4:
-				ws['AI21'].value = razryad%(float(entr_C4_VI.get()))
-				ws['AX6'].value = razryad%(float(entr_C4_VI.get()))
+				ws['AI21'].value = my_round(float(entr_C4_VI.get()), razryad)
+				ws['AX6'].value = my_round(float(entr_C4_VI.get()), razryad)
 			if check_var_gr_3.get() >= 5:
-				ws['AI22'].value = razryad%(float(entr_C5_VI.get()))
-				ws['AX7'].value = razryad%(float(entr_C5_VI.get()))
+				ws['AI22'].value = my_round(float(entr_C5_VI.get()), razryad)
+				ws['AX7'].value = my_round(float(entr_C5_VI.get()), razryad)
 			if check_var_gr_3.get() >= 6:	
-				ws['AI23'].value = razryad%(float(entr_C6_VI.get()))
-				ws['AX8'].value = razryad%(float(entr_C6_VI.get()))
+				ws['AI23'].value = my_round(float(entr_C6_VI.get()), razryad)
+				ws['AX8'].value = my_round(float(entr_C6_VI.get()), razryad)
 			if check_var_gr_3.get() >= 7:	
-				ws['AI24'].value = razryad%(float(entr_C7_VI.get()))
-				ws['AX9'].value = razryad%(float(entr_C7_VI.get()))
+				ws['AI24'].value = my_round(float(entr_C7_VI.get()), razryad)
+				ws['AX9'].value = my_round(float(entr_C7_VI.get()), razryad)
 			if check_var_gr_3.get() >= 8:	
-				ws['AI25'].value = razryad%(float(entr_C8_VI.get()))
-				ws['AX10'].value = razryad%(float(entr_C8_VI.get()))
+				ws['AI25'].value = my_round(float(entr_C8_VI.get()), razryad)
+				ws['AX10'].value = my_round(float(entr_C8_VI.get()), razryad)
 			if check_var_gr_3.get() >= 9:	
-				ws['AI26'].value = razryad%(float(entr_C9_VI.get()))
-				ws['AX11'].value = razryad%(float(entr_C9_VI.get()))
+				ws['AI26'].value = my_round(float(entr_C9_VI.get()), razryad)
+				ws['AX11'].value = my_round(float(entr_C9_VI.get()), razryad)
 			if check_var_gr_3.get() >= 10:	
-				ws['AI27'].value = razryad%(float(entr_C10_VI.get()))
-				ws['AX12'].value = razryad%(float(entr_C10_VI.get()))
+				ws['AI27'].value = my_round(float(entr_C10_VI.get()), razryad)
+				ws['AX12'].value = my_round(float(entr_C10_VI.get()), razryad)
 
 
 #QC ТАБЛИЦА № 4
@@ -12482,7 +11682,7 @@ def calc():
 
 		#надпись и объединение ячеек под надпись
 		ws['AK15'].value = 'QC'
-		ws['AK16'].value = 'Введено, нг/мл'
+		ws['AK16'].value = f'Введено, {entr_concent.get()}'
 		ws['AK17'].value = '№ измерения'
 		ws['AL17'].value = 'Найдено, последовательность 4'
 
@@ -12511,119 +11711,67 @@ def calc():
 		#количество таблиц зависит от показателя check_var_gr_2
 		if check_var_gr_2.get() >= 4:
 			#QCA4
-			#print(mean_D_I, "mean_QCA4")
-			#print(Er_D_I, 'Er_QCA4')	
-			#print(sigma_D_I, 'sigma_QCA4')
-			mean_QCA1_QCA2_QCA3_QCA4 = round(stat.mean([mean_A_I, mean_B_I, mean_C_I, mean_D_I]), check_razryad.get())
-			#print(mean_QCA1_QCA2_QCA3_QCA4, 'mean_QCA1_QCA2_QCA3_QCA4')
+			mean_QCA1_QCA2_QCA3_QCA4 = my_round(stat.mean([mean_A_I, mean_B_I, mean_C_I, mean_D_I]), check_razryad.get())
 			#междугруппами
 			sum_kv_mezhdy_gr_QCA1_QCA2_QCA3_QCA4 = len(spisok_A_I)*((mean_A_I - mean_QCA1_QCA2_QCA3_QCA4)**2) + len(spisok_B_I)*((mean_B_I - mean_QCA1_QCA2_QCA3_QCA4)**2) + len(spisok_C_I)*(mean_C_I - mean_QCA1_QCA2_QCA3_QCA4)**2 + len(spisok_D_I)*((mean_D_I - mean_QCA1_QCA2_QCA3_QCA4)**2)
 			CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4 = (((sum_kv_mezhdy_gr_QCA1_QCA2_QCA3_QCA4)/3)**0.5)/mean_QCA1_QCA2_QCA3_QCA4*100
-			#print(CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4, 'CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4')
 			#внутригрупп
 			CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4 = (mean_QCA1_QCA2_QCA3_QCA4 - QC_I)/QC_I * 100
-			#print(CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4, 'CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4')
 
 			if check_var_gr_1.get() >= 2:
 				#QCB4
-				#print(mean_D_II, "mean_QCB4")
-				#print(Er_D_II, 'Er_QCB4')	
-				#print(sigma_D_II, 'sigma_QCB4')
-				mean_QCB1_QCB2_QCB3_QCB4 = round(stat.mean([mean_A_II, mean_B_II, mean_C_II, mean_D_II]), check_razryad.get())
-				#print(mean_QCB1_QCB2_QCB3_QCB4, 'mean_QCB1_QCB2_QCB3_QCB4')
+				mean_QCB1_QCB2_QCB3_QCB4 = my_round(stat.mean([mean_A_II, mean_B_II, mean_C_II, mean_D_II]), check_razryad.get())
 				#междугруппами
 				sum_kv_mezhdy_gr_QCB1_QCB2_QCB3_QCB4 = len(spisok_A_II)*((mean_A_II - mean_QCB1_QCB2_QCB3_QCB4)**2) + len(spisok_B_II)*((mean_B_II - mean_QCB1_QCB2_QCB3_QCB4)**2) + len(spisok_C_II)*(mean_C_II- mean_QCB1_QCB2_QCB3_QCB4)**2 + len(spisok_D_II)*((mean_D_II - mean_QCB1_QCB2_QCB3_QCB4)**2)
 				CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4 = (((sum_kv_mezhdy_gr_QCB1_QCB2_QCB3_QCB4)/3)**0.5)/mean_QCB1_QCB2_QCB3_QCB4*100
-				#print(CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4, 'CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4')
 				#внутригрупп
 				CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4 = (mean_QCB1_QCB2_QCB3_QCB4 - QC_II)/QC_II * 100
-				#print(CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4, 'CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4')
 
 			if check_var_gr_1.get() >= 3:
 				#QCC4
-				#print(mean_D_III, "mean_QCC4")
-				#print(Er_D_III, 'Er_QCC4')	
-				#print(sigma_D_III, 'sigma_QCC4')
-				mean_QCC1_QCC2_QCC3_QCC4 = round(stat.mean([mean_A_III, mean_B_III, mean_C_III, mean_D_III]), check_razryad.get())
-				#print(mean_QCC1_QCC2_QCC3_QCC4, 'mean_QCC1_QCC2_QCC3_QCC4')
-				#междугруппами
+				mean_QCC1_QCC2_QCC3_QCC4 = my_round(stat.mean([mean_A_III, mean_B_III, mean_C_III, mean_D_III]), check_razryad.get())
 				sum_kv_mezhdy_gr_QCC1_QCC2_QCC3_QCC4 = len(spisok_A_III)*((mean_A_III - mean_QCC1_QCC2_QCC3_QCC4)**2) + len(spisok_B_III)*((mean_B_III - mean_QCC1_QCC2_QCC3_QCC4)**2) + len(spisok_C_III)*(mean_C_III - mean_QCC1_QCC2_QCC3_QCC4)**2 + len(spisok_D_III)*((mean_D_III - mean_QCC1_QCC2_QCC3_QCC4)**2)
 				CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4 = (((sum_kv_mezhdy_gr_QCC1_QCC2_QCC3_QCC4)/3)**0.5)/mean_QCC1_QCC2_QCC3_QCC4*100
-				#print(CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4, 'CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4')
-				#внутригрупп
 				CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4 = (mean_QCC1_QCC2_QCC3_QCC4 - QC_III)/QC_III * 100
-				#print(CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4, 'CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4')
 
 			if check_var_gr_1.get() >= 4:
-				#QCD4
-				#print(mean_D_IV, "mean_QCD4")
-				#print(Er_D_IV, 'Er_QCD4')	
-				#print(sigma_D_IV, 'sigma_QCD4')
-				mean_QCD1_QCD2_QCD3_QCD4 = round(stat.mean([mean_A_IV, mean_B_IV, mean_C_IV, mean_D_IV]), check_razryad.get())
-				#print(mean_QCD1_QCD2_QCD3_QCD4, 'mean_QCD1_QCD2_QCD3_QCD4')
-				#междугруппами
+				mean_QCD1_QCD2_QCD3_QCD4 = my_round(stat.mean([mean_A_IV, mean_B_IV, mean_C_IV, mean_D_IV]), check_razryad.get())
 				sum_kv_mezhdy_gr_QCD1_QCD2_QCD3_QCD4 = len(spisok_A_IV)*((mean_A_IV - mean_QCD1_QCD2_QCD3_QCD4)**2) + len(spisok_B_IV)*((mean_B_IV - mean_QCD1_QCD2_QCD3_QCD4)**2) + len(spisok_C_IV)*(mean_C_IV - mean_QCD1_QCD2_QCD3_QCD4)**2 + len(spisok_D_IV)*((mean_D_IV - mean_QCD1_QCD2_QCD3_QCD4)**2)
 				CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4 = (((sum_kv_mezhdy_gr_QCD1_QCD2_QCD3_QCD4)/3)**0.5)/mean_QCD1_QCD2_QCD3_QCD4*100
-				#print(CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4, 'CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4')
-				#внутригрупп
 				CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4 = (mean_QCD1_QCD2_QCD3_QCD4 - QC_IV)/QC_IV * 100
-				#print(CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4, 'CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4')
 
 			if check_var_gr_1.get() >= 5:
-				#QCE4
-				#print(mean_D_V, "mean_QCE4")
-				#print(Er_D_V, 'Er_QCE4')	
-				#print(sigma_D_V, 'sigma_QCE4')
-				mean_QCE1_QCE2_QCE3_QCE4 = round(stat.mean([mean_A_V, mean_B_V, mean_C_V, mean_D_V]), check_razryad.get())
-				#print(mean_QCE1_QCE2_QCE3_QCE4, 'mean_QCE1_QCE2_QCE3_QCE4')
-				#междугруппами
+				mean_QCE1_QCE2_QCE3_QCE4 = my_round(stat.mean([mean_A_V, mean_B_V, mean_C_V, mean_D_V]), check_razryad.get())
 				sum_kv_mezhdy_gr_QCE1_QCE2_QCE3_QCE4 = len(spisok_A_V)*((mean_A_V - mean_QCE1_QCE2_QCE3_QCE4)**2) + len(spisok_B_V)*((mean_B_V - mean_QCE1_QCE2_QCE3_QCE4)**2) + len(spisok_C_V)*(mean_C_V - mean_QCE1_QCE2_QCE3_QCE4)**2 + len(spisok_D_V)*((mean_D_V - mean_QCE1_QCE2_QCE3_QCE4)**2)
 				CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4 = (((sum_kv_mezhdy_gr_QCE1_QCE2_QCE3_QCE4)/3)**0.5)/mean_QCE1_QCE2_QCE3_QCE4*100
-				#print(CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4, 'CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4')
-				#внутригрупп
 				CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4 = (mean_QCE1_QCE2_QCE3_QCE4 - QC_V)/QC_V * 100
-				#print(CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4, 'CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4')
 
 			if check_var_gr_1.get() >= 6:
-				#QCF4
-				#print(mean_D_VI, "mean_QCF4")
-				#print(Er_D_VI, 'Er_QCF4')	
-				#print(sigma_D_VI, 'sigma_QCF4')
-				mean_QCF1_QCF2_QCF3_QCF4 = round(stat.mean([mean_A_VI, mean_B_VI, mean_C_VI, mean_D_VI]), check_razryad.get())
-				#print(mean_QCF1_QCF2_QCF3_QCF4, 'mean_QCF1_QCF2_QCF3_QCF4')
-				#междугруппами
+				mean_QCF1_QCF2_QCF3_QCF4 = my_round(stat.mean([mean_A_VI, mean_B_VI, mean_C_VI, mean_D_VI]), check_razryad.get())
 				sum_kv_mezhdy_gr_QCF1_QCF2_QCF3_QCF4 = len(spisok_A_VI)*((mean_A_VI - mean_QCF1_QCF2_QCF3_QCF4)**2) + len(spisok_B_VI)*((mean_B_VI - mean_QCF1_QCF2_QCF3_QCF4)**2) + len(spisok_C_VI)*(mean_C_VI - mean_QCF1_QCF2_QCF3_QCF4)**2 + len(spisok_D_VI)*((mean_D_VI - mean_QCF1_QCF2_QCF3_QCF4)**2)
 				CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4 = (((sum_kv_mezhdy_gr_QCF1_QCF2_QCF3_QCF4)/3)**0.5)/mean_QCF1_QCF2_QCF3_QCF4*100
-				#print(CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4, 'CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4')
-				#внутригрупп
 				CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4 = (mean_QCF1_QCF2_QCF3_QCF4 - QC_VI)/QC_VI * 100
-				#print(CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4, 'CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4')
-
 
 
 	#вывод среднего и остальных показателей в таблицу 
 		if check_var_gr_3.get() == 3:
-
 			ws['AK21'].value = 'найдено, сред.зн.,\nнг/мл (n=3)'
 			ws['AK21'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-
-			ws['AK22'].value = 'εr, % (n=3)'
-			ws['AK23'].value = 'σr, % (n=3)'
-
+			ws['AK22'].value = 'εR, % (n=3)'
+			ws['AK23'].value = 'σR, % (n=3)'
 			ws['AK24'].value = 'найдено, сред.зн.,\nнг/мл (n=12)'
 			ws['AK24'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AK25'].value = 'εr, % (n=12)'
-			ws['AK26'].value = 'σr, % (n=12)'
+			ws['AK25'].value = 'εR, % (n=12)'
+			ws['AK26'].value = 'σR, % (n=12)'
 			ws['AK27'].value = 'Норма |ε| и |σ|, %'
 
+			ws['AL21'].value = my_round(mean_D_I, razryad)
+			ws['AL22'].value = my_round(Er_D_I, 1)
+			ws['AL23'].value = my_round(sigma_D_I, 1)
 
-			ws['AL21'].value = razryad%(mean_D_I)
-			ws['AL22'].value = '%.1f'%Er_D_I
-			ws['AL23'].value = '%.1f'%sigma_D_I
-
-			ws['AL24'].value = razryad%(mean_QCA1_QCA2_QCA3_QCA4)
-			ws['AL25'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4
-			ws['AL26'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4
+			ws['AL24'].value = my_round(mean_QCA1_QCA2_QCA3_QCA4, razryad)
+			ws['AL25'].value = my_round(CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4, 1)
+			ws['AL26'].value = my_round(CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['AL27'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
@@ -12632,65 +11780,65 @@ def calc():
 
 			
 			if check_var_gr_1.get() >= 2:
-				ws['AM21'].value = razryad%(mean_D_II)
-				ws['AM22'].value = '%.1f'%Er_D_II
-				ws['AM23'].value = '%.1f'%sigma_D_II
+				ws['AM21'].value = my_round(mean_D_II, razryad)
+				ws['AM22'].value = my_round(Er_D_II, 1)
+				ws['AM23'].value = my_round(sigma_D_II, 1)
 
-				ws['AM24'].value = razryad%(mean_QCB1_QCB2_QCB3_QCB4)
-				ws['AM25'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4
-				ws['AM26'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4
+				ws['AM24'].value = my_round(mean_QCB1_QCB2_QCB3_QCB4, razryad)
+				ws['AM25'].value = my_round(CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4, 1)
+				ws['AM26'].value = my_round(CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['AM27'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['AM27'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['AN21'].value = razryad%(mean_D_III)
-				ws['AN22'].value = '%.1f'%Er_D_III
-				ws['AN23'].value = '%.1f'%sigma_D_III
+				ws['AN21'].value = my_round(mean_D_III, razryad)
+				ws['AN22'].value = my_round(Er_D_III, 1)
+				ws['AN23'].value = my_round(sigma_D_III, 1)
 
-				ws['AN24'].value = razryad%(mean_QCC1_QCC2_QCC3_QCC4)
-				ws['AN25'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4
-				ws['AN26'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4
+				ws['AN24'].value = my_round(mean_QCC1_QCC2_QCC3_QCC4, razryad)
+				ws['AN25'].value = my_round(CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4, 1)
+				ws['AN26'].value = my_round(CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['AN27'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['AN27'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['AO21'].value = razryad%(mean_D_IV)
-				ws['AO22'].value = '%.1f'%Er_D_IV
-				ws['AO23'].value = '%.1f'%sigma_D_IV
+				ws['AO21'].value = my_round(mean_D_IV, razryad)
+				ws['AO22'].value = my_round(Er_D_IV, 1)
+				ws['AO23'].value = my_round(sigma_D_IV, 1)
 
-				ws['AO24'].value = razryad%(mean_QCD1_QCD2_QCD3_QCD4)
-				ws['AO25'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4
-				ws['AO26'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4
+				ws['AO24'].value = my_round(mean_QCD1_QCD2_QCD3_QCD4, razryad)
+				ws['AO25'].value = my_round(CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4, 1)
+				ws['AO26'].value = my_round(CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['AO27'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['AO27'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['AP21'].value = razryad%(mean_D_V)
-				ws['AP22'].value = '%.1f'%Er_D_V
-				ws['AP23'].value = '%.1f'%sigma_D_V
+				ws['AP21'].value = my_round(mean_D_V, razryad)
+				ws['AP22'].value = my_round(Er_D_V, 1)
+				ws['AP23'].value = my_round(sigma_D_V, 1)
 
-				ws['AP24'].value = razryad%(mean_QCE1_QCE2_QCE3_QCE4)
-				ws['AP25'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4
-				ws['AP26'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4
+				ws['AP24'].value = my_round(mean_QCE1_QCE2_QCE3_QCE4, razryad)
+				ws['AP25'].value = my_round(CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4, 1)
+				ws['AP26'].value = my_round(CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['AP27'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['AP27'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['AQ21'].value = razryad%(mean_D_VI)
-				ws['AQ22'].value = '%.1f'%Er_D_VI
-				ws['AQ23'].value = '%.1f'%sigma_D_VI
+				ws['AQ21'].value = my_round(mean_D_VI, razryad)
+				ws['AQ22'].value = my_round(Er_D_VI, 1)
+				ws['AQ23'].value = my_round(sigma_D_VI, 1)
 
-				ws['AQ24'].value = razryad%(mean_QCF1_QCF2_QCF3_QCF4)
-				ws['AQ25'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4
-				ws['AQ26'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4
+				ws['AQ24'].value = my_round(mean_QCF1_QCF2_QCF3_QCF4, razryad)
+				ws['AQ25'].value = my_round(CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4, 1)
+				ws['AQ26'].value = my_round(CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['AQ27'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
@@ -12701,88 +11849,88 @@ def calc():
 
 			ws['AK22'].value = 'найдено, сред.зн.,\nнг/мл (n=4)'
 			ws['AK22'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AK23'].value = 'εr, % (n=4)'
-			ws['AK24'].value = 'σr, % (n=4)'
+			ws['AK23'].value = 'εR, % (n=4)'
+			ws['AK24'].value = 'σR, % (n=4)'
 			
 			ws['AK25'].value = 'найдено, сред.зн.,\nнг/мл (n=16)'
 			ws['AK25'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AK26'].value = 'εr, % (n=16)'
-			ws['AK27'].value = 'σr, % (n=16)'
+			ws['AK26'].value = 'εR, % (n=16)'
+			ws['AK27'].value = 'σR, % (n=16)'
 			ws['AK28'].value = 'Норма |ε| и |σ|, %'
 
 
-			ws['AL22'].value = razryad%(mean_D_I)
-			ws['AL23'].value = '%.1f'%Er_D_I
-			ws['AL24'].value = '%.1f'%sigma_D_I
+			ws['AL22'].value = my_round(mean_D_I, razryad)
+			ws['AL23'].value = my_round(Er_D_I, 1)
+			ws['AL24'].value = my_round(sigma_D_I, 1)
 
-			ws['AL25'].value = razryad%(mean_QCA1_QCA2_QCA3_QCA4)
-			ws['AL26'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4
-			ws['AL27'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4
+			ws['AL25'].value = my_round(mean_QCA1_QCA2_QCA3_QCA4, razryad)
+			ws['AL26'].value = my_round(CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4, 1)
+			ws['AL27'].value = my_round(CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['AL28'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
 				ws['AL28'].value = '≤20'
 
 			if check_var_gr_1.get() >= 2:
-				ws['AM22'].value = razryad%(mean_D_II)
-				ws['AM23'].value = '%.1f'%Er_D_II
-				ws['AM24'].value = '%.1f'%sigma_D_II
+				ws['AM22'].value = my_round(mean_D_II, razryad)
+				ws['AM23'].value = my_round(Er_D_II, 1)
+				ws['AM24'].value = my_round(sigma_D_II, 1)
 
-				ws['AM25'].value = razryad%(mean_QCB1_QCB2_QCB3_QCB4)
-				ws['AM26'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4
-				ws['AM27'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4
+				ws['AM25'].value = my_round(mean_QCB1_QCB2_QCB3_QCB4, razryad)
+				ws['AM26'].value = my_round(CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4, 1)
+				ws['AM27'].value = my_round(CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['AM28'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['AM28'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['AN22'].value = razryad%(mean_D_III)
-				ws['AN23'].value = '%.1f'%Er_D_III
-				ws['AN24'].value = '%.1f'%sigma_D_III
+				ws['AN22'].value = my_round(mean_D_III, razryad)
+				ws['AN23'].value = my_round(Er_D_III, 1)
+				ws['AN24'].value = my_round(sigma_D_III, 1)
 
-				ws['AN25'].value = razryad%(mean_QCC1_QCC2_QCC3_QCC4)
-				ws['AN26'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4
-				ws['AN27'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4
+				ws['AN25'].value = my_round(mean_QCC1_QCC2_QCC3_QCC4, razryad)
+				ws['AN26'].value = my_round(CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4, 1)
+				ws['AN27'].value = my_round(CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['AN28'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['AN28'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['AO22'].value = razryad%(mean_D_IV)
-				ws['AO23'].value = '%.1f'%Er_D_IV
-				ws['AO24'].value = '%.1f'%sigma_D_IV
+				ws['AO22'].value = my_round(mean_D_IV, razryad)
+				ws['AO23'].value = my_round(Er_D_IV, 1)
+				ws['AO24'].value = my_round(sigma_D_IV, 1)
 
-				ws['AO25'].value = razryad%(mean_QCD1_QCD2_QCD3_QCD4)
-				ws['AO26'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4
-				ws['AO27'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4
+				ws['AO25'].value = my_round(mean_QCD1_QCD2_QCD3_QCD4, razryad)
+				ws['AO26'].value = my_round(CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4, 1)
+				ws['AO27'].value = my_round(CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['AO28'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['AO28'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['AP22'].value = razryad%(mean_D_V)
-				ws['AP23'].value = '%.1f'%Er_D_V
-				ws['AP24'].value = '%.1f'%sigma_D_V
+				ws['AP22'].value = my_round(mean_D_V, razryad)
+				ws['AP23'].value = my_round(Er_D_V, 1)
+				ws['AP24'].value = my_round(sigma_D_V, 1)
 
-				ws['AP25'].value = razryad%(mean_QCE1_QCE2_QCE3_QCE4)
-				ws['AP26'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4
-				ws['AP27'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4
+				ws['AP25'].value = my_round(mean_QCE1_QCE2_QCE3_QCE4, razryad)
+				ws['AP26'].value = my_round(CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4, 1)
+				ws['AP27'].value = my_round(CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['AP28'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['AP28'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['AQ22'].value = razryad%(mean_D_VI)
-				ws['AQ23'].value = '%.1f'%Er_D_VI
-				ws['AQ24'].value = '%.1f'%sigma_D_VI
+				ws['AQ22'].value = my_round(mean_D_VI, razryad)
+				ws['AQ23'].value = my_round(Er_D_VI, 1)
+				ws['AQ24'].value = my_round(sigma_D_VI, 1)
 
-				ws['AQ25'].value = razryad%(mean_QCF1_QCF2_QCF3_QCF4)
-				ws['AQ26'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4
-				ws['AQ27'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4
+				ws['AQ25'].value = my_round(mean_QCF1_QCF2_QCF3_QCF4, razryad)
+				ws['AQ26'].value = my_round(CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4, 1)
+				ws['AQ27'].value = my_round(CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['AQ28'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
@@ -12792,87 +11940,87 @@ def calc():
 		if check_var_gr_3.get() == 5:
 			ws['AK23'].value = 'найдено, сред.зн., \nнг/мл (n=5)'
 			ws['AK23'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AK24'].value = 'εr, % (n=5)'
-			ws['AK25'].value = 'σr, % (n=5)'
+			ws['AK24'].value = 'εR, % (n=5)'
+			ws['AK25'].value = 'σR, % (n=5)'
 			
 			ws['AK26'].value = 'найдено, сред.зн.,\nнг/мл (n=20)'
 			ws['AK26'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AK27'].value = 'εr, % (n=20)'
-			ws['AK28'].value = 'σr, % (n=20)'
+			ws['AK27'].value = 'εR, % (n=20)'
+			ws['AK28'].value = 'σR, % (n=20)'
 			ws['AK29'].value = 'Норма |ε| и |σ|, %'
 
-			ws['AL23'].value = razryad%(mean_D_I)
-			ws['AL24'].value = '%.1f'%Er_D_I
-			ws['AL25'].value = '%.1f'%sigma_D_I
+			ws['AL23'].value = my_round(mean_D_I, razryad)
+			ws['AL24'].value = my_round(Er_D_I, 1)
+			ws['AL25'].value = my_round(sigma_D_I, 1)
 
-			ws['AL26'].value = razryad%(mean_QCA1_QCA2_QCA3_QCA4)
-			ws['AL27'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4
-			ws['AL28'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4
+			ws['AL26'].value = my_round(mean_QCA1_QCA2_QCA3_QCA4, razryad)
+			ws['AL27'].value = my_round(CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4, 1)
+			ws['AL28'].value = my_round(CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['AL29'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
 				ws['AL29'].value = '≤20'
 
 			if check_var_gr_1.get() >= 2:
-				ws['AM23'].value = razryad%(mean_D_II)
-				ws['AM24'].value = '%.1f'%Er_D_II
-				ws['AM25'].value = '%.1f'%sigma_D_II
+				ws['AM23'].value = my_round(mean_D_II, razryad)
+				ws['AM24'].value = my_round(Er_D_II, 1)
+				ws['AM25'].value = my_round(sigma_D_II, 1)
 
-				ws['AM26'].value = razryad%(mean_QCB1_QCB2_QCB3_QCB4)
-				ws['AM27'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4
-				ws['AM28'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4
+				ws['AM26'].value = my_round(mean_QCB1_QCB2_QCB3_QCB4, razryad)
+				ws['AM27'].value = my_round(CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4, 1)
+				ws['AM28'].value = my_round(CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['AM29'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['AM29'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['AN23'].value = razryad%(mean_D_III)
-				ws['AN24'].value = '%.1f'%Er_D_III
-				ws['AN25'].value = '%.1f'%sigma_D_III
+				ws['AN23'].value = my_round(mean_D_III, razryad)
+				ws['AN24'].value = my_round(Er_D_III, 1)
+				ws['AN25'].value = my_round(sigma_D_III, 1)
 
-				ws['AN26'].value = razryad%(mean_QCC1_QCC2_QCC3_QCC4)
-				ws['AN27'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4
-				ws['AN28'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4
+				ws['AN26'].value = my_round(mean_QCC1_QCC2_QCC3_QCC4, razryad)
+				ws['AN27'].value = my_round(CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4, 1)
+				ws['AN28'].value = my_round(CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['AN29'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['AN29'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['AO23'].value = razryad%(mean_D_IV)
-				ws['AO24'].value = '%.1f'%Er_D_IV
-				ws['AO25'].value = '%.1f'%sigma_D_IV
+				ws['AO23'].value = my_round(mean_D_IV, razryad)
+				ws['AO24'].value = my_round(Er_D_IV, 1)
+				ws['AO25'].value = my_round(sigma_D_IV, 1)
 
-				ws['AO26'].value = razryad%(mean_QCD1_QCD2_QCD3_QCD4)
-				ws['AO27'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4
-				ws['AO28'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4
+				ws['AO26'].value = my_round(mean_QCD1_QCD2_QCD3_QCD4, razryad)
+				ws['AO27'].value = my_round(CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4, 1)
+				ws['AO28'].value = my_round(CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['AO29'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['AO29'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['AP23'].value = razryad%(mean_D_V)
-				ws['AP24'].value = '%.1f'%Er_D_V
-				ws['AP25'].value = '%.1f'%sigma_D_V
+				ws['AP23'].value = my_round(mean_D_V, razryad)
+				ws['AP24'].value = my_round(Er_D_V, 1)
+				ws['AP25'].value = my_round(sigma_D_V, 1)
 
-				ws['AP26'].value = razryad%(mean_QCE1_QCE2_QCE3_QCE4)
-				ws['AP27'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4
-				ws['AP28'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4
+				ws['AP26'].value = my_round(mean_QCE1_QCE2_QCE3_QCE4, razryad)
+				ws['AP27'].value = my_round(CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4, 1)
+				ws['AP28'].value = my_round(CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['AP29'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['AP29'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['AQ23'].value = razryad%(mean_D_VI)
-				ws['AQ24'].value = '%.1f'%Er_D_VI
-				ws['AQ25'].value = '%.1f'%sigma_D_VI
+				ws['AQ23'].value = my_round(mean_D_VI, razryad)
+				ws['AQ24'].value = my_round(Er_D_VI, 1)
+				ws['AQ25'].value = my_round(sigma_D_VI, 1)
 
-				ws['AQ26'].value = razryad%(mean_QCF1_QCF2_QCF3_QCF4)
-				ws['AQ27'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4
-				ws['AQ28'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4
+				ws['AQ26'].value = my_round(mean_QCF1_QCF2_QCF3_QCF4, razryad)
+				ws['AQ27'].value = my_round(CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4, 1)
+				ws['AQ28'].value = my_round(CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['AQ29'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
@@ -12882,87 +12030,87 @@ def calc():
 		if check_var_gr_3.get() == 6:
 			ws['AK24'].value = 'найдено, сред.зн., \nнг/мл (n=6)'
 			ws['AK24'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AK25'].value = 'εr, % (n=6)'
-			ws['AK26'].value = 'σr, % (n=6)'
+			ws['AK25'].value = 'εR, % (n=6)'
+			ws['AK26'].value = 'σR, % (n=6)'
 			
 			ws['AK27'].value = 'найдено, сред.зн.,\nнг/мл (n=24)'
 			ws['AK27'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AK28'].value = 'εr, % (n=24)'
-			ws['AK28'].value = 'σr, % (n=24)'
+			ws['AK28'].value = 'εR, % (n=24)'
+			ws['AK28'].value = 'σR, % (n=24)'
 			ws['AK29'].value = 'Норма |ε| и |σ|, %'
 
-			ws['AL24'].value = razryad%(mean_D_I)
-			ws['AL25'].value = '%.1f'%Er_D_I
-			ws['AL26'].value = '%.1f'%sigma_D_I
+			ws['AL24'].value = my_round(mean_D_I, razryad)
+			ws['AL25'].value = my_round(Er_D_I, 1)
+			ws['AL26'].value = my_round(sigma_D_I, 1)
 
-			ws['AL27'].value = razryad%(mean_QCA1_QCA2_QCA3_QCA4)
-			ws['AL28'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4
-			ws['AL29'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4
+			ws['AL27'].value = my_round(mean_QCA1_QCA2_QCA3_QCA4, razryad)
+			ws['AL28'].value = my_round(CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4, 1)
+			ws['AL29'].value = my_round(CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['AL30'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
 				ws['AL30'].value = '≤20'
 
 			if check_var_gr_1.get() >= 2:
-				ws['AM24'].value = razryad%(mean_D_II)
-				ws['AM25'].value = '%.1f'%Er_D_II
-				ws['AM26'].value = '%.1f'%sigma_D_II
+				ws['AM24'].value = my_round(mean_D_II, razryad)
+				ws['AM25'].value = my_round(Er_D_II, 1)
+				ws['AM26'].value = my_round(sigma_D_II, 1)
 
-				ws['AM27'].value = razryad%(mean_QCB1_QCB2_QCB3_QCB4)
-				ws['AM28'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4
-				ws['AM29'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4
+				ws['AM27'].value = my_round(mean_QCB1_QCB2_QCB3_QCB4, razryad)
+				ws['AM28'].value = my_round(CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4, 1)
+				ws['AM29'].value = my_round(CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['AM30'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['AM30'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['AN24'].value = razryad%(mean_D_III)
-				ws['AN25'].value = '%.1f'%Er_D_III
-				ws['AN26'].value = '%.1f'%sigma_D_III
+				ws['AN24'].value = my_round(mean_D_III, razryad)
+				ws['AN25'].value = my_round(Er_D_III, 1)
+				ws['AN26'].value = my_round(sigma_D_III, 1)
 
-				ws['AN27'].value = razryad%(mean_QCC1_QCC2_QCC3_QCC4)
-				ws['AN28'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4
-				ws['AN29'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4
+				ws['AN27'].value = my_round(mean_QCC1_QCC2_QCC3_QCC4, razryad)
+				ws['AN28'].value = my_round(CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4, 1)
+				ws['AN29'].value = my_round(CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['AN30'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['AN30'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['AO24'].value = razryad%(mean_D_IV)
-				ws['AO25'].value = '%.1f'%Er_D_IV
-				ws['AO26'].value = '%.1f'%sigma_D_IV
+				ws['AO24'].value = my_round(mean_D_IV, razryad)
+				ws['AO25'].value = my_round(Er_D_IV, 1)
+				ws['AO26'].value = my_round(sigma_D_IV, 1)
 
-				ws['AO27'].value = razryad%(mean_QCD1_QCD2_QCD3_QCD4)
-				ws['AO28'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4
-				ws['AO29'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4
+				ws['AO27'].value = my_round(mean_QCD1_QCD2_QCD3_QCD4, razryad)
+				ws['AO28'].value = my_round(CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4, 1)
+				ws['AO29'].value = my_round(CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['AO30'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['AO30'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['AP24'].value = razryad%(mean_D_V)
-				ws['AP25'].value = '%.1f'%Er_D_V
-				ws['AP26'].value = '%.1f'%sigma_D_V
+				ws['AP24'].value = my_round(mean_D_V, razryad)
+				ws['AP25'].value = my_round(Er_D_V, 1)
+				ws['AP26'].value = my_round(sigma_D_V, 1)
 
-				ws['AP27'].value = razryad%(mean_QCE1_QCE2_QCE3_QCE4)
-				ws['AP28'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4
-				ws['AP29'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4
+				ws['AP27'].value = my_round(mean_QCE1_QCE2_QCE3_QCE4, razryad)
+				ws['AP28'].value = my_round(CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4, 1)
+				ws['AP29'].value = my_round(CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['AP30'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['AP30'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['AQ24'].value = razryad%(mean_D_VI)
-				ws['AQ25'].value = '%.1f'%Er_D_VI
-				ws['AQ26'].value = '%.1f'%sigma_D_VI
+				ws['AQ24'].value = my_round(mean_D_VI, razryad)
+				ws['AQ25'].value = my_round(Er_D_VI, 1)
+				ws['AQ26'].value = my_round(sigma_D_VI, 1)
 
-				ws['AQ27'].value = razryad%(mean_QCF1_QCF2_QCF3_QCF4)
-				ws['AQ28'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4
-				ws['AQ29'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4
+				ws['AQ27'].value = my_round(mean_QCF1_QCF2_QCF3_QCF4, razryad)
+				ws['AQ28'].value = my_round(CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4, 1)
+				ws['AQ29'].value = my_round(CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['AQ30'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
@@ -12971,87 +12119,87 @@ def calc():
 		if check_var_gr_3.get() == 7:
 			ws['AK25'].value = 'найдено, сред.зн., \nнг/мл (n=7)'
 			ws['AK25'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AK26'].value = 'εr, % (n=7)'
-			ws['AK27'].value = 'σr, % (n=7)'
+			ws['AK26'].value = 'εR, % (n=7)'
+			ws['AK27'].value = 'σR, % (n=7)'
 			
 			ws['AK28'].value = 'найдено, сред.зн.,\nнг/мл (n=28)'
 			ws['AK28'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AK29'].value = 'εr, % (n=28)'
-			ws['AK30'].value = 'σr, % (n=28)'
+			ws['AK29'].value = 'εR, % (n=28)'
+			ws['AK30'].value = 'σR, % (n=28)'
 			ws['AK31'].value = 'Норма |ε| и |σ|, %'
 
-			ws['AL25'].value = razryad%(mean_D_I)
-			ws['AL26'].value = '%.1f'%Er_D_I
-			ws['AL27'].value = '%.1f'%sigma_D_I
+			ws['AL25'].value = my_round(mean_D_I, razryad)
+			ws['AL26'].value = my_round(Er_D_I, 1)
+			ws['AL27'].value = my_round(sigma_D_I, 1)
 
-			ws['AL28'].value = razryad%(mean_QCA1_QCA2_QCA3_QCA4)
-			ws['AL29'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4
-			ws['AL30'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4
+			ws['AL28'].value = my_round(mean_QCA1_QCA2_QCA3_QCA4, razryad)
+			ws['AL29'].value = my_round(CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4, 1)
+			ws['AL30'].value = my_round(CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['AL31'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
 				ws['AL31'].value = '≤20'
 
 			if check_var_gr_1.get() >= 2:
-				ws['AM25'].value = razryad%(mean_D_II)
-				ws['AM26'].value = '%.1f'%Er_D_II
-				ws['AM27'].value = '%.1f'%sigma_D_II
+				ws['AM25'].value = my_round(mean_D_II, razryad)
+				ws['AM26'].value = my_round(Er_D_II, 1)
+				ws['AM27'].value = my_round(sigma_D_II, 1)
 
-				ws['AM28'].value = razryad%(mean_QCB1_QCB2_QCB3_QCB4)
-				ws['AM29'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4
-				ws['AM30'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4
+				ws['AM28'].value = my_round(mean_QCB1_QCB2_QCB3_QCB4, razryad)
+				ws['AM29'].value = my_round(CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4, 1)
+				ws['AM30'].value = my_round(CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['AM31'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['AM31'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['AN25'].value = razryad%(mean_D_III)
-				ws['AN26'].value = '%.1f'%Er_D_III
-				ws['AN27'].value = '%.1f'%sigma_D_III
+				ws['AN25'].value = my_round(mean_D_III, razryad)
+				ws['AN26'].value = my_round(Er_D_III, 1)
+				ws['AN27'].value = my_round(sigma_D_III, 1)
 
-				ws['AN28'].value = razryad%(mean_QCC1_QCC2_QCC3_QCC4)
-				ws['AN29'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4
-				ws['AN30'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4
+				ws['AN28'].value = my_round(mean_QCC1_QCC2_QCC3_QCC4, razryad)
+				ws['AN29'].value = my_round(CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4, 1)
+				ws['AN30'].value = my_round(CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['AN31'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['AN31'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['AO25'].value = razryad%(mean_D_IV)
-				ws['AO26'].value = '%.1f'%Er_D_IV
-				ws['AO27'].value = '%.1f'%sigma_D_IV
+				ws['AO25'].value = my_round(mean_D_IV, razryad)
+				ws['AO26'].value = my_round(Er_D_IV, 1)
+				ws['AO27'].value = my_round(sigma_D_IV, 1)
 
-				ws['AO28'].value = razryad%(mean_QCD1_QCD2_QCD3_QCD4)
-				ws['AO29'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4
-				ws['AO30'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4
+				ws['AO28'].value = my_round(mean_QCD1_QCD2_QCD3_QCD4, razryad)
+				ws['AO29'].value = my_round(CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4, 1)
+				ws['AO30'].value = my_round(CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['AO31'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['AO31'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['AP25'].value = razryad%(mean_D_V)
-				ws['AP26'].value = '%.1f'%Er_D_V
-				ws['AP27'].value = '%.1f'%sigma_D_V
+				ws['AP25'].value = my_round(mean_D_V, razryad)
+				ws['AP26'].value = my_round(Er_D_V, 1)
+				ws['AP27'].value = my_round(sigma_D_V, 1)
 
-				ws['AP28'].value = razryad%(mean_QCE1_QCE2_QCE3_QCE4)
-				ws['AP29'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4
-				ws['AP30'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4
+				ws['AP28'].value = my_round(mean_QCE1_QCE2_QCE3_QCE4, razryad)
+				ws['AP29'].value = my_round(CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4, 1)
+				ws['AP30'].value = my_round(CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['AP31'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['AP31'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['AQ25'].value = razryad%(mean_D_VI)
-				ws['AQ26'].value = '%.1f'%Er_D_VI
-				ws['AQ27'].value = '%.1f'%sigma_D_VI
+				ws['AQ25'].value = my_round(mean_D_VI, razryad)
+				ws['AQ26'].value = my_round(Er_D_VI, 1)
+				ws['AQ27'].value = my_round(sigma_D_VI, 1)
 
-				ws['AQ28'].value = razryad%(mean_QCF1_QCF2_QCF3_QCF4)
-				ws['AQ29'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4
-				ws['AQ30'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4
+				ws['AQ28'].value = my_round(mean_QCF1_QCF2_QCF3_QCF4, razryad)
+				ws['AQ29'].value = my_round(CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4, 1)
+				ws['AQ30'].value = my_round(CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['AQ31'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
@@ -13060,87 +12208,87 @@ def calc():
 		if check_var_gr_3.get() == 8:
 			ws['AK26'].value = 'найдено, сред.зн., \nнг/мл (n=8)'
 			ws['AK26'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AK27'].value = 'εr, % (n=8)'
-			ws['AK28'].value = 'σr, % (n=8)'
+			ws['AK27'].value = 'εR, % (n=8)'
+			ws['AK28'].value = 'σR, % (n=8)'
 			
 			ws['AK29'].value = 'найдено, сред.зн.,\nнг/мл (n=32)'
 			ws['AK29'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AK30'].value = 'εr, % (n=32)'
-			ws['AK30'].value = 'σr, % (n=32)'
+			ws['AK30'].value = 'εR, % (n=32)'
+			ws['AK30'].value = 'σR, % (n=32)'
 			ws['AK31'].value = 'Норма |ε| и |σ|, %'
 
-			ws['AL26'].value = razryad%(mean_D_I)
-			ws['AL27'].value = '%.1f'%Er_D_I
-			ws['AL28'].value = '%.1f'%sigma_D_I
+			ws['AL26'].value = my_round(mean_D_I, razryad)
+			ws['AL27'].value = my_round(Er_D_I, 1)
+			ws['AL28'].value = my_round(sigma_D_I, 1)
 
-			ws['AL29'].value = razryad%(mean_QCA1_QCA2_QCA3_QCA4)
-			ws['AL30'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4
-			ws['AL31'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4
+			ws['AL29'].value = my_round(mean_QCA1_QCA2_QCA3_QCA4, razryad)
+			ws['AL30'].value = my_round(CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4, 1)
+			ws['AL31'].value = my_round(CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['AL32'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
 				ws['AL32'].value = '≤20'
 
 			if check_var_gr_1.get() >= 2:
-				ws['AM26'].value = razryad%(mean_D_II)
-				ws['AM27'].value = '%.1f'%Er_D_II
-				ws['AM28'].value = '%.1f'%sigma_D_II
+				ws['AM26'].value = my_round(mean_D_II, razryad)
+				ws['AM27'].value = my_round(Er_D_II, 1)
+				ws['AM28'].value = my_round(sigma_D_II, 1)
 
-				ws['AM29'].value = razryad%(mean_QCB1_QCB2_QCB3_QCB4)
-				ws['AM30'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4
-				ws['AM31'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4
+				ws['AM29'].value = my_round(mean_QCB1_QCB2_QCB3_QCB4, razryad)
+				ws['AM30'].value = my_round(CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4, 1)
+				ws['AM31'].value = my_round(CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['AM32'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['AM32'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['AN26'].value = razryad%(mean_D_III)
-				ws['AN27'].value = '%.1f'%Er_D_III
-				ws['AN28'].value = '%.1f'%sigma_D_III
+				ws['AN26'].value = my_round(mean_D_III, razryad)
+				ws['AN27'].value = my_round(Er_D_III, 1)
+				ws['AN28'].value = my_round(sigma_D_III, 1)
 
-				ws['AN29'].value = razryad%(mean_QCC1_QCC2_QCC3_QCC4)
-				ws['AN30'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4
-				ws['AN31'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4
+				ws['AN29'].value = my_round(mean_QCC1_QCC2_QCC3_QCC4, razryad)
+				ws['AN30'].value = my_round(CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4, 1)
+				ws['AN31'].value = my_round(CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['AN32'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['AN32'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['AO26'].value = razryad%(mean_D_IV)
-				ws['AO27'].value = '%.1f'%Er_D_IV
-				ws['AO28'].value = '%.1f'%sigma_D_IV
+				ws['AO26'].value = my_round(mean_D_IV, razryad)
+				ws['AO27'].value = my_round(Er_D_IV, 1)
+				ws['AO28'].value = my_round(sigma_D_IV, 1)
 
-				ws['AO29'].value = razryad%(mean_QCD1_QCD2_QCD3_QCD4)
-				ws['AO30'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4
-				ws['AO31'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4
+				ws['AO29'].value = my_round(mean_QCD1_QCD2_QCD3_QCD4, razryad)
+				ws['AO30'].value = my_round(CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4, 1)
+				ws['AO31'].value = my_round(CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['AO32'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['AO32'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['AP26'].value = razryad%(mean_D_V)
-				ws['AP27'].value = '%.1f'%Er_D_V
-				ws['AP28'].value = '%.1f'%sigma_D_V
+				ws['AP26'].value = my_round(mean_D_V, razryad)
+				ws['AP27'].value = my_round(Er_D_V, 1)
+				ws['AP28'].value = my_round(sigma_D_V, 1)
 
-				ws['AP29'].value = razryad%(mean_QCE1_QCE2_QCE3_QCE4)
-				ws['AP30'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4
-				ws['AP31'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4
+				ws['AP29'].value = my_round(mean_QCE1_QCE2_QCE3_QCE4, razryad)
+				ws['AP30'].value = my_round(CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4, 1)
+				ws['AP31'].value = my_round(CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['AP32'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['AP32'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['AQ26'].value = razryad%(mean_D_VI)
-				ws['AQ27'].value = '%.1f'%Er_D_VI
-				ws['AQ28'].value = '%.1f'%sigma_D_VI
+				ws['AQ26'].value = my_round(mean_D_VI, razryad)
+				ws['AQ27'].value = my_round(Er_D_VI, 1)
+				ws['AQ28'].value = my_round(sigma_D_VI, 1)
 
-				ws['AQ29'].value = razryad%(mean_QCF1_QCF2_QCF3_QCF4)
-				ws['AQ30'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4
-				ws['AQ31'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4
+				ws['AQ29'].value = my_round(mean_QCF1_QCF2_QCF3_QCF4, razryad)
+				ws['AQ30'].value = my_round(CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4, 1)
+				ws['AQ31'].value = my_round(CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['AQ32'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
@@ -13149,87 +12297,87 @@ def calc():
 		if check_var_gr_3.get() == 9:
 			ws['AK27'].value = 'найдено, сред.зн., \nнг/мл (n=9)'
 			ws['AK27'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AK28'].value = 'εr, % (n=9)'
-			ws['AK29'].value = 'σr, % (n=9)'
+			ws['AK28'].value = 'εR, % (n=9)'
+			ws['AK29'].value = 'σR, % (n=9)'
 			
 			ws['AK30'].value = 'найдено, сред.зн.,\nнг/мл (n=36)'
 			ws['AK30'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AK31'].value = 'εr, % (n=36)'
-			ws['AK32'].value = 'σr, % (n=36)'
+			ws['AK31'].value = 'εR, % (n=36)'
+			ws['AK32'].value = 'σR, % (n=36)'
 			ws['AK33'].value = 'Норма |ε| и |σ|, %'
 
-			ws['AL27'].value = razryad%(mean_D_I)
-			ws['AL28'].value = '%.1f'%Er_D_I
-			ws['AL29'].value = '%.1f'%sigma_D_I
+			ws['AL27'].value = my_round(mean_D_I, razryad)
+			ws['AL28'].value = my_round(Er_D_I, 1)
+			ws['AL29'].value = my_round(sigma_D_I, 1)
 
-			ws['AL30'].value = razryad%(mean_QCA1_QCA2_QCA3_QCA4)
-			ws['AL31'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4
-			ws['AL32'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4
+			ws['AL30'].value = my_round(mean_QCA1_QCA2_QCA3_QCA4, razryad)
+			ws['AL31'].value = my_round(CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4, 1)
+			ws['AL32'].value = my_round(CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['AL33'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
 				ws['AL33'].value = '≤20'
 
 			if check_var_gr_1.get() >= 2:
-				ws['AM27'].value = razryad%(mean_D_II)
-				ws['AM28'].value = '%.1f'%Er_D_II
-				ws['AM29'].value = '%.1f'%sigma_D_II
+				ws['AM27'].value = my_round(mean_D_II, razryad)
+				ws['AM28'].value = my_round(Er_D_II, 1)
+				ws['AM29'].value = my_round(sigma_D_II, 1)
 
-				ws['AM30'].value = razryad%(mean_QCB1_QCB2_QCB3_QCB4)
-				ws['AM31'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4
-				ws['AM32'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4
+				ws['AM30'].value = my_round(mean_QCB1_QCB2_QCB3_QCB4, razryad)
+				ws['AM31'].value = my_round(CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4, 1)
+				ws['AM32'].value = my_round(CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['AM33'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['AM33'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['AN27'].value = razryad%(mean_D_III)
-				ws['AN28'].value = '%.1f'%Er_D_III
-				ws['AN29'].value = '%.1f'%sigma_D_III
+				ws['AN27'].value = my_round(mean_D_III, razryad)
+				ws['AN28'].value = my_round(Er_D_III, 1)
+				ws['AN29'].value = my_round(sigma_D_III, 1)
 
-				ws['AN30'].value = razryad%(mean_QCC1_QCC2_QCC3_QCC4)
-				ws['AN31'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4
-				ws['AN32'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4
+				ws['AN30'].value = my_round(mean_QCC1_QCC2_QCC3_QCC4, razryad)
+				ws['AN31'].value = my_round(CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4, 1)
+				ws['AN32'].value = my_round(CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['AN33'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['AN33'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['AO27'].value = razryad%(mean_D_IV)
-				ws['AO28'].value = '%.1f'%Er_D_IV
-				ws['AO29'].value = '%.1f'%sigma_D_IV
+				ws['AO27'].value = my_round(mean_D_IV, razryad)
+				ws['AO28'].value = my_round(Er_D_IV, 1)
+				ws['AO29'].value = my_round(sigma_D_IV, 1)
 
-				ws['AO30'].value = razryad%(mean_QCD1_QCD2_QCD3_QCD4)
-				ws['AO31'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4
-				ws['AO32'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4
+				ws['AO30'].value = my_round(mean_QCD1_QCD2_QCD3_QCD4, razryad)
+				ws['AO31'].value = my_round(CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4, 1)
+				ws['AO32'].value = my_round(CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['AO33'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['AO33'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['AP27'].value = razryad%(mean_D_V)
-				ws['AP28'].value = '%.1f'%Er_D_V
-				ws['AP29'].value = '%.1f'%sigma_D_V
+				ws['AP27'].value = my_round(mean_D_V, razryad)
+				ws['AP28'].value = my_round(Er_D_V, 1)
+				ws['AP29'].value = my_round(sigma_D_V, 1)
 
-				ws['AP30'].value = razryad%(mean_QCE1_QCE2_QCE3_QCE4)
-				ws['AP31'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4
-				ws['AP32'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4
+				ws['AP30'].value = my_round(mean_QCE1_QCE2_QCE3_QCE4, razryad)
+				ws['AP31'].value = my_round(CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4, 1)
+				ws['AP32'].value = my_round(CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['AP33'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['AP33'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['AQ27'].value = razryad%(mean_D_VI)
-				ws['AQ28'].value = '%.1f'%Er_D_VI
-				ws['AQ29'].value = '%.1f'%sigma_D_VI
+				ws['AQ27'].value = my_round(mean_D_VI, razryad)
+				ws['AQ28'].value = my_round(Er_D_VI, 1)
+				ws['AQ29'].value = my_round(sigma_D_VI, 1)
 
-				ws['AQ30'].value = razryad%(mean_QCF1_QCF2_QCF3_QCF4)
-				ws['AQ31'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4
-				ws['AQ32'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4
+				ws['AQ30'].value = my_round(mean_QCF1_QCF2_QCF3_QCF4, razryad)
+				ws['AQ31'].value = my_round(CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4, 1)
+				ws['AQ32'].value = my_round(CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['AQ33'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
@@ -13238,87 +12386,87 @@ def calc():
 		if check_var_gr_3.get() == 10:
 			ws['AK28'].value = 'найдено, сред.зн., \nнг/мл (n=10)'
 			ws['AK28'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AK29'].value = 'εr, % (n=10)'
-			ws['AK30'].value = 'σr, % (n=10)'
+			ws['AK29'].value = 'εR, % (n=10)'
+			ws['AK30'].value = 'σR, % (n=10)'
 			
 			ws['AK31'].value = 'найдено, сред.зн.,\nнг/мл (n=40)'
 			ws['AK31'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AK32'].value = 'εr, % (n=40)'
-			ws['AK33'].value = 'σr, % (n=40)'
+			ws['AK32'].value = 'εR, % (n=40)'
+			ws['AK33'].value = 'σR, % (n=40)'
 			ws['AK34'].value = 'Норма |ε| и |σ|, %'
 
-			ws['AL28'].value = razryad%(mean_D_I)
-			ws['AL29'].value = '%.1f'%Er_D_I
-			ws['AL30'].value = '%.1f'%sigma_D_I
+			ws['AL28'].value = my_round(mean_D_I, razryad)
+			ws['AL29'].value = my_round(Er_D_I, 1)
+			ws['AL30'].value = my_round(sigma_D_I, 1)
 
-			ws['AL31'].value = razryad%(mean_QCA1_QCA2_QCA3_QCA4)
-			ws['AL32'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4
-			ws['AL33'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4
+			ws['AL31'].value = my_round(mean_QCA1_QCA2_QCA3_QCA4, razryad)
+			ws['AL32'].value = my_round(CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4, 1)
+			ws['AL33'].value = my_round(CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['AL34'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
 				ws['AL34'].value = '≤20'
 
 			if check_var_gr_1.get() >= 2:
-				ws['AM28'].value = razryad%(mean_D_II)
-				ws['AM29'].value = '%.1f'%Er_D_II
-				ws['AM30'].value = '%.1f'%sigma_D_II
+				ws['AM28'].value = my_round(mean_D_II, razryad)
+				ws['AM29'].value = my_round(Er_D_II, 1)
+				ws['AM30'].value = my_round(sigma_D_II, 1)
 
-				ws['AM31'].value = razryad%(mean_QCB1_QCB2_QCB3_QCB4)
-				ws['AM32'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4
-				ws['AM33'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4
+				ws['AM31'].value = my_round(mean_QCB1_QCB2_QCB3_QCB4, razryad)
+				ws['AM32'].value = my_round(CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4, 1)
+				ws['AM33'].value = my_round(CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['AM34'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['AM34'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['AN28'].value = razryad%(mean_D_III)
-				ws['AN29'].value = '%.1f'%Er_D_III
-				ws['AN30'].value = '%.1f'%sigma_D_III
+				ws['AN28'].value = my_round(mean_D_III, razryad)
+				ws['AN29'].value = my_round(Er_D_III, 1)
+				ws['AN30'].value = my_round(sigma_D_III, 1)
 
-				ws['AN31'].value = razryad%(mean_QCC1_QCC2_QCC3_QCC4)
-				ws['AN32'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4
-				ws['AN33'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4
+				ws['AN31'].value = my_round(mean_QCC1_QCC2_QCC3_QCC4, razryad)
+				ws['AN32'].value = my_round(CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4, 1)
+				ws['AN33'].value = my_round(CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['AN34'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['AN34'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['AO28'].value = razryad%(mean_D_IV)
-				ws['AO29'].value = '%.1f'%Er_D_IV
-				ws['AO30'].value = '%.1f'%sigma_D_IV
+				ws['AO28'].value = my_round(mean_D_IV, razryad)
+				ws['AO29'].value = my_round(Er_D_IV, 1)
+				ws['AO30'].value = my_round(sigma_D_IV, 1)
 
-				ws['AO31'].value = razryad%(mean_QCD1_QCD2_QCD3_QCD4)
-				ws['AO32'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4
-				ws['AO33'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4
+				ws['AO31'].value = my_round(mean_QCD1_QCD2_QCD3_QCD4, razryad)
+				ws['AO32'].value = my_round(CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4, 1)
+				ws['AO33'].value = my_round(CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['AO34'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['AO34'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['AP28'].value = razryad%(mean_D_V)
-				ws['AP29'].value = '%.1f'%Er_D_V
-				ws['AP30'].value = '%.1f'%sigma_D_V
+				ws['AP28'].value = my_round(mean_D_V, razryad)
+				ws['AP29'].value = my_round(Er_D_V, 1)
+				ws['AP30'].value = my_round(sigma_D_V, 1)
 
-				ws['AP31'].value = razryad%(mean_QCE1_QCE2_QCE3_QCE4)
-				ws['AP32'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4
-				ws['AP33'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4
+				ws['AP31'].value = my_round(mean_QCE1_QCE2_QCE3_QCE4, razryad)
+				ws['AP32'].value = my_round(CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4, 1)
+				ws['AP33'].value = my_round(CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['AP34'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['AP34'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['AQ28'].value = razryad%(mean_D_VI)
-				ws['AQ29'].value = '%.1f'%Er_D_VI
-				ws['AQ30'].value = '%.1f'%sigma_D_VI
+				ws['AQ28'].value = my_round(mean_D_VI, razryad)
+				ws['AQ29'].value = my_round(Er_D_VI, 1)
+				ws['AQ30'].value = my_round(sigma_D_VI, 1)
 
-				ws['AQ31'].value = razryad%(mean_QCF1_QCF2_QCF3_QCF4)
-				ws['AQ32'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4
-				ws['AQ33'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4
+				ws['AQ31'].value = my_round(mean_QCF1_QCF2_QCF3_QCF4, razryad)
+				ws['AQ32'].value = my_round(CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4, 1)
+				ws['AQ33'].value = my_round(CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['AQ34'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
@@ -13330,42 +12478,42 @@ def calc():
 		ws['AL16'].value = QC_I
 		ws['F2'].value = 'QCA4'
 		ws['AK18'].value = '1'
-		ws['AL18'].value = razryad%(float(entr_D1_I.get()))
-		ws['F3'].value = razryad%(float(entr_D1_I.get()))
+		ws['AL18'].value = my_round(float(entr_D1_I.get()), razryad)
+		ws['F3'].value = my_round(float(entr_D1_I.get()), razryad)
 		ws['AK19'].value = '2'
-		ws['AL19'].value = razryad%(float(entr_D2_I.get()))
-		ws['F4'].value = razryad%(float(entr_D2_I.get()))
+		ws['AL19'].value = my_round(float(entr_D2_I.get()), razryad)
+		ws['F4'].value = my_round(float(entr_D2_I.get()), razryad)
 		ws['AK20'].value = '3'
-		ws['AL20'].value = razryad%(float(entr_D3_I.get()))
-		ws['F5'].value = razryad%(float(entr_D3_I.get()))
+		ws['AL20'].value = my_round(float(entr_D3_I.get()), razryad)
+		ws['F5'].value = my_round(float(entr_D3_I.get()), razryad)
 		if check_var_gr_3.get() >= 4:
 			ws['AK21'].value = '4'
-			ws['AL21'].value = razryad%(float(entr_D4_I.get()))
-			ws['F6'].value = razryad%(float(entr_D4_I.get()))
+			ws['AL21'].value = my_round(float(entr_D4_I.get()), razryad)
+			ws['F6'].value = my_round(float(entr_D4_I.get()), razryad)
 		if check_var_gr_3.get() >= 5:
 			ws['AK22'].value = '5'
-			ws['AL22'].value = razryad%(float(entr_D5_I.get()))
-			ws['F7'].value = razryad%(float(entr_D5_I.get()))
+			ws['AL22'].value = my_round(float(entr_D5_I.get()), razryad)
+			ws['F7'].value = my_round(float(entr_D5_I.get()), razryad)
 		if check_var_gr_3.get() >= 6:	
 			ws['AK23'].value = '6'
-			ws['AL23'].value = razryad%(float(entr_D6_I.get()))
-			ws['F8'].value = razryad%(float(entr_D6_I.get()))
+			ws['AL23'].value = my_round(float(entr_D6_I.get()), razryad)
+			ws['F8'].value = my_round(float(entr_D6_I.get()), razryad)
 		if check_var_gr_3.get() >= 7:	
 			ws['AK24'].value = '7'
-			ws['AL24'].value = razryad%(float(entr_D7_I.get()))
-			ws['F9'].value = razryad%(float(entr_D7_I.get()))
+			ws['AL24'].value = my_round(float(entr_D7_I.get()), razryad)
+			ws['F9'].value = my_round(float(entr_D7_I.get()), razryad)
 		if check_var_gr_3.get() >= 8:	
 			ws['AK25'].value = '8'
-			ws['AL25'].value = razryad%(float(entr_D8_I.get()))
-			ws['F10'].value = razryad%(float(entr_D8_I.get()))
+			ws['AL25'].value = my_round(float(entr_D8_I.get()), razryad)
+			ws['F10'].value = my_round(float(entr_D8_I.get()), razryad)
 		if check_var_gr_3.get() >= 9:	
 			ws['AK26'].value = '9'
-			ws['AL26'].value = razryad%(float(entr_D9_I.get()))
-			ws['F11'].value = razryad%(float(entr_D9_I.get()))
+			ws['AL26'].value = my_round(float(entr_D9_I.get()), razryad)
+			ws['F11'].value = my_round(float(entr_D9_I.get()), razryad)
 		if check_var_gr_3.get() >= 10:	
 			ws['AK27'].value = '10'
-			ws['AL27'].value = razryad%(float(entr_D10_I.get()))
-			ws['F12'].value = razryad%(float(entr_D10_I.get()))
+			ws['AL27'].value = my_round(float(entr_D10_I.get()), razryad)
+			ws['F12'].value = my_round(float(entr_D10_I.get()), razryad)
 
 
 
@@ -13374,166 +12522,166 @@ def calc():
 			ws['AM15'].value = 'QCB4'
 			ws['AM16'].value = QC_II
 			ws['O2'].value = 'QCB4'
-			ws['AM18'].value = razryad%(float(entr_D1_II.get()))
-			ws['O3'].value = razryad%(float(entr_D1_II.get()))
-			ws['AM19'].value = razryad%(float(entr_D2_II.get()))
-			ws['O4'].value = razryad%(float(entr_D2_II.get()))
-			ws['AM20'].value = razryad%(float(entr_D3_II.get()))
-			ws['O5'].value = razryad%(float(entr_D3_II.get()))
+			ws['AM18'].value = my_round(float(entr_D1_II.get()), razryad)
+			ws['O3'].value = my_round(float(entr_D1_II.get()), razryad)
+			ws['AM19'].value = my_round(float(entr_D2_II.get()), razryad)
+			ws['O4'].value = my_round(float(entr_D2_II.get()), razryad)
+			ws['AM20'].value = my_round(float(entr_D3_II.get()), razryad)
+			ws['O5'].value = my_round(float(entr_D3_II.get()), razryad)
 			if check_var_gr_3.get() >= 4:
-				ws['AM21'].value = razryad%(float(entr_D4_II.get()))
-				ws['O6'].value = razryad%(float(entr_D4_II.get()))
+				ws['AM21'].value = my_round(float(entr_D4_II.get()), razryad)
+				ws['O6'].value = my_round(float(entr_D4_II.get()), razryad)
 			if check_var_gr_3.get() >= 5:
-				ws['AM22'].value = razryad%(float(entr_D5_II.get()))
-				ws['O7'].value = razryad%(float(entr_D5_II.get()))
+				ws['AM22'].value = my_round(float(entr_D5_II.get()), razryad)
+				ws['O7'].value = my_round(float(entr_D5_II.get()), razryad)
 			if check_var_gr_3.get() >= 6:	
-				ws['AM23'].value = razryad%(float(entr_D6_II.get()))
-				ws['O8'].value = razryad%(float(entr_D6_II.get()))
+				ws['AM23'].value = my_round(float(entr_D6_II.get()), razryad)
+				ws['O8'].value = my_round(float(entr_D6_II.get()), razryad)
 			if check_var_gr_3.get() >= 7:	
-				ws['AM24'].value = razryad%(float(entr_D7_II.get()))
-				ws['O9'].value = razryad%(float(entr_D7_II.get()))
+				ws['AM24'].value = my_round(float(entr_D7_II.get()), razryad)
+				ws['O9'].value = my_round(float(entr_D7_II.get()), razryad)
 			if check_var_gr_3.get() >= 8:	
-				ws['AM25'].value = razryad%(float(entr_D8_II.get()))
-				ws['O10'].value = razryad%(float(entr_D8_II.get()))
+				ws['AM25'].value = my_round(float(entr_D8_II.get()), razryad)
+				ws['O10'].value = my_round(float(entr_D8_II.get()), razryad)
 			if check_var_gr_3.get() >= 9:	
-				ws['AM26'].value = razryad%(float(entr_D9_II.get()))
-				ws['O11'].value = razryad%(float(entr_D9_II.get()))
+				ws['AM26'].value = my_round(float(entr_D9_II.get()), razryad)
+				ws['O11'].value = my_round(float(entr_D9_II.get()), razryad)
 			if check_var_gr_3.get() >= 10:	
-				ws['AM27'].value = razryad%(float(entr_D10_II.get()))
-				ws['O12'].value = razryad%(float(entr_D10_II.get()))
+				ws['AM27'].value = my_round(float(entr_D10_II.get()), razryad)
+				ws['O12'].value = my_round(float(entr_D10_II.get()), razryad)
 
 		if check_var_gr_1.get() >= 3:
 			#QCC4
 			ws['AN15'].value = 'QCC4'
 			ws['AN16'].value = QC_III
 			ws['X2'].value = 'QCC4'
-			ws['AN18'].value = razryad%(float(entr_D1_III.get()))
-			ws['X3'].value = razryad%(float(entr_D1_III.get()))
-			ws['AN19'].value = razryad%(float(entr_D2_III.get()))
-			ws['X4'].value = razryad%(float(entr_D2_III.get()))
-			ws['AN20'].value = razryad%(float(entr_D3_III.get()))
-			ws['X5'].value = razryad%(float(entr_D3_III.get()))
+			ws['AN18'].value = my_round(float(entr_D1_III.get()), razryad)
+			ws['X3'].value = my_round(float(entr_D1_III.get()), razryad)
+			ws['AN19'].value = my_round(float(entr_D2_III.get()), razryad)
+			ws['X4'].value = my_round(float(entr_D2_III.get()), razryad)
+			ws['AN20'].value = my_round(float(entr_D3_III.get()), razryad)
+			ws['X5'].value = my_round(float(entr_D3_III.get()), razryad)
 			if check_var_gr_3.get() >= 4:
-				ws['AN21'].value = razryad%(float(entr_D4_III.get()))
-				ws['X6'].value = razryad%(float(entr_D4_III.get()))
+				ws['AN21'].value = my_round(float(entr_D4_III.get()), razryad)
+				ws['X6'].value = my_round(float(entr_D4_III.get()), razryad)
 			if check_var_gr_3.get() >= 5:
-				ws['AN22'].value = razryad%(float(entr_D5_III.get()))
-				ws['X7'].value = razryad%(float(entr_D5_III.get()))
+				ws['AN22'].value = my_round(float(entr_D5_III.get()), razryad)
+				ws['X7'].value = my_round(float(entr_D5_III.get()), razryad)
 			if check_var_gr_3.get() >= 6:	
-				ws['AN23'].value = razryad%(float(entr_D6_III.get()))
-				ws['X8'].value = razryad%(float(entr_D6_III.get()))
+				ws['AN23'].value = my_round(float(entr_D6_III.get()), razryad)
+				ws['X8'].value = my_round(float(entr_D6_III.get()), razryad)
 			if check_var_gr_3.get() >= 7:	
-				ws['AN24'].value = razryad%(float(entr_D7_III.get()))
-				ws['X9'].value = razryad%(float(entr_D7_III.get()))
+				ws['AN24'].value = my_round(float(entr_D7_III.get()), razryad)
+				ws['X9'].value = my_round(float(entr_D7_III.get()), razryad)
 			if check_var_gr_3.get() >= 8:	
-				ws['AN25'].value = razryad%(float(entr_D8_III.get()))
-				ws['X10'].value = razryad%(float(entr_D8_III.get()))
+				ws['AN25'].value = my_round(float(entr_D8_III.get()), razryad)
+				ws['X10'].value = my_round(float(entr_D8_III.get()), razryad)
 			if check_var_gr_3.get() >= 9:	
-				ws['AN26'].value = razryad%(float(entr_D9_III.get()))
-				ws['X11'].value = razryad%(float(entr_D9_III.get()))
+				ws['AN26'].value = my_round(float(entr_D9_III.get()), razryad)
+				ws['X11'].value = my_round(float(entr_D9_III.get()), razryad)
 			if check_var_gr_3.get() >= 10:	
-				ws['AN27'].value = razryad%(float(entr_D10_III.get()))
-				ws['X12'].value = razryad%(float(entr_D10_III.get()))
+				ws['AN27'].value = my_round(float(entr_D10_III.get()), razryad)
+				ws['X12'].value = my_round(float(entr_D10_III.get()), razryad)
 
 		if check_var_gr_1.get() >= 4:
 			#QCD2
 			ws['AO15'].value = 'QCD4'
 			ws['AO16'].value = QC_IV
 			ws['AG2'].value = 'QCD4'
-			ws['AO18'].value = razryad%(float(entr_D1_IV.get()))
-			ws['AG3'].value = razryad%(float(entr_D1_IV.get()))
-			ws['AO19'].value = razryad%(float(entr_D2_IV.get()))
-			ws['AG4'].value = razryad%(float(entr_D2_IV.get()))
-			ws['AO20'].value = razryad%(float(entr_D3_IV.get()))
-			ws['AG5'].value = razryad%(float(entr_D3_IV.get()))
+			ws['AO18'].value = my_round(float(entr_D1_IV.get()), razryad)
+			ws['AG3'].value = my_round(float(entr_D1_IV.get()), razryad)
+			ws['AO19'].value = my_round(float(entr_D2_IV.get()), razryad)
+			ws['AG4'].value = my_round(float(entr_D2_IV.get()), razryad)
+			ws['AO20'].value = my_round(float(entr_D3_IV.get()), razryad)
+			ws['AG5'].value = my_round(float(entr_D3_IV.get()), razryad)
 			if check_var_gr_3.get() >= 4:
-				ws['AO21'].value = razryad%(float(entr_D4_IV.get()))
-				ws['AG6'].value = razryad%(float(entr_D4_IV.get()))
+				ws['AO21'].value = my_round(float(entr_D4_IV.get()), razryad)
+				ws['AG6'].value = my_round(float(entr_D4_IV.get()), razryad)
 			if check_var_gr_3.get() >= 5:
-				ws['AO22'].value = razryad%(float(entr_D5_IV.get()))
-				ws['AG7'].value = razryad%(float(entr_D5_IV.get()))
+				ws['AO22'].value = my_round(float(entr_D5_IV.get()), razryad)
+				ws['AG7'].value = my_round(float(entr_D5_IV.get()), razryad)
 			if check_var_gr_3.get() >= 6:	
-				ws['AO23'].value = razryad%(float(entr_D6_IV.get()))
-				ws['AG8'].value = razryad%(float(entr_D6_IV.get()))
+				ws['AO23'].value = my_round(float(entr_D6_IV.get()), razryad)
+				ws['AG8'].value = my_round(float(entr_D6_IV.get()), razryad)
 			if check_var_gr_3.get() >= 7:	
-				ws['AO24'].value = razryad%(float(entr_D7_IV.get()))
-				ws['AG9'].value = razryad%(float(entr_D7_IV.get()))
+				ws['AO24'].value = my_round(float(entr_D7_IV.get()), razryad)
+				ws['AG9'].value = my_round(float(entr_D7_IV.get()), razryad)
 			if check_var_gr_3.get() >= 8:	
-				ws['AO25'].value = razryad%(float(entr_D8_IV.get()))
-				ws['AG10'].value = razryad%(float(entr_D8_IV.get()))
+				ws['AO25'].value = my_round(float(entr_D8_IV.get()), razryad)
+				ws['AG10'].value = my_round(float(entr_D8_IV.get()), razryad)
 			if check_var_gr_3.get() >= 9:	
-				ws['AO26'].value = razryad%(float(entr_D9_IV.get()))
-				ws['AG11'].value = razryad%(float(entr_D9_IV.get()))
+				ws['AO26'].value = my_round(float(entr_D9_IV.get()), razryad)
+				ws['AG11'].value = my_round(float(entr_D9_IV.get()), razryad)
 			if check_var_gr_3.get() >= 10:	
-				ws['AO27'].value = razryad%(float(entr_D10_IV.get()))
-				ws['AG12'].value = razryad%(float(entr_D10_IV.get()))
+				ws['AO27'].value = my_round(float(entr_D10_IV.get()), razryad)
+				ws['AG12'].value = my_round(float(entr_D10_IV.get()), razryad)
 
 		if check_var_gr_1.get() >= 5:
 			#QCE4
 			ws['AP15'].value = 'QCE4'
 			ws['AP16'].value = QC_V
 			ws['AP2'].value = 'QCE4'
-			ws['AP18'].value =  razryad%(float(entr_D1_V.get()))
-			ws['AP3'].value =  razryad%(float(entr_D1_V.get()))
-			ws['AP19'].value =  razryad%(float(entr_D2_V.get()))
-			ws['AP4'].value =  razryad%(float(entr_D2_V.get()))
-			ws['AP20'].value =  razryad%(float(entr_D3_V.get()))
-			ws['AP5'].value =  razryad%(float(entr_D3_V.get()))
+			ws['AP18'].value =  my_round(float(entr_D1_V.get()), razryad)
+			ws['AP3'].value =  my_round(float(entr_D1_V.get()), razryad)
+			ws['AP19'].value =  my_round(float(entr_D2_V.get()), razryad)
+			ws['AP4'].value =  my_round(float(entr_D2_V.get()), razryad)
+			ws['AP20'].value =  my_round(float(entr_D3_V.get()), razryad)
+			ws['AP5'].value =  my_round(float(entr_D3_V.get()), razryad)
 			if check_var_gr_3.get() >= 4:
-				ws['AP21'].value = razryad%(float(entr_D4_V.get()))
-				ws['AP6'].value = razryad%(float(entr_D4_V.get()))
+				ws['AP21'].value = my_round(float(entr_D4_V.get()), razryad)
+				ws['AP6'].value = my_round(float(entr_D4_V.get()), razryad)
 			if check_var_gr_3.get() >= 5:
-				ws['AP22'].value = razryad%(float(entr_D5_V.get()))
-				ws['AP7'].value = razryad%(float(entr_D5_V.get()))
+				ws['AP22'].value = my_round(float(entr_D5_V.get()), razryad)
+				ws['AP7'].value = my_round(float(entr_D5_V.get()), razryad)
 			if check_var_gr_3.get() >= 6:	
-				ws['AP23'].value = razryad%(float(entr_D6_V.get()))
-				ws['AP8'].value = razryad%(float(entr_D6_V.get()))
+				ws['AP23'].value = my_round(float(entr_D6_V.get()), razryad)
+				ws['AP8'].value = my_round(float(entr_D6_V.get()), razryad)
 			if check_var_gr_3.get() >= 7:	
-				ws['AP24'].value = razryad%(float(entr_D7_V.get()))
-				ws['AP9'].value = razryad%(float(entr_D7_V.get()))
+				ws['AP24'].value = my_round(float(entr_D7_V.get()), razryad)
+				ws['AP9'].value = my_round(float(entr_D7_V.get()), razryad)
 			if check_var_gr_3.get() >= 8:	
-				ws['AP25'].value = razryad%(float(entr_D8_V.get()))
-				ws['AP10'].value = razryad%(float(entr_D8_V.get()))
+				ws['AP25'].value = my_round(float(entr_D8_V.get()), razryad)
+				ws['AP10'].value = my_round(float(entr_D8_V.get()), razryad)
 			if check_var_gr_3.get() >= 9:	
-				ws['AP26'].value = razryad%(float(entr_D9_V.get()))
-				ws['AP11'].value = razryad%(float(entr_D9_V.get()))
+				ws['AP26'].value = my_round(float(entr_D9_V.get()), razryad)
+				ws['AP11'].value = my_round(float(entr_D9_V.get()), razryad)
 			if check_var_gr_3.get() >= 10:	
-				ws['AP27'].value = razryad%(float(entr_D10_V.get()))
-				ws['AP12'].value = razryad%(float(entr_D10_V.get()))
+				ws['AP27'].value = my_round(float(entr_D10_V.get()), razryad)
+				ws['AP12'].value = my_round(float(entr_D10_V.get()), razryad)
 
 		if check_var_gr_1.get() >= 6:
 			#QCF4
 			ws['AQ15'].value = 'QCF4'
 			ws['AQ16'].value = QC_VI
 			ws['AY2'].value = 'QCF4'
-			ws['AQ18'].value = razryad%(float(entr_D1_VI.get()))
-			ws['AY3'].value = razryad%(float(entr_D1_VI.get()))
-			ws['AQ19'].value = razryad%(float(entr_D2_VI.get()))
-			ws['AY4'].value = razryad%(float(entr_D2_VI.get()))
-			ws['AQ20'].value = razryad%(float(entr_D3_VI.get()))
-			ws['AY5'].value = razryad%(float(entr_D3_VI.get()))
+			ws['AQ18'].value = my_round(float(entr_D1_VI.get()), razryad)
+			ws['AY3'].value = my_round(float(entr_D1_VI.get()), razryad)
+			ws['AQ19'].value = my_round(float(entr_D2_VI.get()), razryad)
+			ws['AY4'].value = my_round(float(entr_D2_VI.get()), razryad)
+			ws['AQ20'].value = my_round(float(entr_D3_VI.get()), razryad)
+			ws['AY5'].value = my_round(float(entr_D3_VI.get()), razryad)
 
 			if check_var_gr_3.get() >= 4:
-				ws['AQ21'].value = razryad%(float(entr_D4_VI.get()))
-				ws['AY6'].value = razryad%(float(entr_D4_VI.get()))
+				ws['AQ21'].value = my_round(float(entr_D4_VI.get()), razryad)
+				ws['AY6'].value = my_round(float(entr_D4_VI.get()), razryad)
 			if check_var_gr_3.get() >= 5:
-				ws['AQ22'].value = razryad%(float(entr_D5_VI.get()))
-				ws['AY7'].value = razryad%(float(entr_D5_VI.get()))
+				ws['AQ22'].value = my_round(float(entr_D5_VI.get()), razryad)
+				ws['AY7'].value = my_round(float(entr_D5_VI.get()), razryad)
 			if check_var_gr_3.get() >= 6:	
-				ws['AQ23'].value = razryad%(float(entr_D6_VI.get()))
-				ws['AY8'].value = razryad%(float(entr_D6_VI.get()))
+				ws['AQ23'].value = my_round(float(entr_D6_VI.get()), razryad)
+				ws['AY8'].value = my_round(float(entr_D6_VI.get()), razryad)
 			if check_var_gr_3.get() >= 7:	
-				ws['AQ24'].value = razryad%(float(entr_D7_VI.get()))
-				ws['AY9'].value = razryad%(float(entr_D7_VI.get()))
+				ws['AQ24'].value = my_round(float(entr_D7_VI.get()), razryad)
+				ws['AY9'].value = my_round(float(entr_D7_VI.get()), razryad)
 			if check_var_gr_3.get() >= 8:	
-				ws['AQ25'].value = razryad%(float(entr_D8_VI.get()))
-				ws['AY10'].value = razryad%(float(entr_D8_VI.get()))
+				ws['AQ25'].value = my_round(float(entr_D8_VI.get()), razryad)
+				ws['AY10'].value = my_round(float(entr_D8_VI.get()), razryad)
 			if check_var_gr_3.get() >= 9:	
-				ws['AQ26'].value = razryad%(float(entr_D9_VI.get()))
-				ws['AY11'].value = razryad%(float(entr_D9_VI.get()))
+				ws['AQ26'].value = my_round(float(entr_D9_VI.get()), razryad)
+				ws['AY11'].value = my_round(float(entr_D9_VI.get()), razryad)
 			if check_var_gr_3.get() >= 10:	
-				ws['AQ27'].value = razryad%(float(entr_D10_VI.get()))
-				ws['AY12'].value = razryad%(float(entr_D10_VI.get()))
+				ws['AQ27'].value = my_round(float(entr_D10_VI.get()), razryad)
+				ws['AY12'].value = my_round(float(entr_D10_VI.get()), razryad)
 
 
 
@@ -13657,7 +12805,7 @@ def calc():
 
 		#надпись и объединение ячеек под надпись
 		ws['AS15'].value = 'QC'
-		ws['AS16'].value = 'Введено, нг/мл'
+		ws['AS16'].value = f'Введено, {entr_concent.get()}'
 		ws['AS17'].value = '№ измерения'
 		ws['AT17'].value = 'Найдено, последовательность 5'
 		'''
@@ -13684,94 +12832,58 @@ def calc():
 	#количество таблиц зависит от показателя check_var_gr_2
 	if check_var_gr_2.get() >= 5:
 		#QCA5
-		#print(mean_E_I, "mean_QCA5")
-		#print(Er_E_I, 'Er_QCA5')	
-		#print(sigma_E_I, 'sigma_QCA5')
-		mean_QCA1_QCA2_QCA3_QCA4_QCA5 = round(stat.mean([mean_A_I, mean_B_I, mean_C_I, mean_D_I, mean_E_I]), check_razryad.get())
-		#print(mean_QCA1_QCA2_QCA3_QCA4_QCA5, 'mean_QCA1_QCA2_QCA3_QCA4_QCA5')
+		mean_QCA1_QCA2_QCA3_QCA4_QCA5 = my_round(stat.mean([mean_A_I, mean_B_I, mean_C_I, mean_D_I, mean_E_I]), check_razryad.get())
 		#междугруппами
 		sum_kv_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5 = len(spisok_A_I)*((mean_A_I - mean_QCA1_QCA2_QCA3_QCA4_QCA5)**2) + len(spisok_B_I)*((mean_B_I - mean_QCA1_QCA2_QCA3_QCA4_QCA5)**2) + len(spisok_C_I)*(mean_C_I - mean_QCA1_QCA2_QCA3_QCA4_QCA5)**2 + len(spisok_D_I)*((mean_D_I - mean_QCA1_QCA2_QCA3_QCA4_QCA5)**2) + len(spisok_E_I)*((mean_E_I - mean_QCA1_QCA2_QCA3_QCA4_QCA5)**2)
 		CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5 = (((sum_kv_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5)/4)**0.5)/mean_QCA1_QCA2_QCA3_QCA4_QCA5*100
-		#print(CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5, 'CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5')
 		#внутригрупп
 		CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5 = (mean_QCA1_QCA2_QCA3_QCA4_QCA5 - QC_I)/QC_I * 100
-		#print(CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5, 'CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5')
 
 
 		if check_var_gr_1.get() >= 2:
 			#QCB5
-			#print(mean_E_II, "mean_QCB5")
-			#print(Er_E_II, 'Er_QCB5')	
-			#print(sigma_E_II, 'sigma_QCB5')
-			mean_QCB1_QCB2_QCB3_QCB4_QCB5 = round(stat.mean([mean_A_II, mean_B_II, mean_C_II, mean_D_II, mean_E_II]), check_razryad.get())
-			#print(mean_QCB1_QCB2_QCB3_QCB4_QCB5, 'mean_QCB1_QCB2_QCB3_QCB4_QCB5')
+			mean_QCB1_QCB2_QCB3_QCB4_QCB5 = my_round(stat.mean([mean_A_II, mean_B_II, mean_C_II, mean_D_II, mean_E_II]), check_razryad.get())
 			#междугруппами
 			sum_kv_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5 = len(spisok_A_II)*((mean_A_II - mean_QCB1_QCB2_QCB3_QCB4_QCB5)**2) + len(spisok_B_II)*((mean_B_II - mean_QCB1_QCB2_QCB3_QCB4_QCB5)**2) + len(spisok_C_II)*(mean_C_II - mean_QCB1_QCB2_QCB3_QCB4_QCB5)**2 + len(spisok_D_II)*((mean_D_II - mean_QCB1_QCB2_QCB3_QCB4_QCB5)**2) + len(spisok_E_II)*((mean_E_II - mean_QCB1_QCB2_QCB3_QCB4_QCB5)**2)
 			CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5 = (((sum_kv_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5)/4)**0.5)/mean_QCB1_QCB2_QCB3_QCB4_QCB5*100
-			#print(CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5, 'CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5')
 			#внутригрупп
 			CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5 = (mean_QCB1_QCB2_QCB3_QCB4_QCB5 - QC_II)/QC_II * 100
-			#print(CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5, 'CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5')
 
 		if check_var_gr_1.get() >= 3:	
 			#QCC5
-			#print(mean_E_III, "mean_QCC5")
-			#print(Er_E_III, 'Er_QCC5')	
-			#print(sigma_E_III, 'sigma_QCC5')
-			mean_QCC1_QCC2_QCC3_QCC4_QCC5 = round(stat.mean([mean_A_III, mean_B_III, mean_C_III, mean_D_III, mean_E_III]), check_razryad.get())
-			#print(mean_QCC1_QCC2_QCC3_QCC4_QCC5, 'mean_QCC1_QCC2_QCC3_QCC4_QCC5')
+			mean_QCC1_QCC2_QCC3_QCC4_QCC5 = my_round(stat.mean([mean_A_III, mean_B_III, mean_C_III, mean_D_III, mean_E_III]), check_razryad.get())
 			#междугруппами
 			sum_kv_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5 = len(spisok_A_III)*((mean_A_III - mean_QCC1_QCC2_QCC3_QCC4_QCC5)**2) + len(spisok_B_III)*((mean_B_III - mean_QCC1_QCC2_QCC3_QCC4_QCC5)**2) + len(spisok_C_III)*(mean_C_III - mean_QCC1_QCC2_QCC3_QCC4_QCC5)**2 + len(spisok_D_III)*((mean_D_III - mean_QCC1_QCC2_QCC3_QCC4_QCC5)**2) + len(spisok_E_III)*((mean_E_III - mean_QCC1_QCC2_QCC3_QCC4_QCC5)**2)
 			CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5 = (((sum_kv_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5)/4)**0.5)/mean_QCC1_QCC2_QCC3_QCC4_QCC5*100
-			#print(CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5, 'CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5')
 			#внутригрупп
 			CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5 = (mean_QCC1_QCC2_QCC3_QCC4_QCC5 - QC_III)/QC_III * 100
-			#print(CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5, 'CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5')
 
 		if check_var_gr_1.get() >= 4:
 			#QCD5
-			#print(mean_E_IV, "mean_QCD5")
-			#print(Er_E_IV, 'Er_QCD5')	
-			#print(sigma_E_IV, 'sigma_QCD5')
-			mean_QCD1_QCD2_QCD3_QCD4_QCD5 = round(stat.mean([mean_A_IV, mean_B_IV, mean_C_IV, mean_D_IV, mean_E_IV]), check_razryad.get())
-			#print(mean_QCD1_QCD2_QCD3_QCD4_QCD5, 'mean_QCD1_QCD2_QCD3_QCD4_QCD5')
+			mean_QCD1_QCD2_QCD3_QCD4_QCD5 = my_round(stat.mean([mean_A_IV, mean_B_IV, mean_C_IV, mean_D_IV, mean_E_IV]), check_razryad.get())
 			#междугруппами
 			sum_kv_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5 = len(spisok_A_IV)*((mean_A_IV - mean_QCD1_QCD2_QCD3_QCD4_QCD5)**2) + len(spisok_B_IV)*((mean_B_IV - mean_QCD1_QCD2_QCD3_QCD4_QCD5)**2) + len(spisok_C_IV)*(mean_C_IV - mean_QCD1_QCD2_QCD3_QCD4_QCD5)**2 + len(spisok_D_IV)*((mean_D_IV - mean_QCD1_QCD2_QCD3_QCD4_QCD5)**2) + len(spisok_E_IV)*((mean_E_IV - mean_QCD1_QCD2_QCD3_QCD4_QCD5)**2)
 			CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5 = (((sum_kv_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5)/4)**0.5)/mean_QCD1_QCD2_QCD3_QCD4_QCD5*100
-			#print(CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5, 'CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5')
 			#внутригрупп
 			CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5 = (mean_QCD1_QCD2_QCD3_QCD4_QCD5 - QC_IV)/QC_IV * 100
-			#print(CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5, 'CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5')
 
 		if check_var_gr_1.get() >= 5:
 			#QCE5
-			#print(mean_E_V, "mean_QCE5")
-			#print(Er_E_V, 'Er_QCE5')	
-			#print(sigma_E_V, 'sigma_QCE5')
-			mean_QCE1_QCE2_QCE3_QCE4_QCE5 = round(stat.mean([mean_A_V, mean_B_V, mean_C_V, mean_D_V, mean_E_V]), check_razryad.get())
-			#print(mean_QCE1_QCE2_QCE3_QCE4_QCE5, 'mean_QCE1_QCE2_QCE3_QCE4_QCE5')
+			mean_QCE1_QCE2_QCE3_QCE4_QCE5 = my_round(stat.mean([mean_A_V, mean_B_V, mean_C_V, mean_D_V, mean_E_V]), check_razryad.get())
 			#междугруппами
 			sum_kv_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5 = len(spisok_A_V)*((mean_A_V - mean_QCE1_QCE2_QCE3_QCE4_QCE5)**2) + len(spisok_B_V)*((mean_B_V - mean_QCE1_QCE2_QCE3_QCE4_QCE5)**2) + len(spisok_C_V)*(mean_C_V - mean_QCE1_QCE2_QCE3_QCE4_QCE5)**2 + len(spisok_D_V)*((mean_D_V - mean_QCE1_QCE2_QCE3_QCE4_QCE5)**2) + len(spisok_E_V)*((mean_E_V - mean_QCE1_QCE2_QCE3_QCE4_QCE5)**2)
 			CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5 = (((sum_kv_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5)/4)**0.5)/mean_QCE1_QCE2_QCE3_QCE4_QCE5*100
-			#print(CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5, 'CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5')
 			#внутригрупп
 			CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5 = (mean_QCE1_QCE2_QCE3_QCE4_QCE5 - QC_V)/QC_V * 100
-			#print(CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5, 'CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5')
 
 		if check_var_gr_1.get() >= 6:
 			#QCF5
-			#print(mean_E_VI, "mean_QCF5")
-			#print(Er_E_VI, 'Er_QCF5')	
-			#print(sigma_E_VI, 'sigma_QCF5')
-			mean_QCF1_QCF2_QCF3_QCF4_QCF5 = round(stat.mean([mean_A_VI, mean_B_VI, mean_C_VI, mean_D_VI, mean_E_VI]), check_razryad.get())
-			#print(mean_QCF1_QCF2_QCF3_QCF4_QCF5, 'mean_QCF1_QCF2_QCF3_QCF4_QCF5')
+			mean_QCF1_QCF2_QCF3_QCF4_QCF5 = my_round(stat.mean([mean_A_VI, mean_B_VI, mean_C_VI, mean_D_VI, mean_E_VI]), check_razryad.get())
 			#междугруппами
 			sum_kv_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5 = len(spisok_A_VI)*((mean_A_VI - mean_QCF1_QCF2_QCF3_QCF4_QCF5)**2) + len(spisok_B_VI)*((mean_B_VI - mean_QCF1_QCF2_QCF3_QCF4_QCF5)**2) + len(spisok_C_VI)*(mean_C_VI - mean_QCF1_QCF2_QCF3_QCF4_QCF5)**2 + len(spisok_D_VI)*((mean_D_VI - mean_QCF1_QCF2_QCF3_QCF4_QCF5)**2) + len(spisok_E_VI)*((mean_E_VI - mean_QCF1_QCF2_QCF3_QCF4_QCF5)**2)
 			CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5 = (((sum_kv_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5)/4)**0.5)/mean_QCF1_QCF2_QCF3_QCF4_QCF5*100
-			#print(CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5, 'CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5')
 			#внутригрупп
 			CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5 = (mean_QCF1_QCF2_QCF3_QCF4_QCF5 - QC_VI)/QC_VI * 100
-			#print(CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5, 'CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5')
 
 
 #вывод среднего и остальных показателей в таблицу 
@@ -13780,22 +12892,22 @@ def calc():
 			ws['AS21'].value = 'найдено, сред.зн.,\nнг/мл (n=3)'
 			ws['AS21'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
 
-			ws['AS22'].value = 'εr, % (n=3)'
-			ws['AS23'].value = 'σr, % (n=3)'
+			ws['AS22'].value = 'εR, % (n=3)'
+			ws['AS23'].value = 'σR, % (n=3)'
 
 			ws['AS24'].value = 'найдено, сред.зн.,\nнг/мл (n=15)'
 			ws['AS24'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AS25'].value = 'εr, % (n=15)'
-			ws['AS26'].value = 'σr, % (n=15)'
+			ws['AS25'].value = 'εR, % (n=15)'
+			ws['AS26'].value = 'σR, % (n=15)'
 			ws['AS27'].value = 'Норма |ε| и |σ|, %'
 
-			ws['AT21'].value = razryad%(mean_E_I)
-			ws['AT22'].value = '%.1f'%Er_E_I
-			ws['AT23'].value = '%.1f'%sigma_E_I
+			ws['AT21'].value = my_round(mean_E_I, razryad)
+			ws['AT22'].value = my_round(Er_E_I, 1)
+			ws['AT23'].value = my_round(sigma_E_I, 1)
 
-			ws['AT24'].value = razryad%(mean_QCA1_QCA2_QCA3_QCA4_QCA5)
-			ws['AT25'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5
-			ws['AT26'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5
+			ws['AT24'].value = my_round(mean_QCA1_QCA2_QCA3_QCA4_QCA5, razryad)
+			ws['AT25'].value = my_round(CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5, 1)
+			ws['AT26'].value = my_round(CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['AT27'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
@@ -13803,65 +12915,65 @@ def calc():
 
 			
 			if check_var_gr_1.get() >= 2:
-				ws['AU21'].value = razryad%(mean_E_II)
-				ws['AU22'].value = '%.1f'%Er_E_II
-				ws['AU23'].value = '%.1f'%sigma_E_II
+				ws['AU21'].value = my_round(mean_E_II, razryad)
+				ws['AU22'].value = my_round(Er_E_II, 1)
+				ws['AU23'].value = my_round(sigma_E_II, 1)
 
-				ws['AU24'].value = razryad%(mean_QCB1_QCB2_QCB3_QCB4_QCB5)
-				ws['AU25'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5
-				ws['AU26'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5
+				ws['AU24'].value = my_round(mean_QCB1_QCB2_QCB3_QCB4_QCB5, razryad)
+				ws['AU25'].value = my_round(CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5, 1)
+				ws['AU26'].value = my_round(CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['AU27'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['AU27'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['AV21'].value = razryad%(mean_E_III)
-				ws['AV22'].value = '%.1f'%Er_E_III
-				ws['AV23'].value = '%.1f'%sigma_E_III
+				ws['AV21'].value = my_round(mean_E_III, razryad)
+				ws['AV22'].value = my_round(Er_E_III, 1)
+				ws['AV23'].value = my_round(sigma_E_III, 1)
 
-				ws['AV24'].value = razryad%(mean_QCC1_QCC2_QCC3_QCC4_QCC5)
-				ws['AV25'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5
-				ws['AV26'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5
+				ws['AV24'].value = my_round(mean_QCC1_QCC2_QCC3_QCC4_QCC5, razryad)
+				ws['AV25'].value = my_round(CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5, 1)
+				ws['AV26'].value = my_round(CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['AV27'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['AV27'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['AW21'].value = razryad%(mean_E_IV)
-				ws['AW22'].value = '%.1f'%Er_E_IV
-				ws['AW23'].value = '%.1f'%sigma_E_IV
+				ws['AW21'].value = my_round(mean_E_IV, razryad)
+				ws['AW22'].value = my_round(Er_E_IV, 1)
+				ws['AW23'].value = my_round(sigma_E_IV, 1)
 
-				ws['AW24'].value = razryad%(mean_QCD1_QCD2_QCD3_QCD4_QCD5)
-				ws['AW25'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5
-				ws['AW26'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5
+				ws['AW24'].value = my_round(mean_QCD1_QCD2_QCD3_QCD4_QCD5, razryad)
+				ws['AW25'].value = my_round(CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5, 1)
+				ws['AW26'].value = my_round(CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['AW27'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['AW27'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['AX21'].value = razryad%(mean_E_V)
-				ws['AX22'].value = '%.1f'%Er_E_V
-				ws['AX23'].value = '%.1f'%sigma_E_V
+				ws['AX21'].value = my_round(mean_E_V, razryad)
+				ws['AX22'].value = my_round(Er_E_V, 1)
+				ws['AX23'].value = my_round(sigma_E_V, 1)
 
-				ws['AX24'].value = razryad%(mean_QCE1_QCE2_QCE3_QCE4_QCE5)
-				ws['AX25'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5
-				ws['AX26'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5
+				ws['AX24'].value = my_round(mean_QCE1_QCE2_QCE3_QCE4_QCE5, razryad)
+				ws['AX25'].value = my_round(CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5, 1)
+				ws['AX26'].value = my_round(CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['AX27'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['AX27'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['AY21'].value = razryad%(mean_E_VI)
-				ws['AY22'].value = '%.1f'%Er_E_VI
-				ws['AY23'].value = '%.1f'%sigma_E_VI
+				ws['AY21'].value = my_round(mean_E_VI, razryad)
+				ws['AY22'].value = my_round(Er_E_VI, 1)
+				ws['AY23'].value = my_round(sigma_E_VI, 1)
 
-				ws['AY24'].value = razryad%(mean_QCF1_QCF2_QCF3_QCF4_QCF5)
-				ws['AY25'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5
-				ws['AY26'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5
+				ws['AY24'].value = my_round(mean_QCF1_QCF2_QCF3_QCF4_QCF5, razryad)
+				ws['AY25'].value = my_round(CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5, 1)
+				ws['AY26'].value = my_round(CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['AY27'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
@@ -13872,88 +12984,88 @@ def calc():
 
 			ws['AS22'].value = 'найдено, сред.зн.,\nнг/мл (n=4)'
 			ws['AS22'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AS23'].value = 'εr, % (n=4)'
-			ws['AS24'].value = 'σr, % (n=4)'
+			ws['AS23'].value = 'εR, % (n=4)'
+			ws['AS24'].value = 'σR, % (n=4)'
 			
 			ws['AS25'].value = 'найдено, сред.зн.,\nнг/мл (n=20)'
 			ws['AS25'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AS26'].value = 'εr, % (n=20)'
-			ws['AS27'].value = 'σr, % (n=20)'
+			ws['AS26'].value = 'εR, % (n=20)'
+			ws['AS27'].value = 'σR, % (n=20)'
 			ws['AS28'].value = 'Норма |ε| и |σ|, %'
 
 
-			ws['AT22'].value = razryad%(mean_E_I)
-			ws['AT23'].value = '%.1f'%Er_E_I
-			ws['AT24'].value = '%.1f'%sigma_E_I
+			ws['AT22'].value = my_round(mean_E_I, razryad)
+			ws['AT23'].value = my_round(Er_E_I, 1)
+			ws['AT24'].value = my_round(sigma_E_I, 1)
 
-			ws['AT25'].value = razryad%(mean_QCA1_QCA2_QCA3_QCA4_QCA5)
-			ws['AT26'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5
-			ws['AT27'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5
+			ws['AT25'].value = my_round(mean_QCA1_QCA2_QCA3_QCA4_QCA5, razryad)
+			ws['AT26'].value = my_round(CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5, 1)
+			ws['AT27'].value = my_round(CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['AT28'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
 				ws['AT28'].value = '≤20'
 
 			if check_var_gr_1.get() >= 2:
-				ws['AU22'].value = razryad%(mean_E_II)
-				ws['AU23'].value = '%.1f'%Er_E_II
-				ws['AU24'].value = '%.1f'%sigma_E_II
+				ws['AU22'].value = my_round(mean_E_II, razryad)
+				ws['AU23'].value = my_round(Er_E_II, 1)
+				ws['AU24'].value = my_round(sigma_E_II, 1)
 
-				ws['AU25'].value = razryad%(mean_QCB1_QCB2_QCB3_QCB4_QCB5)
-				ws['AU26'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5
-				ws['AU27'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5
+				ws['AU25'].value = my_round(mean_QCB1_QCB2_QCB3_QCB4_QCB5, razryad)
+				ws['AU26'].value = my_round(CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5, 1)
+				ws['AU27'].value = my_round(CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['AU28'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['AU28'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['AV22'].value = razryad%(mean_E_III)
-				ws['AV23'].value = '%.1f'%Er_E_III
-				ws['AV24'].value = '%.1f'%sigma_E_III
+				ws['AV22'].value = my_round(mean_E_III, razryad)
+				ws['AV23'].value = my_round(Er_E_III, 1)
+				ws['AV24'].value = my_round(sigma_E_III, 1)
 
-				ws['AV25'].value = razryad%(mean_QCC1_QCC2_QCC3_QCC4_QCC5)
-				ws['AV26'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5
-				ws['AV27'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5
+				ws['AV25'].value = my_round(mean_QCC1_QCC2_QCC3_QCC4_QCC5, razryad)
+				ws['AV26'].value = my_round(CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5, 1)
+				ws['AV27'].value = my_round(CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['AV28'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['AV28'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['AW22'].value = razryad%(mean_E_IV)
-				ws['AW23'].value = '%.1f'%Er_E_IV
-				ws['AW24'].value = '%.1f'%sigma_E_IV
+				ws['AW22'].value = my_round(mean_E_IV, razryad)
+				ws['AW23'].value = my_round(Er_E_IV, 1)
+				ws['AW24'].value = my_round(sigma_E_IV, 1)
 
-				ws['AW25'].value = razryad%(mean_QCD1_QCD2_QCD3_QCD4_QCD5)
-				ws['AW26'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5
-				ws['AW27'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5
+				ws['AW25'].value = my_round(mean_QCD1_QCD2_QCD3_QCD4_QCD5, razryad)
+				ws['AW26'].value = my_round(CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5, 1)
+				ws['AW27'].value = my_round(CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['AW28'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['AW28'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['AX22'].value = razryad%(mean_E_V)
-				ws['AX23'].value = '%.1f'%Er_E_V
-				ws['AX24'].value = '%.1f'%sigma_E_V
+				ws['AX22'].value = my_round(mean_E_V, razryad)
+				ws['AX23'].value = my_round(Er_E_V, 1)
+				ws['AX24'].value = my_round(sigma_E_V, 1)
 
-				ws['AX25'].value = razryad%(mean_QCE1_QCE2_QCE3_QCE4_QCE5)
-				ws['AX26'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5
-				ws['AX27'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5
+				ws['AX25'].value = my_round(mean_QCE1_QCE2_QCE3_QCE4_QCE5, razryad)
+				ws['AX26'].value = my_round(CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5, 1)
+				ws['AX27'].value = my_round(CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['AX28'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['AX28'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['AY22'].value = razryad%(mean_E_VI)
-				ws['AY23'].value = '%.1f'%Er_E_VI
-				ws['AY24'].value = '%.1f'%sigma_E_VI
+				ws['AY22'].value = my_round(mean_E_VI, razryad)
+				ws['AY23'].value = my_round(Er_E_VI, 1)
+				ws['AY24'].value = my_round(sigma_E_VI, 1)
 
-				ws['AY25'].value = razryad%(mean_QCF1_QCF2_QCF3_QCF4_QCF5)
-				ws['AY26'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5
-				ws['AY27'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5
+				ws['AY25'].value = my_round(mean_QCF1_QCF2_QCF3_QCF4_QCF5, razryad)
+				ws['AY26'].value = my_round(CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5, 1)
+				ws['AY27'].value = my_round(CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['AY28'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
@@ -13963,87 +13075,87 @@ def calc():
 		if check_var_gr_3.get() == 5:
 			ws['AS23'].value = 'найдено, сред.зн., \nнг/мл (n=5)'
 			ws['AS23'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AS24'].value = 'εr, % (n=5)'
-			ws['AS25'].value = 'σr, % (n=5)'
+			ws['AS24'].value = 'εR, % (n=5)'
+			ws['AS25'].value = 'σR, % (n=5)'
 			
 			ws['AS26'].value = 'найдено, сред.зн.,\nнг/мл (n=25)'
 			ws['AS26'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AS27'].value = 'εr, % (n=25)'
-			ws['AS28'].value = 'σr, % (n=25)'
+			ws['AS27'].value = 'εR, % (n=25)'
+			ws['AS28'].value = 'σR, % (n=25)'
 			ws['AS29'].value = 'Норма |ε| и |σ|, %'
 
-			ws['AT23'].value = razryad%(mean_E_I)
-			ws['AT24'].value = '%.1f'%Er_E_I
-			ws['AT25'].value = '%.1f'%sigma_E_I
+			ws['AT23'].value = my_round(mean_E_I, razryad)
+			ws['AT24'].value = my_round(Er_E_I, 1)
+			ws['AT25'].value = my_round(sigma_E_I, 1)
 
-			ws['AT26'].value = razryad%(mean_QCA1_QCA2_QCA3_QCA4_QCA5)
-			ws['AT27'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5
-			ws['AT28'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5
+			ws['AT26'].value = my_round(mean_QCA1_QCA2_QCA3_QCA4_QCA5, razryad)
+			ws['AT27'].value = my_round(CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5, 1)
+			ws['AT28'].value = my_round(CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['AT29'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
 				ws['AT29'].value = '≤20'
 
 			if check_var_gr_1.get() >= 2:
-				ws['AU23'].value = razryad%(mean_E_II)
-				ws['AU24'].value = '%.1f'%Er_E_II
-				ws['AU25'].value = '%.1f'%sigma_E_II
+				ws['AU23'].value = my_round(mean_E_II, razryad)
+				ws['AU24'].value = my_round(Er_E_II, 1)
+				ws['AU25'].value = my_round(sigma_E_II, 1)
 
-				ws['AU26'].value = razryad%(mean_QCB1_QCB2_QCB3_QCB4_QCB5)
-				ws['AU27'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5
-				ws['AU28'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5
+				ws['AU26'].value = my_round(mean_QCB1_QCB2_QCB3_QCB4_QCB5, razryad)
+				ws['AU27'].value = my_round(CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5, 1)
+				ws['AU28'].value = my_round(CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['AU29'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['AU29'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['AV23'].value = razryad%(mean_E_III)
-				ws['AV24'].value = '%.1f'%Er_E_III
-				ws['AV25'].value = '%.1f'%sigma_E_III
+				ws['AV23'].value = my_round(mean_E_III, razryad)
+				ws['AV24'].value = my_round(Er_E_III, 1)
+				ws['AV25'].value = my_round(sigma_E_III, 1)
 
-				ws['AV26'].value = razryad%(mean_QCC1_QCC2_QCC3_QCC4_QCC5)
-				ws['AV27'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5
-				ws['AV28'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5
+				ws['AV26'].value = my_round(mean_QCC1_QCC2_QCC3_QCC4_QCC5, razryad)
+				ws['AV27'].value = my_round(CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5, 1)
+				ws['AV28'].value = my_round(CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['AV29'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['AV29'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['AW23'].value = razryad%(mean_E_IV)
-				ws['AW24'].value = '%.1f'%Er_E_IV
-				ws['AW25'].value = '%.1f'%sigma_E_IV
+				ws['AW23'].value = my_round(mean_E_IV, razryad)
+				ws['AW24'].value = my_round(Er_E_IV, 1)
+				ws['AW25'].value = my_round(sigma_E_IV, 1)
 
-				ws['AW26'].value = razryad%(mean_QCD1_QCD2_QCD3_QCD4_QCD5)
-				ws['AW27'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5
-				ws['AW28'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5
+				ws['AW26'].value = my_round(mean_QCD1_QCD2_QCD3_QCD4_QCD5, razryad)
+				ws['AW27'].value = my_round(CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5, 1)
+				ws['AW28'].value = my_round(CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['AW29'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['AW29'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['AX23'].value = razryad%(mean_E_V)
-				ws['AX24'].value = '%.1f'%Er_E_V
-				ws['AX25'].value = '%.1f'%sigma_E_V
+				ws['AX23'].value = my_round(mean_E_V, razryad)
+				ws['AX24'].value = my_round(Er_E_V, 1)
+				ws['AX25'].value = my_round(sigma_E_V, 1)
 
-				ws['AX26'].value = razryad%(mean_QCE1_QCE2_QCE3_QCE4_QCE5)
-				ws['AX27'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5
-				ws['AX28'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5
+				ws['AX26'].value = my_round(mean_QCE1_QCE2_QCE3_QCE4_QCE5, razryad)
+				ws['AX27'].value = my_round(CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5, 1)
+				ws['AX28'].value = my_round(CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['AX29'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['AX29'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['AY23'].value = razryad%(mean_E_VI)
-				ws['AY24'].value = '%.1f'%Er_E_VI
-				ws['AY25'].value = '%.1f'%sigma_E_VI
+				ws['AY23'].value = my_round(mean_E_VI, razryad)
+				ws['AY24'].value = my_round(Er_E_VI, 1)
+				ws['AY25'].value = my_round(sigma_E_VI, 1)
 
-				ws['AY26'].value = razryad%(mean_QCF1_QCF2_QCF3_QCF4_QCF5)
-				ws['AY27'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5
-				ws['AY28'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5
+				ws['AY26'].value = my_round(mean_QCF1_QCF2_QCF3_QCF4_QCF5, razryad)
+				ws['AY27'].value = my_round(CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5, 1)
+				ws['AY28'].value = my_round(CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['AY29'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
@@ -14053,87 +13165,87 @@ def calc():
 		if check_var_gr_3.get() == 6:
 			ws['AS24'].value = 'найдено, сред.зн., \nнг/мл (n=6)'
 			ws['AS24'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AS25'].value = 'εr, % (n=6)'
-			ws['AS26'].value = 'σr, % (n=6)'
+			ws['AS25'].value = 'εR, % (n=6)'
+			ws['AS26'].value = 'σR, % (n=6)'
 			
 			ws['AS27'].value = 'найдено, сред.зн.,\nнг/мл (n=30)'
 			ws['AS27'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AS28'].value = 'εr, % (n=30)'
-			ws['AS28'].value = 'σr, % (n=30)'
+			ws['AS28'].value = 'εR, % (n=30)'
+			ws['AS28'].value = 'σR, % (n=30)'
 			ws['AS29'].value = 'Норма |ε| и |σ|, %'
 
-			ws['AT24'].value = razryad%(mean_E_I)
-			ws['AT25'].value = '%.1f'%Er_E_I
-			ws['AL26'].value = '%.1f'%sigma_E_I
+			ws['AT24'].value = my_round(mean_E_I, razryad)
+			ws['AT25'].value = my_round(Er_E_I, 1)
+			ws['AL26'].value = my_round(sigma_E_I, 1)
 
-			ws['AT27'].value = razryad%(mean_QCA1_QCA2_QCA3_QCA4_QCA5)
-			ws['AT28'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5
-			ws['AT29'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5
+			ws['AT27'].value = my_round(mean_QCA1_QCA2_QCA3_QCA4_QCA5, razryad)
+			ws['AT28'].value = my_round(CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5, 1)
+			ws['AT29'].value = my_round(CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['AT30'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
 				ws['AT30'].value = '≤20'
 
 			if check_var_gr_1.get() >= 2:
-				ws['AU24'].value = razryad%(mean_E_II)
-				ws['AU25'].value = '%.1f'%Er_E_II
-				ws['AU26'].value = '%.1f'%sigma_E_II
+				ws['AU24'].value = my_round(mean_E_II, razryad)
+				ws['AU25'].value = my_round(Er_E_II, 1)
+				ws['AU26'].value = my_round(sigma_E_II, 1)
 
-				ws['AU27'].value = razryad%(mean_QCB1_QCB2_QCB3_QCB4_QCB5)
-				ws['AU28'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5
-				ws['AU29'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5
+				ws['AU27'].value = my_round(mean_QCB1_QCB2_QCB3_QCB4_QCB5, razryad)
+				ws['AU28'].value = my_round(CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5, 1)
+				ws['AU29'].value = my_round(CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['AU30'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['AU30'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['AV24'].value = razryad%(mean_E_III)
-				ws['AV25'].value = '%.1f'%Er_E_III
-				ws['AV26'].value = '%.1f'%sigma_E_III
+				ws['AV24'].value = my_round(mean_E_III, razryad)
+				ws['AV25'].value = my_round(Er_E_III, 1)
+				ws['AV26'].value = my_round(sigma_E_III, 1)
 
-				ws['AV27'].value = razryad%(mean_QCC1_QCC2_QCC3_QCC4_QCC5)
-				ws['AV28'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5
-				ws['AV29'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5
+				ws['AV27'].value = my_round(mean_QCC1_QCC2_QCC3_QCC4_QCC5, razryad)
+				ws['AV28'].value = my_round(CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5, 1)
+				ws['AV29'].value = my_round(CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['AV30'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['AV30'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['AW24'].value = razryad%(mean_E_IV)
-				ws['AW25'].value = '%.1f'%Er_E_IV
-				ws['AW26'].value = '%.1f'%sigma_E_IV
+				ws['AW24'].value = my_round(mean_E_IV, razryad)
+				ws['AW25'].value = my_round(Er_E_IV, 1)
+				ws['AW26'].value = my_round(sigma_E_IV, 1)
 
-				ws['AW27'].value = razryad%(mean_QCD1_QCD2_QCD3_QCD4_QCD5)
-				ws['AW28'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5
-				ws['AW29'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5
+				ws['AW27'].value = my_round(mean_QCD1_QCD2_QCD3_QCD4_QCD5, razryad)
+				ws['AW28'].value = my_round(CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5, 1)
+				ws['AW29'].value = my_round(CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['AW30'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['AW30'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['AX24'].value = razryad%(mean_E_V)
-				ws['AX25'].value = '%.1f'%Er_E_V
-				ws['AX26'].value = '%.1f'%sigma_E_V
+				ws['AX24'].value = my_round(mean_E_V, razryad)
+				ws['AX25'].value = my_round(Er_E_V, 1)
+				ws['AX26'].value = my_round(sigma_E_V, 1)
 
-				ws['AX27'].value = razryad%(mean_QCE1_QCE2_QCE3_QCE4_QCE5)
-				ws['AX28'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5
-				ws['AX29'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5
+				ws['AX27'].value = my_round(mean_QCE1_QCE2_QCE3_QCE4_QCE5, razryad)
+				ws['AX28'].value = my_round(CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5, 1)
+				ws['AX29'].value = my_round(CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['AX30'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['AX30'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['AY24'].value = razryad%(mean_E_VI)
-				ws['AY25'].value = '%.1f'%Er_E_VI
-				ws['AY26'].value = '%.1f'%sigma_E_VI
+				ws['AY24'].value = my_round(mean_E_VI, razryad)
+				ws['AY25'].value = my_round(Er_E_VI, 1)
+				ws['AY26'].value = my_round(sigma_E_VI, 1)
 
-				ws['AY27'].value = razryad%(mean_QCF1_QCF2_QCF3_QCF4_QCF5)
-				ws['AY28'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5
-				ws['AY29'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5
+				ws['AY27'].value = my_round(mean_QCF1_QCF2_QCF3_QCF4_QCF5, razryad)
+				ws['AY28'].value = my_round(CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5, 1)
+				ws['AY29'].value = my_round(CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['AY30'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
@@ -14142,87 +13254,87 @@ def calc():
 		if check_var_gr_3.get() == 7:
 			ws['AS25'].value = 'найдено, сред.зн., \nнг/мл (n=7)'
 			ws['AS25'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AS26'].value = 'εr, % (n=7)'
-			ws['AS27'].value = 'σr, % (n=7)'
+			ws['AS26'].value = 'εR, % (n=7)'
+			ws['AS27'].value = 'σR, % (n=7)'
 			
 			ws['AS28'].value = 'найдено, сред.зн.,\nнг/мл (n=35)'
 			ws['AS28'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AS29'].value = 'εr, % (n=35)'
-			ws['AS30'].value = 'σr, % (n=35)'
+			ws['AS29'].value = 'εR, % (n=35)'
+			ws['AS30'].value = 'σR, % (n=35)'
 			ws['AS31'].value = 'Норма |ε| и |σ|, %'
 
-			ws['AT25'].value = razryad%(mean_E_I)
-			ws['AT26'].value = '%.1f'%Er_E_I
-			ws['AT27'].value = '%.1f'%sigma_E_I
+			ws['AT25'].value = my_round(mean_E_I, razryad)
+			ws['AT26'].value = my_round(Er_E_I, 1)
+			ws['AT27'].value = my_round(sigma_E_I, 1)
 
-			ws['AT28'].value = razryad%(mean_QCA1_QCA2_QCA3_QCA4_QCA5)
-			ws['AT29'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5
-			ws['AT30'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5
+			ws['AT28'].value = my_round(mean_QCA1_QCA2_QCA3_QCA4_QCA5, razryad)
+			ws['AT29'].value = my_round(CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5, 1)
+			ws['AT30'].value = my_round(CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['AT31'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
 				ws['AT31'].value = '≤20'
 
 			if check_var_gr_1.get() >= 2:
-				ws['AU25'].value = razryad%(mean_E_II)
-				ws['AU26'].value = '%.1f'%Er_E_II
-				ws['AU27'].value = '%.1f'%sigma_E_II
+				ws['AU25'].value = my_round(mean_E_II, razryad)
+				ws['AU26'].value = my_round(Er_E_II, 1)
+				ws['AU27'].value = my_round(sigma_E_II, 1)
 
-				ws['AU28'].value = razryad%(mean_QCB1_QCB2_QCB3_QCB4_QCB5)
-				ws['AU29'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5
-				ws['AU30'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5
+				ws['AU28'].value = my_round(mean_QCB1_QCB2_QCB3_QCB4_QCB5, razryad)
+				ws['AU29'].value = my_round(CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5, 1)
+				ws['AU30'].value = my_round(CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['AU31'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['AU31'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['AV25'].value = razryad%(mean_E_III)
-				ws['AV26'].value = '%.1f'%Er_E_III
-				ws['AV27'].value = '%.1f'%sigma_E_III
+				ws['AV25'].value = my_round(mean_E_III, razryad)
+				ws['AV26'].value = my_round(Er_E_III, 1)
+				ws['AV27'].value = my_round(sigma_E_III, 1)
 
-				ws['AV28'].value = razryad%(mean_QCC1_QCC2_QCC3_QCC4_QCC5)	
-				ws['AV29'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5
-				ws['AV30'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5
+				ws['AV28'].value = my_round(mean_QCC1_QCC2_QCC3_QCC4_QCC5, razryad)
+				ws['AV29'].value = my_round(CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5, 1)
+				ws['AV30'].value = my_round(CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['AV31'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['AV31'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['AW25'].value = razryad%(mean_E_IV)
-				ws['AW26'].value = '%.1f'%Er_E_IV
-				ws['AW27'].value = '%.1f'%sigma_E_IV
+				ws['AW25'].value = my_round(mean_E_IV, razryad)
+				ws['AW26'].value = my_round(Er_E_IV, 1)
+				ws['AW27'].value = my_round(sigma_E_IV, 1)
 
-				ws['AW28'].value = razryad%(mean_QCD1_QCD2_QCD3_QCD4_QCD5)
-				ws['AW29'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5
-				ws['AW30'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5
+				ws['AW28'].value = my_round(mean_QCD1_QCD2_QCD3_QCD4_QCD5, razryad)
+				ws['AW29'].value = my_round(CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5, 1)
+				ws['AW30'].value = my_round(CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['AW31'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['AW31'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['AX25'].value = razryad%(mean_E_V)
-				ws['AX26'].value = '%.1f'%Er_E_V
-				ws['AX27'].value = '%.1f'%sigma_E_V
+				ws['AX25'].value = my_round(mean_E_V, razryad)
+				ws['AX26'].value = my_round(Er_E_V, 1)
+				ws['AX27'].value = my_round(sigma_E_V, 1)
 
-				ws['AX28'].value = razryad%(mean_QCE1_QCE2_QCE3_QCE4_QCE5)
-				ws['AX29'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5
-				ws['AX30'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5
+				ws['AX28'].value = my_round(mean_QCE1_QCE2_QCE3_QCE4_QCE5, razryad)
+				ws['AX29'].value = my_round(CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5, 1)
+				ws['AX30'].value = my_round(CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['AX31'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['AX31'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['AY25'].value = razryad%(mean_E_VI)
-				ws['AY26'].value = '%.1f'%Er_E_VI
-				ws['AY27'].value = '%.1f'%sigma_E_VI
+				ws['AY25'].value = my_round(mean_E_VI, razryad)
+				ws['AY26'].value = my_round(Er_E_VI, 1)
+				ws['AY27'].value = my_round(sigma_E_VI, 1)
 
-				ws['AY28'].value = razryad%(mean_QCF1_QCF2_QCF3_QCF4_QCF5)
-				ws['AY29'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5
-				ws['AY30'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5
+				ws['AY28'].value = my_round(mean_QCF1_QCF2_QCF3_QCF4_QCF5, razryad)
+				ws['AY29'].value = my_round(CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5, 1)
+				ws['AY30'].value = my_round(CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['AY31'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
@@ -14231,87 +13343,87 @@ def calc():
 		if check_var_gr_3.get() == 8:
 			ws['AS26'].value = 'найдено, сред.зн., \nнг/мл (n=8)'
 			ws['AS26'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AS27'].value = 'εr, % (n=8)'
-			ws['AS28'].value = 'σr, % (n=8)'
+			ws['AS27'].value = 'εR, % (n=8)'
+			ws['AS28'].value = 'σR, % (n=8)'
 			
 			ws['AS29'].value = 'найдено, сред.зн.,\nнг/мл (n=40)'
 			ws['AS29'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AS30'].value = 'εr, % (n=40)'
-			ws['AS30'].value = 'σr, % (n=40)'
+			ws['AS30'].value = 'εR, % (n=40)'
+			ws['AS30'].value = 'σR, % (n=40)'
 			ws['AS31'].value = 'Норма |ε| и |σ|, %'
 
-			ws['AT26'].value = razryad%(mean_E_I)
-			ws['AT27'].value = '%.1f'%Er_E_I
-			ws['AT28'].value = '%.1f'%sigma_E_I
+			ws['AT26'].value = my_round(mean_E_I, razryad)
+			ws['AT27'].value = my_round(Er_E_I, 1)
+			ws['AT28'].value = my_round(sigma_E_I, 1)
 
-			ws['AT29'].value = razryad%(mean_QCA1_QCA2_QCA3_QCA4_QCA5)
-			ws['AT30'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5
-			ws['AT31'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5
+			ws['AT29'].value = my_round(mean_QCA1_QCA2_QCA3_QCA4_QCA5, razryad)
+			ws['AT30'].value = my_round(CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5, 1)
+			ws['AT31'].value = my_round(CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['AT32'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
 				ws['AT32'].value = '≤20'
 
 			if check_var_gr_1.get() >= 2:
-				ws['AU26'].value = razryad%(mean_E_II)
-				ws['AU27'].value = '%.1f'%Er_E_II
-				ws['AU28'].value = '%.1f'%sigma_E_II
+				ws['AU26'].value = my_round(mean_E_II, razryad)
+				ws['AU27'].value = my_round(Er_E_II, 1)
+				ws['AU28'].value = my_round(sigma_E_II, 1)
 
-				ws['AU29'].value = razryad%(mean_QCB1_QCB2_QCB3_QCB4_QCB5)
-				ws['AU30'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5
-				ws['AU31'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5
+				ws['AU29'].value = my_round(mean_QCB1_QCB2_QCB3_QCB4_QCB5, razryad)
+				ws['AU30'].value = my_round(CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5, 1)
+				ws['AU31'].value = my_round(CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['AU32'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['AU32'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['AV26'].value = razryad%(mean_E_III)
-				ws['AV27'].value = '%.1f'%Er_E_III
-				ws['AV28'].value = '%.1f'%sigma_E_III
+				ws['AV26'].value = my_round(mean_E_III, razryad)
+				ws['AV27'].value = my_round(Er_E_III, 1)
+				ws['AV28'].value = my_round(sigma_E_III, 1)
 
-				ws['AV29'].value = razryad%(mean_QCC1_QCC2_QCC3_QCC4_QCC5)
-				ws['AV30'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5
-				ws['AV31'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5
+				ws['AV29'].value = my_round(mean_QCC1_QCC2_QCC3_QCC4_QCC5, razryad)
+				ws['AV30'].value = my_round(CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5, 1)
+				ws['AV31'].value = my_round(CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['AV32'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['AV32'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['AW26'].value = razryad%(mean_E_IV)
-				ws['AW27'].value = '%.1f'%Er_E_IV
-				ws['AW28'].value = '%.1f'%sigma_E_IV
+				ws['AW26'].value = my_round(mean_E_IV, razryad)
+				ws['AW27'].value = my_round(Er_E_IV, 1)
+				ws['AW28'].value = my_round(sigma_E_IV, 1)
 
-				ws['AW29'].value = razryad%(mean_QCD1_QCD2_QCD3_QCD4_QCD5)
-				ws['AW30'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5
-				ws['AW31'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5
+				ws['AW29'].value = my_round(mean_QCD1_QCD2_QCD3_QCD4_QCD5, razryad)
+				ws['AW30'].value = my_round(CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5, 1)
+				ws['AW31'].value = my_round(CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['AW32'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['AW32'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['AX26'].value = razryad%(mean_E_V)
-				ws['AX27'].value = '%.1f'%Er_E_V
-				ws['AX28'].value = '%.1f'%sigma_E_V
+				ws['AX26'].value = my_round(mean_E_V, razryad)
+				ws['AX27'].value = my_round(Er_E_V, 1)
+				ws['AX28'].value = my_round(sigma_E_V, 1)
 
-				ws['AX29'].value = razryad%(mean_QCE1_QCE2_QCE3_QCE4_QCE5)
-				ws['AX30'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5
-				ws['AX31'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5
+				ws['AX29'].value = my_round(mean_QCE1_QCE2_QCE3_QCE4_QCE5, razryad)
+				ws['AX30'].value = my_round(CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5, 1)
+				ws['AX31'].value = my_round(CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['AX32'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['AX32'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['AY26'].value = razryad%(mean_E_VI)
-				ws['AY27'].value = '%.1f'%Er_E_VI
-				ws['AY28'].value = '%.1f'%sigma_E_VI
+				ws['AY26'].value = my_round(mean_E_VI, razryad)
+				ws['AY27'].value = my_round(Er_E_VI, 1)
+				ws['AY28'].value = my_round(sigma_E_VI, 1)
 
-				ws['AY29'].value = razryad%(mean_QCF1_QCF2_QCF3_QCF4_QCF5)
-				ws['AY30'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5
-				ws['AY31'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5
+				ws['AY29'].value = my_round(mean_QCF1_QCF2_QCF3_QCF4_QCF5, razryad)
+				ws['AY30'].value = my_round(CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5, 1)
+				ws['AY31'].value = my_round(CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['AY32'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
@@ -14320,87 +13432,87 @@ def calc():
 		if check_var_gr_3.get() == 9:
 			ws['AS27'].value = 'найдено, сред.зн., \nнг/мл (n=9)'
 			ws['AS27'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AS28'].value = 'εr, % (n=9)'
-			ws['AS29'].value = 'σr, % (n=9)'
+			ws['AS28'].value = 'εR, % (n=9)'
+			ws['AS29'].value = 'σR, % (n=9)'
 			
 			ws['AS30'].value = 'найдено, сред.зн.,\nнг/мл (n=45)'
 			ws['AS30'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AS31'].value = 'εr, % (n=45)'
-			ws['AS32'].value = 'σr, % (n=45)'
+			ws['AS31'].value = 'εR, % (n=45)'
+			ws['AS32'].value = 'σR, % (n=45)'
 			ws['AS33'].value = 'Норма |ε| и |σ|, %'
 
-			ws['AT27'].value = razryad%(mean_E_I)
-			ws['AT28'].value = '%.1f'%Er_E_I
-			ws['AT29'].value = '%.1f'%sigma_E_I
+			ws['AT27'].value = my_round(mean_E_I, razryad)
+			ws['AT28'].value = my_round(Er_E_I, 1)
+			ws['AT29'].value = my_round(sigma_E_I, 1)
 
-			ws['AT30'].value = razryad%(mean_QCA1_QCA2_QCA3_QCA4_QCA5)
-			ws['AT31'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5
-			ws['AT32'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5
+			ws['AT30'].value = my_round(mean_QCA1_QCA2_QCA3_QCA4_QCA5, razryad)
+			ws['AT31'].value = my_round(CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5, 1)
+			ws['AT32'].value = my_round(CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['AT33'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
 				ws['AT33'].value = '≤20'
 
 			if check_var_gr_1.get() >= 2:
-				ws['AU27'].value = razryad%(mean_E_II)
-				ws['AU28'].value = '%.1f'%Er_E_II
-				ws['AU29'].value = '%.1f'%sigma_E_II
+				ws['AU27'].value = my_round(mean_E_II, razryad)
+				ws['AU28'].value = my_round(Er_E_II, 1)
+				ws['AU29'].value = my_round(sigma_E_II, 1)
 
-				ws['AU30'].value = razryad%(mean_QCB1_QCB2_QCB3_QCB4_QCB5)
-				ws['AU31'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5
-				ws['AU32'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5
+				ws['AU30'].value = my_round(mean_QCB1_QCB2_QCB3_QCB4_QCB5, razryad)
+				ws['AU31'].value = my_round(CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5, 1)
+				ws['AU32'].value = my_round(CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['AU33'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['AU33'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['AV27'].value = razryad%(mean_E_III)
-				ws['AV28'].value = '%.1f'%Er_E_III
-				ws['AV29'].value = '%.1f'%sigma_E_III
+				ws['AV27'].value = my_round(mean_E_III, razryad)
+				ws['AV28'].value = my_round(Er_E_III, 1)
+				ws['AV29'].value = my_round(sigma_E_III, 1)
 
-				ws['AV30'].value = razryad%(mean_QCC1_QCC2_QCC3_QCC4_QCC5)
-				ws['AV31'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5
-				ws['AV32'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5
+				ws['AV30'].value = my_round(mean_QCC1_QCC2_QCC3_QCC4_QCC5, razryad)
+				ws['AV31'].value = my_round(CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5, 1)
+				ws['AV32'].value = my_round(CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['AV33'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['AV33'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['AW27'].value = razryad%(mean_E_IV)
-				ws['AW28'].value = '%.1f'%Er_E_IV
-				ws['AW29'].value = '%.1f'%sigma_E_IV
+				ws['AW27'].value = my_round(mean_E_IV, razryad)
+				ws['AW28'].value = my_round(Er_E_IV, 1)
+				ws['AW29'].value = my_round(sigma_E_IV, 1)
 
-				ws['AW30'].value = razryad%(mean_QCD1_QCD2_QCD3_QCD4_QCD5)
-				ws['AW31'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5
-				ws['AW32'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5
+				ws['AW30'].value = my_round(mean_QCD1_QCD2_QCD3_QCD4_QCD5, razryad)
+				ws['AW31'].value = my_round(CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5, 1)
+				ws['AW32'].value = my_round(CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['AW33'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['AW33'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['AX27'].value = razryad%(mean_E_V)
-				ws['AX28'].value = '%.1f'%Er_E_V
-				ws['AX29'].value = '%.1f'%sigma_E_V
+				ws['AX27'].value = my_round(mean_E_V, razryad)
+				ws['AX28'].value = my_round(Er_E_V, 1)
+				ws['AX29'].value = my_round(sigma_E_V, 1)
 
-				ws['AX30'].value = razryad%(mean_QCE1_QCE2_QCE3_QCE4_QCE5)
-				ws['AX31'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5
-				ws['AX32'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5
+				ws['AX30'].value = my_round(mean_QCE1_QCE2_QCE3_QCE4_QCE5, razryad)
+				ws['AX31'].value = my_round(CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5, 1)
+				ws['AX32'].value = my_round(CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['AX33'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['AX33'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['AY27'].value = razryad%(mean_E_VI)
-				ws['AY28'].value = '%.1f'%Er_E_VI
-				ws['AY29'].value = '%.1f'%sigma_E_VI
+				ws['AY27'].value = my_round(mean_E_VI, razryad)
+				ws['AY28'].value = my_round(Er_E_VI, 1)
+				ws['AY29'].value = my_round(sigma_E_VI, 1)
 
-				ws['AY30'].value = razryad%(mean_QCF1_QCF2_QCF3_QCF4_QCF5)
-				ws['AY31'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5
-				ws['AY32'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5
+				ws['AY30'].value = my_round(mean_QCF1_QCF2_QCF3_QCF4_QCF5, razryad)
+				ws['AY31'].value = my_round(CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5, 1)
+				ws['AY32'].value = my_round(CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['AY33'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
@@ -14409,87 +13521,87 @@ def calc():
 		if check_var_gr_3.get() == 10:
 			ws['AS28'].value = 'найдено, сред.зн., \nнг/мл (n=10)'
 			ws['AS28'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AS29'].value = 'εr, % (n=10)'
-			ws['AS30'].value = 'σr, % (n=10)'
+			ws['AS29'].value = 'εR, % (n=10)'
+			ws['AS30'].value = 'σR, % (n=10)'
 			
 			ws['AS31'].value = 'найдено, сред.зн.,\nнг/мл (n=50)'
 			ws['AS31'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['AS32'].value = 'εr, % (n=50)'
-			ws['AS33'].value = 'σr, % (n=50)'
+			ws['AS32'].value = 'εR, % (n=50)'
+			ws['AS33'].value = 'σR, % (n=50)'
 			ws['AS34'].value = 'Норма |ε| и |σ|, %'
 
-			ws['AT28'].value = razryad%(mean_E_I)
-			ws['AT29'].value = '%.1f'%Er_E_I
-			ws['AT30'].value = '%.1f'%sigma_E_I
+			ws['AT28'].value = my_round(mean_E_I, razryad)
+			ws['AT29'].value = my_round(Er_E_I, 1)
+			ws['AT30'].value = my_round(sigma_E_I, 1)
 
-			ws['AT31'].value = razryad%(mean_QCA1_QCA2_QCA3_QCA4_QCA5)
-			ws['AT32'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5
-			ws['AT33'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5
+			ws['AT31'].value = my_round(mean_QCA1_QCA2_QCA3_QCA4_QCA5, razryad)
+			ws['AT32'].value = my_round(CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5, 1)
+			ws['AT33'].value = my_round(CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['AT34'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
 				ws['AT34'].value = '≤20'
 
 			if check_var_gr_1.get() >= 2:
-				ws['AU28'].value = razryad%(mean_E_II)
-				ws['AU29'].value = '%.1f'%Er_E_II
-				ws['AU30'].value = '%.1f'%sigma_E_II
+				ws['AU28'].value = my_round(mean_E_II, razryad)
+				ws['AU29'].value = my_round(Er_E_II, 1)
+				ws['AU30'].value = my_round(sigma_E_II, 1)
 
-				ws['AU31'].value = razryad%(mean_QCB1_QCB2_QCB3_QCB4_QCB5)
-				ws['AU32'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5
-				ws['AU33'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5
+				ws['AU31'].value = my_round(mean_QCB1_QCB2_QCB3_QCB4_QCB5, razryad)
+				ws['AU32'].value = my_round(CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5, 1)
+				ws['AU33'].value = my_round(CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['AU34'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['AU34'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['AV28'].value = razryad%(mean_E_III)
-				ws['AV29'].value = '%.1f'%Er_E_III
-				ws['AV30'].value = '%.1f'%sigma_E_III
+				ws['AV28'].value = my_round(mean_E_III, razryad)
+				ws['AV29'].value = my_round(Er_E_III, 1)
+				ws['AV30'].value = my_round(sigma_E_III, 1)
 
-				ws['AV31'].value = razryad%(mean_QCC1_QCC2_QCC3_QCC4_QCC5)
-				ws['AV32'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5
-				ws['AV33'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5
+				ws['AV31'].value = my_round(mean_QCC1_QCC2_QCC3_QCC4_QCC5, razryad)
+				ws['AV32'].value = my_round(CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5, 1)
+				ws['AV33'].value = my_round(CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['AV34'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['AV34'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['AW28'].value = razryad%(mean_E_IV)
-				ws['AW29'].value = '%.1f'%Er_E_IV
-				ws['AW30'].value = '%.1f'%sigma_E_IV
+				ws['AW28'].value = my_round(mean_E_IV, razryad)
+				ws['AW29'].value = my_round(Er_E_IV, 1)
+				ws['AW30'].value = my_round(sigma_E_IV, 1)
 
-				ws['AW31'].value = razryad%(mean_QCD1_QCD2_QCD3_QCD4_QCD5)
-				ws['AW32'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5
-				ws['AW33'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5
+				ws['AW31'].value = my_round(mean_QCD1_QCD2_QCD3_QCD4_QCD5, razryad)
+				ws['AW32'].value = my_round(CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5, 1)
+				ws['AW33'].value = my_round(CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['AW34'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['AW34'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['AX28'].value = razryad%(mean_E_V)
-				ws['AX29'].value = '%.1f'%Er_E_V
-				ws['AX30'].value = '%.1f'%sigma_E_V
+				ws['AX28'].value = my_round(mean_E_V, razryad)
+				ws['AX29'].value = my_round(Er_E_V, 1)
+				ws['AX30'].value = my_round(sigma_E_V, 1)
 
-				ws['AX31'].value = razryad%(mean_QCE1_QCE2_QCE3_QCE4_QCE5)
-				ws['AX32'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5
-				ws['AX33'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5
+				ws['AX31'].value = my_round(mean_QCE1_QCE2_QCE3_QCE4_QCE5, razryad)
+				ws['AX32'].value = my_round(CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5, 1)
+				ws['AX33'].value = my_round(CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['AX34'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['AX34'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['AY28'].value = razryad%(mean_E_VI)
-				ws['AY29'].value = '%.1f'%Er_E_VI
-				ws['AY30'].value = '%.1f'%sigma_E_VI
+				ws['AY28'].value = my_round(mean_E_VI, razryad)
+				ws['AY29'].value = my_round(Er_E_VI, 1)
+				ws['AY30'].value = my_round(sigma_E_VI, 1)
 
-				ws['AY31'].value = razryad%(mean_QCF1_QCF2_QCF3_QCF4_QCF5)
-				ws['AY32'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5
-				ws['AY33'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5
+				ws['AY31'].value = my_round(mean_QCF1_QCF2_QCF3_QCF4_QCF5, razryad)
+				ws['AY32'].value = my_round(CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5, 1)
+				ws['AY33'].value = my_round(CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['AY34'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
@@ -14501,42 +13613,42 @@ def calc():
 		ws['AT16'].value = QC_I
 		ws['G2'].value = 'QCA5'
 		ws['AS18'].value = '1'
-		ws['AT18'].value = razryad%(float(entr_E1_I.get()))
-		ws['G3'].value = razryad%(float(entr_E1_I.get()))
+		ws['AT18'].value = my_round(float(entr_E1_I.get()), razryad)
+		ws['G3'].value = my_round(float(entr_E1_I.get()), razryad)
 		ws['AS19'].value = '2'
-		ws['AT19'].value = razryad%(float(entr_E2_I.get()))
-		ws['G4'].value = razryad%(float(entr_E2_I.get()))
+		ws['AT19'].value = my_round(float(entr_E2_I.get()), razryad)
+		ws['G4'].value = my_round(float(entr_E2_I.get()), razryad)
 		ws['AS20'].value = '3'
-		ws['AT20'].value = razryad%(float(entr_E3_I.get()))
-		ws['G5'].value = razryad%(float(entr_E3_I.get()))
+		ws['AT20'].value = my_round(float(entr_E3_I.get()), razryad)
+		ws['G5'].value = my_round(float(entr_E3_I.get()), razryad)
 		if check_var_gr_3.get() >= 4:
 			ws['AS21'].value = '4'
-			ws['AT21'].value = razryad%(float(entr_E4_I.get()))
-			ws['G6'].value = razryad%(float(entr_E4_I.get()))
+			ws['AT21'].value = my_round(float(entr_E4_I.get()), razryad)
+			ws['G6'].value = my_round(float(entr_E4_I.get()), razryad)
 		if check_var_gr_3.get() >= 5:
 			ws['AS22'].value = '5'
-			ws['AT22'].value = razryad%(float(entr_E5_I.get()))
-			ws['G7'].value = razryad%(float(entr_E5_I.get()))
+			ws['AT22'].value = my_round(float(entr_E5_I.get()), razryad)
+			ws['G7'].value = my_round(float(entr_E5_I.get()), razryad)
 		if check_var_gr_3.get() >= 6:	
 			ws['AS23'].value = '6'
-			ws['AT23'].value = razryad%(float(entr_E6_I.get()))
-			ws['G8'].value = razryad%(float(entr_E6_I.get()))
+			ws['AT23'].value = my_round(float(entr_E6_I.get()), razryad)
+			ws['G8'].value = my_round(float(entr_E6_I.get()), razryad)
 		if check_var_gr_3.get() >= 7:	
 			ws['AS24'].value = '7'
-			ws['AT24'].value = razryad%(float(entr_E7_I.get()))
-			ws['G9'].value = razryad%(float(entr_E7_I.get()))
+			ws['AT24'].value = my_round(float(entr_E7_I.get()), razryad)
+			ws['G9'].value = my_round(float(entr_E7_I.get()), razryad)
 		if check_var_gr_3.get() >= 8:	
 			ws['AS25'].value = '8'
-			ws['AT25'].value = razryad%(float(entr_E8_I.get()))
-			ws['G10'].value = razryad%(float(entr_E8_I.get()))
+			ws['AT25'].value = my_round(float(entr_E8_I.get()), razryad)
+			ws['G10'].value = my_round(float(entr_E8_I.get()), razryad)
 		if check_var_gr_3.get() >= 9:	
 			ws['AS26'].value = '9'
-			ws['AT26'].value = razryad%(float(entr_E9_I.get()))
-			ws['G11'].value = razryad%(float(entr_E9_I.get()))
+			ws['AT26'].value = my_round(float(entr_E9_I.get()), razryad)
+			ws['G11'].value = my_round(float(entr_E9_I.get()), razryad)
 		if check_var_gr_3.get() >= 10:	
 			ws['AS27'].value = '10'
-			ws['AT27'].value = razryad%(float(entr_E10_I.get()))
-			ws['G12'].value = razryad%(float(entr_E10_I.get()))
+			ws['AT27'].value = my_round(float(entr_E10_I.get()), razryad)
+			ws['G12'].value = my_round(float(entr_E10_I.get()), razryad)
 
 
 
@@ -14545,166 +13657,166 @@ def calc():
 			ws['AU15'].value = 'QCB5'
 			ws['AU16'].value = QC_II
 			ws['P2'].value = 'QCB5'
-			ws['AU18'].value = razryad%(float(entr_E1_II.get()))
-			ws['P3'].value = razryad%(float(entr_E1_II.get()))
-			ws['AU19'].value = razryad%(float(entr_E2_II.get()))
-			ws['P4'].value = razryad%(float(entr_E2_II.get()))
-			ws['AU20'].value = razryad%(float(entr_E3_II.get()))
-			ws['P5'].value = razryad%(float(entr_E3_II.get()))
+			ws['AU18'].value = my_round(float(entr_E1_II.get()), razryad)
+			ws['P3'].value = my_round(float(entr_E1_II.get()), razryad)
+			ws['AU19'].value = my_round(float(entr_E2_II.get()), razryad)
+			ws['P4'].value = my_round(float(entr_E2_II.get()), razryad)
+			ws['AU20'].value = my_round(float(entr_E3_II.get()), razryad)
+			ws['P5'].value = my_round(float(entr_E3_II.get()), razryad)
 			if check_var_gr_3.get() >= 4:
-				ws['AU21'].value = razryad%(float(entr_E4_II.get()))
-				ws['P6'].value = razryad%(float(entr_E4_II.get()))
+				ws['AU21'].value = my_round(float(entr_E4_II.get()), razryad)
+				ws['P6'].value = my_round(float(entr_E4_II.get()), razryad)
 			if check_var_gr_3.get() >= 5:
-				ws['AU22'].value = razryad%(float(entr_E5_II.get()))
-				ws['P7'].value = razryad%(float(entr_E5_II.get()))
+				ws['AU22'].value = my_round(float(entr_E5_II.get()), razryad)
+				ws['P7'].value = my_round(float(entr_E5_II.get()), razryad)
 			if check_var_gr_3.get() >= 6:	
-				ws['AU23'].value = razryad%(float(entr_E6_II.get()))
-				ws['P8'].value = razryad%(float(entr_E6_II.get()))
+				ws['AU23'].value = my_round(float(entr_E6_II.get()), razryad)
+				ws['P8'].value = my_round(float(entr_E6_II.get()), razryad)
 			if check_var_gr_3.get() >= 7:	
-				ws['AU24'].value = razryad%(float(entr_E7_II.get()))
-				ws['P9'].value = razryad%(float(entr_E7_II.get()))
+				ws['AU24'].value = my_round(float(entr_E7_II.get()), razryad)
+				ws['P9'].value = my_round(float(entr_E7_II.get()), razryad)
 			if check_var_gr_3.get() >= 8:	
-				ws['AU25'].value = razryad%(float(entr_E8_II.get()))
-				ws['P10'].value = razryad%(float(entr_E8_II.get()))
+				ws['AU25'].value = my_round(float(entr_E8_II.get()), razryad)
+				ws['P10'].value = my_round(float(entr_E8_II.get()), razryad)
 			if check_var_gr_3.get() >= 9:	
-				ws['AU26'].value = razryad%(float(entr_E9_II.get()))
-				ws['P11'].value = razryad%(float(entr_E9_II.get()))
+				ws['AU26'].value = my_round(float(entr_E9_II.get()), razryad)
+				ws['P11'].value = my_round(float(entr_E9_II.get()), razryad)
 			if check_var_gr_3.get() >= 10:	
-				ws['AU27'].value = razryad%(float(entr_E10_II.get()))
-				ws['P12'].value = razryad%(float(entr_E10_II.get()))
+				ws['AU27'].value = my_round(float(entr_E10_II.get()), razryad)
+				ws['P12'].value = my_round(float(entr_E10_II.get()), razryad)
 
 		if check_var_gr_1.get() >= 3:
 			#QCC5
 			ws['AV15'].value = 'QCC5'
 			ws['AV16'].value = QC_III
 			ws['Y2'].value = 'QCC5'
-			ws['AV18'].value = razryad%(float(entr_E1_III.get()))
-			ws['Y3'].value = razryad%(float(entr_E1_III.get()))
-			ws['AV19'].value = razryad%(float(entr_E2_III.get()))
-			ws['Y4'].value = razryad%(float(entr_E2_III.get()))
-			ws['AV20'].value = razryad%(float(entr_E3_III.get()))
-			ws['Y5'].value = razryad%(float(entr_E3_III.get()))
+			ws['AV18'].value = my_round(float(entr_E1_III.get()), razryad)
+			ws['Y3'].value = my_round(float(entr_E1_III.get()), razryad)
+			ws['AV19'].value = my_round(float(entr_E2_III.get()), razryad)
+			ws['Y4'].value = my_round(float(entr_E2_III.get()), razryad)
+			ws['AV20'].value = my_round(float(entr_E3_III.get()), razryad)
+			ws['Y5'].value = my_round(float(entr_E3_III.get()), razryad)
 			if check_var_gr_3.get() >= 4:
-				ws['AV21'].value = razryad%(float(entr_E4_III.get()))
-				ws['Y6'].value = razryad%(float(entr_E4_III.get()))
+				ws['AV21'].value = my_round(float(entr_E4_III.get()), razryad)
+				ws['Y6'].value = my_round(float(entr_E4_III.get()), razryad)
 			if check_var_gr_3.get() >= 5:
-				ws['AV22'].value = razryad%(float(entr_E5_III.get()))
-				ws['Y7'].value = razryad%(float(entr_E5_III.get()))
+				ws['AV22'].value = my_round(float(entr_E5_III.get()), razryad)
+				ws['Y7'].value = my_round(float(entr_E5_III.get()), razryad)
 			if check_var_gr_3.get() >= 6:	
-				ws['AV23'].value = razryad%(float(entr_E6_III.get()))
-				ws['Y8'].value = razryad%(float(entr_E6_III.get()))
+				ws['AV23'].value = my_round(float(entr_E6_III.get()), razryad)
+				ws['Y8'].value = my_round(float(entr_E6_III.get()), razryad)
 			if check_var_gr_3.get() >= 7:	
-				ws['AV24'].value = razryad%(float(entr_E7_III.get()))
-				ws['Y9'].value = razryad%(float(entr_E7_III.get()))
+				ws['AV24'].value = my_round(float(entr_E7_III.get()), razryad)
+				ws['Y9'].value = my_round(float(entr_E7_III.get()), razryad)
 			if check_var_gr_3.get() >= 8:	
-				ws['AV25'].value = razryad%(float(entr_E8_III.get()))
-				ws['Y10'].value = razryad%(float(entr_E8_III.get()))
+				ws['AV25'].value = my_round(float(entr_E8_III.get()), razryad)
+				ws['Y10'].value = my_round(float(entr_E8_III.get()), razryad)
 			if check_var_gr_3.get() >= 9:	
-				ws['AV26'].value = razryad%(float(entr_E9_III.get()))
-				ws['Y11'].value = razryad%(float(entr_E9_III.get()))
+				ws['AV26'].value = my_round(float(entr_E9_III.get()), razryad)
+				ws['Y11'].value = my_round(float(entr_E9_III.get()), razryad)
 			if check_var_gr_3.get() >= 10:	
-				ws['AV27'].value = razryad%(float(entr_E10_III.get()))
-				ws['Y12'].value = razryad%(float(entr_E10_III.get()))
+				ws['AV27'].value = my_round(float(entr_E10_III.get()), razryad)
+				ws['Y12'].value = my_round(float(entr_E10_III.get()), razryad)
 
 		if check_var_gr_1.get() >= 4:
 			#QCD5
 			ws['AW15'].value = 'QCD5'
 			ws['AW16'].value = QC_IV
 			ws['AH2'].value = 'QCD5'
-			ws['AW18'].value = razryad%(float(entr_E1_IV.get()))
-			ws['AH3'].value = razryad%(float(entr_E1_IV.get()))
-			ws['AW19'].value = razryad%(float(entr_E2_IV.get()))
-			ws['AH4'].value = razryad%(float(entr_E2_IV.get()))
-			ws['AW20'].value = razryad%(float(entr_E3_IV.get()))
-			ws['AH5'].value = razryad%(float(entr_E3_IV.get()))
+			ws['AW18'].value = my_round(float(entr_E1_IV.get()), razryad)
+			ws['AH3'].value = my_round(float(entr_E1_IV.get()), razryad)
+			ws['AW19'].value = my_round(float(entr_E2_IV.get()), razryad)
+			ws['AH4'].value = my_round(float(entr_E2_IV.get()), razryad)
+			ws['AW20'].value = my_round(float(entr_E3_IV.get()), razryad)
+			ws['AH5'].value = my_round(float(entr_E3_IV.get()), razryad)
 			if check_var_gr_3.get() >= 4:
-				ws['AW21'].value = razryad%(float(entr_E4_IV.get()))
-				ws['AH6'].value = razryad%(float(entr_E4_IV.get()))
+				ws['AW21'].value = my_round(float(entr_E4_IV.get()), razryad)
+				ws['AH6'].value = my_round(float(entr_E4_IV.get()), razryad)
 			if check_var_gr_3.get() >= 5:
-				ws['AW22'].value = razryad%(float(entr_E5_IV.get()))
-				ws['AH7'].value = razryad%(float(entr_E5_IV.get()))
+				ws['AW22'].value = my_round(float(entr_E5_IV.get()), razryad)
+				ws['AH7'].value = my_round(float(entr_E5_IV.get()), razryad)
 			if check_var_gr_3.get() >= 6:	
-				ws['AW23'].value = razryad%(float(entr_E6_IV.get()))
-				ws['AH8'].value = razryad%(float(entr_E6_IV.get()))
+				ws['AW23'].value = my_round(float(entr_E6_IV.get()), razryad)
+				ws['AH8'].value = my_round(float(entr_E6_IV.get()), razryad)
 			if check_var_gr_3.get() >= 7:	
-				ws['AW24'].value = razryad%(float(entr_E7_IV.get()))
-				ws['AH9'].value = razryad%(float(entr_E7_IV.get()))
+				ws['AW24'].value = my_round(float(entr_E7_IV.get()), razryad)
+				ws['AH9'].value = my_round(float(entr_E7_IV.get()), razryad)
 			if check_var_gr_3.get() >= 8:	
-				ws['AW25'].value = razryad%(float(entr_E8_IV.get()))
-				ws['AH10'].value = razryad%(float(entr_E8_IV.get()))
+				ws['AW25'].value = my_round(float(entr_E8_IV.get()), razryad)
+				ws['AH10'].value = my_round(float(entr_E8_IV.get()), razryad)
 			if check_var_gr_3.get() >= 9:	
-				ws['AW26'].value = razryad%(float(entr_E9_IV.get()))
-				ws['AH11'].value = razryad%(float(entr_E9_IV.get()))
+				ws['AW26'].value = my_round(float(entr_E9_IV.get()), razryad)
+				ws['AH11'].value = my_round(float(entr_E9_IV.get()), razryad)
 			if check_var_gr_3.get() >= 10:	
-				ws['AW27'].value = razryad%(float(entr_E10_IV.get()))
-				ws['AH12'].value = razryad%(float(entr_E10_IV.get()))
+				ws['AW27'].value = my_round(float(entr_E10_IV.get()), razryad)
+				ws['AH12'].value = my_round(float(entr_E10_IV.get()), razryad)
 
 		if check_var_gr_1.get() >= 5:
 			#QCE5
 			ws['AX15'].value = 'QCE5'
 			ws['AX16'].value = QC_V
 			ws['AQ2'].value = 'QCE5'
-			ws['AX18'].value = razryad%(float(entr_E1_V.get()))
-			ws['AQ3'].value = razryad%(float(entr_E1_V.get()))
-			ws['AX19'].value = razryad%(float(entr_E2_V.get()))
-			ws['AQ4'].value = razryad%(float(entr_E2_V.get()))
-			ws['AX20'].value = razryad%(float(entr_E3_V.get()))
-			ws['AQ5'].value = razryad%(float(entr_E3_V.get()))
+			ws['AX18'].value = my_round(float(entr_E1_V.get()), razryad)
+			ws['AQ3'].value = my_round(float(entr_E1_V.get()), razryad)
+			ws['AX19'].value = my_round(float(entr_E2_V.get()), razryad)
+			ws['AQ4'].value = my_round(float(entr_E2_V.get()), razryad)
+			ws['AX20'].value = my_round(float(entr_E3_V.get()), razryad)
+			ws['AQ5'].value = my_round(float(entr_E3_V.get()), razryad)
 			if check_var_gr_3.get() >= 4:
-				ws['AX21'].value = razryad%(float(entr_E4_V.get()))
-				ws['AQ6'].value = razryad%(float(entr_E4_V.get()))
+				ws['AX21'].value = my_round(float(entr_E4_V.get()), razryad)
+				ws['AQ6'].value = my_round(float(entr_E4_V.get()), razryad)
 			if check_var_gr_3.get() >= 5:
-				ws['AX22'].value = razryad%(float(entr_E5_V.get()))
-				ws['AQ7'].value = razryad%(float(entr_E5_V.get()))
+				ws['AX22'].value = my_round(float(entr_E5_V.get()), razryad)
+				ws['AQ7'].value = my_round(float(entr_E5_V.get()), razryad)
 			if check_var_gr_3.get() >= 6:	
-				ws['AX23'].value = razryad%(float(entr_E6_V.get()))
-				ws['AQ8'].value = razryad%(float(entr_E6_V.get()))
+				ws['AX23'].value = my_round(float(entr_E6_V.get()), razryad)
+				ws['AQ8'].value = my_round(float(entr_E6_V.get()), razryad)
 			if check_var_gr_3.get() >= 7:	
-				ws['AX24'].value = razryad%(float(entr_E7_V.get()))
-				ws['AQ9'].value = razryad%(float(entr_E7_V.get()))
+				ws['AX24'].value = my_round(float(entr_E7_V.get()), razryad)
+				ws['AQ9'].value = my_round(float(entr_E7_V.get()), razryad)
 			if check_var_gr_3.get() >= 8:	
-				ws['AX25'].value = razryad%(float(entr_E8_V.get()))
-				ws['AQ10'].value = razryad%(float(entr_E8_V.get()))
+				ws['AX25'].value = my_round(float(entr_E8_V.get()), razryad)
+				ws['AQ10'].value = my_round(float(entr_E8_V.get()), razryad)
 			if check_var_gr_3.get() >= 9:	
-				ws['AX26'].value = razryad%(float(entr_E9_V.get()))
-				ws['AQ11'].value = razryad%(float(entr_E9_V.get()))
+				ws['AX26'].value = my_round(float(entr_E9_V.get()), razryad)
+				ws['AQ11'].value = my_round(float(entr_E9_V.get()), razryad)
 			if check_var_gr_3.get() >= 10:	
-				ws['AX27'].value = razryad%(float(entr_E10_V.get()))
-				ws['AQ12'].value = razryad%(float(entr_E10_V.get()))
+				ws['AX27'].value = my_round(float(entr_E10_V.get()), razryad)
+				ws['AQ12'].value = my_round(float(entr_E10_V.get()), razryad)
 
 		if check_var_gr_1.get() >= 6:
 			#QCF5
 			ws['AY15'].value = 'QCF5'
 			ws['AY16'].value = QC_VI
 			ws['AZ2'].value = 'QCF5'
-			ws['AY18'].value = razryad%(float(entr_E1_VI.get()))
-			ws['AZ3'].value = razryad%(float(entr_E1_VI.get()))
-			ws['AY19'].value = razryad%(float(entr_E2_VI.get()))
-			ws['AZ4'].value = razryad%(float(entr_E2_VI.get()))
-			ws['AY20'].value = razryad%(float(entr_E3_VI.get()))
-			ws['AZ5'].value = razryad%(float(entr_E3_VI.get()))
+			ws['AY18'].value = my_round(float(entr_E1_VI.get()), razryad)
+			ws['AZ3'].value = my_round(float(entr_E1_VI.get()), razryad)
+			ws['AY19'].value = my_round(float(entr_E2_VI.get()), razryad)
+			ws['AZ4'].value = my_round(float(entr_E2_VI.get()), razryad)
+			ws['AY20'].value = my_round(float(entr_E3_VI.get()), razryad)
+			ws['AZ5'].value = my_round(float(entr_E3_VI.get()), razryad)
 
 			if check_var_gr_3.get() >= 4:
-				ws['AY21'].value = razryad%(float(entr_E4_VI.get()))
-				ws['AZ6'].value = razryad%(float(entr_E4_VI.get()))
+				ws['AY21'].value = my_round(float(entr_E4_VI.get()), razryad)
+				ws['AZ6'].value = my_round(float(entr_E4_VI.get()), razryad)
 			if check_var_gr_3.get() >= 5:
-				ws['AY22'].value = razryad%(float(entr_E5_VI.get()))
-				ws['AZ7'].value = razryad%(float(entr_E5_VI.get()))
+				ws['AY22'].value = my_round(float(entr_E5_VI.get()), razryad)
+				ws['AZ7'].value = my_round(float(entr_E5_VI.get()), razryad)
 			if check_var_gr_3.get() >= 6:	
-				ws['AY23'].value = razryad%(float(entr_E6_VI.get()))
-				ws['AZ8'].value = razryad%(float(entr_E6_VI.get()))
+				ws['AY23'].value = my_round(float(entr_E6_VI.get()), razryad)
+				ws['AZ8'].value = my_round(float(entr_E6_VI.get()), razryad)
 			if check_var_gr_3.get() >= 7:	
-				ws['AY24'].value = razryad%(float(entr_E7_VI.get()))
-				ws['AZ9'].value = razryad%(float(entr_E7_VI.get()))
+				ws['AY24'].value = my_round(float(entr_E7_VI.get()), razryad)
+				ws['AZ9'].value = my_round(float(entr_E7_VI.get()), razryad)
 			if check_var_gr_3.get() >= 8:	
-				ws['AY25'].value = razryad%(float(entr_E8_VI.get()))
-				ws['AZ10'].value = razryad%(float(entr_E8_VI.get()))
+				ws['AY25'].value = my_round(float(entr_E8_VI.get()), razryad)
+				ws['AZ10'].value = my_round(float(entr_E8_VI.get()), razryad)
 			if check_var_gr_3.get() >= 9:	
-				ws['AY26'].value = razryad%(float(entr_E9_VI.get()))
-				ws['AZ11'].value = razryad%(float(entr_E9_VI.get()))
+				ws['AY26'].value = my_round(float(entr_E9_VI.get()), razryad)
+				ws['AZ11'].value = my_round(float(entr_E9_VI.get()), razryad)
 			if check_var_gr_3.get() >= 10:	
-				ws['AY27'].value = razryad%(float(entr_E10_VI.get()))
-				ws['AZ12'].value = razryad%(float(entr_E10_VI.get()))
+				ws['AY27'].value = my_round(float(entr_E10_VI.get()), razryad)
+				ws['AZ12'].value = my_round(float(entr_E10_VI.get()), razryad)
 
 
 
@@ -14828,121 +13940,68 @@ def calc():
 
 		#надпись и объединение ячеек под надпись
 		ws['BA15'].value = 'QC'
-		ws['BA16'].value = 'Введено, нг/мл'
+		ws['BA16'].value = f'Введено, {entr_concent.get()}'
 		ws['BA17'].value = '№ измерения'
 		ws['BB17'].value = 'Найдено, последовательность 6'
 
-		'''
-		if check_var_gr_1.get() == 1:
-			ws.column_dimensions['BA'].width = 31		
-		if check_var_gr_1.get() == 2:
-			ws.merge_cells('BB17:BC17')
-		if check_var_gr_1.get() == 3:
-			ws.merge_cells('BB17:BD17')
-		if check_var_gr_1.get() == 4:
-			ws.merge_cells('BB17:BE17')
-		if check_var_gr_1.get() == 5:
-			ws.merge_cells('BB17:BF17')
-		if check_var_gr_1.get() == 6:
-			ws.merge_cells('BB17:BG17')
-		'''
 
 
-
-
-	#############################################################################	
 #ЗАПОЛНЕНИЕ ANOVA
 	
 	#количество таблиц зависит от показателя check_var_gr_2
 	if check_var_gr_2.get() >= 6:
 		#QCA6
-		#print(mean_F_I, "mean_QCA6")
-		#print(Er_F_I, 'Er_QCA6')	
-		#print(sigma_F_I, 'sigma_QCA6')
-		mean_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6 = round(stat.mean([mean_A_I, mean_B_I, mean_C_I, mean_D_I, mean_E_I, mean_F_I]), check_razryad.get())
-		#print(mean_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6, 'mean_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6')
+		mean_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6 = my_round(stat.mean([mean_A_I, mean_B_I, mean_C_I, mean_D_I, mean_E_I, mean_F_I]), check_razryad.get())
 		#междугруппами
 		sum_kv_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6 = len(spisok_A_I)*((mean_A_I - mean_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6)**2) + len(spisok_B_I)*((mean_B_I - mean_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6)**2) + len(spisok_C_I)*(mean_C_I - mean_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6)**2 + len(spisok_D_I)*((mean_D_I - mean_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6)**2) + len(spisok_E_I)*((mean_E_I - mean_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6)**2) + len(spisok_F_I)*((mean_F_I - mean_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6)**2)
 		CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6 = (((sum_kv_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6)/5)**0.5)/mean_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6*100
-		#print(CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6, 'CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6')
 		#внутригрупп
 		CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6 = (mean_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6 - QC_I)/QC_I * 100
-		#print(CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6, 'CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6')
 
 		if check_var_gr_1.get() >= 2:
 			#QCB6
-			#print(mean_F_II, "mean_QCB6")
-			#print(Er_F_II, 'Er_QCB6')	
-			#print(sigma_F_II, 'sigma_QCB6')
-			mean_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6 = round(stat.mean([mean_A_II, mean_B_II, mean_C_II, mean_D_II, mean_E_II, mean_F_II]), check_razryad.get())
-			#print(mean_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6, 'mean_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6')
+			mean_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6 = my_round(stat.mean([mean_A_II, mean_B_II, mean_C_II, mean_D_II, mean_E_II, mean_F_II]), check_razryad.get())
 			#междугруппами
 			sum_kv_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6 = len(spisok_A_II)*((mean_A_II - mean_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6)**2) + len(spisok_B_II)*((mean_B_II - mean_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6)**2) + len(spisok_C_II)*(mean_C_II - mean_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6)**2 + len(spisok_D_II)*((mean_D_II - mean_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6)**2) + len(spisok_E_II)*((mean_E_II - mean_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6)**2) + len(spisok_F_II)*((mean_F_II - mean_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6)**2)
 			CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6 = (((sum_kv_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6)/5)**0.5)/mean_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6*100
-			#print(CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6, 'CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6')
 			#внутригрупп
 			CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6 = (mean_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6 - QC_II)/QC_II * 100
-			#print(CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6, 'CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6')
 
 		if check_var_gr_1.get() >= 3:
 			#QCC6
-			#print(mean_F_III, "mean_QCC6")
-			#print(Er_F_III, 'Er_QCC6')	
-			#print(sigma_F_III, 'sigma_QCC6')
-			mean_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6 = round(stat.mean([mean_A_III, mean_B_III, mean_C_III, mean_D_III, mean_E_III, mean_F_III]), check_razryad.get())
-			#print(mean_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6, 'mean_QCBC1_QCBC2_QCBC3_QCBC4_QCBC_QCBC6')
+			mean_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6 = my_round(stat.mean([mean_A_III, mean_B_III, mean_C_III, mean_D_III, mean_E_III, mean_F_III]), check_razryad.get())
 			#междугруппами
 			sum_kv_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6 = len(spisok_A_III)*((mean_A_III - mean_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6)**2) + len(spisok_B_III)*((mean_B_III - mean_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6)**2) + len(spisok_C_III)*(mean_C_III - mean_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6)**2 + len(spisok_D_III)*((mean_D_III - mean_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6)**2) + len(spisok_E_III)*((mean_E_III - mean_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6)**2) + len(spisok_F_III)*((mean_F_III - mean_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6)**2)
 			CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6 = (((sum_kv_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6)/5)**0.5)/mean_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6*100
-			#print(CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6, 'CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6')
 			#внутригрупп
 			CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6 = (mean_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6 - QC_III)/QC_III * 100
-			#print(CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6, 'CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6')
 
 		if check_var_gr_1.get() >= 4:
 			#QCD6
-			#print(mean_F_IV, "mean_QCD6")
-			#print(Er_F_IV, 'Er_QCD6')	
-			#print(sigma_F_IV, 'sigma_QCD6')
-			mean_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6 = round(stat.mean([mean_A_IV, mean_B_IV, mean_C_IV, mean_D_IV, mean_E_IV, mean_F_IV]), check_razryad.get())
-			#print(mean_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6, 'mean_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6')
+			mean_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6 = my_round(stat.mean([mean_A_IV, mean_B_IV, mean_C_IV, mean_D_IV, mean_E_IV, mean_F_IV]), check_razryad.get())
 			#междугруппами
 			sum_kv_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6 = len(spisok_A_IV)*((mean_A_IV - mean_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6)**2) + len(spisok_B_IV)*((mean_B_IV - mean_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6)**2) + len(spisok_C_IV)*(mean_C_IV - mean_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6)**2 + len(spisok_D_IV)*((mean_D_IV - mean_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6)**2) + len(spisok_E_IV)*((mean_E_IV - mean_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6)**2) + len(spisok_F_IV)*((mean_F_IV - mean_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6)**2)
 			CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6 = (((sum_kv_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6)/5)**0.5)/mean_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6*100
-			#print(CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6, 'CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6')
 			#внутригрупп
 			CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6 = (mean_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6 - QC_IV)/QC_IV * 100
-			#print(CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6, 'CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6')
 
 		if check_var_gr_1.get() >= 5:
 			#QCE6
-			#print(mean_F_V, "mean_QCE6")
-			#print(Er_F_V, 'Er_QCE6')	
-			#print(sigma_F_V, 'sigma_QCE6')
-			mean_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6 = round(stat.mean([mean_A_V, mean_B_V, mean_C_V, mean_D_V, mean_E_V, mean_F_V]), check_razryad.get())
-			#print(mean_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6, 'mean_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6')
+			mean_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6 = my_round(stat.mean([mean_A_V, mean_B_V, mean_C_V, mean_D_V, mean_E_V, mean_F_V]), check_razryad.get())
 			#междугруппами
 			sum_kv_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6 = len(spisok_A_V)*((mean_A_V - mean_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6)**2) + len(spisok_B_V)*((mean_B_V - mean_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6)**2) + len(spisok_C_V)*(mean_C_V - mean_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6)**2 + len(spisok_D_V)*((mean_D_V - mean_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6)**2) + len(spisok_E_V)*((mean_E_V - mean_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6)**2) + len(spisok_F_V)*((mean_F_V - mean_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6)**2)
 			CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6 = (((sum_kv_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6)/5)**0.5)/mean_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6*100
-			#print(CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6, 'CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6')
 			#внутригрупп
 			CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6 = (mean_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6 - QC_V)/QC_V * 100
-			#print(CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6, 'CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6')
 
 		if check_var_gr_1.get() >= 6:
 			#QCF6
-			#print(mean_F_VI, "mean_QCF6")
-			#print(Er_F_VI, 'Er_QCF6')	
-			#print(sigma_F_VI, 'sigma_QCF6')
-			mean_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6 = round(stat.mean([mean_A_VI, mean_B_VI, mean_C_VI, mean_D_VI, mean_E_VI, mean_F_VI]), check_razryad.get())
-			#print(mean_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6, 'mean_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6')
+			mean_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6 = my_round(stat.mean([mean_A_VI, mean_B_VI, mean_C_VI, mean_D_VI, mean_E_VI, mean_F_VI]), check_razryad.get())
 			#междугруппами
 			sum_kv_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6 = len(spisok_A_VI)*((mean_A_VI - mean_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6)**2) + len(spisok_B_VI)*((mean_B_VI - mean_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6)**2) + len(spisok_C_VI)*(mean_C_VI - mean_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6)**2 + len(spisok_D_VI)*((mean_D_VI - mean_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6)**2) + len(spisok_E_VI)*((mean_E_VI - mean_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6)**2) + len(spisok_F_VI)*((mean_F_VI - mean_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6)**2)
 			CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6 = (((sum_kv_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6)/5)**0.5)/mean_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6*100
-			#print(CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6, 'CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6')
 			#внутригрупп
 			CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6 = (mean_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6 - QC_VI)/QC_VI * 100
-			#print(CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6, 'CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6')
 
 
 #вывод среднего и остальных показателей в таблицу 
@@ -14951,87 +14010,87 @@ def calc():
 			ws['BA21'].value = 'найдено, сред.зн.,\nнг/мл (n=3)'
 			ws['BA21'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
 
-			ws['BA22'].value = 'εr, % (n=3)'
-			ws['BA23'].value = 'σr, % (n=3)'
+			ws['BA22'].value = 'εR, % (n=3)'
+			ws['BA23'].value = 'σR, % (n=3)'
 
 			ws['BA24'].value = 'найдено, сред.зн.,\nнг/мл (n=18)'
 			ws['BA24'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['BA25'].value = 'εr, % (n=18)'
-			ws['BA26'].value = 'σr, % (n=18)'
+			ws['BA25'].value = 'εR, % (n=18)'
+			ws['BA26'].value = 'σR, % (n=18)'
 			ws['BA27'].value = 'Норма |ε| и |σ|, %'
 
-			ws['BB21'].value = razryad%(mean_F_I)
-			ws['BB22'].value = '%.1f'%Er_F_I
-			ws['BB23'].value = '%.1f'%sigma_F_I
+			ws['BB21'].value = my_round(mean_F_I, razryad)
+			ws['BB22'].value = my_round(Er_F_I, 1)
+			ws['BB23'].value = my_round(sigma_F_I, 1)
 
-			ws['BB24'].value = razryad%(mean_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6)
-			ws['BB25'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6
-			ws['BB26'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6
+			ws['BB24'].value = my_round(mean_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6, razryad)
+			ws['BB25'].value = my_round(CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6, 1)
+			ws['BB26'].value = my_round(CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['BB27'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
 				ws['BB27'].value = '≤20'
 			
 			if check_var_gr_1.get() >= 2:
-				ws['BC21'].value = razryad%(mean_F_II)
-				ws['BC22'].value = '%.1f'%Er_F_II
-				ws['BC23'].value = '%.1f'%sigma_F_II
+				ws['BC21'].value = my_round(mean_F_II, razryad)
+				ws['BC22'].value = my_round(Er_F_II, 1)
+				ws['BC23'].value = my_round(sigma_F_II, 1)
 
-				ws['BC24'].value = razryad%(mean_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6)
-				ws['BC25'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6
-				ws['BC26'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6
+				ws['BC24'].value = my_round(mean_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6, razryad)
+				ws['BC25'].value = my_round(CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6, 1)
+				ws['BC26'].value = my_round(CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['BC27'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['BC27'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['BD21'].value = razryad%(mean_F_III)
-				ws['BD22'].value = '%.1f'%Er_F_III
-				ws['BD23'].value = '%.1f'%sigma_F_III
+				ws['BD21'].value = my_round(mean_F_III, razryad)
+				ws['BD22'].value = my_round(Er_F_III, 1)
+				ws['BD23'].value = my_round(sigma_F_III, 1)
 
-				ws['BD24'].value = razryad%(mean_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6)
-				ws['BD25'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6
-				ws['BD26'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6
+				ws['BD24'].value = my_round(mean_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6, razryad)
+				ws['BD25'].value = my_round(CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6, 1)
+				ws['BD26'].value = my_round(CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['BD27'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['BD27'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['BE21'].value = razryad%(mean_F_IV)
-				ws['BE22'].value = '%.1f'%Er_F_IV
-				ws['BE23'].value = '%.1f'%sigma_F_IV
+				ws['BE21'].value = my_round(mean_F_IV, razryad)
+				ws['BE22'].value = my_round(Er_F_IV, 1)
+				ws['BE23'].value = my_round(sigma_F_IV, 1)
 
-				ws['BE24'].value = razryad%(mean_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6)
-				ws['BE25'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6
-				ws['BE26'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6
+				ws['BE24'].value = my_round(mean_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6, razryad)
+				ws['BE25'].value = my_round(CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6, 1)
+				ws['BE26'].value = my_round(CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['BE27'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['BE27'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['BF21'].value = razryad%(mean_F_V)
-				ws['BF22'].value = '%.1f'%Er_F_V
-				ws['BF23'].value = '%.1f'%sigma_F_V
+				ws['BF21'].value = my_round(mean_F_V, razryad)
+				ws['BF22'].value = my_round(Er_F_V, 1)
+				ws['BF23'].value = my_round(sigma_F_V, 1)
 
-				ws['BF24'].value = razryad%(mean_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6)
-				ws['BF25'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6
-				ws['BF26'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6
+				ws['BF24'].value = my_round(mean_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6, razryad)
+				ws['BF25'].value = my_round(CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6, 1)
+				ws['BF26'].value = my_round(CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['BF27'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['BF27'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['BG21'].value = razryad%(mean_F_VI)
-				ws['BG22'].value = '%.1f'%Er_F_VI
-				ws['BG23'].value = '%.1f'%sigma_F_VI
+				ws['BG21'].value = my_round(mean_F_VI, razryad)
+				ws['BG22'].value = my_round(Er_F_VI, 1)
+				ws['BG23'].value = my_round(sigma_F_VI, 1)
 
-				ws['BG24'].value = razryad%(mean_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6)
-				ws['BG25'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6
-				ws['BG26'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6
+				ws['BG24'].value = my_round(mean_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6, razryad)
+				ws['BG25'].value = my_round(CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6, 1)
+				ws['BG26'].value = my_round(CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['BG27'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
@@ -15042,88 +14101,88 @@ def calc():
 
 			ws['BA22'].value = 'найдено, сред.зн.,\nнг/мл (n=4)'
 			ws['BA22'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['BA23'].value = 'εr, % (n=4)'
-			ws['BA24'].value = 'σr, % (n=4)'
+			ws['BA23'].value = 'εR, % (n=4)'
+			ws['BA24'].value = 'σR, % (n=4)'
 			
 			ws['BA25'].value = 'найдено, сред.зн.,\nнг/мл (n=24)'
 			ws['BA25'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['BA26'].value = 'εr, % (n=24)'
-			ws['BA27'].value = 'σr, % (n=24)'
+			ws['BA26'].value = 'εR, % (n=24)'
+			ws['BA27'].value = 'σR, % (n=24)'
 			ws['BA28'].value = 'Норма |ε| и |σ|, %'
 
 
-			ws['BB22'].value = razryad%(mean_F_I)
-			ws['BB23'].value = '%.1f'%Er_F_I
-			ws['BB24'].value = '%.1f'%sigma_F_I
+			ws['BB22'].value = my_round(mean_F_I, razryad)
+			ws['BB23'].value = my_round(Er_F_I, 1)
+			ws['BB24'].value = my_round(sigma_F_I, 1)
 
-			ws['BB25'].value = razryad%(mean_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6)
-			ws['BB26'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6
-			ws['BB27'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6
+			ws['BB25'].value = my_round(mean_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6, razryad)
+			ws['BB26'].value = my_round(CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6, 1)
+			ws['BB27'].value = my_round(CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['BB28'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
 				ws['BB28'].value = '≤20'
 
 			if check_var_gr_1.get() >= 2:
-				ws['BC22'].value = razryad%(mean_F_II)
-				ws['BC23'].value = '%.1f'%Er_F_II
-				ws['BC24'].value = '%.1f'%sigma_F_II
+				ws['BC22'].value = my_round(mean_F_II, razryad)
+				ws['BC23'].value = my_round(Er_F_II, 1)
+				ws['BC24'].value = my_round(sigma_F_II, 1)
 
-				ws['BC25'].value = razryad%(mean_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6)
-				ws['BC26'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6
-				ws['BC27'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6
+				ws['BC25'].value = my_round(mean_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6, razryad)
+				ws['BC26'].value = my_round(CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6, 1)
+				ws['BC27'].value = my_round(CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['BC28'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['BC28'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['BD22'].value = razryad%(mean_F_III)
-				ws['BD23'].value = '%.1f'%Er_F_III
-				ws['BD24'].value = '%.1f'%sigma_F_III
+				ws['BD22'].value = my_round(mean_F_III, razryad)
+				ws['BD23'].value = my_round(Er_F_III, 1)
+				ws['BD24'].value = my_round(sigma_F_III, 1)
 
-				ws['BD25'].value = razryad%(mean_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6)
-				ws['BD26'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6
-				ws['BD27'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6
+				ws['BD25'].value = my_round(mean_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6, razryad)
+				ws['BD26'].value = my_round(CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6, 1)
+				ws['BD27'].value = my_round(CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['BD28'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['BD28'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['BE22'].value = razryad%(mean_F_IV)
-				ws['BE23'].value = '%.1f'%Er_F_IV
-				ws['BE24'].value = '%.1f'%sigma_F_IV
+				ws['BE22'].value = my_round(mean_F_IV, razryad)
+				ws['BE23'].value = my_round(Er_F_IV, 1)
+				ws['BE24'].value = my_round(sigma_F_IV, 1)
 
-				ws['BE25'].value = razryad%(mean_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6)
-				ws['BE26'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6
-				ws['BE27'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6
+				ws['BE25'].value = my_round(mean_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6, razryad)
+				ws['BE26'].value = my_round(CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6, 1)
+				ws['BE27'].value = my_round(CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['BE28'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['BE28'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['BF22'].value = razryad%(mean_F_V)
-				ws['BF23'].value = '%.1f'%Er_F_V
-				ws['BF24'].value = '%.1f'%sigma_F_V
+				ws['BF22'].value = my_round(mean_F_V, razryad)
+				ws['BF23'].value = my_round(Er_F_V, 1)
+				ws['BF24'].value = my_round(sigma_F_V, 1)
 
-				ws['BF25'].value = razryad%(mean_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6)
-				ws['BF26'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6
-				ws['BF27'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6
+				ws['BF25'].value = my_round(mean_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6, razryad)
+				ws['BF26'].value = my_round(CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6, 1)
+				ws['BF27'].value = my_round(CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['BF28'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['BF28'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['BG22'].value = razryad%(mean_F_VI)
-				ws['BG23'].value = '%.1f'%Er_F_VI
-				ws['BG24'].value = '%.1f'%sigma_F_VI
+				ws['BG22'].value = my_round(mean_F_VI, razryad)
+				ws['BG23'].value = my_round(Er_F_VI, 1)
+				ws['BG24'].value = my_round(sigma_F_VI, 1)
 
-				ws['BG25'].value = razryad%(mean_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6)
-				ws['BG26'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6
-				ws['BG27'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6
+				ws['BG25'].value = my_round(mean_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6, razryad)
+				ws['BG26'].value = my_round(CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6, 1)
+				ws['BG27'].value = my_round(CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['BG28'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
@@ -15132,87 +14191,87 @@ def calc():
 		if check_var_gr_3.get() == 5:
 			ws['BA23'].value = 'найдено, сред.зн., \nнг/мл (n=5)'
 			ws['BA23'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['BA24'].value = 'εr, % (n=5)'
-			ws['BA25'].value = 'σr, % (n=5)'
+			ws['BA24'].value = 'εR, % (n=5)'
+			ws['BA25'].value = 'σR, % (n=5)'
 			
 			ws['BA26'].value = 'найдено, сред.зн.,\nнг/мл (n=30)'
 			ws['BA26'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['BA27'].value = 'εr, % (n=30)'
-			ws['BA28'].value = 'σr, % (n=30)'
+			ws['BA27'].value = 'εR, % (n=30)'
+			ws['BA28'].value = 'σR, % (n=30)'
 			ws['BA29'].value = 'Норма |ε| и |σ|, %'
 
-			ws['BB23'].value = razryad%(mean_F_I)
-			ws['BB24'].value = '%.1f'%Er_F_I
-			ws['BB25'].value = '%.1f'%sigma_F_I
+			ws['BB23'].value = my_round(mean_F_I, razryad)
+			ws['BB24'].value = my_round(Er_F_I, 1)
+			ws['BB25'].value = my_round(sigma_F_I, 1)
 
-			ws['BB26'].value = razryad%(mean_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6)
-			ws['BB27'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6
-			ws['BB28'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6
+			ws['BB26'].value = my_round(mean_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6, razryad)
+			ws['BB27'].value = my_round(CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6, 1)
+			ws['BB28'].value = my_round(CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['BB29'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
 				ws['BB29'].value = '≤20'
 
 			if check_var_gr_1.get() >= 2:
-				ws['BC23'].value = razryad%(mean_F_II)
-				ws['BC24'].value = '%.1f'%Er_F_II
-				ws['BC25'].value = '%.1f'%sigma_F_II
+				ws['BC23'].value = my_round(mean_F_II, razryad)
+				ws['BC24'].value = my_round(Er_F_II, 1)
+				ws['BC25'].value = my_round(sigma_F_II, 1)
 
-				ws['BC26'].value = razryad%(mean_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6)
-				ws['BC27'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6
-				ws['BC28'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6
+				ws['BC26'].value = my_round(mean_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6, razryad)
+				ws['BC27'].value = my_round(CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6, 1)
+				ws['BC28'].value = my_round(CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['BC29'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['BC29'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['BD23'].value = razryad%(mean_F_III)
-				ws['BD24'].value = '%.1f'%Er_F_III
-				ws['BD25'].value = '%.1f'%sigma_F_III
+				ws['BD23'].value = my_round(mean_F_III, razryad)
+				ws['BD24'].value = my_round(Er_F_III, 1)
+				ws['BD25'].value = my_round(sigma_F_III, 1)
 
-				ws['BD26'].value = razryad%(mean_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6)
-				ws['BD27'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6
-				ws['BD28'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6
+				ws['BD26'].value = my_round(mean_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6, razryad)
+				ws['BD27'].value = my_round(CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6, 1)
+				ws['BD28'].value = my_round(CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['BD29'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['BD29'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['BE23'].value = razryad%(mean_F_IV)
-				ws['BE24'].value = '%.1f'%Er_F_IV
-				ws['BE25'].value = '%.1f'%sigma_F_IV
+				ws['BE23'].value = my_round(mean_F_IV, razryad)
+				ws['BE24'].value = my_round(Er_F_IV, 1)
+				ws['BE25'].value = my_round(sigma_F_IV, 1)
 
-				ws['BE26'].value = razryad%(mean_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6)
-				ws['BE27'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6
-				ws['BE28'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6
+				ws['BE26'].value = my_round(mean_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6, razryad)
+				ws['BE27'].value = my_round(CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6, 1)
+				ws['BE28'].value = my_round(CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['BE29'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['BE29'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['BF23'].value = razryad%(mean_F_V)
-				ws['BF24'].value = '%.1f'%Er_F_V
-				ws['BF25'].value = '%.1f'%sigma_F_V
+				ws['BF23'].value = my_round(mean_F_V, razryad)
+				ws['BF24'].value = my_round(Er_F_V, 1)
+				ws['BF25'].value = my_round(sigma_F_V, 1)
 
-				ws['BF26'].value = razryad%(mean_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6)
-				ws['BF27'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6
-				ws['BF28'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6
+				ws['BF26'].value = my_round(mean_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6, razryad)
+				ws['BF27'].value = my_round(CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6, 1)
+				ws['BF28'].value = my_round(CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['BF29'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['BF29'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['BG23'].value = razryad%(mean_F_VI)
-				ws['BG24'].value = '%.1f'%Er_F_VI
-				ws['BG25'].value = '%.1f'%sigma_F_VI
+				ws['BG23'].value = my_round(mean_F_VI, razryad)
+				ws['BG24'].value = my_round(Er_F_VI, 1)
+				ws['BG25'].value = my_round(sigma_F_VI, 1)
 
-				ws['BG26'].value = razryad%(mean_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6)
-				ws['BG27'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6
-				ws['BG28'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6
+				ws['BG26'].value = my_round(mean_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6, razryad)
+				ws['BG27'].value = my_round(CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6, 1)
+				ws['BG28'].value = my_round(CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['BG29'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
@@ -15221,87 +14280,87 @@ def calc():
 		if check_var_gr_3.get() == 6:
 			ws['BA24'].value = 'найдено, сред.зн., \nнг/мл (n=6)'
 			ws['BA24'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['BA25'].value = 'εr, % (n=6)'
-			ws['BA26'].value = 'σr, % (n=6)'
+			ws['BA25'].value = 'εR, % (n=6)'
+			ws['BA26'].value = 'σR, % (n=6)'
 			
 			ws['BA27'].value = 'найдено, сред.зн.,\nнг/мл (n=36)'
 			ws['BA27'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['BA28'].value = 'εr, % (n=36)'
-			ws['BA28'].value = 'σr, % (n=36)'
+			ws['BA28'].value = 'εR, % (n=36)'
+			ws['BA28'].value = 'σR, % (n=36)'
 			ws['BA29'].value = 'Норма |ε| и |σ|, %'
 
-			ws['BB24'].value = razryad%(mean_F_I)
-			ws['BB25'].value = '%.1f'%Er_F_I
-			ws['BB26'].value = '%.1f'%sigma_F_I
+			ws['BB24'].value = my_round(mean_F_I, razryad)
+			ws['BB25'].value = my_round(Er_F_I, 1)
+			ws['BB26'].value = my_round(sigma_F_I, 1)
 
-			ws['BB27'].value = razryad%(mean_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6)
-			ws['BB28'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6
-			ws['BB29'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6
+			ws['BB27'].value = my_round(mean_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6, razryad)
+			ws['BB28'].value = my_round(CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6, 1)
+			ws['BB29'].value = my_round(CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['BB30'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
 				ws['BB30'].value = '≤20'
 
 			if check_var_gr_1.get() >= 2:
-				ws['BC24'].value = razryad%(mean_F_II)
-				ws['BC25'].value = '%.1f'%Er_F_II
-				ws['BC26'].value = '%.1f'%sigma_F_II
+				ws['BC24'].value = my_round(mean_F_II, razryad)
+				ws['BC25'].value = my_round(Er_F_II, 1)
+				ws['BC26'].value = my_round(sigma_F_II, 1)
 
-				ws['BC27'].value = razryad%(mean_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6)
-				ws['BC28'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6
-				ws['BC29'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6
+				ws['BC27'].value = my_round(mean_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6, razryad)
+				ws['BC28'].value = my_round(CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6, 1)
+				ws['BC29'].value = my_round(CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['BC30'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['BC30'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['BD24'].value = razryad%(mean_F_III)
-				ws['BD25'].value = '%.1f'%Er_F_III
-				ws['BD26'].value = '%.1f'%sigma_F_III
+				ws['BD24'].value = my_round(mean_F_III, razryad)
+				ws['BD25'].value = my_round(Er_F_III, 1)
+				ws['BD26'].value = my_round(sigma_F_III, 1)
 
-				ws['BD27'].value = razryad%(mean_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6)
-				ws['BD28'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6
-				ws['BD29'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6
+				ws['BD27'].value = my_round(mean_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6, razryad)
+				ws['BD28'].value = my_round(CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6, 1)
+				ws['BD29'].value = my_round(CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['BD30'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['BD30'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['BE24'].value = razryad%(mean_F_IV)
-				ws['BE25'].value = '%.1f'%Er_F_IV
-				ws['BE26'].value = '%.1f'%sigma_F_IV
+				ws['BE24'].value = my_round(mean_F_IV, razryad)
+				ws['BE25'].value = my_round(Er_F_IV, 1)
+				ws['BE26'].value = my_round(sigma_F_IV, 1)
 
-				ws['BE27'].value = razryad%(mean_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6)
-				ws['BE28'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6
-				ws['BE29'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6
+				ws['BE27'].value = my_round(mean_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6, razryad)
+				ws['BE28'].value = my_round(CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6, 1)
+				ws['BE29'].value = my_round(CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['BE30'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['BE30'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['BF24'].value = razryad%(mean_F_V)
-				ws['BF25'].value = '%.1f'%Er_F_V
-				ws['BF26'].value = '%.1f'%sigma_F_V
+				ws['BF24'].value = my_round(mean_F_V, razryad)
+				ws['BF25'].value = my_round(Er_F_V, 1)
+				ws['BF26'].value = my_round(sigma_F_V, 1)
 
-				ws['BF27'].value = razryad%(mean_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6)
-				ws['BF28'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6
-				ws['BF29'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6
+				ws['BF27'].value = my_round(mean_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6, razryad)
+				ws['BF28'].value = my_round(CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6, 1)
+				ws['BF29'].value = my_round(CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['BF30'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['BF30'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['BG24'].value = razryad%(mean_F_VI)
-				ws['BG25'].value = '%.1f'%Er_F_VI
-				ws['BG26'].value = '%.1f'%sigma_F_VI
+				ws['BG24'].value = my_round(mean_F_VI, razryad)
+				ws['BG25'].value = my_round(Er_F_VI, 1)
+				ws['BG26'].value = my_round(sigma_F_VI, 1)
 
-				ws['BG27'].value = razryad%(mean_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6)
-				ws['BG28'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6
-				ws['BG29'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6
+				ws['BG27'].value = my_round(mean_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6, razryad)
+				ws['BG28'].value = my_round(CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6, 1)
+				ws['BG29'].value = my_round(CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['BG30'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
@@ -15310,87 +14369,87 @@ def calc():
 		if check_var_gr_3.get() == 7:
 			ws['BA25'].value = 'найдено, сред.зн., \nнг/мл (n=7)'
 			ws['BA25'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['BA26'].value = 'εr, % (n=7)'
-			ws['BA27'].value = 'σr, % (n=7)'
+			ws['BA26'].value = 'εR, % (n=7)'
+			ws['BA27'].value = 'σR, % (n=7)'
 			
 			ws['BA28'].value = 'найдено, сред.зн.,\nнг/мл (n=42)'
 			ws['BA28'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['BA29'].value = 'εr, % (n=42)'
-			ws['BA30'].value = 'σr, % (n=42)'
+			ws['BA29'].value = 'εR, % (n=42)'
+			ws['BA30'].value = 'σR, % (n=42)'
 			ws['BA31'].value = 'Норма |ε| и |σ|, %'
 
-			ws['BB25'].value = razryad%(mean_F_I)
-			ws['BB26'].value = '%.1f'%Er_F_I
-			ws['BB27'].value = '%.1f'%sigma_F_I
+			ws['BB25'].value = my_round(mean_F_I, razryad)
+			ws['BB26'].value = my_round(Er_F_I, 1)
+			ws['BB27'].value = my_round(sigma_F_I, 1)
 
-			ws['BB28'].value = razryad%(mean_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6)
-			ws['BB29'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6
-			ws['BB30'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6
+			ws['BB28'].value = my_round(mean_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6, razryad)
+			ws['BB29'].value = my_round(CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6, 1)
+			ws['BB30'].value = my_round(CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['BB31'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
 				ws['BB31'].value = '≤20'
 
 			if check_var_gr_1.get() >= 2:
-				ws['BC25'].value = razryad%(mean_F_II)
-				ws['BC26'].value = '%.1f'%Er_F_II
-				ws['BC27'].value = '%.1f'%sigma_F_II
+				ws['BC25'].value = my_round(mean_F_II, razryad)
+				ws['BC26'].value = my_round(Er_F_II, 1)
+				ws['BC27'].value = my_round(sigma_F_II, 1)
 
-				ws['BC28'].value = razryad%(mean_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6)
-				ws['BC29'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6
-				ws['BC30'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6
+				ws['BC28'].value = my_round(mean_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6, razryad)
+				ws['BC29'].value = my_round(CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6, 1)
+				ws['BC30'].value = my_round(CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['BC31'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['BC31'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['BD25'].value = razryad%(mean_F_III)
-				ws['BD26'].value = '%.1f'%Er_F_III
-				ws['BD27'].value = '%.1f'%sigma_F_III
+				ws['BD25'].value = my_round(mean_F_III, razryad)
+				ws['BD26'].value = my_round(Er_F_III, 1)
+				ws['BD27'].value = my_round(sigma_F_III, 1)
 
-				ws['BD28'].value = razryad%(mean_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6)
-				ws['BD29'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6
-				ws['BD30'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6
+				ws['BD28'].value = my_round(mean_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6, razryad)
+				ws['BD29'].value = my_round(CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6, 1)
+				ws['BD30'].value = my_round(CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['BD31'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['BD31'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['BE25'].value = razryad%(mean_F_IV)
-				ws['BE26'].value = '%.1f'%Er_F_IV
-				ws['BE27'].value = '%.1f'%sigma_F_IV
+				ws['BE25'].value = my_round(mean_F_IV, razryad)
+				ws['BE26'].value = my_round(Er_F_IV, 1)
+				ws['BE27'].value = my_round(sigma_F_IV, 1)
 
-				ws['BE28'].value = razryad%(mean_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6)
-				ws['BE29'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6
-				ws['BE30'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6
+				ws['BE28'].value = my_round(mean_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6, razryad)
+				ws['BE29'].value = my_round(CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6, 1)
+				ws['BE30'].value = my_round(CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['BE31'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['BE31'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['BF25'].value = razryad%(mean_F_V)
-				ws['BF26'].value = '%.1f'%Er_F_V
-				ws['BF27'].value = '%.1f'%sigma_F_V
+				ws['BF25'].value = my_round(mean_F_V, razryad)
+				ws['BF26'].value = my_round(Er_F_V, 1)
+				ws['BF27'].value = my_round(sigma_F_V, 1)
 
-				ws['BF28'].value = razryad%(mean_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6)
-				ws['BF29'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6
-				ws['BF30'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6
+				ws['BF28'].value = my_round(mean_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6, razryad)
+				ws['BF29'].value = my_round(CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6, 1)
+				ws['BF30'].value = my_round(CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['BF31'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['BF31'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['BG25'].value = razryad%(mean_F_VI)
-				ws['BG26'].value = '%.1f'%Er_F_VI
-				ws['BG27'].value = '%.1f'%sigma_F_VI
+				ws['BG25'].value = my_round(mean_F_VI, razryad)
+				ws['BG26'].value = my_round(Er_F_VI, 1)
+				ws['BG27'].value = my_round(sigma_F_VI, 1)
 
-				ws['BG28'].value = razryad%(mean_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6)
-				ws['BG29'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6
-				ws['BG30'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6
+				ws['BG28'].value = my_round(mean_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6, razryad)
+				ws['BG29'].value = my_round(CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6, 1)
+				ws['BG30'].value = my_round(CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['BG31'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
@@ -15399,87 +14458,87 @@ def calc():
 		if check_var_gr_3.get() == 8:
 			ws['BA26'].value = 'найдено, сред.зн., \nнг/мл (n=8)'
 			ws['BA26'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['BA27'].value = 'εr, % (n=8)'
-			ws['BA28'].value = 'σr, % (n=8)'
+			ws['BA27'].value = 'εR, % (n=8)'
+			ws['BA28'].value = 'σR, % (n=8)'
 			
 			ws['BA29'].value = 'найдено, сред.зн.,\nнг/мл (n=48)'
 			ws['BA29'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['BA30'].value = 'εr, % (n=48)'
-			ws['BA30'].value = 'σr, % (n=48)'
+			ws['BA30'].value = 'εR, % (n=48)'
+			ws['BA30'].value = 'σR, % (n=48)'
 			ws['BA31'].value = 'Норма |ε| и |σ|, %'
 
-			ws['BB26'].value = razryad%(mean_F_I)
-			ws['BB27'].value = '%.1f'%Er_F_I
-			ws['BB28'].value = '%.1f'%sigma_F_I
+			ws['BB26'].value = my_round(mean_F_I, razryad)
+			ws['BB27'].value = my_round(Er_F_I, 1)
+			ws['BB28'].value = my_round(sigma_F_I, 1)
 
-			ws['BB29'].value = razryad%(mean_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6)
-			ws['BB30'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6
-			ws['BB31'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6
+			ws['BB29'].value = my_round(mean_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6, razryad)
+			ws['BB30'].value = my_round(CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6, 1)
+			ws['BB31'].value = my_round(CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['BB32'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
 				ws['BB32'].value = '≤20'
 
 			if check_var_gr_1.get() >= 2:
-				ws['BC26'].value = razryad%(mean_F_II)
-				ws['BC27'].value = '%.1f'%Er_F_II
-				ws['BC28'].value = '%.1f'%sigma_F_II
+				ws['BC26'].value = my_round(mean_F_II, razryad)
+				ws['BC27'].value = my_round(Er_F_II, 1)
+				ws['BC28'].value = my_round(sigma_F_II, 1)
 
-				ws['BC29'].value = razryad%(mean_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6)
-				ws['BC30'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6
-				ws['BC31'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6
+				ws['BC29'].value = my_round(mean_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6, razryad)
+				ws['BC30'].value = my_round(CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6, 1)
+				ws['BC31'].value = my_round(CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['BC32'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['BC32'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['BD26'].value = razryad%(mean_F_III)
+				ws['BD26'].value = my_round(mean_F_III, razryad)
 				ws['BD27'].value = Er_F_III
 				ws['BD28'].value = sigma_F_III
 
-				ws['BD29'].value = razryad%(mean_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6)
-				ws['BD30'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6
-				ws['BD31'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6
+				ws['BD29'].value = my_round(mean_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6, razryad)
+				ws['BD30'].value = my_round(CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6, 1)
+				ws['BD31'].value = my_round(CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['BD32'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['BD32'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['BE26'].value = razryad%(mean_F_IV)
-				ws['BE27'].value = '%.1f'%Er_F_IV
-				ws['BE28'].value = '%.1f'%sigma_F_IV
+				ws['BE26'].value = my_round(mean_F_IV, razryad)
+				ws['BE27'].value = my_round(Er_F_IV, 1)
+				ws['BE28'].value = my_round(sigma_F_IV, 1)
 
-				ws['BE29'].value = razryad%(mean_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6)
-				ws['BE30'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6
-				ws['BE31'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6
+				ws['BE29'].value = my_round(mean_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6, razryad)
+				ws['BE30'].value = my_round(CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6, 1)
+				ws['BE31'].value = my_round(CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['BE32'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['BE32'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['BF26'].value = razryad%(mean_F_V)
-				ws['BF27'].value = '%.1f'%Er_F_V
-				ws['BF28'].value = '%.1f'%sigma_F_V
+				ws['BF26'].value = my_round(mean_F_V, razryad)
+				ws['BF27'].value = my_round(Er_F_V, 1)
+				ws['BF28'].value = my_round(sigma_F_V, 1)
 
-				ws['BF29'].value = razryad%(mean_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6)
-				ws['BF30'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6
-				ws['BF31'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6
+				ws['BF29'].value = my_round(mean_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6, razryad)
+				ws['BF30'].value = my_round(CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6, 1)
+				ws['BF31'].value = my_round(CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['BF32'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['BF32'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['BG26'].value = razryad%(mean_F_VI)
-				ws['BG27'].value = '%.1f'%Er_F_VI
-				ws['BG28'].value = '%.1f'%sigma_F_VI
+				ws['BG26'].value = my_round(mean_F_VI, razryad)
+				ws['BG27'].value = my_round(Er_F_VI, 1)
+				ws['BG28'].value = my_round(sigma_F_VI, 1)
 
-				ws['BG29'].value = razryad%(mean_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6)
-				ws['BG30'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6
-				ws['BG31'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6
+				ws['BG29'].value = my_round(mean_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6, razryad)
+				ws['BG30'].value = my_round(CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6, 1)
+				ws['BG31'].value = my_round(CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['BG32'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
@@ -15488,87 +14547,87 @@ def calc():
 		if check_var_gr_3.get() == 9:
 			ws['BA27'].value = 'найдено, сред.зн., \nнг/мл (n=9)'
 			ws['BA27'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['BA28'].value = 'εr, % (n=9)'
-			ws['BA29'].value = 'σr, % (n=9)'
+			ws['BA28'].value = 'εR, % (n=9)'
+			ws['BA29'].value = 'σR, % (n=9)'
 			
 			ws['BA30'].value = 'найдено, сред.зн.,\nнг/мл (n=54)'
 			ws['BA30'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['BA31'].value = 'εr, % (n=54)'
-			ws['BA32'].value = 'σr, % (n=54)'
+			ws['BA31'].value = 'εR, % (n=54)'
+			ws['BA32'].value = 'σR, % (n=54)'
 			ws['BA33'].value = 'Норма |ε| и |σ|, %'
 
-			ws['BB27'].value = razryad%(mean_F_I)
-			ws['BB28'].value = '%.1f'%Er_F_I
-			ws['BB29'].value = '%.1f'%sigma_F_I
+			ws['BB27'].value = my_round(mean_F_I, razryad)
+			ws['BB28'].value = my_round(Er_F_I, 1)
+			ws['BB29'].value = my_round(sigma_F_I, 1)
 
-			ws['BB30'].value = razryad%(mean_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6)
-			ws['BB31'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6
-			ws['BB32'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6
+			ws['BB30'].value = my_round(mean_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6, razryad)
+			ws['BB31'].value = my_round(CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6, 1)
+			ws['BB32'].value = my_round(CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['BB33'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
 				ws['BB33'].value = '≤20'
 
 			if check_var_gr_1.get() >= 2:
-				ws['BC27'].value = razryad%(mean_F_II)
-				ws['BC28'].value = '%.1f'%Er_F_II
-				ws['BC29'].value = '%.1f'%sigma_F_II
+				ws['BC27'].value = my_round(mean_F_II, razryad)
+				ws['BC28'].value = my_round(Er_F_II, 1)
+				ws['BC29'].value = my_round(sigma_F_II, 1)
 
-				ws['BC30'].value = razryad%(mean_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6)
-				ws['BC31'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6
-				ws['BC32'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6
+				ws['BC30'].value = my_round(mean_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6, razryad)
+				ws['BC31'].value = my_round(CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6, 1)
+				ws['BC32'].value = my_round(CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['BC33'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['BC33'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['BD27'].value = razryad%(mean_F_III)
-				ws['BD28'].value = '%.1f'%Er_F_III
-				ws['BD29'].value = '%.1f'%sigma_F_III
+				ws['BD27'].value = my_round(mean_F_III, razryad)
+				ws['BD28'].value = my_round(Er_F_III, 1)
+				ws['BD29'].value = my_round(sigma_F_III, 1)
 
-				ws['BD30'].value = razryad%(mean_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6)
-				ws['BD31'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6
-				ws['BD32'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6
+				ws['BD30'].value = my_round(mean_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6, razryad)
+				ws['BD31'].value = my_round(CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6, 1)
+				ws['BD32'].value = my_round(CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['BD33'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['BD33'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['BE27'].value = razryad%(mean_F_IV)
-				ws['BE28'].value = '%.1f'%Er_F_IV
-				ws['BE29'].value = '%.1f'%sigma_F_IV
+				ws['BE27'].value = my_round(mean_F_IV, razryad)
+				ws['BE28'].value = my_round(Er_F_IV, 1)
+				ws['BE29'].value = my_round(sigma_F_IV, 1)
 
-				ws['BE30'].value = razryad%(mean_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6)
-				ws['BE31'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6
-				ws['BE32'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6
+				ws['BE30'].value = my_round(mean_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6, razryad)
+				ws['BE31'].value = my_round(CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6, 1)
+				ws['BE32'].value = my_round(CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['BE33'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['BE33'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['BF27'].value = razryad%(mean_F_V)
-				ws['BF28'].value = '%.1f'%Er_F_V
-				ws['BF29'].value = '%.1f'%sigma_F_V
+				ws['BF27'].value = my_round(mean_F_V, razryad)
+				ws['BF28'].value = my_round(Er_F_V, 1)
+				ws['BF29'].value = my_round(sigma_F_V, 1)
 
-				ws['BF30'].value = razryad%(mean_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6)
-				ws['BF31'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6
-				ws['BF32'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6
+				ws['BF30'].value = my_round(mean_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6, razryad)
+				ws['BF31'].value = my_round(CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6, 1)
+				ws['BF32'].value = my_round(CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['BF33'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['BF33'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['BG27'].value = razryad%(mean_F_VI)
-				ws['BG28'].value = '%.1f'%Er_F_VI
-				ws['BG29'].value = '%.1f'%sigma_F_VI
+				ws['BG27'].value = my_round(mean_F_VI, razryad)
+				ws['BG28'].value = my_round(Er_F_VI, 1)
+				ws['BG29'].value = my_round(sigma_F_VI, 1)
 
-				ws['BG30'].value = razryad%(mean_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6)
-				ws['BG31'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6
-				ws['BG32'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6
+				ws['BG30'].value = my_round(mean_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6, razryad)
+				ws['BG31'].value = my_round(CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6, 1)
+				ws['BG32'].value = my_round(CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['BG33'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
@@ -15577,87 +14636,87 @@ def calc():
 		if check_var_gr_3.get() == 10:
 			ws['BA28'].value = 'найдено, сред.зн., \nнг/мл (n=10)'
 			ws['BA28'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['BA29'].value = 'εr, % (n=10)'
-			ws['BA30'].value = 'σr, % (n=10)'
+			ws['BA29'].value = 'εR, % (n=10)'
+			ws['BA30'].value = 'σR, % (n=10)'
 			
 			ws['BA31'].value = 'найдено, сред.зн.,\nнг/мл (n=60)'
 			ws['BA31'].alignment = Alignment(wrapText=True, horizontal='center', vertical='center')
-			ws['BA32'].value = 'εr, % (n=60)'
-			ws['BA33'].value = 'σr, % (n=60)'
+			ws['BA32'].value = 'εR, % (n=60)'
+			ws['BA33'].value = 'σR, % (n=60)'
 			ws['BA34'].value = 'Норма |ε| и |σ|, %'
 
-			ws['BB28'].value = razryad%(mean_F_I)
-			ws['BB29'].value = '%.1f'%Er_F_I
-			ws['BB30'].value = '%.1f'%sigma_F_I
+			ws['BB28'].value = my_round(mean_F_I, razryad)
+			ws['BB29'].value = my_round(Er_F_I, 1)
+			ws['BB30'].value = my_round(sigma_F_I, 1)
 
-			ws['BB31'].value = razryad%(mean_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6)
-			ws['BB32'].value = '%.1f'%CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6
-			ws['BB33'].value = '%.1f'%CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6
+			ws['BB31'].value = my_round(mean_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6, razryad)
+			ws['BB32'].value = my_round(CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6, 1)
+			ws['BB33'].value = my_round(CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6, 1)
 			if entr_NORM_QCA1.get() != '':
 				ws['BB34'].value = '≤{}'.format(entr_NORM_QCA1.get())
 			else:
 				ws['BB34'].value = '≤20'
 
 			if check_var_gr_1.get() >= 2:
-				ws['BC28'].value = razryad%(mean_F_II)
-				ws['BC29'].value = '%.1f'%Er_F_II
-				ws['BC30'].value = '%.1f'%sigma_F_II
+				ws['BC28'].value = my_round(mean_F_II, razryad)
+				ws['BC29'].value = my_round(Er_F_II, 1)
+				ws['BC30'].value = my_round(sigma_F_II, 1)
 
-				ws['BC31'].value = razryad%(mean_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6)
-				ws['BC32'].value = '%.1f'%CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6
-				ws['BC33'].value = '%.1f'%CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6
+				ws['BC31'].value = my_round(mean_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6, razryad)
+				ws['BC32'].value = my_round(CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6, 1)
+				ws['BC33'].value = my_round(CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6, 1)
 				if entr_NORM_QCB1.get() != '':
 					ws['BC34'].value = '≤{}'.format(entr_NORM_QCB1.get())
 				else:
 					ws['BC34'].value = '≤15'
 
 			if check_var_gr_1.get() >= 3:	
-				ws['BD28'].value = razryad%(mean_F_III)
-				ws['BD29'].value = '%.1f'%Er_F_III
-				ws['BD30'].value = '%.1f'%sigma_F_III
+				ws['BD28'].value = my_round(mean_F_III, razryad)
+				ws['BD29'].value = my_round(Er_F_III, 1)
+				ws['BD30'].value = my_round(sigma_F_III, 1)
 
-				ws['BD31'].value = razryad%(mean_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6)
-				ws['BD32'].value = '%.1f'%CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6
-				ws['BD33'].value = '%.1f'%CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6
+				ws['BD31'].value = my_round(mean_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6, razryad)
+				ws['BD32'].value = my_round(CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6, 1)
+				ws['BD33'].value = my_round(CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6, 1)
 				if entr_NORM_QCC1.get() != '':
 					ws['BD34'].value = '≤{}'.format(entr_NORM_QCC1.get())
 				else:
 					ws['BD34'].value = '≤15'
 
 			if check_var_gr_1.get() >= 4:	
-				ws['BE28'].value = razryad%(mean_F_IV)
-				ws['BE29'].value = '%.1f'%Er_F_IV
-				ws['BE30'].value = '%.1f'%sigma_F_IV
+				ws['BE28'].value = my_round(mean_F_IV, razryad)
+				ws['BE29'].value = my_round(Er_F_IV, 1)
+				ws['BE30'].value = my_round(sigma_F_IV, 1)
 
-				ws['BE31'].value = razryad%(mean_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6)
-				ws['BE32'].value = '%.1f'%CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6
-				ws['BE33'].value = '%.1f'%CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6
+				ws['BE31'].value = my_round(mean_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6, razryad)
+				ws['BE32'].value = my_round(CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6, 1)
+				ws['BE33'].value = my_round(CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6, 1)
 				if entr_NORM_QCD1.get() != '':
 					ws['BE34'].value = '≤{}'.format(entr_NORM_QCD1.get())
 				else:
 					ws['BE34'].value = '≤15'
 
 			if check_var_gr_1.get() >= 5:	
-				ws['BF28'].value = razryad%(mean_F_V)
-				ws['BF29'].value = '%.1f'%Er_F_V
-				ws['BF30'].value = '%.1f'%sigma_F_V
+				ws['BF28'].value = my_round(mean_F_V, razryad)
+				ws['BF29'].value = my_round(Er_F_V, 1)
+				ws['BF30'].value = my_round(sigma_F_V, 1)
 
-				ws['BF31'].value = razryad%(mean_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6)
-				ws['BF32'].value = '%.1f'%CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6
-				ws['BF33'].value = '%.1f'%CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6
+				ws['BF31'].value = my_round(mean_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6, razryad)
+				ws['BF32'].value = my_round(CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6, 1)
+				ws['BF33'].value = my_round(CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6, 1)
 				if entr_NORM_QCE1.get() != '':
 					ws['BF34'].value = '≤{}'.format(entr_NORM_QCE1.get())
 				else:
 					ws['BF34'].value = '≤15'
 
 			if check_var_gr_1.get() >= 6:	
-				ws['BG28'].value = razryad%(mean_F_VI)
-				ws['BG29'].value = '%.1f'%Er_F_VI
-				ws['BG30'].value = '%.1f'%sigma_F_VI
+				ws['BG28'].value = my_round(mean_F_VI, razryad)
+				ws['BG29'].value = my_round(Er_F_VI, 1)
+				ws['BG30'].value = my_round(sigma_F_VI, 1)
 
-				ws['BG31'].value = razryad%(mean_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6)
-				ws['BG32'].value = '%.1f'%CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6
-				ws['BG33'].value = '%.1f'%CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6
+				ws['BG31'].value = my_round(mean_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6, razryad)
+				ws['BG32'].value = my_round(CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6, 1)
+				ws['BG33'].value = my_round(CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6, 1)
 				if entr_NORM_QCF1.get() != '':
 					ws['BG34'].value = '≤{}'.format(entr_NORM_QCF1.get())
 				else:
@@ -15669,42 +14728,42 @@ def calc():
 		ws['BB16'].value = QC_I
 		ws['H2'].value = 'QCA6'
 		ws['BA18'].value = '1'
-		ws['BB18'].value = razryad%(float(entr_F1_I.get()))
-		ws['H3'].value = razryad%(float(entr_F1_I.get()))
+		ws['BB18'].value = my_round(float(entr_F1_I.get()), razryad)
+		ws['H3'].value = my_round(float(entr_F1_I.get()), razryad)
 		ws['BA19'].value = '2'
-		ws['BB19'].value = razryad%(float(entr_F2_I.get()))
-		ws['H4'].value = razryad%(float(entr_F2_I.get()))
+		ws['BB19'].value = my_round(float(entr_F2_I.get()), razryad)
+		ws['H4'].value = my_round(float(entr_F2_I.get()), razryad)
 		ws['BA20'].value = '3'
-		ws['BB20'].value = razryad%(float(entr_F3_I.get()))
-		ws['H5'].value = razryad%(float(entr_F3_I.get()))
+		ws['BB20'].value = my_round(float(entr_F3_I.get()), razryad)
+		ws['H5'].value = my_round(float(entr_F3_I.get()), razryad)
 		if check_var_gr_3.get() >= 4:
 			ws['BA21'].value = '4'
-			ws['BB21'].value = razryad%(float(entr_F4_I.get()))
-			ws['H6'].value = razryad%(float(entr_F4_I.get()))
+			ws['BB21'].value = my_round(float(entr_F4_I.get()), razryad)
+			ws['H6'].value = my_round(float(entr_F4_I.get()), razryad)
 		if check_var_gr_3.get() >= 5:
 			ws['BA22'].value = '5'
-			ws['BB22'].value = razryad%(float(entr_F5_I.get()))
-			ws['H7'].value = razryad%(float(entr_F5_I.get()))
+			ws['BB22'].value = my_round(float(entr_F5_I.get()), razryad)
+			ws['H7'].value = my_round(float(entr_F5_I.get()), razryad)
 		if check_var_gr_3.get() >= 6:	
 			ws['BA23'].value = '6'
-			ws['BB23'].value = razryad%(float(entr_F6_I.get()))
-			ws['H8'].value = razryad%(float(entr_F6_I.get()))
+			ws['BB23'].value = my_round(float(entr_F6_I.get()), razryad)
+			ws['H8'].value = my_round(float(entr_F6_I.get()), razryad)
 		if check_var_gr_3.get() >= 7:	
 			ws['BA24'].value = '7'
-			ws['BB24'].value = razryad%(float(entr_F7_I.get()))
-			ws['H9'].value = razryad%(float(entr_F7_I.get()))
+			ws['BB24'].value = my_round(float(entr_F7_I.get()), razryad)
+			ws['H9'].value = my_round(float(entr_F7_I.get()), razryad)
 		if check_var_gr_3.get() >= 8:	
 			ws['BA25'].value = '8'
-			ws['BB25'].value = razryad%(float(entr_F8_I.get()))
-			ws['H10'].value = razryad%(float(entr_F8_I.get()))
+			ws['BB25'].value = my_round(float(entr_F8_I.get()), razryad)
+			ws['H10'].value = my_round(float(entr_F8_I.get()), razryad)
 		if check_var_gr_3.get() >= 9:	
 			ws['BA26'].value = '9'
-			ws['BB26'].value = razryad%(float(entr_F9_I.get()))
-			ws['H11'].value = razryad%(float(entr_F9_I.get()))
+			ws['BB26'].value = my_round(float(entr_F9_I.get()), razryad)
+			ws['H11'].value = my_round(float(entr_F9_I.get()), razryad)
 		if check_var_gr_3.get() >= 10:	
 			ws['BA27'].value = '10'
-			ws['BB27'].value = razryad%(float(entr_F10_I.get()))
-			ws['H12'].value = razryad%(float(entr_F10_I.get()))
+			ws['BB27'].value = my_round(float(entr_F10_I.get()), razryad)
+			ws['H12'].value = my_round(float(entr_F10_I.get()), razryad)
 
 
 
@@ -15713,132 +14772,132 @@ def calc():
 			ws['BC15'].value = 'QCB6'
 			ws['BC16'].value = QC_II
 			ws['Q2'].value = 'QCB6'
-			ws['BC18'].value = razryad%(float(entr_F1_II.get()))
-			ws['Q3'].value = razryad%(float(entr_F1_II.get()))
-			ws['BC19'].value = razryad%(float(entr_F2_II.get()))
-			ws['Q4'].value = razryad%(float(entr_F2_II.get()))
-			ws['BC20'].value = razryad%(float(entr_F3_II.get()))
-			ws['Q5'].value = razryad%(float(entr_F3_II.get()))
+			ws['BC18'].value = my_round(float(entr_F1_II.get()), razryad)
+			ws['Q3'].value = my_round(float(entr_F1_II.get()), razryad)
+			ws['BC19'].value = my_round(float(entr_F2_II.get()), razryad)
+			ws['Q4'].value = my_round(float(entr_F2_II.get()), razryad)
+			ws['BC20'].value = my_round(float(entr_F3_II.get()), razryad)
+			ws['Q5'].value = my_round(float(entr_F3_II.get()), razryad)
 			if check_var_gr_3.get() >= 4:
-				ws['BC21'].value = razryad%(float(entr_F4_II.get()))
-				ws['Q6'].value = razryad%(float(entr_F4_II.get()))
+				ws['BC21'].value = my_round(float(entr_F4_II.get()), razryad)
+				ws['Q6'].value = my_round(float(entr_F4_II.get()), razryad)
 			if check_var_gr_3.get() >= 5:
-				ws['BC22'].value = razryad%(float(entr_F5_II.get()))
-				ws['Q7'].value = razryad%(float(entr_F5_II.get()))
+				ws['BC22'].value = my_round(float(entr_F5_II.get()), razryad)
+				ws['Q7'].value = my_round(float(entr_F5_II.get()), razryad)
 			if check_var_gr_3.get() >= 6:	
-				ws['BC23'].value = razryad%(float(entr_F6_II.get()))
-				ws['Q8'].value = razryad%(float(entr_F6_II.get()))
+				ws['BC23'].value = my_round(float(entr_F6_II.get()), razryad)
+				ws['Q8'].value = my_round(float(entr_F6_II.get()), razryad)
 			if check_var_gr_3.get() >= 7:	
-				ws['BC24'].value = razryad%(float(entr_F7_II.get()))
-				ws['Q9'].value = razryad%(float(entr_F7_II.get()))
+				ws['BC24'].value = my_round(float(entr_F7_II.get()), razryad)
+				ws['Q9'].value = my_round(float(entr_F7_II.get()), razryad)
 			if check_var_gr_3.get() >= 8:	
-				ws['BC25'].value = razryad%(float(entr_F8_II.get()))
-				ws['Q10'].value = razryad%(float(entr_F8_II.get()))
+				ws['BC25'].value = my_round(float(entr_F8_II.get()), razryad)
+				ws['Q10'].value = my_round(float(entr_F8_II.get()), razryad)
 			if check_var_gr_3.get() >= 9:	
-				ws['BC26'].value = razryad%(float(entr_F9_II.get()))
-				ws['Q11'].value = razryad%(float(entr_F9_II.get()))
+				ws['BC26'].value = my_round(float(entr_F9_II.get()), razryad)
+				ws['Q11'].value = my_round(float(entr_F9_II.get()), razryad)
 			if check_var_gr_3.get() >= 10:	
-				ws['BC27'].value = razryad%(float(entr_F10_II.get()))
-				ws['Q12'].value = razryad%(float(entr_F10_II.get()))
+				ws['BC27'].value = my_round(float(entr_F10_II.get()), razryad)
+				ws['Q12'].value = my_round(float(entr_F10_II.get()), razryad)
 
 		if check_var_gr_1.get() >= 3:
 			#QCC5
 			ws['BD15'].value = 'QCC6'
 			ws['BD16'].value = QC_III
 			ws['Z2'].value = 'QCC6'
-			ws['BD18'].value = razryad%(float(entr_F1_III.get()))
-			ws['Z3'].value = razryad%(float(entr_F1_III.get()))
-			ws['BD19'].value = razryad%(float(entr_F2_III.get()))
-			ws['Z4'].value = razryad%(float(entr_F2_III.get()))
-			ws['BD20'].value = razryad%(float(entr_F3_III.get()))
-			ws['Z5'].value = razryad%(float(entr_F3_III.get()))
+			ws['BD18'].value = my_round(float(entr_F1_III.get()), razryad)
+			ws['Z3'].value = my_round(float(entr_F1_III.get()), razryad)
+			ws['BD19'].value = my_round(float(entr_F2_III.get()), razryad)
+			ws['Z4'].value = my_round(float(entr_F2_III.get()), razryad)
+			ws['BD20'].value = my_round(float(entr_F3_III.get()), razryad)
+			ws['Z5'].value = my_round(float(entr_F3_III.get()), razryad)
 			if check_var_gr_3.get() >= 4:
-				ws['BD21'].value = razryad%(float(entr_F4_III.get()))
-				ws['Z6'].value = razryad%(float(entr_F4_III.get()))
+				ws['BD21'].value = my_round(float(entr_F4_III.get()), razryad)
+				ws['Z6'].value = my_round(float(entr_F4_III.get()), razryad)
 			if check_var_gr_3.get() >= 5:
-				ws['BD22'].value = razryad%(float(entr_F5_III.get()))
-				ws['Z7'].value = razryad%(float(entr_F5_III.get()))
+				ws['BD22'].value = my_round(float(entr_F5_III.get()), razryad)
+				ws['Z7'].value = my_round(float(entr_F5_III.get()), razryad)
 			if check_var_gr_3.get() >= 6:	
-				ws['BD23'].value = razryad%(float(entr_F6_III.get()))
-				ws['Z8'].value = razryad%(float(entr_F6_III.get()))
+				ws['BD23'].value = my_round(float(entr_F6_III.get()), razryad)
+				ws['Z8'].value = my_round(float(entr_F6_III.get()), razryad)
 			if check_var_gr_3.get() >= 7:	
-				ws['BD24'].value = razryad%(float(entr_F7_III.get()))
-				ws['Z9'].value = razryad%(float(entr_F7_III.get()))
+				ws['BD24'].value = my_round(float(entr_F7_III.get()), razryad)
+				ws['Z9'].value = my_round(float(entr_F7_III.get()), razryad)
 			if check_var_gr_3.get() >= 8:	
-				ws['BD25'].value = razryad%(float(entr_F8_III.get()))
-				ws['Z10'].value = razryad%(float(entr_F8_III.get()))
+				ws['BD25'].value = my_round(float(entr_F8_III.get()), razryad)
+				ws['Z10'].value = my_round(float(entr_F8_III.get()), razryad)
 			if check_var_gr_3.get() >= 9:	
-				ws['BD26'].value = razryad%(float(entr_F9_III.get()))
-				ws['Z11'].value = razryad%(float(entr_F9_III.get()))
+				ws['BD26'].value = my_round(float(entr_F9_III.get()), razryad)
+				ws['Z11'].value = my_round(float(entr_F9_III.get()), razryad)
 			if check_var_gr_3.get() >= 10:	
-				ws['BD27'].value = razryad%(float(entr_F10_III.get()))
-				ws['Z12'].value = razryad%(float(entr_F10_III.get()))
+				ws['BD27'].value = my_round(float(entr_F10_III.get()), razryad)
+				ws['Z12'].value = my_round(float(entr_F10_III.get()), razryad)
 
 		if check_var_gr_1.get() >= 4:
 			#QCD5
 			ws['BE15'].value = 'QCD6'
 			ws['BE16'].value = QC_IV
 			ws['AI2'].value = 'QCD6'
-			ws['BE18'].value = razryad%(float(entr_F1_IV.get()))
-			ws['AI3'].value = razryad%(float(entr_F1_IV.get()))
-			ws['BE19'].value = razryad%(float(entr_F2_IV.get()))
-			ws['AI4'].value = razryad%(float(entr_F2_IV.get()))
-			ws['BE20'].value = razryad%(float(entr_F3_IV.get()))
-			ws['AI5'].value = razryad%(float(entr_F3_IV.get()))
+			ws['BE18'].value = my_round(float(entr_F1_IV.get()), razryad)
+			ws['AI3'].value = my_round(float(entr_F1_IV.get()), razryad)
+			ws['BE19'].value = my_round(float(entr_F2_IV.get()), razryad)
+			ws['AI4'].value = my_round(float(entr_F2_IV.get()), razryad)
+			ws['BE20'].value = my_round(float(entr_F3_IV.get()), razryad)
+			ws['AI5'].value = my_round(float(entr_F3_IV.get()), razryad)
 			if check_var_gr_3.get() >= 4:
-				ws['BE21'].value = razryad%(float(entr_F4_IV.get()))
-				ws['AI6'].value = razryad%(float(entr_F4_IV.get()))
+				ws['BE21'].value = my_round(float(entr_F4_IV.get()), razryad)
+				ws['AI6'].value = my_round(float(entr_F4_IV.get()), razryad)
 			if check_var_gr_3.get() >= 5:
-				ws['BE22'].value = razryad%(float(entr_F5_IV.get()))
-				ws['AI7'].value = razryad%(float(entr_F5_IV.get()))
+				ws['BE22'].value = my_round(float(entr_F5_IV.get()), razryad)
+				ws['AI7'].value = my_round(float(entr_F5_IV.get()), razryad)
 			if check_var_gr_3.get() >= 6:	
-				ws['BE23'].value = razryad%(float(entr_F6_IV.get()))
-				ws['AI8'].value = razryad%(float(entr_F6_IV.get()))
+				ws['BE23'].value = my_round(float(entr_F6_IV.get()), razryad)
+				ws['AI8'].value = my_round(float(entr_F6_IV.get()), razryad)
 			if check_var_gr_3.get() >= 7:	
-				ws['BE24'].value = razryad%(float(entr_F7_IV.get()))
-				ws['AI9'].value = razryad%(float(entr_F7_IV.get()))
+				ws['BE24'].value = my_round(float(entr_F7_IV.get()), razryad)
+				ws['AI9'].value = my_round(float(entr_F7_IV.get()), razryad)
 			if check_var_gr_3.get() >= 8:	
-				ws['BE25'].value = razryad%(float(entr_F8_IV.get()))
-				ws['AI10'].value = razryad%(float(entr_F8_IV.get()))
+				ws['BE25'].value = my_round(float(entr_F8_IV.get()), razryad)
+				ws['AI10'].value = my_round(float(entr_F8_IV.get()), razryad)
 			if check_var_gr_3.get() >= 9:	
-				ws['BE26'].value = razryad%(float(entr_F9_IV.get()))
-				ws['AI11'].value = razryad%(float(entr_F9_IV.get()))
+				ws['BE26'].value = my_round(float(entr_F9_IV.get()), razryad)
+				ws['AI11'].value = my_round(float(entr_F9_IV.get()), razryad)
 			if check_var_gr_3.get() >= 10:	
-				ws['BE27'].value = razryad%(float(entr_F10_IV.get()))
-				ws['AI12'].value = razryad%(float(entr_F10_IV.get()))
+				ws['BE27'].value = my_round(float(entr_F10_IV.get()), razryad)
+				ws['AI12'].value = my_round(float(entr_F10_IV.get()), razryad)
 
 		if check_var_gr_1.get() >= 5:
 			#QCE5
 			ws['BF15'].value = 'QCE6'
 			ws['BF16'].value = QC_V
 			ws['AR2'].value = 'QCE6'
-			ws['BF18'].value = razryad%(float(entr_F1_V.get()))
-			ws['AR3'].value = razryad%(float(entr_F1_V.get()))
-			ws['BF19'].value = razryad%(float(entr_F2_V.get()))
-			ws['AR4'].value = razryad%(float(entr_F2_V.get()))
-			ws['BF20'].value = razryad%(float(entr_F3_V.get()))
-			ws['AR5'].value = razryad%(float(entr_F3_V.get()))
+			ws['BF18'].value = my_round(float(entr_F1_V.get()), razryad)
+			ws['AR3'].value = my_round(float(entr_F1_V.get()), razryad)
+			ws['BF19'].value = my_round(float(entr_F2_V.get()), razryad)
+			ws['AR4'].value = my_round(float(entr_F2_V.get()), razryad)
+			ws['BF20'].value = my_round(float(entr_F3_V.get()), razryad)
+			ws['AR5'].value = my_round(float(entr_F3_V.get()), razryad)
 			if check_var_gr_3.get() >= 4:
-				ws['BF21'].value = razryad%(float(entr_F4_V.get()))
-				ws['AR6'].value = razryad%(float(entr_F4_V.get()))
+				ws['BF21'].value = my_round(float(entr_F4_V.get()), razryad)
+				ws['AR6'].value = my_round(float(entr_F4_V.get()), razryad)
 			if check_var_gr_3.get() >= 5:
-				ws['BF22'].value = razryad%(float(entr_F5_V.get()))
-				ws['AR7'].value = razryad%(float(entr_F5_V.get()))
+				ws['BF22'].value = my_round(float(entr_F5_V.get()), razryad)
+				ws['AR7'].value = my_round(float(entr_F5_V.get()), razryad)
 			if check_var_gr_3.get() >= 6:	
-				ws['BF23'].value = razryad%(float(entr_F6_V.get()))
-				ws['AR8'].value = razryad%(float(entr_F6_V.get()))
+				ws['BF23'].value = my_round(float(entr_F6_V.get()), razryad)
+				ws['AR8'].value = my_round(float(entr_F6_V.get()), razryad)
 			if check_var_gr_3.get() >= 7:	
-				ws['BF24'].value = razryad%(float(entr_F7_V.get()))
-				ws['AR9'].value = razryad%(float(entr_F7_V.get()))
+				ws['BF24'].value = my_round(float(entr_F7_V.get()), razryad)
+				ws['AR9'].value = my_round(float(entr_F7_V.get()), razryad)
 			if check_var_gr_3.get() >= 8:	
-				ws['BF25'].value = razryad%(float(entr_F8_V.get()))
-				ws['AR10'].value = razryad%(float(entr_F8_V.get()))
+				ws['BF25'].value = my_round(float(entr_F8_V.get()), razryad)
+				ws['AR10'].value = my_round(float(entr_F8_V.get()), razryad)
 			if check_var_gr_3.get() >= 9:	
-				ws['BF26'].value = razryad%(float(entr_F9_V.get()))
-				ws['AR11'].value = razryad%(float(entr_F9_V.get()))
+				ws['BF26'].value = my_round(float(entr_F9_V.get()), razryad)
+				ws['AR11'].value = my_round(float(entr_F9_V.get()), razryad)
 			if check_var_gr_3.get() >= 10:	
-				ws['BF27'].value = razryad%(float(entr_F10_V.get()))
-				ws['AR12'].value = razryad%(float(entr_F10_V.get()))
+				ws['BF27'].value = my_round(float(entr_F10_V.get()), razryad)
+				ws['AR12'].value = my_round(float(entr_F10_V.get()), razryad)
 
 
 		if check_var_gr_1.get() >= 6:
@@ -15846,91 +14905,35 @@ def calc():
 			ws['BG15'].value = 'QCF6'
 			ws['BG16'].value = QC_VI
 			ws['BA2'].value = 'QCF6'
-			ws['BG18'].value = razryad%(float(entr_F1_VI.get()))
-			ws['BA3'].value = razryad%(float(entr_F1_VI.get()))
-			ws['BG19'].value = razryad%(float(entr_F2_VI.get()))
-			ws['BA4'].value = razryad%(float(entr_F2_VI.get()))
-			ws['BG20'].value = razryad%(float(entr_F3_VI.get()))
-			ws['BA5'].value = razryad%(float(entr_F3_VI.get()))
+			ws['BG18'].value = my_round(float(entr_F1_VI.get()), razryad)
+			ws['BA3'].value = my_round(float(entr_F1_VI.get()), razryad)
+			ws['BG19'].value = my_round(float(entr_F2_VI.get()), razryad)
+			ws['BA4'].value = my_round(float(entr_F2_VI.get()), razryad)
+			ws['BG20'].value = my_round(float(entr_F3_VI.get()), razryad)
+			ws['BA5'].value = my_round(float(entr_F3_VI.get()), razryad)
 			if check_var_gr_3.get() >= 4:
-				ws['BG21'].value = razryad%(float(entr_F4_VI.get()))
-				ws['BA6'].value = razryad%(float(entr_F4_VI.get()))
+				ws['BG21'].value = my_round(float(entr_F4_VI.get()), razryad)
+				ws['BA6'].value = my_round(float(entr_F4_VI.get()), razryad)
 			if check_var_gr_3.get() >= 5:
-				ws['BG22'].value = razryad%(float(entr_F5_VI.get()))
-				ws['BA7'].value = razryad%(float(entr_F5_VI.get()))
+				ws['BG22'].value = my_round(float(entr_F5_VI.get()), razryad)
+				ws['BA7'].value = my_round(float(entr_F5_VI.get()), razryad)
 			if check_var_gr_3.get() >= 6:	
-				ws['BG23'].value = razryad%(float(entr_F6_VI.get()))
-				ws['BA8'].value = razryad%(float(entr_F6_VI.get()))
+				ws['BG23'].value = my_round(float(entr_F6_VI.get()), razryad)
+				ws['BA8'].value = my_round(float(entr_F6_VI.get()), razryad)
 			if check_var_gr_3.get() >= 7:	
-				ws['BG24'].value = razryad%(float(entr_F7_VI.get()))
-				ws['BA9'].value = razryad%(float(entr_F7_VI.get()))
+				ws['BG24'].value = my_round(float(entr_F7_VI.get()), razryad)
+				ws['BA9'].value = my_round(float(entr_F7_VI.get()), razryad)
 			if check_var_gr_3.get() >= 8:	
-				ws['BG25'].value = razryad%(float(entr_F8_VI.get()))
-				ws['BA10'].value = razryad%(float(entr_F8_VI.get()))
+				ws['BG25'].value = my_round(float(entr_F8_VI.get()), razryad)
+				ws['BA10'].value = my_round(float(entr_F8_VI.get()), razryad)
 			if check_var_gr_3.get() >= 9:	
-				ws['BG26'].value = razryad%(float(entr_F9_VI.get()))
-				ws['BA11'].value = razryad%(float(entr_F9_VI.get()))
+				ws['BG26'].value = my_round(float(entr_F9_VI.get()), razryad)
+				ws['BA11'].value = my_round(float(entr_F9_VI.get()), razryad)
 			if check_var_gr_3.get() >= 10:	
-				ws['BG27'].value = razryad%(float(entr_F10_VI.get()))
-				ws['BA12'].value = razryad%(float(entr_F10_VI.get()))
+				ws['BG27'].value = my_round(float(entr_F10_VI.get()), razryad)
+				ws['BA12'].value = my_round(float(entr_F10_VI.get()), razryad)
 
 
-
-
-
-	#ОФОРМЛЕНИЕ EXCEL ДЛЯ ТАБЛИЦ
-	'''
-	if check_var_gr_1.get() == 2:
-		ws.column_dimensions['N'].width = 15
-		ws.column_dimensions['O'].width = 15
-	
-		if check_var_gr_2.get() >= 2:
-			ws.column_dimensions['V'].width = 15
-			ws.column_dimensions['W'].width = 15
-		
-		if check_var_gr_2.get() >= 3:
-			ws.column_dimensions['AD'].width = 15
-			ws.column_dimensions['AE'].width = 15
-			
-		if check_var_gr_2.get() >= 4:
-			ws.column_dimensions['AL'].width = 15
-			ws.column_dimensions['AM'].width = 15
-			
-		if check_var_gr_2.get() >= 5:
-			ws.column_dimensions['AT'].width = 15
-			ws.column_dimensions['AU'].width = 15
-			
-		if check_var_gr_2.get() >= 6:
-			ws.column_dimensions['BB'].width = 15
-			ws.column_dimensions['BC'].width = 15
-			
-
-
-	if check_var_gr_1.get() == 3:
-		ws.column_dimensions['N'].width = 10
-		ws.column_dimensions['O'].width = 10
-		ws.column_dimensions['P'].width = 10
-		if check_var_gr_2.get() >= 2:
-			ws.column_dimensions['V'].width = 10
-			ws.column_dimensions['W'].width = 10
-			ws.column_dimensions['X'].width = 10
-		if check_var_gr_2.get() >= 3:
-			ws.column_dimensions['AD'].width = 10
-			ws.column_dimensions['AE'].width = 10
-			ws.column_dimensions['AF'].width = 10
-		if check_var_gr_2.get() >= 4:
-			ws.column_dimensions['AL'].width = 10
-			ws.column_dimensions['AM'].width = 10
-			ws.column_dimensions['AN'].width = 10
-		if check_var_gr_2.get() >= 5:
-			ws.column_dimensions['AT'].width = 10
-			ws.column_dimensions['AU'].width = 10
-			ws.column_dimensions['AV'].width = 10
-		if check_var_gr_2.get() >= 6:
-			ws.column_dimensions['BB'].width = 10
-			ws.column_dimensions['BC'].width = 10
-			ws.column_dimensions['BD'].width = 10
-	'''
 
 	#ТАБЛИЦА С ПРАВИЛЬНОСТЬЮ И ПОВТОРЯЕМОСТЬЮ
 	cols_c(ws, 'A1:BA12')
@@ -15948,48 +14951,48 @@ def calc():
 		ws['D16'].value = 'QCA'
 		
 		if check_var_gr_2.get() == 2:
-			ws['D18'].value = '%.1f'%min(Er_A_I, Er_B_I)#Внутридневная правильность %
-			ws['D19'].value = '%.1f'%max(Er_A_I, Er_B_I)#Внутридневная правильность %
-			ws['D22'].value = '%.1f'%min(sigma_A_I, sigma_B_I)#Внутридневная повторяемость %
-			ws['D23'].value = '%.1f'%max(sigma_A_I, sigma_B_I)#Внутридневная повторяемость %
+			ws['D18'].value = my_round(min(Er_A_I, Er_B_I), 1)
+			ws['D19'].value = my_round(max(Er_A_I, Er_B_I), 1)
+			ws['D22'].value = my_round(min(sigma_A_I, sigma_B_I), 1)
+			ws['D23'].value = my_round(max(sigma_A_I, sigma_B_I), 1)
 
 		if check_var_gr_2.get() == 3:
-			ws['D18'].value = '%.1f'%min(Er_A_I, Er_B_I, Er_C_I)#Внутридневная правильность %
-			ws['D19'].value = '%.1f'%max(Er_A_I, Er_B_I, Er_C_I)#Внутридневная правильность %
-			ws['D20'].value = '%.1f'%min(CV_vnytr_gr_QCA1_QCA2, CV_vnytr_gr_QCA1_QCA2_QCA3)#Междневная правильность %
-			ws['D21'].value = '%.1f'%max(CV_vnytr_gr_QCA1_QCA2, CV_vnytr_gr_QCA1_QCA2_QCA3)#Междневная правильность %
-			ws['D22'].value = '%.1f'%min(sigma_A_I, sigma_B_I, sigma_C_I)#Внутридневная повторяемость %
-			ws['D23'].value = '%.1f'%max(sigma_A_I, sigma_B_I, sigma_C_I)#Внутридневная повторяемость %
-			ws['D24'].value = '%.1f'%min(CV_mezhdy_gr_QCA1_QCA2, CV_mezhdy_gr_QCA1_QCA2_QCA3)#Междневная повторяемость %
-			ws['D25'].value = '%.1f'%max(CV_mezhdy_gr_QCA1_QCA2, CV_mezhdy_gr_QCA1_QCA2_QCA3)#Междневная повторяемость %
+			ws['D18'].value = my_round(min(Er_A_I, Er_B_I, Er_C_I), 1)
+			ws['D19'].value = my_round(max(Er_A_I, Er_B_I, Er_C_I), 1)
+			ws['D20'].value = my_round(min(CV_vnytr_gr_QCA1_QCA2, CV_vnytr_gr_QCA1_QCA2_QCA3), 1)
+			ws['D21'].value = my_round(max(CV_vnytr_gr_QCA1_QCA2, CV_vnytr_gr_QCA1_QCA2_QCA3), 1)
+			ws['D22'].value = my_round(min(sigma_A_I, sigma_B_I, sigma_C_I), 1)
+			ws['D23'].value = my_round(max(sigma_A_I, sigma_B_I, sigma_C_I), 1)
+			ws['D24'].value = my_round(min(CV_mezhdy_gr_QCA1_QCA2, CV_mezhdy_gr_QCA1_QCA2_QCA3), 1)
+			ws['D25'].value = my_round(max(CV_mezhdy_gr_QCA1_QCA2, CV_mezhdy_gr_QCA1_QCA2_QCA3), 1)
 		if check_var_gr_2.get() == 4:
-			ws['D18'].value = '%.1f'%min(Er_A_I, Er_B_I, Er_C_I, Er_D_I)#Внутридневная правильность %
-			ws['D19'].value = '%.1f'%max(Er_A_I, Er_B_I, Er_C_I, Er_D_I)#Внутридневная правильность %
-			ws['D20'].value = '%.1f'%min(CV_vnytr_gr_QCA1_QCA2, CV_vnytr_gr_QCA1_QCA2_QCA3, CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4)#Междневная правильность %
-			ws['D21'].value = '%.1f'%max(CV_vnytr_gr_QCA1_QCA2, CV_vnytr_gr_QCA1_QCA2_QCA3, CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4)#Междневная правильность %
-			ws['D22'].value = '%.1f'%min(sigma_A_I, sigma_B_I, sigma_C_I, sigma_D_I)#Внутридневная повторяемость %
-			ws['D23'].value = '%.1f'%max(sigma_A_I, sigma_B_I, sigma_C_I, sigma_D_I)#Внутридневная повторяемость %
-			ws['D24'].value = '%.1f'%min(CV_mezhdy_gr_QCA1_QCA2, CV_mezhdy_gr_QCA1_QCA2_QCA3, CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4)#Междневная повторяемость %
-			ws['D25'].value = '%.1f'%max(CV_mezhdy_gr_QCA1_QCA2, CV_mezhdy_gr_QCA1_QCA2_QCA3, CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4)#Междневная повторяемость %
+			ws['D18'].value = my_round(min(Er_A_I, Er_B_I, Er_C_I, Er_D_I), 1)
+			ws['D19'].value = my_round(max(Er_A_I, Er_B_I, Er_C_I, Er_D_I), 1)
+			ws['D20'].value = my_round(min(CV_vnytr_gr_QCA1_QCA2, CV_vnytr_gr_QCA1_QCA2_QCA3, CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4), 1)
+			ws['D21'].value = my_round(max(CV_vnytr_gr_QCA1_QCA2, CV_vnytr_gr_QCA1_QCA2_QCA3, CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4), 1)
+			ws['D22'].value = my_round(min(sigma_A_I, sigma_B_I, sigma_C_I, sigma_D_I), 1)
+			ws['D23'].value = my_round(max(sigma_A_I, sigma_B_I, sigma_C_I, sigma_D_I), 1)
+			ws['D24'].value = my_round(min(CV_mezhdy_gr_QCA1_QCA2, CV_mezhdy_gr_QCA1_QCA2_QCA3, CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4), 1)
+			ws['D25'].value = my_round(max(CV_mezhdy_gr_QCA1_QCA2, CV_mezhdy_gr_QCA1_QCA2_QCA3, CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4), 1)
 		if check_var_gr_2.get() == 5:
-			ws['D18'].value = '%.1f'%min(Er_A_I, Er_B_I, Er_C_I, Er_D_I, Er_E_I)#Внутридневная правильность %
-			ws['D19'].value = '%.1f'%max(Er_A_I, Er_B_I, Er_C_I, Er_D_I, Er_E_I)#Внутридневная правильность %
-			ws['D20'].value = '%.1f'%min(CV_vnytr_gr_QCA1_QCA2, CV_vnytr_gr_QCA1_QCA2_QCA3, CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4, CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5)#Междневная правильность %
-			ws['D21'].value = '%.1f'%max(CV_vnytr_gr_QCA1_QCA2, CV_vnytr_gr_QCA1_QCA2_QCA3, CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4, CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5)#Междневная правильность %
-			ws['D22'].value = '%.1f'%min(sigma_A_I, sigma_B_I, sigma_C_I, sigma_D_I, sigma_E_I)#Внутридневная повторяемость %
-			ws['D23'].value = '%.1f'%max(sigma_A_I, sigma_B_I, sigma_C_I, sigma_D_I, sigma_E_I)#Внутридневная повторяемость %
-			ws['D24'].value = '%.1f'%min(CV_mezhdy_gr_QCA1_QCA2, CV_mezhdy_gr_QCA1_QCA2_QCA3, CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4, CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5)#Междневная повторяемость %
-			ws['D25'].value = '%.1f'%max(CV_mezhdy_gr_QCA1_QCA2, CV_mezhdy_gr_QCA1_QCA2_QCA3, CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4, CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5)#Междневная повторяемость %
+			ws['D18'].value = my_round(min(Er_A_I, Er_B_I, Er_C_I, Er_D_I, Er_E_I), 1)
+			ws['D19'].value = my_round(max(Er_A_I, Er_B_I, Er_C_I, Er_D_I, Er_E_I), 1)
+			ws['D20'].value = my_round(min(CV_vnytr_gr_QCA1_QCA2, CV_vnytr_gr_QCA1_QCA2_QCA3, CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4, CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5), 1)
+			ws['D21'].value = my_round(max(CV_vnytr_gr_QCA1_QCA2, CV_vnytr_gr_QCA1_QCA2_QCA3, CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4, CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5), 1)
+			ws['D22'].value = my_round(min(sigma_A_I, sigma_B_I, sigma_C_I, sigma_D_I, sigma_E_I), 1)
+			ws['D23'].value = my_round(max(sigma_A_I, sigma_B_I, sigma_C_I, sigma_D_I, sigma_E_I), 1)
+			ws['D24'].value = my_round(min(CV_mezhdy_gr_QCA1_QCA2, CV_mezhdy_gr_QCA1_QCA2_QCA3, CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4, CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5), 1)
+			ws['D25'].value = my_round(max(CV_mezhdy_gr_QCA1_QCA2, CV_mezhdy_gr_QCA1_QCA2_QCA3, CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4, CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5), 1)
 
 		if check_var_gr_2.get() == 6:	
-			ws['D18'].value = '%.1f'%min(Er_A_I, Er_B_I, Er_C_I, Er_D_I, Er_E_I, Er_F_I)#Внутридневная правильность %
-			ws['D19'].value = '%.1f'%max(Er_A_I, Er_B_I, Er_C_I, Er_D_I, Er_E_I, Er_F_I)#Внутридневная правильность %
-			ws['D20'].value = '%.1f'%min(CV_vnytr_gr_QCA1_QCA2, CV_vnytr_gr_QCA1_QCA2_QCA3, CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4, CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5, CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6)#Междневная правильность %
-			ws['D21'].value = '%.1f'%max(CV_vnytr_gr_QCA1_QCA2, CV_vnytr_gr_QCA1_QCA2_QCA3, CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4, CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5, CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6)#Междневная правильность %
-			ws['D22'].value = '%.1f'%min(sigma_A_I, sigma_B_I, sigma_C_I, sigma_D_I, sigma_E_I, sigma_F_I)#Внутридневная повторяемость %
-			ws['D23'].value = '%.1f'%max(sigma_A_I, sigma_B_I, sigma_C_I, sigma_D_I, sigma_E_I, sigma_F_I)#Внутридневная повторяемость %
-			ws['D24'].value = '%.1f'%min(CV_mezhdy_gr_QCA1_QCA2, CV_mezhdy_gr_QCA1_QCA2_QCA3, CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4, CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5, CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6)#Междневная повторяемость %
-			ws['D25'].value = '%.1f'%max(CV_mezhdy_gr_QCA1_QCA2, CV_mezhdy_gr_QCA1_QCA2_QCA3, CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4, CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5, CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6)#Междневная повторяемость %
+			ws['D18'].value = my_round(min(Er_A_I, Er_B_I, Er_C_I, Er_D_I, Er_E_I, Er_F_I), 1)
+			ws['D19'].value = my_round(max(Er_A_I, Er_B_I, Er_C_I, Er_D_I, Er_E_I, Er_F_I), 1)
+			ws['D20'].value = my_round(min(CV_vnytr_gr_QCA1_QCA2, CV_vnytr_gr_QCA1_QCA2_QCA3, CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4, CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5, CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6), 1)
+			ws['D21'].value = my_round(max(CV_vnytr_gr_QCA1_QCA2, CV_vnytr_gr_QCA1_QCA2_QCA3, CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4, CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5, CV_vnytr_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6), 1)
+			ws['D22'].value = my_round(min(sigma_A_I, sigma_B_I, sigma_C_I, sigma_D_I, sigma_E_I, sigma_F_I), 1)
+			ws['D23'].value = my_round(max(sigma_A_I, sigma_B_I, sigma_C_I, sigma_D_I, sigma_E_I, sigma_F_I), 1)
+			ws['D24'].value = my_round(min(CV_mezhdy_gr_QCA1_QCA2, CV_mezhdy_gr_QCA1_QCA2_QCA3, CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4, CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5, CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6), 1)
+			ws['D25'].value = my_round(max(CV_mezhdy_gr_QCA1_QCA2, CV_mezhdy_gr_QCA1_QCA2_QCA3, CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4, CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5, CV_mezhdy_gr_QCA1_QCA2_QCA3_QCA4_QCA5_QCA6), 1)
 
 
 
@@ -15997,235 +15000,235 @@ def calc():
 		ws['E16'].value = 'QCB'
 
 		if check_var_gr_2.get() == 2:
-			ws['E18'].value = '%.1f'%min(Er_A_II, Er_B_II)#Внутридневная правильность %
-			ws['E19'].value = '%.1f'%max(Er_A_II, Er_B_II)#Внутридневная правильность %
-			ws['E22'].value = '%.1f'%min(sigma_A_II, sigma_B_II)#Внутридневная повторяемость %
-			ws['E23'].value = '%.1f'%max(sigma_A_II, sigma_B_II)#Внутридневная повторяемость %
+			ws['E18'].value = my_round(min(Er_A_II, Er_B_II), 1)
+			ws['E19'].value = my_round(max(Er_A_II, Er_B_II), 1)
+			ws['E22'].value = my_round(min(sigma_A_II, sigma_B_II), 1)
+			ws['E23'].value = my_round(max(sigma_A_II, sigma_B_II), 1)
 
 		if check_var_gr_2.get() == 3:
-			ws['E18'].value = '%.1f'%min(Er_A_II, Er_B_II, Er_C_II)#Внутридневная правильность %
-			ws['E19'].value = '%.1f'%max(Er_A_II, Er_B_II, Er_C_II)#Внутридневная правильность %
-			ws['E20'].value = '%.1f'%min(CV_vnytr_gr_QCB1_QCB2, CV_vnytr_gr_QCB1_QCB2_QCB3)#Междневная правильность %
-			ws['E21'].value = '%.1f'%max(CV_vnytr_gr_QCB1_QCB2, CV_vnytr_gr_QCB1_QCB2_QCB3)#Междневная правильность %
-			ws['E22'].value = '%.1f'%min(sigma_A_II, sigma_B_II, sigma_C_II)#Внутридневная повторяемость %
-			ws['E23'].value = '%.1f'%max(sigma_A_II, sigma_B_II, sigma_C_II)#Внутридневная повторяемость %
-			ws['E24'].value = '%.1f'%min(CV_mezhdy_gr_QCB1_QCB2, CV_mezhdy_gr_QCB1_QCB2_QCB3)#Междневная повторяемость %
-			ws['E25'].value = '%.1f'%max(CV_mezhdy_gr_QCB1_QCB2, CV_mezhdy_gr_QCB1_QCB2_QCB3)#Междневная повторяемость %
+			ws['E18'].value = my_round(min(Er_A_II, Er_B_II, Er_C_II), 1)
+			ws['E19'].value = my_round(max(Er_A_II, Er_B_II, Er_C_II), 1)
+			ws['E20'].value = my_round(min(CV_vnytr_gr_QCB1_QCB2, CV_vnytr_gr_QCB1_QCB2_QCB3), 1)
+			ws['E21'].value = my_round(max(CV_vnytr_gr_QCB1_QCB2, CV_vnytr_gr_QCB1_QCB2_QCB3), 1)
+			ws['E22'].value = my_round(min(sigma_A_II, sigma_B_II, sigma_C_II), 1)
+			ws['E23'].value = my_round(max(sigma_A_II, sigma_B_II, sigma_C_II), 1)
+			ws['E24'].value = my_round(min(CV_mezhdy_gr_QCB1_QCB2, CV_mezhdy_gr_QCB1_QCB2_QCB3), 1)
+			ws['E25'].value = my_round(max(CV_mezhdy_gr_QCB1_QCB2, CV_mezhdy_gr_QCB1_QCB2_QCB3), 1)
 		if check_var_gr_2.get() == 4:
-			ws['E18'].value = '%.1f'%min(Er_A_II, Er_B_II, Er_C_II, Er_D_II)#Внутридневная правильность %
-			ws['E19'].value = '%.1f'%max(Er_A_II, Er_B_II, Er_C_II, Er_D_II)#Внутридневная правильность %
-			ws['E20'].value = '%.1f'%min(CV_vnytr_gr_QCB1_QCB2, CV_vnytr_gr_QCB1_QCB2_QCB3, CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4)#Междневная правильность %
-			ws['E21'].value = '%.1f'%max(CV_vnytr_gr_QCB1_QCB2, CV_vnytr_gr_QCB1_QCB2_QCB3, CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4)#Междневная правильность %
-			ws['E22'].value = '%.1f'%min(sigma_A_II, sigma_B_II, sigma_C_II, sigma_D_II)#Внутридневная повторяемость %
-			ws['E23'].value = '%.1f'%max(sigma_A_II, sigma_B_II, sigma_C_II, sigma_D_II)#Внутридневная повторяемость %
-			ws['E24'].value = '%.1f'%min(CV_mezhdy_gr_QCB1_QCB2, CV_mezhdy_gr_QCB1_QCB2_QCB3, CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4)#Междневная повторяемость %
-			ws['E25'].value = '%.1f'%max(CV_mezhdy_gr_QCB1_QCB2, CV_mezhdy_gr_QCB1_QCB2_QCB3, CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4)#Междневная повторяемость %
+			ws['E18'].value = my_round(min(Er_A_II, Er_B_II, Er_C_II, Er_D_II), 1)
+			ws['E19'].value = my_round(max(Er_A_II, Er_B_II, Er_C_II, Er_D_II), 1)
+			ws['E20'].value = my_round(min(CV_vnytr_gr_QCB1_QCB2, CV_vnytr_gr_QCB1_QCB2_QCB3, CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4), 1)
+			ws['E21'].value = my_round(max(CV_vnytr_gr_QCB1_QCB2, CV_vnytr_gr_QCB1_QCB2_QCB3, CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4), 1)
+			ws['E22'].value = my_round(min(sigma_A_II, sigma_B_II, sigma_C_II, sigma_D_II), 1)
+			ws['E23'].value = my_round(max(sigma_A_II, sigma_B_II, sigma_C_II, sigma_D_II), 1)
+			ws['E24'].value = my_round(min(CV_mezhdy_gr_QCB1_QCB2, CV_mezhdy_gr_QCB1_QCB2_QCB3, CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4), 1)
+			ws['E25'].value = my_round(max(CV_mezhdy_gr_QCB1_QCB2, CV_mezhdy_gr_QCB1_QCB2_QCB3, CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4), 1)
 		if check_var_gr_2.get() == 5:
-			ws['E18'].value = '%.1f'%min(Er_A_II, Er_B_II, Er_C_II, Er_D_II, Er_E_II)#Внутридневная правильность %
-			ws['E19'].value = '%.1f'%max(Er_A_II, Er_B_II, Er_C_II, Er_D_II, Er_E_II)#Внутридневная правильность %
-			ws['E20'].value = '%.1f'%min(CV_vnytr_gr_QCB1_QCB2, CV_vnytr_gr_QCB1_QCB2_QCB3, CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4, CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5)#Междневная правильность %
-			ws['E21'].value = '%.1f'%max(CV_vnytr_gr_QCB1_QCB2, CV_vnytr_gr_QCB1_QCB2_QCB3, CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4, CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5)#Междневная правильность %
-			ws['E22'].value = '%.1f'%min(sigma_A_II, sigma_B_II, sigma_C_II, sigma_D_II, sigma_E_II)#Внутридневная повторяемость %
-			ws['E23'].value = '%.1f'%max(sigma_A_II, sigma_B_II, sigma_C_II, sigma_D_II, sigma_E_II)#Внутридневная повторяемость %
-			ws['E24'].value = '%.1f'%min(CV_mezhdy_gr_QCB1_QCB2, CV_mezhdy_gr_QCB1_QCB2_QCB3, CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4, CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5)#Междневная повторяемость %
-			ws['E25'].value = '%.1f'%max(CV_mezhdy_gr_QCB1_QCB2, CV_mezhdy_gr_QCB1_QCB2_QCB3, CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4, CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5)#Междневная повторяемость %
+			ws['E18'].value = my_round(min(Er_A_II, Er_B_II, Er_C_II, Er_D_II, Er_E_II), 1)
+			ws['E19'].value = my_round(max(Er_A_II, Er_B_II, Er_C_II, Er_D_II, Er_E_II), 1)
+			ws['E20'].value = my_round(min(CV_vnytr_gr_QCB1_QCB2, CV_vnytr_gr_QCB1_QCB2_QCB3, CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4, CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5), 1)
+			ws['E21'].value = my_round(max(CV_vnytr_gr_QCB1_QCB2, CV_vnytr_gr_QCB1_QCB2_QCB3, CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4, CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5), 1)
+			ws['E22'].value = my_round(min(sigma_A_II, sigma_B_II, sigma_C_II, sigma_D_II, sigma_E_II), 1)
+			ws['E23'].value = my_round(max(sigma_A_II, sigma_B_II, sigma_C_II, sigma_D_II, sigma_E_II), 1)
+			ws['E24'].value = my_round(min(CV_mezhdy_gr_QCB1_QCB2, CV_mezhdy_gr_QCB1_QCB2_QCB3, CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4, CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5), 1)
+			ws['E25'].value = my_round(max(CV_mezhdy_gr_QCB1_QCB2, CV_mezhdy_gr_QCB1_QCB2_QCB3, CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4, CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5), 1)
 
 		if check_var_gr_2.get() == 6:	
-			ws['E18'].value = '%.1f'%min(Er_A_II, Er_B_II, Er_C_II, Er_D_II, Er_E_II, Er_F_II)#Внутридневная правильность %
-			ws['E19'].value = '%.1f'%max(Er_A_II, Er_B_II, Er_C_II, Er_D_II, Er_E_II, Er_F_II)#Внутридневная правильность %
-			ws['E20'].value = '%.1f'%min(CV_vnytr_gr_QCB1_QCB2, CV_vnytr_gr_QCB1_QCB2_QCB3, CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4, CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5, CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6)#Междневная правильность %
-			ws['E21'].value = '%.1f'%max(CV_vnytr_gr_QCB1_QCB2, CV_vnytr_gr_QCB1_QCB2_QCB3, CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4, CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5, CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6)#Междневная правильность %
-			ws['E22'].value = '%.1f'%min(sigma_A_II, sigma_B_II, sigma_C_II, sigma_D_II, sigma_E_II, sigma_F_II)#Внутридневная повторяемость %
-			ws['E23'].value = '%.1f'%max(sigma_A_II, sigma_B_II, sigma_C_II, sigma_D_II, sigma_E_II, sigma_F_II)#Внутридневная повторяемость %
-			ws['E24'].value = '%.1f'%min(CV_mezhdy_gr_QCB1_QCB2, CV_mezhdy_gr_QCB1_QCB2_QCB3, CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4, CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5, CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6)#Междневная повторяемость %
-			ws['E25'].value = '%.1f'%max(CV_mezhdy_gr_QCB1_QCB2, CV_mezhdy_gr_QCB1_QCB2_QCB3, CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4, CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5, CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6)#Междневная повторяемость %
+			ws['E18'].value = my_round(min(Er_A_II, Er_B_II, Er_C_II, Er_D_II, Er_E_II, Er_F_II), 1)
+			ws['E19'].value = my_round(max(Er_A_II, Er_B_II, Er_C_II, Er_D_II, Er_E_II, Er_F_II), 1)
+			ws['E20'].value = my_round(min(CV_vnytr_gr_QCB1_QCB2, CV_vnytr_gr_QCB1_QCB2_QCB3, CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4, CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5, CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6), 1)
+			ws['E21'].value = my_round(max(CV_vnytr_gr_QCB1_QCB2, CV_vnytr_gr_QCB1_QCB2_QCB3, CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4, CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5, CV_vnytr_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6), 1)
+			ws['E22'].value = my_round(min(sigma_A_II, sigma_B_II, sigma_C_II, sigma_D_II, sigma_E_II, sigma_F_II), 1)
+			ws['E23'].value = my_round(max(sigma_A_II, sigma_B_II, sigma_C_II, sigma_D_II, sigma_E_II, sigma_F_II), 1)
+			ws['E24'].value = my_round(min(CV_mezhdy_gr_QCB1_QCB2, CV_mezhdy_gr_QCB1_QCB2_QCB3, CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4, CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5, CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6), 1)
+			ws['E25'].value = my_round(max(CV_mezhdy_gr_QCB1_QCB2, CV_mezhdy_gr_QCB1_QCB2_QCB3, CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4, CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5, CV_mezhdy_gr_QCB1_QCB2_QCB3_QCB4_QCB5_QCB6), 1)
 
 	if check_var_gr_1.get() >= 3:
 		ws['F16'].value = 'QCC'
 
 		if check_var_gr_2.get() == 2:
-			ws['F18'].value = '%.1f'%min(Er_A_III, Er_B_III)#Внутридневная правильность %
-			ws['F19'].value = '%.1f'%max(Er_A_III, Er_B_III)#Внутридневная правильность %
-			ws['F22'].value = '%.1f'%min(sigma_A_III, sigma_B_III)#Внутридневная повторяемость %
-			ws['F23'].value = '%.1f'%max(sigma_A_III, sigma_B_III)#Внутридневная повторяемость %
+			ws['F18'].value = my_round(min(Er_A_III, Er_B_III), 1)
+			ws['F19'].value = my_round(max(Er_A_III, Er_B_III), 1)
+			ws['F22'].value = my_round(min(sigma_A_III, sigma_B_III), 1)
+			ws['F23'].value = my_round(max(sigma_A_III, sigma_B_III), 1)
 
 		if check_var_gr_2.get() == 3:
-			ws['F18'].value = '%.1f'%min(Er_A_III, Er_B_III, Er_C_III)#Внутридневная правильность %
-			ws['F19'].value = '%.1f'%max(Er_A_III, Er_B_III, Er_C_III)#Внутридневная правильность %
-			ws['F20'].value = '%.1f'%min(CV_vnytr_gr_QCC1_QCC2, CV_vnytr_gr_QCC1_QCC2_QCC3)#Междневная правильность %
-			ws['F21'].value = '%.1f'%max(CV_vnytr_gr_QCC1_QCC2, CV_vnytr_gr_QCC1_QCC2_QCC3)#Междневная правильность %
-			ws['F22'].value = '%.1f'%min(sigma_A_III, sigma_B_III, sigma_C_III)#Внутридневная повторяемость %
-			ws['F23'].value = '%.1f'%max(sigma_A_III, sigma_B_III, sigma_C_III)#Внутридневная повторяемость %
-			ws['F24'].value = '%.1f'%min(CV_mezhdy_gr_QCC1_QCC2, CV_mezhdy_gr_QCC1_QCC2_QCC3)#Междневная повторяемость %
-			ws['F25'].value = '%.1f'%max(CV_mezhdy_gr_QCC1_QCC2, CV_mezhdy_gr_QCC1_QCC2_QCC3)#Междневная повторяемость %
+			ws['F18'].value = my_round(min(Er_A_III, Er_B_III, Er_C_III), 1)
+			ws['F19'].value = my_round(max(Er_A_III, Er_B_III, Er_C_III), 1)
+			ws['F20'].value = my_round(min(CV_vnytr_gr_QCC1_QCC2, CV_vnytr_gr_QCC1_QCC2_QCC3), 1)
+			ws['F21'].value = my_round(max(CV_vnytr_gr_QCC1_QCC2, CV_vnytr_gr_QCC1_QCC2_QCC3), 1)
+			ws['F22'].value = my_round(min(sigma_A_III, sigma_B_III, sigma_C_III), 1)
+			ws['F23'].value = my_round(max(sigma_A_III, sigma_B_III, sigma_C_III), 1)
+			ws['F24'].value = my_round(min(CV_mezhdy_gr_QCC1_QCC2, CV_mezhdy_gr_QCC1_QCC2_QCC3), 1)
+			ws['F25'].value = my_round(max(CV_mezhdy_gr_QCC1_QCC2, CV_mezhdy_gr_QCC1_QCC2_QCC3), 1)
 		if check_var_gr_2.get() == 4:
-			ws['F18'].value = '%.1f'%min(Er_A_III, Er_B_III, Er_C_III, Er_D_III)#Внутридневная правильность %
-			ws['F19'].value = '%.1f'%max(Er_A_III, Er_B_III, Er_C_III, Er_D_III)#Внутридневная правильность %
-			ws['F20'].value = '%.1f'%min(CV_vnytr_gr_QCC1_QCC2, CV_vnytr_gr_QCC1_QCC2_QCC3, CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4)#Междневная правильность %
-			ws['F21'].value = '%.1f'%max(CV_vnytr_gr_QCC1_QCC2, CV_vnytr_gr_QCC1_QCC2_QCC3, CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4)#Междневная правильность %
-			ws['F22'].value = '%.1f'%min(sigma_A_III, sigma_B_III, sigma_C_III, sigma_D_III)#Внутридневная повторяемость %
-			ws['F23'].value = '%.1f'%max(sigma_A_III, sigma_B_III, sigma_C_III, sigma_D_III)#Внутридневная повторяемость %
-			ws['F24'].value = '%.1f'%min(CV_mezhdy_gr_QCC1_QCC2, CV_mezhdy_gr_QCC1_QCC2_QCC3, CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4)#Междневная повторяемость %
-			ws['F25'].value = '%.1f'%max(CV_mezhdy_gr_QCC1_QCC2, CV_mezhdy_gr_QCC1_QCC2_QCC3, CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4)#Междневная повторяемость %
+			ws['F18'].value = my_round(min(Er_A_III, Er_B_III, Er_C_III, Er_D_III), 1)
+			ws['F19'].value = my_round(max(Er_A_III, Er_B_III, Er_C_III, Er_D_III), 1)
+			ws['F20'].value = my_round(min(CV_vnytr_gr_QCC1_QCC2, CV_vnytr_gr_QCC1_QCC2_QCC3, CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4), 1)
+			ws['F21'].value = my_round(max(CV_vnytr_gr_QCC1_QCC2, CV_vnytr_gr_QCC1_QCC2_QCC3, CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4), 1)
+			ws['F22'].value = my_round(min(sigma_A_III, sigma_B_III, sigma_C_III, sigma_D_III), 1)
+			ws['F23'].value = my_round(max(sigma_A_III, sigma_B_III, sigma_C_III, sigma_D_III), 1)
+			ws['F24'].value = my_round(min(CV_mezhdy_gr_QCC1_QCC2, CV_mezhdy_gr_QCC1_QCC2_QCC3, CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4), 1)
+			ws['F25'].value = my_round(max(CV_mezhdy_gr_QCC1_QCC2, CV_mezhdy_gr_QCC1_QCC2_QCC3, CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4), 1)
 		if check_var_gr_2.get() == 5:
-			ws['F18'].value = '%.1f'%min(Er_A_III, Er_B_III, Er_C_III, Er_D_III, Er_E_III)#Внутридневная правильность %
-			ws['F19'].value = '%.1f'%max(Er_A_III, Er_B_III, Er_C_III, Er_D_III, Er_E_III)#Внутридневная правильность %
-			ws['F20'].value = '%.1f'%min(CV_vnytr_gr_QCC1_QCC2, CV_vnytr_gr_QCC1_QCC2_QCC3, CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4, CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5)#Междневная правильность %
-			ws['F21'].value = '%.1f'%max(CV_vnytr_gr_QCC1_QCC2, CV_vnytr_gr_QCC1_QCC2_QCC3, CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4, CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5)#Междневная правильность %
-			ws['F22'].value = '%.1f'%min(sigma_A_III, sigma_B_III, sigma_C_III, sigma_D_III, sigma_E_III)#Внутридневная повторяемость %
-			ws['F23'].value = '%.1f'%max(sigma_A_III, sigma_B_III, sigma_C_III, sigma_D_III, sigma_E_III)#Внутридневная повторяемость %
-			ws['F24'].value = '%.1f'%min(CV_mezhdy_gr_QCC1_QCC2, CV_mezhdy_gr_QCC1_QCC2_QCC3, CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4, CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5)#Междневная повторяемость %
-			ws['F25'].value = '%.1f'%max(CV_mezhdy_gr_QCC1_QCC2, CV_mezhdy_gr_QCC1_QCC2_QCC3, CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4, CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5)#Междневная повторяемость %
+			ws['F18'].value = my_round(min(Er_A_III, Er_B_III, Er_C_III, Er_D_III, Er_E_III), 1)
+			ws['F19'].value = my_round(max(Er_A_III, Er_B_III, Er_C_III, Er_D_III, Er_E_III), 1)
+			ws['F20'].value = my_round(min(CV_vnytr_gr_QCC1_QCC2, CV_vnytr_gr_QCC1_QCC2_QCC3, CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4, CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5), 1)
+			ws['F21'].value = my_round(max(CV_vnytr_gr_QCC1_QCC2, CV_vnytr_gr_QCC1_QCC2_QCC3, CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4, CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5), 1)
+			ws['F22'].value = my_round(min(sigma_A_III, sigma_B_III, sigma_C_III, sigma_D_III, sigma_E_III), 1)
+			ws['F23'].value = my_round(max(sigma_A_III, sigma_B_III, sigma_C_III, sigma_D_III, sigma_E_III), 1)
+			ws['F24'].value = my_round(min(CV_mezhdy_gr_QCC1_QCC2, CV_mezhdy_gr_QCC1_QCC2_QCC3, CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4, CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5), 1)
+			ws['F25'].value = my_round(max(CV_mezhdy_gr_QCC1_QCC2, CV_mezhdy_gr_QCC1_QCC2_QCC3, CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4, CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5), 1)
 
 		if check_var_gr_2.get() == 6:	
-			ws['F18'].value = '%.1f'%min(Er_A_III, Er_B_III, Er_C_III, Er_D_III, Er_E_III, Er_F_III)#Внутридневная правильность %
-			ws['F19'].value = '%.1f'%max(Er_A_III, Er_B_III, Er_C_III, Er_D_III, Er_E_III, Er_F_III)#Внутридневная правильность %
-			ws['F20'].value = '%.1f'%min(CV_vnytr_gr_QCC1_QCC2, CV_vnytr_gr_QCC1_QCC2_QCC3, CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4, CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5, CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6)#Междневная правильность %
-			ws['F21'].value = '%.1f'%max(CV_vnytr_gr_QCC1_QCC2, CV_vnytr_gr_QCC1_QCC2_QCC3, CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4, CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5, CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6)#Междневная правильность %
-			ws['F22'].value = '%.1f'%min(sigma_A_III, sigma_B_III, sigma_C_III, sigma_D_III, sigma_E_III, sigma_F_III)#Внутридневная повторяемость %
-			ws['F23'].value = '%.1f'%max(sigma_A_III, sigma_B_III, sigma_C_III, sigma_D_III, sigma_E_III, sigma_F_III)#Внутридневная повторяемость %
-			ws['F24'].value = '%.1f'%min(CV_mezhdy_gr_QCC1_QCC2, CV_mezhdy_gr_QCC1_QCC2_QCC3, CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4, CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5, CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6)#Междневная повторяемость %
-			ws['F25'].value = '%.1f'%max(CV_mezhdy_gr_QCC1_QCC2, CV_mezhdy_gr_QCC1_QCC2_QCC3, CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4, CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5, CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6)#Междневная повторяемость %
+			ws['F18'].value = my_round(min(Er_A_III, Er_B_III, Er_C_III, Er_D_III, Er_E_III, Er_F_III), 1)
+			ws['F19'].value = my_round(max(Er_A_III, Er_B_III, Er_C_III, Er_D_III, Er_E_III, Er_F_III), 1)
+			ws['F20'].value = my_round(min(CV_vnytr_gr_QCC1_QCC2, CV_vnytr_gr_QCC1_QCC2_QCC3, CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4, CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5, CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6), 1)
+			ws['F21'].value = my_round(max(CV_vnytr_gr_QCC1_QCC2, CV_vnytr_gr_QCC1_QCC2_QCC3, CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4, CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5, CV_vnytr_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6), 1)
+			ws['F22'].value = my_round(min(sigma_A_III, sigma_B_III, sigma_C_III, sigma_D_III, sigma_E_III, sigma_F_III), 1)
+			ws['F23'].value = my_round(max(sigma_A_III, sigma_B_III, sigma_C_III, sigma_D_III, sigma_E_III, sigma_F_III), 1)
+			ws['F24'].value = my_round(min(CV_mezhdy_gr_QCC1_QCC2, CV_mezhdy_gr_QCC1_QCC2_QCC3, CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4, CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5, CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6), 1)
+			ws['F25'].value = my_round(max(CV_mezhdy_gr_QCC1_QCC2, CV_mezhdy_gr_QCC1_QCC2_QCC3, CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4, CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5, CV_mezhdy_gr_QCC1_QCC2_QCC3_QCC4_QCC5_QCC6), 1)
 
 	if check_var_gr_1.get() >= 4:
 		ws['G16'].value = 'QCD'
 
 		if check_var_gr_2.get() == 2:
-			ws['G18'].value = '%.1f'%min(Er_A_IV, Er_B_IV)#Внутридневная правильность %
-			ws['G19'].value = '%.1f'%max(Er_A_IV, Er_B_IV)#Внутридневная правильность %
-			ws['G22'].value = '%.1f'%min(sigma_A_IV, sigma_B_IV)#Внутридневная повторяемость %
-			ws['G23'].value = '%.1f'%max(sigma_A_IV, sigma_B_IV)#Внутридневная повторяемость %
+			ws['G18'].value = my_round(min(Er_A_IV, Er_B_IV), 1)
+			ws['G19'].value = my_round(max(Er_A_IV, Er_B_IV), 1)
+			ws['G22'].value = my_round(min(sigma_A_IV, sigma_B_IV), 1)
+			ws['G23'].value = my_round(max(sigma_A_IV, sigma_B_IV), 1)
 
 		if check_var_gr_2.get() == 3:
-			ws['G18'].value = '%.1f'%min(Er_A_IV, Er_B_IV, Er_C_IV)#Внутридневная правильность %
-			ws['G19'].value = '%.1f'%max(Er_A_IV, Er_B_IV, Er_C_IV)#Внутридневная правильность %
-			ws['G20'].value = '%.1f'%min(CV_vnytr_gr_QCD1_QCD2, CV_vnytr_gr_QCD1_QCD2_QCD3)#Междневная правильность %
-			ws['G21'].value = '%.1f'%max(CV_vnytr_gr_QCD1_QCD2, CV_vnytr_gr_QCD1_QCD2_QCD3)#Междневная правильность %
-			ws['G22'].value = '%.1f'%min(sigma_A_IV, sigma_B_IV, sigma_C_IV)#Внутридневная повторяемость %
-			ws['G23'].value = '%.1f'%max(sigma_A_IV, sigma_B_IV, sigma_C_IV)#Внутридневная повторяемость %
-			ws['G24'].value = '%.1f'%min(CV_mezhdy_gr_QCD1_QCD2, CV_mezhdy_gr_QCD1_QCD2_QCD3)#Междневная повторяемость %
-			ws['G25'].value = '%.1f'%max(CV_mezhdy_gr_QCD1_QCD2, CV_mezhdy_gr_QCD1_QCD2_QCD3)#Междневная повторяемость %
+			ws['G18'].value = my_round(min(Er_A_IV, Er_B_IV, Er_C_IV), 1)
+			ws['G19'].value = my_round(max(Er_A_IV, Er_B_IV, Er_C_IV), 1)
+			ws['G20'].value = my_round(min(CV_vnytr_gr_QCD1_QCD2, CV_vnytr_gr_QCD1_QCD2_QCD3), 1)
+			ws['G21'].value = my_round(max(CV_vnytr_gr_QCD1_QCD2, CV_vnytr_gr_QCD1_QCD2_QCD3), 1)
+			ws['G22'].value = my_round(min(sigma_A_IV, sigma_B_IV, sigma_C_IV), 1)
+			ws['G23'].value = my_round(max(sigma_A_IV, sigma_B_IV, sigma_C_IV), 1)
+			ws['G24'].value = my_round(min(CV_mezhdy_gr_QCD1_QCD2, CV_mezhdy_gr_QCD1_QCD2_QCD3), 1)
+			ws['G25'].value = my_round(max(CV_mezhdy_gr_QCD1_QCD2, CV_mezhdy_gr_QCD1_QCD2_QCD3), 1)
 		if check_var_gr_2.get() == 4:
-			ws['G18'].value = '%.1f'%min(Er_A_IV, Er_B_IV, Er_C_IV, Er_D_IV)#Внутридневная правильность %
-			ws['G19'].value = '%.1f'%max(Er_A_IV, Er_B_IV, Er_C_IV, Er_D_IV)#Внутридневная правильность %
-			ws['G20'].value = '%.1f'%min(CV_vnytr_gr_QCD1_QCD2, CV_vnytr_gr_QCD1_QCD2_QCD3, CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4)#Междневная правильность %
-			ws['G21'].value = '%.1f'%max(CV_vnytr_gr_QCD1_QCD2, CV_vnytr_gr_QCD1_QCD2_QCD3, CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4)#Междневная правильность %
-			ws['G22'].value = '%.1f'%min(sigma_A_IV, sigma_B_IV, sigma_C_IV, sigma_D_IV)#Внутридневная повторяемость %
-			ws['G23'].value = '%.1f'%max(sigma_A_IV, sigma_B_IV, sigma_C_IV, sigma_D_IV)#Внутридневная повторяемость %
-			ws['G24'].value = '%.1f'%min(CV_mezhdy_gr_QCD1_QCD2, CV_mezhdy_gr_QCD1_QCD2_QCD3, CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4)#Междневная повторяемость %
-			ws['G25'].value = '%.1f'%max(CV_mezhdy_gr_QCD1_QCD2, CV_mezhdy_gr_QCD1_QCD2_QCD3, CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4)#Междневная повторяемость %
+			ws['G18'].value = my_round(min(Er_A_IV, Er_B_IV, Er_C_IV, Er_D_IV), 1)
+			ws['G19'].value = my_round(max(Er_A_IV, Er_B_IV, Er_C_IV, Er_D_IV), 1)
+			ws['G20'].value = my_round(min(CV_vnytr_gr_QCD1_QCD2, CV_vnytr_gr_QCD1_QCD2_QCD3, CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4), 1)
+			ws['G21'].value = my_round(max(CV_vnytr_gr_QCD1_QCD2, CV_vnytr_gr_QCD1_QCD2_QCD3, CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4), 1)
+			ws['G22'].value = my_round(min(sigma_A_IV, sigma_B_IV, sigma_C_IV, sigma_D_IV), 1)
+			ws['G23'].value = my_round(max(sigma_A_IV, sigma_B_IV, sigma_C_IV, sigma_D_IV), 1)
+			ws['G24'].value = my_round(min(CV_mezhdy_gr_QCD1_QCD2, CV_mezhdy_gr_QCD1_QCD2_QCD3, CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4), 1)
+			ws['G25'].value = my_round(max(CV_mezhdy_gr_QCD1_QCD2, CV_mezhdy_gr_QCD1_QCD2_QCD3, CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4), 1)
 		if check_var_gr_2.get() == 5:
-			ws['G18'].value = '%.1f'%min(Er_A_IV, Er_B_IV, Er_C_IV, Er_D_IV, Er_E_IV)#Внутридневная правильность %
-			ws['G19'].value = '%.1f'%max(Er_A_IV, Er_B_IV, Er_C_IV, Er_D_IV, Er_E_IV)#Внутридневная правильность %
-			ws['G20'].value = '%.1f'%min(CV_vnytr_gr_QCD1_QCD2, CV_vnytr_gr_QCD1_QCD2_QCD3, CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4, CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5)#Междневная правильность %
-			ws['G21'].value = '%.1f'%max(CV_vnytr_gr_QCD1_QCD2, CV_vnytr_gr_QCD1_QCD2_QCD3, CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4, CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5)#Междневная правильность %
-			ws['G22'].value = '%.1f'%min(sigma_A_IV, sigma_B_IV, sigma_C_IV, sigma_D_IV, sigma_E_IV)#Внутридневная повторяемость %
-			ws['G23'].value = '%.1f'%max(sigma_A_IV, sigma_B_IV, sigma_C_IV, sigma_D_IV, sigma_E_IV)#Внутридневная повторяемость %
-			ws['G24'].value = '%.1f'%min(CV_mezhdy_gr_QCD1_QCD2, CV_mezhdy_gr_QCD1_QCD2_QCD3, CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4, CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5)#Междневная повторяемость %
-			ws['G25'].value = '%.1f'%max(CV_mezhdy_gr_QCD1_QCD2, CV_mezhdy_gr_QCD1_QCD2_QCD3, CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4, CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5)#Междневная повторяемость %
+			ws['G18'].value = my_round(min(Er_A_IV, Er_B_IV, Er_C_IV, Er_D_IV, Er_E_IV), 1)
+			ws['G19'].value = my_round(max(Er_A_IV, Er_B_IV, Er_C_IV, Er_D_IV, Er_E_IV), 1)
+			ws['G20'].value = my_round(min(CV_vnytr_gr_QCD1_QCD2, CV_vnytr_gr_QCD1_QCD2_QCD3, CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4, CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5), 1)
+			ws['G21'].value = my_round(max(CV_vnytr_gr_QCD1_QCD2, CV_vnytr_gr_QCD1_QCD2_QCD3, CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4, CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5), 1)
+			ws['G22'].value = my_round(min(sigma_A_IV, sigma_B_IV, sigma_C_IV, sigma_D_IV, sigma_E_IV), 1)
+			ws['G23'].value = my_round(max(sigma_A_IV, sigma_B_IV, sigma_C_IV, sigma_D_IV, sigma_E_IV), 1)
+			ws['G24'].value = my_round(min(CV_mezhdy_gr_QCD1_QCD2, CV_mezhdy_gr_QCD1_QCD2_QCD3, CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4, CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5), 1)
+			ws['G25'].value = my_round(max(CV_mezhdy_gr_QCD1_QCD2, CV_mezhdy_gr_QCD1_QCD2_QCD3, CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4, CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5), 1)
 
 		if check_var_gr_2.get() == 6:	
-			ws['G18'].value = '%.1f'%min(Er_A_IV, Er_B_IV, Er_C_IV, Er_D_IV, Er_E_IV, Er_F_IV)#Внутридневная правильность %
-			ws['G19'].value = '%.1f'%max(Er_A_IV, Er_B_IV, Er_C_IV, Er_D_IV, Er_E_IV, Er_F_IV)#Внутридневная правильность %
-			ws['G20'].value = '%.1f'%min(CV_vnytr_gr_QCD1_QCD2, CV_vnytr_gr_QCD1_QCD2_QCD3, CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4, CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5, CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6)#Междневная правильность %
-			ws['G21'].value = '%.1f'%max(CV_vnytr_gr_QCD1_QCD2, CV_vnytr_gr_QCD1_QCD2_QCD3, CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4, CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5, CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6)#Междневная правильность %
-			ws['G22'].value = '%.1f'%min(sigma_A_IV, sigma_B_IV, sigma_C_IV, sigma_D_IV, sigma_E_IV, sigma_F_IV)#Внутридневная повторяемость %
-			ws['G23'].value = '%.1f'%max(sigma_A_IV, sigma_B_IV, sigma_C_IV, sigma_D_IV, sigma_E_IV, sigma_F_IV)#Внутридневная повторяемость %
-			ws['G24'].value = '%.1f'%min(CV_mezhdy_gr_QCD1_QCD2, CV_mezhdy_gr_QCD1_QCD2_QCD3, CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4, CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5, CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6)#Междневная повторяемость %
-			ws['G25'].value = '%.1f'%max(CV_mezhdy_gr_QCD1_QCD2, CV_mezhdy_gr_QCD1_QCD2_QCD3, CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4, CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5, CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6)#Междневная повторяемость %
+			ws['G18'].value = my_round(min(Er_A_IV, Er_B_IV, Er_C_IV, Er_D_IV, Er_E_IV, Er_F_IV), 1)
+			ws['G19'].value = my_round(max(Er_A_IV, Er_B_IV, Er_C_IV, Er_D_IV, Er_E_IV, Er_F_IV), 1)
+			ws['G20'].value = my_round(min(CV_vnytr_gr_QCD1_QCD2, CV_vnytr_gr_QCD1_QCD2_QCD3, CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4, CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5, CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6), 1)
+			ws['G21'].value = my_round(max(CV_vnytr_gr_QCD1_QCD2, CV_vnytr_gr_QCD1_QCD2_QCD3, CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4, CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5, CV_vnytr_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6), 1)
+			ws['G22'].value = my_round(min(sigma_A_IV, sigma_B_IV, sigma_C_IV, sigma_D_IV, sigma_E_IV, sigma_F_IV), 1)
+			ws['G23'].value = my_round(max(sigma_A_IV, sigma_B_IV, sigma_C_IV, sigma_D_IV, sigma_E_IV, sigma_F_IV), 1)
+			ws['G24'].value = my_round(min(CV_mezhdy_gr_QCD1_QCD2, CV_mezhdy_gr_QCD1_QCD2_QCD3, CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4, CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5, CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6), 1)
+			ws['G25'].value = my_round(max(CV_mezhdy_gr_QCD1_QCD2, CV_mezhdy_gr_QCD1_QCD2_QCD3, CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4, CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5, CV_mezhdy_gr_QCD1_QCD2_QCD3_QCD4_QCD5_QCD6), 1)
 			
 	if check_var_gr_1.get() >= 5:
 		ws['H16'].value = 'QCE'
 
 		if check_var_gr_2.get() == 2:
-			ws['H18'].value = '%.1f'%min(Er_A_V, Er_B_V)#Внутридневная правильность %
-			ws['H19'].value = '%.1f'%max(Er_A_V, Er_B_V)#Внутридневная правильность %
-			ws['H22'].value = '%.1f'%min(sigma_A_V, sigma_B_V)#Внутридневная повторяемость %
-			ws['H23'].value = '%.1f'%max(sigma_A_V, sigma_B_V)#Внутридневная повторяемость %
+			ws['H18'].value = my_round(min(Er_A_V, Er_B_V), 1)
+			ws['H19'].value = my_round(max(Er_A_V, Er_B_V), 1)
+			ws['H22'].value = my_round(min(sigma_A_V, sigma_B_V), 1)
+			ws['H23'].value = my_round(max(sigma_A_V, sigma_B_V), 1)
 
 		if check_var_gr_2.get() == 3:
-			ws['H18'].value = '%.1f'%min(Er_A_V, Er_B_V, Er_C_V)#Внутридневная правильность %
-			ws['H19'].value = '%.1f'%max(Er_A_V, Er_B_V, Er_C_V)#Внутридневная правильность %
-			ws['H20'].value = '%.1f'%min(CV_vnytr_gr_QCE1_QCE2, CV_vnytr_gr_QCE1_QCE2_QCE3)#Междневная правильность %
-			ws['H21'].value = '%.1f'%max(CV_vnytr_gr_QCE1_QCE2, CV_vnytr_gr_QCE1_QCE2_QCE3)#Междневная правильность %
-			ws['H22'].value = '%.1f'%min(sigma_A_V, sigma_B_V, sigma_C_V)#Внутридневная повторяемость %
-			ws['H23'].value = '%.1f'%max(sigma_A_V, sigma_B_V, sigma_C_V)#Внутридневная повторяемость %
-			ws['H24'].value = '%.1f'%min(CV_mezhdy_gr_QCE1_QCE2, CV_mezhdy_gr_QCE1_QCE2_QCE3)#Междневная повторяемость %
-			ws['H25'].value = '%.1f'%max(CV_mezhdy_gr_QCE1_QCE2, CV_mezhdy_gr_QCE1_QCE2_QCE3)#Междневная повторяемость %
+			ws['H18'].value = my_round(min(Er_A_V, Er_B_V, Er_C_V), 1)
+			ws['H19'].value = my_round(max(Er_A_V, Er_B_V, Er_C_V), 1)
+			ws['H20'].value = my_round(min(CV_vnytr_gr_QCE1_QCE2, CV_vnytr_gr_QCE1_QCE2_QCE3), 1)
+			ws['H21'].value = my_round(max(CV_vnytr_gr_QCE1_QCE2, CV_vnytr_gr_QCE1_QCE2_QCE3), 1)
+			ws['H22'].value = my_round(min(sigma_A_V, sigma_B_V, sigma_C_V), 1)
+			ws['H23'].value = my_round(max(sigma_A_V, sigma_B_V, sigma_C_V), 1)
+			ws['H24'].value = my_round(min(CV_mezhdy_gr_QCE1_QCE2, CV_mezhdy_gr_QCE1_QCE2_QCE3), 1)
+			ws['H25'].value = my_round(max(CV_mezhdy_gr_QCE1_QCE2, CV_mezhdy_gr_QCE1_QCE2_QCE3), 1)
 		if check_var_gr_2.get() == 4:
-			ws['H18'].value = '%.1f'%min(Er_A_V, Er_B_V, Er_C_V, Er_D_V)#Внутридневная правильность %
-			ws['H19'].value = '%.1f'%max(Er_A_V, Er_B_V, Er_C_V, Er_D_V)#Внутридневная правильность %
-			ws['H20'].value = '%.1f'%min(CV_vnytr_gr_QCE1_QCE2, CV_vnytr_gr_QCE1_QCE2_QCE3, CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4)#Междневная правильность %
-			ws['H21'].value = '%.1f'%max(CV_vnytr_gr_QCE1_QCE2, CV_vnytr_gr_QCE1_QCE2_QCE3, CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4)#Междневная правильность %
-			ws['H22'].value = '%.1f'%min(sigma_A_V, sigma_B_V, sigma_C_V, sigma_D_V)#Внутридневная повторяемость %
-			ws['H23'].value = '%.1f'%max(sigma_A_V, sigma_B_V, sigma_C_V, sigma_D_V)#Внутридневная повторяемость %
-			ws['H24'].value = '%.1f'%min(CV_mezhdy_gr_QCE1_QCE2, CV_mezhdy_gr_QCE1_QCE2_QCE3, CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4)#Междневная повторяемость %
-			ws['H25'].value = '%.1f'%max(CV_mezhdy_gr_QCE1_QCE2, CV_mezhdy_gr_QCE1_QCE2_QCE3, CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4)#Междневная повторяемость %
+			ws['H18'].value = my_round(min(Er_A_V, Er_B_V, Er_C_V, Er_D_V), 1)
+			ws['H19'].value = my_round(max(Er_A_V, Er_B_V, Er_C_V, Er_D_V), 1)
+			ws['H20'].value = my_round(min(CV_vnytr_gr_QCE1_QCE2, CV_vnytr_gr_QCE1_QCE2_QCE3, CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4), 1)
+			ws['H21'].value = my_round(max(CV_vnytr_gr_QCE1_QCE2, CV_vnytr_gr_QCE1_QCE2_QCE3, CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4), 1)
+			ws['H22'].value = my_round(min(sigma_A_V, sigma_B_V, sigma_C_V, sigma_D_V), 1)
+			ws['H23'].value = my_round(max(sigma_A_V, sigma_B_V, sigma_C_V, sigma_D_V), 1)
+			ws['H24'].value = my_round(min(CV_mezhdy_gr_QCE1_QCE2, CV_mezhdy_gr_QCE1_QCE2_QCE3, CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4), 1)
+			ws['H25'].value = my_round(max(CV_mezhdy_gr_QCE1_QCE2, CV_mezhdy_gr_QCE1_QCE2_QCE3, CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4), 1)
 		if check_var_gr_2.get() == 5:
-			ws['H18'].value = '%.1f'%min(Er_A_V, Er_B_V, Er_C_V, Er_D_V, Er_E_V)#Внутридневная правильность %
-			ws['H19'].value = '%.1f'%max(Er_A_V, Er_B_V, Er_C_V, Er_D_V, Er_E_V)#Внутридневная правильность %
-			ws['H20'].value = '%.1f'%min(CV_vnytr_gr_QCE1_QCE2, CV_vnytr_gr_QCE1_QCE2_QCE3, CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4, CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5)#Междневная правильность %
-			ws['H21'].value = '%.1f'%max(CV_vnytr_gr_QCE1_QCE2, CV_vnytr_gr_QCE1_QCE2_QCE3, CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4, CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5)#Междневная правильность %
-			ws['H22'].value = '%.1f'%min(sigma_A_V, sigma_B_V, sigma_C_V, sigma_D_V, sigma_E_V)#Внутридневная повторяемость %
-			ws['H23'].value = '%.1f'%max(sigma_A_V, sigma_B_V, sigma_C_V, sigma_D_V, sigma_E_V)#Внутридневная повторяемость %
-			ws['H24'].value = '%.1f'%min(CV_mezhdy_gr_QCE1_QCE2, CV_mezhdy_gr_QCE1_QCE2_QCE3, CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4, CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5)#Междневная повторяемость %
-			ws['H25'].value = '%.1f'%max(CV_mezhdy_gr_QCE1_QCE2, CV_mezhdy_gr_QCE1_QCE2_QCE3, CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4, CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5)#Междневная повторяемость %
+			ws['H18'].value = my_round(min(Er_A_V, Er_B_V, Er_C_V, Er_D_V, Er_E_V), 1)
+			ws['H19'].value = my_round(max(Er_A_V, Er_B_V, Er_C_V, Er_D_V, Er_E_V), 1)
+			ws['H20'].value = my_round(min(CV_vnytr_gr_QCE1_QCE2, CV_vnytr_gr_QCE1_QCE2_QCE3, CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4, CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5), 1)
+			ws['H21'].value = my_round(max(CV_vnytr_gr_QCE1_QCE2, CV_vnytr_gr_QCE1_QCE2_QCE3, CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4, CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5), 1)
+			ws['H22'].value = my_round(min(sigma_A_V, sigma_B_V, sigma_C_V, sigma_D_V, sigma_E_V), 1)
+			ws['H23'].value = my_round(max(sigma_A_V, sigma_B_V, sigma_C_V, sigma_D_V, sigma_E_V), 1)
+			ws['H24'].value = my_round(min(CV_mezhdy_gr_QCE1_QCE2, CV_mezhdy_gr_QCE1_QCE2_QCE3, CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4, CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5), 1)
+			ws['H25'].value = my_round(max(CV_mezhdy_gr_QCE1_QCE2, CV_mezhdy_gr_QCE1_QCE2_QCE3, CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4, CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5), 1)
 
 		if check_var_gr_2.get() == 6:	
-			ws['H18'].value = '%.1f'%min(Er_A_V, Er_B_V, Er_C_V, Er_D_V, Er_E_V, Er_F_V)#Внутридневная правильность %
-			ws['H19'].value = '%.1f'%max(Er_A_V, Er_B_V, Er_C_V, Er_D_V, Er_E_V, Er_F_V)#Внутридневная правильность %
-			ws['H20'].value = '%.1f'%min(CV_vnytr_gr_QCE1_QCE2, CV_vnytr_gr_QCE1_QCE2_QCE3, CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4, CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5, CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6)#Междневная правильность %
-			ws['H21'].value = '%.1f'%max(CV_vnytr_gr_QCE1_QCE2, CV_vnytr_gr_QCE1_QCE2_QCE3, CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4, CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5, CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6)#Междневная правильность %
-			ws['H22'].value = '%.1f'%min(sigma_A_V, sigma_B_V, sigma_C_V, sigma_D_V, sigma_E_V, sigma_F_V)#Внутридневная повторяемость %
-			ws['H23'].value = '%.1f'%max(sigma_A_V, sigma_B_V, sigma_C_V, sigma_D_V, sigma_E_V, sigma_F_V)#Внутридневная повторяемость %
-			ws['H24'].value = '%.1f'%min(CV_mezhdy_gr_QCE1_QCE2, CV_mezhdy_gr_QCE1_QCE2_QCE3, CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4, CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5, CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6)#Междневная повторяемост'%.1f'%ь %
-			ws['H25'].value = '%.1f'%max(CV_mezhdy_gr_QCE1_QCE2, CV_mezhdy_gr_QCE1_QCE2_QCE3, CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4, CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5, CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6)#Междневная повторяемость %
+			ws['H18'].value = my_round(min(Er_A_V, Er_B_V, Er_C_V, Er_D_V, Er_E_V, Er_F_V), 1)
+			ws['H19'].value = my_round(max(Er_A_V, Er_B_V, Er_C_V, Er_D_V, Er_E_V, Er_F_V), 1)
+			ws['H20'].value = my_round(min(CV_vnytr_gr_QCE1_QCE2, CV_vnytr_gr_QCE1_QCE2_QCE3, CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4, CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5, CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6), 1)
+			ws['H21'].value = my_round(max(CV_vnytr_gr_QCE1_QCE2, CV_vnytr_gr_QCE1_QCE2_QCE3, CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4, CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5, CV_vnytr_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6), 1)
+			ws['H22'].value = my_round(min(sigma_A_V, sigma_B_V, sigma_C_V, sigma_D_V, sigma_E_V, sigma_F_V), 1)
+			ws['H23'].value = my_round(max(sigma_A_V, sigma_B_V, sigma_C_V, sigma_D_V, sigma_E_V, sigma_F_V), 1)
+			ws['H24'].value = my_round(min(CV_mezhdy_gr_QCE1_QCE2, CV_mezhdy_gr_QCE1_QCE2_QCE3, CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4, CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5, CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6), 1)
+			ws['H25'].value = my_round(max(CV_mezhdy_gr_QCE1_QCE2, CV_mezhdy_gr_QCE1_QCE2_QCE3, CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4, CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5, CV_mezhdy_gr_QCE1_QCE2_QCE3_QCE4_QCE5_QCE6), 1)
 			
 	if check_var_gr_1.get() >= 6:
 		ws['I16'].value = 'QCF'
 
 		if check_var_gr_2.get() == 2:
-			ws['I18'].value = '%.1f'%min(Er_A_VI, Er_B_VI)#Внутридневная правильность %
-			ws['I19'].value = '%.1f'%max(Er_A_VI, Er_B_VI)#Внутридневная правильность %
-			ws['I22'].value = '%.1f'%min(sigma_A_VI, sigma_B_VI)#Внутридневная повторяемость %
-			ws['I23'].value = '%.1f'%max(sigma_A_VI, sigma_B_VI)#Внутридневная повторяемость %
+			ws['I18'].value = my_round(min(Er_A_VI, Er_B_VI), 1)
+			ws['I19'].value = my_round(max(Er_A_VI, Er_B_VI), 1)
+			ws['I22'].value = my_round(min(sigma_A_VI, sigma_B_VI), 1)
+			ws['I23'].value = my_round(max(sigma_A_VI, sigma_B_VI), 1)
 
 		if check_var_gr_2.get() == 3:
-			ws['I18'].value = '%.1f'%min(Er_A_VI, Er_B_VI, Er_C_VI)#Внутридневная правильность %
-			ws['I19'].value = '%.1f'%max(Er_A_VI, Er_B_VI, Er_C_VI)#Внутридневная правильность %
-			ws['I20'].value = '%.1f'%min(CV_vnytr_gr_QCF1_QCF2, CV_vnytr_gr_QCF1_QCF2_QCF3)#Междневная правильность %
-			ws['I21'].value = '%.1f'%max(CV_vnytr_gr_QCF1_QCF2, CV_vnytr_gr_QCF1_QCF2_QCF3)#Междневная правильность %
-			ws['I22'].value = '%.1f'%min(sigma_A_VI, sigma_B_VI, sigma_C_VI)#Внутридневная повторяемость %
-			ws['I23'].value = '%.1f'%max(sigma_A_VI, sigma_B_VI, sigma_C_VI)#Внутридневная повторяемость %
-			ws['I24'].value = '%.1f'%min(CV_mezhdy_gr_QCF1_QCF2, CV_mezhdy_gr_QCF1_QCF2_QCF3)#Междневная повторяемость %
-			ws['I25'].value = '%.1f'%max(CV_mezhdy_gr_QCF1_QCF2, CV_mezhdy_gr_QCF1_QCF2_QCF3)#Междневная повторяемость %
+			ws['I18'].value = my_round(min(Er_A_VI, Er_B_VI, Er_C_VI), 1)
+			ws['I19'].value = my_round(max(Er_A_VI, Er_B_VI, Er_C_VI), 1)
+			ws['I20'].value = my_round(min(CV_vnytr_gr_QCF1_QCF2, CV_vnytr_gr_QCF1_QCF2_QCF3), 1)
+			ws['I21'].value = my_round(max(CV_vnytr_gr_QCF1_QCF2, CV_vnytr_gr_QCF1_QCF2_QCF3), 1)
+			ws['I22'].value = my_round(min(sigma_A_VI, sigma_B_VI, sigma_C_VI), 1)
+			ws['I23'].value = my_round(max(sigma_A_VI, sigma_B_VI, sigma_C_VI), 1)
+			ws['I24'].value = my_round(min(CV_mezhdy_gr_QCF1_QCF2, CV_mezhdy_gr_QCF1_QCF2_QCF3), 1)
+			ws['I25'].value = my_round(max(CV_mezhdy_gr_QCF1_QCF2, CV_mezhdy_gr_QCF1_QCF2_QCF3), 1)
 		if check_var_gr_2.get() == 4:
-			ws['I18'].value = '%.1f'%min(Er_A_VI, Er_B_VI, Er_C_VI, Er_D_VI)#Внутридневная правильность %
-			ws['I19'].value = '%.1f'%max(Er_A_VI, Er_B_VI, Er_C_VI, Er_D_VI)#Внутридневная правильность %
-			ws['I20'].value = '%.1f'%min(CV_vnytr_gr_QCF1_QCF2, CV_vnytr_gr_QCF1_QCF2_QCF3, CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4)#Междневная правильность %
-			ws['I21'].value = '%.1f'%max(CV_vnytr_gr_QCF1_QCF2, CV_vnytr_gr_QCF1_QCF2_QCF3, CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4)#Междневная правильность %
-			ws['I22'].value = '%.1f'%min(sigma_A_VI, sigma_B_VI, sigma_C_VI, sigma_D_VI)#Внутридневная повторяемость %
-			ws['I23'].value = '%.1f'%max(sigma_A_VI, sigma_B_VI, sigma_C_VI, sigma_D_VI)#Внутридневная повторяемость %
-			ws['I24'].value = '%.1f'%min(CV_mezhdy_gr_QCF1_QCF2, CV_mezhdy_gr_QCF1_QCF2_QCF3, CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4)#Междневная повторяемость %
-			ws['I25'].value = '%.1f'%max(CV_mezhdy_gr_QCF1_QCF2, CV_mezhdy_gr_QCF1_QCF2_QCF3, CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4)#Междневная повторяемость %
+			ws['I18'].value = my_round(min(Er_A_VI, Er_B_VI, Er_C_VI, Er_D_VI), 1)
+			ws['I19'].value = my_round(max(Er_A_VI, Er_B_VI, Er_C_VI, Er_D_VI), 1)
+			ws['I20'].value = my_round(min(CV_vnytr_gr_QCF1_QCF2, CV_vnytr_gr_QCF1_QCF2_QCF3, CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4), 1)
+			ws['I21'].value = my_round(max(CV_vnytr_gr_QCF1_QCF2, CV_vnytr_gr_QCF1_QCF2_QCF3, CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4), 1)
+			ws['I22'].value = my_round(min(sigma_A_VI, sigma_B_VI, sigma_C_VI, sigma_D_VI), 1)
+			ws['I23'].value = my_round(max(sigma_A_VI, sigma_B_VI, sigma_C_VI, sigma_D_VI), 1)
+			ws['I24'].value = my_round(min(CV_mezhdy_gr_QCF1_QCF2, CV_mezhdy_gr_QCF1_QCF2_QCF3, CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4), 1)
+			ws['I25'].value = my_round(max(CV_mezhdy_gr_QCF1_QCF2, CV_mezhdy_gr_QCF1_QCF2_QCF3, CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4), 1)
 		if check_var_gr_2.get() == 5:
-			ws['I18'].value = '%.1f'%min(Er_A_VI, Er_B_VI, Er_C_VI, Er_D_VI, Er_E_VI)#Внутридневная правильность %
-			ws['I19'].value = '%.1f'%max(Er_A_VI, Er_B_VI, Er_C_VI, Er_D_VI, Er_E_VI)#Внутридневная правильность %
-			ws['I20'].value = '%.1f'%min(CV_vnytr_gr_QCF1_QCF2, CV_vnytr_gr_QCF1_QCF2_QCF3, CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4, CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5)#Междневная правильность %
-			ws['I21'].value = '%.1f'%max(CV_vnytr_gr_QCF1_QCF2, CV_vnytr_gr_QCF1_QCF2_QCF3, CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4, CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5)#Междневная правильность %
-			ws['I22'].value = '%.1f'%min(sigma_A_VI, sigma_B_VI, sigma_C_VI, sigma_D_VI, sigma_E_VI)#Внутридневная повторяемость %
-			ws['I23'].value = '%.1f'%max(sigma_A_VI, sigma_B_VI, sigma_C_VI, sigma_D_VI, sigma_E_VI)#Внутридневная повторяемость %
-			ws['I24'].value = '%.1f'%min(CV_mezhdy_gr_QCF1_QCF2, CV_mezhdy_gr_QCF1_QCF2_QCF3, CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4, CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5)#Междневная повторяемость %
-			ws['I25'].value = '%.1f'%max(CV_mezhdy_gr_QCF1_QCF2, CV_mezhdy_gr_QCF1_QCF2_QCF3, CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4, CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5)#Междневная повторяемость %
+			ws['I18'].value = my_round(min(Er_A_VI, Er_B_VI, Er_C_VI, Er_D_VI, Er_E_VI), 1)
+			ws['I19'].value = my_round(max(Er_A_VI, Er_B_VI, Er_C_VI, Er_D_VI, Er_E_VI), 1)
+			ws['I20'].value = my_round(min(CV_vnytr_gr_QCF1_QCF2, CV_vnytr_gr_QCF1_QCF2_QCF3, CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4, CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5), 1)
+			ws['I21'].value = my_round(max(CV_vnytr_gr_QCF1_QCF2, CV_vnytr_gr_QCF1_QCF2_QCF3, CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4, CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5), 1)
+			ws['I22'].value = my_round(min(sigma_A_VI, sigma_B_VI, sigma_C_VI, sigma_D_VI, sigma_E_VI), 1)
+			ws['I23'].value = my_round(max(sigma_A_VI, sigma_B_VI, sigma_C_VI, sigma_D_VI, sigma_E_VI), 1)
+			ws['I24'].value = my_round(min(CV_mezhdy_gr_QCF1_QCF2, CV_mezhdy_gr_QCF1_QCF2_QCF3, CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4, CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5), 1)
+			ws['I25'].value = my_round(max(CV_mezhdy_gr_QCF1_QCF2, CV_mezhdy_gr_QCF1_QCF2_QCF3, CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4, CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5), 1)
 		if check_var_gr_2.get() == 6:	
-			ws['I18'].value = '%.1f'%min(Er_A_VI, Er_B_VI, Er_C_VI, Er_D_VI, Er_E_VI, Er_F_VI)#Внутридневная правильность %
-			ws['I19'].value = '%.1f'%max(Er_A_VI, Er_B_VI, Er_C_VI, Er_D_VI, Er_E_VI, Er_F_VI)#Внутридневная правильность %
-			ws['I20'].value = '%.1f'%min(CV_vnytr_gr_QCF1_QCF2, CV_vnytr_gr_QCF1_QCF2_QCF3, CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4, CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5, CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6)#Междневная правильность %
-			ws['I21'].value = '%.1f'%max(CV_vnytr_gr_QCF1_QCF2, CV_vnytr_gr_QCF1_QCF2_QCF3, CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4, CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5, CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6)#Междневная правильность %
-			ws['I22'].value = '%.1f'%min(sigma_A_VI, sigma_B_VI, sigma_C_VI, sigma_D_VI, sigma_E_VI, sigma_F_VI)#Внутридневная повторяемость %
-			ws['I23'].value = '%.1f'%max(sigma_A_VI, sigma_B_VI, sigma_C_VI, sigma_D_VI, sigma_E_VI, sigma_F_VI)#Внутридневная повторяемость %
-			ws['I24'].value = '%.1f'%min(CV_mezhdy_gr_QCF1_QCF2, CV_mezhdy_gr_QCF1_QCF2_QCF3, CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4, CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5, CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6)#Междневная повторяемость %
-			ws['I25'].value = '%.1f'%max(CV_mezhdy_gr_QCF1_QCF2, CV_mezhdy_gr_QCF1_QCF2_QCF3, CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4, CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5, CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6)#Междневная повторяемость %
+			ws['I18'].value = my_round(min(Er_A_VI, Er_B_VI, Er_C_VI, Er_D_VI, Er_E_VI, Er_F_VI), 1)
+			ws['I19'].value = my_round(max(Er_A_VI, Er_B_VI, Er_C_VI, Er_D_VI, Er_E_VI, Er_F_VI), 1)
+			ws['I20'].value = my_round(min(CV_vnytr_gr_QCF1_QCF2, CV_vnytr_gr_QCF1_QCF2_QCF3, CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4, CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5, CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6), 1)
+			ws['I21'].value = my_round(max(CV_vnytr_gr_QCF1_QCF2, CV_vnytr_gr_QCF1_QCF2_QCF3, CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4, CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5, CV_vnytr_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6), 1)
+			ws['I22'].value = my_round(min(sigma_A_VI, sigma_B_VI, sigma_C_VI, sigma_D_VI, sigma_E_VI, sigma_F_VI), 1)
+			ws['I23'].value = my_round(max(sigma_A_VI, sigma_B_VI, sigma_C_VI, sigma_D_VI, sigma_E_VI, sigma_F_VI), 1)
+			ws['I24'].value = my_round(min(CV_mezhdy_gr_QCF1_QCF2, CV_mezhdy_gr_QCF1_QCF2_QCF3, CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4, CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5, CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6), 1)
+			ws['I25'].value = my_round(max(CV_mezhdy_gr_QCF1_QCF2, CV_mezhdy_gr_QCF1_QCF2_QCF3, CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4, CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5, CV_mezhdy_gr_QCF1_QCF2_QCF3_QCF4_QCF5_QCF6), 1)
 			 
 
 
@@ -17712,32 +16715,6 @@ def back_to_first_widow():
 			if check_var_gr_3.get() >= 10:
 				global save_F10_VI
 				save_F10_VI = entr_F10_VI.get()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
